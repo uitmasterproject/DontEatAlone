@@ -1,4 +1,4 @@
-package com.example.app.connectserver.register;
+package com.example.app.donteatalone.register;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

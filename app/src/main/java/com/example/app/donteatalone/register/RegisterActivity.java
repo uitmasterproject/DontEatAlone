@@ -1,11 +1,11 @@
-package com.example.app.connectserver.register;
+package com.example.app.donteatalone.register;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.Button;
 
-import com.example.app.connectserver.R;
+import com.example.app.donteatalone.R;
 
 public class RegisterActivity extends FragmentActivity {
     private ViewPager _mViewPager;

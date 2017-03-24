@@ -1,4 +1,4 @@
-package com.example.app.connectserver.register;
+package com.example.app.donteatalone.register;
 
 
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.app.connectserver.R;
+import com.example.app.donteatalone.R;
 
 import java.lang.reflect.Field;
 

@@ -1,4 +1,4 @@
-package com.example.app.connectserver.login;
+package com.example.app.donteatalone.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,11 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.connectserver.R;
-import com.example.app.connectserver.blog.BlogActivity;
-import com.example.app.connectserver.connectmongo.Connect;
-import com.example.app.connectserver.model.UserName;
-import com.example.app.connectserver.register.RegisterActivity;
+import com.example.app.donteatalone.R;
+import com.example.app.donteatalone.blog.BlogActivity;
+import com.example.app.donteatalone.connectmongo.Connect;
+import com.example.app.donteatalone.model.UserName;
+import com.example.app.donteatalone.register.RegisterActivity;
 
 import java.util.ArrayList;
 import java.util.List;

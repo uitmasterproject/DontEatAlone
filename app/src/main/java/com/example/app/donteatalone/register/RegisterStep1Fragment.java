@@ -1,4 +1,4 @@
-package com.example.app.connectserver.register;
+package com.example.app.donteatalone.register;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.app.connectserver.R;
+import com.example.app.donteatalone.R;
 public class RegisterStep1Fragment extends Fragment {
 
     private ViewPager _mViewPager;

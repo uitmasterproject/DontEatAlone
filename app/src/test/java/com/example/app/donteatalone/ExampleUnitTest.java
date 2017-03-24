@@ -1,4 +1,4 @@
-package com.example.app.connectserver;
+package com.example.app.donteatalone;
 
 import org.junit.Test;
 

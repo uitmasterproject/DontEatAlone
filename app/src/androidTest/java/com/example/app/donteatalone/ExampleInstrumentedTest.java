@@ -1,4 +1,4 @@
-package com.example.app.connectserver;
+package com.example.app.donteatalone;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.example.app.connectserver.model;
+package com.example.app.donteatalone.model;
 
 /**
  * Created by ChomChom on 3/13/2017.

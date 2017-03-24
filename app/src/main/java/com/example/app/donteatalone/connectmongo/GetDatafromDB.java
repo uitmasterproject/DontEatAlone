@@ -1,8 +1,8 @@
-package com.example.app.connectserver.connectmongo;
+package com.example.app.donteatalone.connectmongo;
 
 import android.os.AsyncTask;
 
-import com.example.app.connectserver.model.UserName;
+import com.example.app.donteatalone.model.UserName;
 
 import java.util.List;
 

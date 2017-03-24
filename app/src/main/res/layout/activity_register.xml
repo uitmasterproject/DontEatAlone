@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.example.app.connectserver.register.RegisterActivity"
+    tools:context="com.example.app.donteatalone.register.RegisterActivity"
     android:background="@drawable/background">
     <FrameLayout
         android:layout_width="wrap_content"
