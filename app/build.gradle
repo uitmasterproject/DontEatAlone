@@ -11,19 +11,20 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
-def tag = 'git describe --tags --always --abbrev=0'.execute().getText().trim()
-def (versionMajor, versionMinor, versionPatch) = tag.tokenize('.')
-def versionBuild = System.getenv("BUILD_NUMBER") as Integer ?: 9999
-def VERSION_NAME = "$versionMajor.$versionMinor.$versionPatch.$versionBuild"
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+        resourcePackageName 'com.app.donteatalone'
+    }
+}
 
 android {
-
     signingConfigs {
         release {
             keyAlias 'DontEatAlone'
-            keyPassword 'com.example.app.donteatalone'
+            keyPassword 'com.app.donteatalone'
             storeFile file('E:/DontEatAlone/app/keystores/release-keystore.jks')
-            storePassword 'com.example.app.donteatalone'
+            storePassword 'com.app.donteatalone'
         }
         debug {
             keyAlias 'androiddebugkey'
@@ -36,10 +37,9 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId 'com.example.app.donteatalone'
-        minSdkVersion 'Unrecognized value'
-        targetSdkVersion 'Unrecognized value'
-        versionName 'Unrecognized value'
+        applicationId 'com.app.donteatalone'
+        minSdkVersion 17
+        targetSdkVersion 25
     }
     buildTypes {
         release {
@@ -76,16 +76,38 @@ apt {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+
+    //Android Support
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+
+    //Multidex
+    compile 'com.android.support:multidex:1.0.1'
+
+    //Annotations
+    compile 'org.androidannotations:androidannotations-api:4.0.0'
+    apt 'org.androidannotations:androidannotations:4.0.0'
+
+    //Validator saripaar
+    compile 'com.mobsandgeeks:android-saripaar:2.0.2'
+
+    //Joda time
+    compile 'net.danlew:android.joda:2.9.9'
+
+    //Calligraphy
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+    //progress loading
+    compile 'com.wang.avi:library:2.1.3'
+
+    //Retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    testCompile 'junit:junit:4.12'
+
+    //Nga's install
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
