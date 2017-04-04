@@ -10,6 +10,7 @@ captures
 .gradle
 .DS_Store
 local.properties
-/build
-/app/build
-/.gradle
+/.idea
+/*.iml
+/local.properties
+/app/app.iml
