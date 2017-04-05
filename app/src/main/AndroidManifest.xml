@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
 
-        <activity android:name=".views.login.LoginActivity">
+        <activity android:name=".views.login.LoginActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
 
         <activity android:name=".views.register.RegisterActivity" />
 
-        <activity android:name=".blog.BlogActivity">
+        <activity android:name=".views.blog.BlogActivity">
         </activity>
 
         <meta-data

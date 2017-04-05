@@ -1,121 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="73dp"
-    tools:context="com.app.donteatalone.com.app.donteatalone.login.LoginActivity"
-    android:orientation="vertical"
-    android:background="@drawable/background">
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Phone"
-    android:id="@+id/activity_login_edt_phone"
-    android:text="0979662236"
-    android:imeActionId="@+id/login"
-    android:imeActionLabel="password"
-    android:imeOptions="actionUnspecified"
-    android:maxLines="1"
-    android:singleLine="true"
-    android:textColor="#FFFFFF"/>
-</android.support.design.widget.TextInputLayout>
+    tools:ignore="contentDescription, MissingPrefix">
 
-<!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:weightSum="10">-->
-        <!--<EditText-->
-            <!--android:id="@+id/activity_login_edt_password"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="9"-->
-            <!--android:hint="password"-->
-            <!--android:imeActionId="@+id/login"-->
-            <!--android:imeActionLabel="password"-->
-            <!--android:text="a1234"-->
-            <!--android:imeOptions="actionUnspecified"-->
-            <!--android:inputType="textPassword"-->
-            <!--android:maxLines="1"-->
-            <!--android:singleLine="true" />-->
-        <!--<ImageView-->
-            <!--android:id="@+id/activity_login_img_password_visibility"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:src="@android:drawable/ic_menu_view"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:clickable="true"/>-->
-    <!--</LinearLayout>-->
-
-<!--</android.support.design.widget.TextInputLayout>-->
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/activity_login_edt_password"
+    <!--Set background below here-->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"/>
-</android.support.design.widget.TextInputLayout>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_focus_3" />
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_login_ckb_remember"
-        android:checked="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remember account"
-        android:textColor="#FFFFFF"/>
-</LinearLayout>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Login"
-    android:background="@drawable/design_btn_login_final"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:id="@+id/activity_login_btn_login"
-    android:textColor="#FFFFFF"/>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="20dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have a account"
-        android:id="@+id/activity_login_txt_register"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/design_underline"
-        android:textColor="#FFFFFF"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forget password"
-        android:id="@+id/activity_login_txt_forgetPass"
-        android:layout_marginLeft="70dp"
-        android:background="@drawable/design_underline"
-        android:textColor="#FFFFFF"/>
-</LinearLayout>
-</LinearLayout>
+    <!--Set content here-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/activity_login_ll_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_text"
+                    android:textColor="@color/color_deep_orange"
+                    android:textSize="30sp"
+                    app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <!--Phone and Password-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_solid_white"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/activity_login_edt_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/phone"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/gray"
+                        app:fontPath="fonts/Montserrat-Light" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end">
+
+                            <RelativeLayout
+                                android:id="@+id/activity_login_rl_show_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/show"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/activity_login_rl_hide_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/hide"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                        </FrameLayout>
+
+                        <EditText
+                            android:id="@+id/activity_login_edt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:padding="15dp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@color/gray"
+                            app:fontPath="fonts/Montserrat-Light" />
+
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+                <!--Set remenber account and Forgot password-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <!--Remember Account-->
+                    <CheckBox
+                        android:id="@+id/activity_login_ckb_remember"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:text="@string/remember_me"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium">
+
+                    </CheckBox>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <!--Forgot Password-->
+                    <RelativeLayout
+                        android:id="@+id/activity_login_rl_forgot_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center"
+                            android:text="@string/forgot_password"
+                            android:textColor="@color/bg_text_color_orange_white"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--Login Click-->
+                <Button
+                    android:id="@+id/activity_login_btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_login"
+                    android:gravity="center"
+                    android:padding="13dp"
+                    android:text="@string/login_text"
+                    android:textColor="@color/bg_text_color_orange_white"
+                    android:textSize="20sp"
+                    app:fontPath="fonts/RobotoCondensed-Bold.ttf">
+
+                </Button>
+
+                <!--Dont have account click-->
+                <RelativeLayout
+                    android:id="@+id/activity_login_rl_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="@string/new_here_create_an_account"
+                        android:textColor="@color/bg_text_color_orange_white"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
