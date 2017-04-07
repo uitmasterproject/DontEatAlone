@@ -113,6 +113,9 @@ dependencies {
     //Google Service
     compile 'com.google.android.gms:play-services:10.2.1'
 
+    //Hawk
+    compile 'com.orhanobut:hawk:2.0.1'
+
     //Nga's install
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'me.relex:circleindicator:1.2.2@aar'

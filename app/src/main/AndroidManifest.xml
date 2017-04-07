@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
 
-        <activity android:name=".views.login.LoginActivity_">
+        <activity android:name=".views.tutorial.TutorialActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,14 +21,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".views.login.LoginActivity_"/>
+
         <activity android:name=".views.register.RegisterActivity" />
 
-        <activity android:name=".views.blog.BlogActivity">
-        </activity>
+        <activity android:name=".views.blog.BlogActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB7QrzineBQVsnVAOqhTi9NwdIXSF0U49g"/>
+            android:value="AIzaSyB7QrzineBQVsnVAOqhTi9NwdIXSF0U49g" />
 
     </application>
 
