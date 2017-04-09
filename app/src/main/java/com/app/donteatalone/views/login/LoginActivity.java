@@ -12,11 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.donteatalone.R;
 import com.app.donteatalone.blog.BlogActivity;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.views.register.RegisterActivity;
-import com.app.donteatalone.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,17 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         clickRegister();
     }
 
-    public void getDatafromRegister(){
-        bundle=getIntent().getExtras();
-        if(null!=bundle.getString("phone")&&null!=bundle.getString("password")) {
-            passPhone = bundle.getString("phone");
-            passPassword = bundle.getString("password");
-        }
-        else {
-            passPhone = "";
-            passPassword="";
-        }
-    }
+
 
     public void init(){
         edtPhone=(EditText) findViewById(R.id.activity_login_edt_phone);
@@ -88,6 +78,18 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void getDatafromRegister(){
+        bundle=getIntent().getExtras();
+        if(null!=bundle.getString("phone")&&null!=bundle.getString("password")) {
+            passPhone = bundle.getString("phone");
+            passPassword = bundle.getString("password");
+        }
+        else {
+            passPhone = "";
+            passPassword="";
+        }
+    }
+
     public void checkRemember(){
         if(ckbRemember.isChecked()==true){
             saveReference();
@@ -100,8 +102,8 @@ public class LoginActivity extends AppCompatActivity {
     public void saveReference(){
         SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("phone",edtPhone.getText().toString());
-        editor.putString("password", edtPassword.getText().toString());
+        editor.putString("Logphone",edtPhone.getText().toString());
+        editor.putString("Logpassword", edtPassword.getText().toString());
         editor.commit();
     }
 
@@ -116,8 +118,8 @@ public class LoginActivity extends AppCompatActivity {
         Boolean bchk=sharedPreferences.getBoolean("checked", false);
         if(bchk==false)
         {
-            edtPhone.setText(sharedPreferences.getString("phone", ""));
-            edtPassword.setText(sharedPreferences.getString("password", ""));
+            edtPhone.setText(sharedPreferences.getString("Logphone", ""));
+            edtPassword.setText(sharedPreferences.getString("Logpassword", ""));
         }
         else {
             edtPhone.setText("");
@@ -156,6 +158,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public boolean checkEntry(String values){
+            if((values.trim()).equals("") || values.equals(null))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -176,6 +189,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(checkEntry(edtPhone.getText().toString())){
+                    edtPhone.setError("Invalid Phone");
+                }
+                if(!checkEntry(edtPassword.getText().toString())){
+                    edtPassword.setError("Invalid Password");
+                }
                 checkRemember();
                 checkAccount();
             }

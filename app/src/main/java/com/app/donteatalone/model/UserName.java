@@ -1,24 +1,34 @@
 package com.app.donteatalone.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ChomChom on 3/13/2017.
  */
 
-public class UserName {
+public class UserName implements Serializable {
     private String Phone;
     private String Fullname;
     private String Password;
+    private String Avatar;
     private String Birthday;
     private String Gender;
+    private String Address;
+    private String Hobby;
+    private String Character;
 
     public UserName(){}
 
-    public UserName(String phone, String fullname, String password, String birthday, String gender) {
+    public UserName(String phone, String fullname, String password, String avatar, String birthday, String gender, String address, String hobby, String character) {
         Phone = phone;
         Fullname = fullname;
         Password = password;
+        Avatar=avatar;
         Birthday = birthday;
         Gender = gender;
+        Address=address;
+        Hobby=hobby;
+        Character=character;
     }
 
     public String getPhone() {
@@ -60,4 +70,38 @@ public class UserName {
     public void setGender(String gender) {
         Gender = gender;
     }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getHobby() {
+        return Hobby;
+    }
+
+    public String getAvatar() {
+        return Avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        Avatar = avatar;
+    }
+
+    public void setHobby(String hobby) {
+        Hobby = hobby;
+    }
+
+    public String getCharacter() {
+        return Character;
+    }
+
+    public void setCharacter(String character) {
+        Character = character;
+    }
+
+
 }

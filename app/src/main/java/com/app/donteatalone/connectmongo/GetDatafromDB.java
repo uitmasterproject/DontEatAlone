@@ -2,23 +2,21 @@ package com.app.donteatalone.connectmongo;
 
 import android.os.AsyncTask;
 
-import com.app.donteatalone.model.UserName;
-
-import java.util.List;
-
 /**
  * Created by ChomChom on 3/16/2017.
  */
 
-public class GetDatafromDB extends AsyncTask<Void,List<UserName>,Void> {
-    @Override
-    protected Void doInBackground(Void... params) {
-        return null;
-    }
+public class GetDatafromDB extends AsyncTask<String,Void,Void> {
 
     public GetDatafromDB() {
         super();
     }
+
+    @Override
+    protected Void doInBackground(String... params) {
+        return null;
+    }
+
 
     @Override
     protected void onPostExecute(Void aVoid) {
@@ -26,7 +24,7 @@ public class GetDatafromDB extends AsyncTask<Void,List<UserName>,Void> {
     }
 
     @Override
-    protected void onProgressUpdate(List<UserName>... values) {
+    protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
 }

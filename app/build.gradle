@@ -80,43 +80,44 @@ apt {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
 
     //Android Support
+    
+
+    //Multidex
+    
+    //Annotations
+    
+    //Validator saripaar
+    
+    //Joda time
+    
+    //Calligraphy
+    
+    //progress loading
+    
+    //Retrofit2
+    
+    //Google Service
+    
+    //Nga's install
+    
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-
-    //Multidex
     compile 'com.android.support:multidex:1.0.1'
-
-    //Annotations
     compile 'org.androidannotations:androidannotations-api:4.0.0'
-    apt 'org.androidannotations:androidannotations:4.0.0'
-
-    //Validator saripaar
     compile 'com.mobsandgeeks:android-saripaar:2.0.2'
-
-    //Joda time
     compile 'net.danlew:android.joda:2.9.9'
-
-    //Calligraphy
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-
-    //progress loading
     compile 'com.wang.avi:library:2.1.3'
-
-    //Retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-
-    //Google Service
     compile 'com.google.android.gms:play-services:8.4.0'
-
-    //Nga's install
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
-
+    testCompile 'junit:junit:4.12'
+    apt 'org.androidannotations:androidannotations:4.0.0'
 }

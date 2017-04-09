@@ -1,141 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/fragment_register_step2_img_avatar"
-            android:src="@drawable/users"
-            android:background="@drawable/design_img_avatar"/>
-        <TextView
-            android:id="@+id/display_RGB"
-            android:layout_width="45dp"
-            android:layout_height="20dp"
-            android:background="@drawable/design_txt_edit_avatar"
-            android:layout_alignRight="@id/fragment_register_step2_img_avatar"
-            android:layout_alignBottom="@id/fragment_register_step2_img_avatar"
-            android:text="Edit"
-            android:textSize="12dp"
-            android:textColor="#FFFFFF"
-            android:layout_centerHorizontal="true"
-            android:layout="@id/fragment_register_step2_img_avatar"
-            />
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:weightSum="5"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:layout_gravity="center_vertical"/>
-        <RadioGroup
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
-                android:text="Other" />
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
-                android:text="Female"/>
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
-                android:text="Male"/>
-        </RadioGroup>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="Birthday"
-            android:layout_gravity="center_vertical" />
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="Day"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/fragment_register_step2_spn_day"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="Month"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/fragment_register_step2_spn_month"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="Year"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/fragment_register_step2_spn_year"/>
 
-    </LinearLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Address"
-            android:id="@+id/fragment_register_step2_edt_address"
-            android:textColor="#FFFFFF"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp">
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Hobby"
-            android:completionThreshold="1"
-            android:id="@+id/fragment_register_step2_actv_hobby"/>
-    </android.support.design.widget.TextInputLayout>
-    <Button
+<!--Input Name + Pass -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:paddingBottom="16dp"
+android:paddingLeft="16dp"
+android:paddingRight="16dp"
+android:paddingTop="16dp"
+android:gravity="center">
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:background="@drawable/design_btn_login_final"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:id="@+id/activity_register_btn_register"
+        android:hint="Full Name"
+        android:id="@+id/fragment_register_step2_edt_fullname"
         android:textColor="#FFFFFF"/>
+</android.support.design.widget.TextInputLayout>
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:id="@+id/fragment_register_step2_edt_password"
+        android:textColor="#FFFFFF"/>
+</android.support.design.widget.TextInputLayout>
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Next Step"
+    android:background="@drawable/design_btn_login_final"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:id="@+id/fragment_register_step2_btn_next"
+    android:textColor="#FFFFFF"/>
 </LinearLayout>
