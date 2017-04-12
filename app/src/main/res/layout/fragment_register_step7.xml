@@ -22,12 +22,12 @@
             android:layout_height="wrap_content"
             android:hint="Character"
             android:completionThreshold="1"
-            android:id="@+id/fragment_register_step7_actv_hobby"/>
+            android:id="@+id/fragment_register_step7_actv_character"/>
     </android.support.design.widget.TextInputLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next Step"
+        android:text="Login"
         android:background="@drawable/design_btn_login_final"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

@@ -70,9 +70,15 @@ public class RegisterStep2Fragment extends Fragment {
                 if(edtFullName.getText().toString().equals("")==false){
                     edtPassword.setEnabled(true);
                     changDataEditPassword();
+                    if(edtPassword.getText().toString().length()==0) {
+                        btnNextStep.setVisibility(View.GONE);
+                    }
+                    else {
+                        btnNextStep.setVisibility(View.VISIBLE);
+                        edtPassword.setEnabled(true);
+                    }
                 }
                 else {
-                    edtPassword.setEnabled(false);
                     btnNextStep.setVisibility(View.GONE);
                 }
             }
@@ -109,11 +115,15 @@ public class RegisterStep2Fragment extends Fragment {
         btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterStep1Fragment.userName.setFullname(edtFullName.getText().toString());
-                RegisterStep1Fragment.userName.setPassword(edtPassword.getText().toString());
-                saveReference();
-                _mViewPager.setCurrentItem(2,true);
-
+                if(edtPassword.getText().toString().length()<6){
+                    edtPassword.setError("Length password is longer 6 character");
+                }
+                else {
+                    RegisterStep1Fragment.userName.setFullname(edtFullName.getText().toString());
+                    RegisterStep1Fragment.userName.setPassword(edtPassword.getText().toString());
+                    saveReference();
+                    _mViewPager.setCurrentItem(2,true);
+                }
             }
         });
     }

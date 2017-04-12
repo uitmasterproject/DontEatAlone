@@ -63,7 +63,7 @@ public class RegisterStep6Fragment extends Fragment {
         btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterStep1Fragment.userName.setAddress(actvHobby.getText().toString());
+                RegisterStep1Fragment.userName.setHobby(actvHobby.getText().toString());
                 saveReference();
                 _mViewPager.setCurrentItem(6,true);
             }

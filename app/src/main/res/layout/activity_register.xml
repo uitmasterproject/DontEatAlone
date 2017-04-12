@@ -24,12 +24,21 @@
         android:layout_gravity="center_horizontal|bottom">
 
         <Button
-            android:id="@+id/activity_register_btn_next_step2"
+            android:id="@+id/activity_register_btn_next_step1"
             android:layout_width="7dp"
             android:layout_height="7dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/design_button_selected"
             />
+
+        <Button
+            android:id="@+id/activity_register_btn_next_step2"
+            android:layout_width="7dp"
+            android:layout_height="7dp"
+            android:layout_marginLeft="4dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/design_button_default"
+            android:contentDescription="Let's start" />
 
         <Button
             android:id="@+id/activity_register_btn_next_step3"
@@ -66,7 +75,6 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/design_button_default"
             android:contentDescription="Let's start" />
-
         <Button
             android:id="@+id/activity_register_btn_finish"
             android:layout_width="7dp"

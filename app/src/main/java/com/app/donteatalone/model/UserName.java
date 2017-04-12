@@ -1,5 +1,7 @@
 package com.app.donteatalone.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  */
 
 public class UserName implements Serializable {
+    @SerializedName("Phone")
     private String Phone;
     private String Fullname;
     private String Password;

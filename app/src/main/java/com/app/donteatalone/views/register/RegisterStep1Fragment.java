@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -70,7 +77,7 @@ public class RegisterStep1Fragment extends Fragment {
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                txtRecomment.setVisibility(View.GONE);
             }
 
             @Override
@@ -98,8 +105,32 @@ public class RegisterStep1Fragment extends Fragment {
         });
     }
 
-    private boolean checkExitPhone(){
-        return true;
+    private void checkExitsPhone(){
+        Connect connect=new Connect();
+        Call<Status> checkPhone=connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
+        checkPhone.enqueue(new Callback<Status>() {
+            @Override
+            public void onResponse(Call<Status> call, Response<Status> response) {
+                if(response.body().getStatus().equals("this phone isnt exits")==true){
+                    txtRecomment.setText("Wait for minute to recept code. Input code");
+                    txtRecomment.setTextColor(Color.GRAY);
+                    edtCode.setVisibility(View.VISIBLE);
+                    changeDataEdtPhone(edtCode,btnNextStep);
+                }
+                else {
+//                    txtRecomment.setText("This phone was exit");
+//                    txtRecomment.setTextColor(Color.RED);
+                    edtPhone.setError("This phone was exit");
+                    edtPhone.setText("");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Status> call, Throwable t) {
+                Log.e("ERROR Phone Exits",t.toString()+"*************************************");
+            }
+        });
     }
 
     private void clickButtonNextCode(){
@@ -107,22 +138,15 @@ public class RegisterStep1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 txtRecomment.setVisibility(View.VISIBLE);
-                if(checkExitPhone()==true){
-                    txtRecomment.setText("Wait for minute to recept code. Input code");
-                    txtRecomment.setTextColor(Color.GRAY);
-                    edtCode.setVisibility(View.VISIBLE);
-                    changeDataEdtPhone(edtCode,btnNextStep);
-                }
-                else {
-                    txtRecomment.setText("This phone was exit");
-                    txtRecomment.setTextColor(Color.RED);
-                    edtPhone.setText("");
-                }
                 btnNextCode.setVisibility(View.GONE);
+                checkExitsPhone();
             }
         });
     }
 
+
+
+    //IN HERE, HAVEN'T METHOD CHECK CODE
     private void clickButtonNextStep(){
         btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Connect {
-    private static String API_BASE_URL = "http://192.168.1.31:3000/";
+    private static String API_BASE_URL = "http://10.0.128.134:3000/";
 
     public static Structure getRetrofit(){
 

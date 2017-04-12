@@ -98,7 +98,7 @@ public class RegisterStep3Fragment extends Fragment {
         imgWomanAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animationImageAvatar(rltWomanAvatar,R.drawable.womanavatar,450);
+                animationImageAvatar(rltWomanAvatar,R.drawable.womanavatar,350);
                 gender="Woman";
             }
         });
@@ -183,7 +183,6 @@ public class RegisterStep3Fragment extends Fragment {
                     Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
                     tempbitmap=Bitmap.createScaledBitmap(tempbitmap, 90,90, true);
                     bitmap=tempbitmap;
-                    Log.e("bitmap",bitmap+"-------------------------------------------");
                     imgAvatar.setImageBitmap(tempbitmap);
                     String path = android.os.Environment.getExternalStorageDirectory().toString();
                     f.delete();

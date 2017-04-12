@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     private Context _context;
-    public static int totalPage=6;
+    public static int totalPage=7;
 
     public ViewPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
