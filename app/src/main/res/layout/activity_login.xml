@@ -73,74 +73,23 @@
                         android:textColorHint="@color/gray"
                         app:fontPath="fonts/Montserrat-Light" />
 
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/gray" />
 
-                    <FrameLayout
+                    <EditText
+                        android:id="@+id/activity_login_edt_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="end">
-
-                            <RelativeLayout
-                                android:id="@+id/activity_login_rl_show_password"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/show"
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp" />
-
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:id="@+id/activity_login_rl_hide_password"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/hide"
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp" />
-
-                            </RelativeLayout>
-
-                        </FrameLayout>
-
-                        <EditText
-                            android:id="@+id/activity_login_edt_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:hint="@string/password"
-                            android:inputType="textPassword"
-                            android:maxLines="1"
-                            android:padding="15dp"
-                            android:textColor="@android:color/black"
-                            android:textColorHint="@color/gray"
-                            app:fontPath="fonts/Montserrat-Light" />
-
-
-                    </FrameLayout>
-
+                        android:background="@android:color/transparent"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/gray"
+                        app:fontPath="fonts/Montserrat-Light" />
 
                 </LinearLayout>
 

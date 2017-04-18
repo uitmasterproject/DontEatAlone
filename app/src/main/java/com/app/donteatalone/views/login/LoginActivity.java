@@ -2,17 +2,11 @@ package com.app.donteatalone.views.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.base.BaseActivity;
@@ -122,7 +116,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void checkPassDatafromRegister() {
-        if (!(passPhone.equals(null)) || !(passPassword.equals(null))) {
+        if (null != passPhone || null != passPassword) {
             edtPhone.setText("");
             edtPassword.setText("");
         } else {
@@ -159,7 +153,7 @@ public class LoginActivity extends BaseActivity {
 
     private void checkAccount() {
         String testPhone = edtPhone.getText().toString();
-        if (!edtPhone.getText().toString().equals(null)) {
+        if (null != edtPhone.getText().toString() && null != edtPassword.getText().toString()) {
             temp = new ArrayList<>();
             Connect connect = new Connect();
             Call<List<UserName>> getPass = Connect.getRetrofit().getPhoneUser(edtPhone.getText().toString());
