@@ -1,5 +1,7 @@
 package com.app.donteatalone.views.tutorial;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -7,6 +9,7 @@ import android.widget.TextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseActivity;
 import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.PrefManager;
 import com.app.donteatalone.views.login.LoginActivity_;
 
 import org.androidannotations.annotations.AfterViews;
@@ -30,6 +33,8 @@ public class TutorialActivity extends BaseActivity {
 
     @AfterViews
     void init() {
+        //Checking first login?
+//        checkNextScreen();
         // Making notification bar transparent
         AppUtils.changeStatusBarColor(this);
         //Set adapter
@@ -53,13 +58,25 @@ public class TutorialActivity extends BaseActivity {
     @Click(R.id.activity_tutorial_rl_next)
     void rlNextClick() {
         int current = getItem(+1);
-        if (current < tutorialAdapter.getCount()){
+        if (current < tutorialAdapter.getCount()) {
             viewPager.setCurrentItem(current);
-        } else{
-            LoginActivity_.intent(this).start();
-            overridePendingTransition(R.animator.animator_right_in,R.animator.animator_left_out);
+        } else {
+//            PrefManager.getInstance().setTutorialLaunched(false);
+            goToLoginActivity();
         }
     }
+
+    private void goToLoginActivity() {
+        LoginActivity_.intent(this).start();
+        overridePendingTransition(R.animator.animator_right_in, R.animator.animator_left_out);
+        finish();
+    }
+
+//    public void checkNextScreen() {
+//        if (!PrefManager.getInstance().isTutorialLaunched()) {
+//            goToLoginActivity();
+//        }
+//    }
 
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
