@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import com.app.donteatalone.R;
 
+import org.androidannotations.annotations.EActivity;
+
 public class RegisterActivity extends FragmentActivity {
     private CustomViewPager _mViewPager;
     private ViewPagerAdapter _adapter;

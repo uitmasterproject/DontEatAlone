@@ -1,397 +1,192 @@
 package com.app.donteatalone.views.login;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.app.donteatalone.R;
-import com.app.donteatalone.blog.BlogActivity;
-import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.base.BaseActivity;
 import com.app.donteatalone.connectmongo.GetDatafromDB;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.views.blog.BlogActivity;
+import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.views.register.RegisterActivity;
+import com.app.donteatalone.R;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.CheckedChange;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Touch;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+@EActivity(R.layout.activity_login)
+public class LoginActivity extends BaseActivity {
 
     private String passPhone, passPassword;
-    private Bundle bundle;
-    private EditText edtPhone, edtPassword;
-    private Button btnLogin;
-    private TextView txtRegister, txtForgetPass;
-    private CheckBox ckbRemember;
     private String testPhone;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        //getDatafromRegister();
-        init();
+
+    @ViewById(R.id.activity_login_edt_phone)
+    EditText edtPhone;
+    @ViewById(R.id.activity_login_edt_password)
+    EditText edtPassword;
+    @ViewById(R.id.activity_login_ckb_remember)
+    CheckBox ckbRememberMe;
+
+    @AfterViews
+    public void init() {
+        /*Set Status bar color*/
+        AppUtils.changeStatusBarColor(this);
         storeReference();
-        clickLogin();
-        clickRegister();
-        clickForgetPassword();
     }
 
-
-
-    public void init(){
-        edtPhone=(EditText) findViewById(R.id.activity_login_edt_phone);
-        edtPassword=(EditText) findViewById(R.id.activity_login_edt_password);
-        ckbRemember=(CheckBox) findViewById(R.id.activity_login_ckb_remember);
-        txtRegister=(TextView) findViewById(R.id.activity_login_txt_register);
-        txtForgetPass=(TextView) findViewById(R.id.activity_login_txt_forgetPass);
-        btnLogin=(Button) findViewById(R.id.activity_login_btn_login);
-//        /*Paint p = new Paint();
-//        p.setColor(Color.RED);
-//
-//        txtRegister.setPaintFlags(p.getColor());
-//        txtRegister.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-//        txtRegister.setText("Don't have a account");*/
-//
-//        /*String styledText = "<u style=\"color:'#FF4081'\"><font>Don't have a account</font></u>.";
-//        txtRegister.setText(Html.fromHtml(styledText),TextView.BufferType.SPANNABLE);*/
-    }
-
-    public void checkPassDatafromRegister(){
-        if ((null!=passPhone)|| (null!=passPassword)){
-            edtPhone.setText("");
-            edtPassword.setText("");
+    @Click(R.id.activity_login_btn_login)
+    void btnLoginClick() {
+        if (checkEntry(edtPhone.getText().toString())) {
+            edtPhone.setError("Invalid Phone");
         }
-        else{
-            edtPhone.setText(passPhone);
-            edtPassword.setText(passPassword);
+        if (checkEntry(edtPassword.getText().toString())) {
+            edtPassword.setError("Invalid Password");
+        }
+        if (!checkEntry(edtPhone.getText().toString()) && !checkEntry(edtPassword.getText().toString())) {
+            checkAccount();
         }
     }
 
-    public void getDatafromRegister(){
-        bundle=getIntent().getExtras();
-        if(null!=bundle.getString("phone")&&null!=bundle.getString("password")) {
-            passPhone = bundle.getString("phone");
-            passPassword = bundle.getString("password");
-        }
-        else {
-            passPhone = "";
-            passPassword="";
-        }
+    @Click(R.id.activity_login_rl_forgot_password)
+    void rlForgotPasswordClick() {
+
     }
 
-    public void checkRemember(){
-        if(ckbRemember.isChecked()==true){
-            saveReference(edtPhone.getText().toString(),edtPassword.getText().toString());
-        }
-        else {
+    @Click(R.id.activity_login_rl_register)
+    void rlRegisterClick() {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    @CheckedChange(R.id.activity_login_ckb_remember)
+    void ckbRememberMeCheckedChange() {
+        if (ckbRememberMe.isChecked()) {
+            saveReference(edtPhone.getText().toString(), edtPassword.getText().toString());
+        } else {
             clearReference();
         }
     }
 
-    public void saveReference(String phone, String password){
-        SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("phoneLogin",phone);
-        editor.putString("passwordLogin", password);
-        editor.commit();
-    }
-
-    public void clearReference(){
-        SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.clear();
-    }
-
-    public void storeReference(){
-        SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
-        Boolean bchk=sharedPreferences.getBoolean("checked", false);
-        if(bchk==false)
-        {
-            edtPhone.setText(sharedPreferences.getString("phoneLogin", ""));
-            edtPassword.setText(sharedPreferences.getString("passwordLogin", ""));
-        }
-        else {
-            edtPhone.setText("");
-            edtPassword.setText("");
-        }
-    }
-
-    public void checkAccount(){
-        testPhone=edtPhone.getText().toString();
-        if(null!=edtPhone.getText().toString()&&null!=edtPassword.getText().toString()) {
-            Connect connect = new Connect();
-            Call<Status> getPass = connect.getRetrofit().checkAccount(edtPhone.getText().toString(),edtPassword.getText().toString());
-
-            getPass.enqueue(new Callback<Status>() {
-                @Override
-                public void onResponse(Call<Status> call, Response<Status> response) {
-
-                    if (response.body().getStatus().equals("Login success")==true){
-                        GetDatafromDB getData =new GetDatafromDB(getBaseContext());
-                        getData.execute(edtPhone.getText().toString());
-                        Intent intent=new Intent(LoginActivity.this, BlogActivity.class);
-                        startActivity(intent);
-
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this,"Password incorecct, Check phone or password again.", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Status> call, Throwable t) {
-                    Log.e("error",t.toString());
-                }
-            });
-        }
-    }
-
-    public boolean checkEntry(String values){
-            if((values.trim()).equals("")!=true || null!=values)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+    //Hide soft keyboard when you touch outside
+    @Touch(R.id.activity_login_ll_root)
+    void llRootTouch() {
+        AppUtils.hideSoftKeyboard(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        overridePendingTransition(R.animator.animator_left_in,R.animator.animator_right_out);
+        overridePendingTransition(R.animator.animator_left_in, R.animator.animator_right_out);
     }
 
-    public void clickRegister(){
-        txtRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+    @Override
+    public void showProgressLoading() {
+        super.showProgressLoading();
     }
 
-    private void clickForgetPassword(){
-        txtForgetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(LoginActivity.this);
-                dialog.setTitle("Change Password");
-                dialog.setContentView(R.layout.custom_dialog_forgetpassword);
-                initElementfordialogForgetPassword(dialog);
-                dialog.show();
-            }
-        });
+    @Override
+    public void hideProgressLoading() {
+        super.hideProgressLoading();
     }
 
-    private void initElementfordialogForgetPassword(Dialog dialog){
-        final EditText edtPhoneReset=(EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_phone);
-        EditText edtCodeReset=(EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_code);
-        EditText edtNewPassword=(EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_newpassword);
-        TextView txtReceivCodeAgain=(TextView) dialog.findViewById(R.id.custom_dialog_forgetpassword_txt_receivcodeagain);
-        final Button btnOKPhone=(Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_ok);
-        Button btnOKCode=(Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_okcode);
-        Button btnFinish=(Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_finish);
-        edtPhoneReset.setText(edtPhone.getText().toString());
-        if(edtPhoneReset.getText().toString().length()==0){
-            btnOKPhone.setVisibility(View.GONE);
+    public void checkPassDatafromRegister() {
+        if ((null != passPhone) || (null != passPassword)) {
+            edtPhone.setText("");
+            edtPassword.setText("");
+        } else {
+            edtPhone.setText(passPhone);
+            edtPassword.setText(passPassword);
         }
-        edtCodeReset.setVisibility(View.GONE);
-        edtNewPassword.setVisibility(View.GONE);
-        txtReceivCodeAgain.setVisibility(View.GONE);
-        btnOKCode.setVisibility(View.GONE);
-        btnFinish.setVisibility(View.GONE);
-
-        edtPhoneReset.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(edtPhoneReset.getText().toString().length()==0){
-                    btnOKPhone.setVisibility(View.GONE);
-                }
-                else {
-                    btnOKPhone.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        clickButtonOKPhoneinDialogForgetPassword(btnOKPhone,edtPhoneReset,edtCodeReset,txtReceivCodeAgain);
-        changeDataEditTextCodeinDialogForgetPassword(edtCodeReset,btnOKCode);
-        clickButtonbtnOKCodeinDialogForgetPassword(btnOKCode,edtNewPassword,edtCodeReset,txtReceivCodeAgain);
-        changeDataEditTextNewPassinDialogForgetPassword(edtNewPassword,btnFinish);
-        clickButtonbtnFinishinDialogForgetPassword(dialog,edtNewPassword,btnFinish,edtPhoneReset);
     }
 
-    private void clickButtonOKPhoneinDialogForgetPassword(final Button btnOKPhone, final EditText edtPhoneReset,
-                                                          final EditText edtCodeReset, final TextView txtReceivCodeAgain){
-        btnOKPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Connect connect=new Connect();
-                Call<Status> checkPhoneExits= connect.getRetrofit().checkPhoneExits(edtPhoneReset.getText().toString());
-                checkPhoneExits.enqueue(new Callback<Status>() {
-                    @Override
-                    public void onResponse(Call<Status> call, Response<Status> response) {
-                        if(response.body().getStatus().equals("this phone is exits")==true){
-                            edtCodeReset.setVisibility(View.VISIBLE);
-                            txtReceivCodeAgain.setVisibility(View.VISIBLE);
-                            edtPhoneReset.setVisibility(View.GONE);
-                            btnOKPhone.setVisibility(View.GONE);
-                        }
-                        else {
-                            edtPhoneReset.setError("This phone is exits. Click Register for create your account.");
-                        }
+    public void getDatafromRegister() {
+        Bundle bundle = getIntent().getExtras();
+        if (null != bundle.getString("phone") && null != bundle.getString("password")) {
+            passPhone = bundle.getString("phone");
+            passPassword = bundle.getString("password");
+        } else {
+            passPhone = "";
+            passPassword = "";
+        }
+    }
+
+    public void saveReference(String phone, String password) {
+        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("phoneLogin", phone);
+        editor.putString("passwordLogin", password);
+        editor.apply();
+    }
+
+    public void clearReference() {
+        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+    }
+
+    public void storeReference() {
+        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        Boolean bchk = sharedPreferences.getBoolean("checked", false);
+        if (!bchk) {
+            edtPhone.setText(sharedPreferences.getString("phoneLogin", ""));
+            edtPassword.setText(sharedPreferences.getString("passwordLogin", ""));
+        } else {
+            edtPhone.setText("");
+            edtPassword.setText("");
+        }
+    }
+
+    public void checkAccount() {
+        testPhone = edtPhone.getText().toString();
+        if (null != edtPhone.getText().toString() && null != edtPassword.getText().toString()) {
+            Call<Status> getPass = Connect.getRetrofit().checkAccount(edtPhone.getText().toString(),
+                    edtPassword.getText().toString());
+
+            getPass.enqueue(new Callback<Status>() {
+                @Override
+                public void onResponse(Call<Status> call, Response<Status> response) {
+
+                    if (response.body().getStatus().equals("Login success")) {
+                        GetDatafromDB getData = new GetDatafromDB(getBaseContext());
+                        getData.execute(edtPhone.getText().toString());
+                        Intent intent = new Intent(LoginActivity.this, BlogActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Password incorecct, Check phone or password again.", Toast.LENGTH_LONG).show();
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<Status> call, Throwable t) {
-
-                    }
-                });
-            }
-        });
+                @Override
+                public void onFailure(Call<Status> call, Throwable t) {
+                    Log.e("error", t.toString());
+                }
+            });
+        }
     }
 
-
-    private void changeDataEditTextCodeinDialogForgetPassword(final EditText edtCodeReset, final Button btnOKCode){
-        edtCodeReset.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(edtCodeReset.getText().toString().length()!=0){
-                    btnOKCode.setVisibility(View.VISIBLE);
-                }
-                else {
-                    btnOKCode.setVisibility(View.GONE);
-                }
-            }
-        });
+    public boolean checkEntry(String values) {
+        return !((values.trim()).equals("") != true || null != values);
     }
 
-
-    //IN HERE, HAVEN'T METHOD CHECK CODE
-    private void clickButtonbtnOKCodeinDialogForgetPassword(final Button btnOKCode, final EditText edtNewPassword,
-                                                            final EditText edtCodeReset, final TextView txtReceivCodeAgain){
-        btnOKCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check code user input in edtCodeReset.
-                //if incorrect
-                //edtCodeReset.setError("Code incorrect. Inputcode again")
-                //if correct
-                edtCodeReset.setVisibility(View.GONE);
-                txtReceivCodeAgain.setVisibility(View.GONE);
-                btnOKCode.setVisibility(View.GONE);
-                edtNewPassword.setVisibility(View.VISIBLE);
-            }
-        });
-    }
-
-    private void changeDataEditTextNewPassinDialogForgetPassword(final EditText edtNewPassword, final Button btnFinish){
-        edtNewPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(edtNewPassword.getText().toString().length()!=0){
-                    btnFinish.setVisibility(View.VISIBLE);
-                }
-                else {
-                    btnFinish.setVisibility(View.GONE);
-                }
-            }
-        });
-    }
-
-    private void clickButtonbtnFinishinDialogForgetPassword(final Dialog dialog, final EditText edtNewPassword, final Button btnFinish, final EditText edtPhoneReset){
-        btnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(edtNewPassword.getText().toString().length()>=6) {
-                    Connect connect = new Connect();
-                    Log.e("Phone Reset",edtPhoneReset.getText().toString()+"--------------------------");
-                    Log.e("New Password", edtNewPassword.getText().toString()+"************************");
-                    Call<Status> changePass = connect.getRetrofit().changePass(edtPhoneReset.getText().toString(), edtNewPassword.getText().toString());
-                    changePass.enqueue(new Callback<Status>() {
-                        @Override
-                        public void onResponse(Call<Status> call, Response<Status> response) {
-                            if (response.body().getStatus().equals("Update password success") == true) {
-                                saveReference(edtPhoneReset.getText().toString(),edtNewPassword.getText().toString());
-                                dialog.cancel();
-                                storeReference();
-                            } else {
-                                edtNewPassword.setError("Update password error");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Status> call, Throwable t) {
-
-                        }
-                    });
-                }
-                else {
-                    edtNewPassword.setError("Password is longer than 6 character");
-                }
-            }
-        });
-    }
-
-    public void clickLogin(){
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(checkEntry(edtPhone.getText().toString())==true){
-                    edtPhone.setError("Invalid Phone");
-                }
-                if(checkEntry(edtPassword.getText().toString())==true){
-                    edtPassword.setError("Invalid Password");
-                }
-                if(checkEntry(edtPhone.getText().toString())==false&&checkEntry(edtPassword.getText().toString())==false) {
-                    checkRemember();
-                    checkAccount();
-                }
-            }
-        });
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.app.donteatalone.blog;
+package com.app.donteatalone.views.blog;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,44 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--Input Name + Pass -->
-
+<?xml version="1.0" encoding="utf-8"?><!--Input Name + Pass -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:paddingBottom="16dp"
-android:paddingLeft="16dp"
-android:paddingRight="16dp"
-android:paddingTop="16dp"
-android:gravity="center">
-<android.support.design.widget.TextInputLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/fragment_register_step2_edt_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:textColor="#FFFFFF" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/fragment_register_step2_edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_login"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:text="Register"
+            android:textColor="#FFFFFF" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/fragment_register_step2_btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:id="@+id/fragment_register_step2_edt_fullname"
-        android:textColor="#FFFFFF"/>
-</android.support.design.widget.TextInputLayout>
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:id="@+id/fragment_register_step2_edt_password"
-        android:textColor="#FFFFFF"/>
-</android.support.design.widget.TextInputLayout>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Next Step"
-    android:background="@drawable/design_btn_login_final"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:id="@+id/fragment_register_step2_btn_next"
-    android:textColor="#FFFFFF"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Next Step"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

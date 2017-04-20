@@ -39,7 +39,6 @@ public class AppUtils {
     }
 
     /*Making notification bar transparent*/
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void changeStatusBarColor(Activity activity) {
         if (Build.VERSION.SDK_INT >= 21) {
             activity.getWindow()

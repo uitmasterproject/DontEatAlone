@@ -3,5 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="gray">#d1cccc</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="dot_tutorial_active">#1890c7</color>
+    <color name="dot_tutorial_inactive">#9b9b9b</color>
+
+    <!--Login screen color-->
+    <color name="color_deep_orange">#FF5722</color>
+
 </resources>
