@@ -12,7 +12,6 @@ import com.app.donteatalone.base.BaseActivity;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.PrefManager;
 import com.app.donteatalone.views.login.LoginActivity;
-import com.app.donteatalone.views.login.LoginActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;

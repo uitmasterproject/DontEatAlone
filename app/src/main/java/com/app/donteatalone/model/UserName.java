@@ -11,13 +11,21 @@ import java.io.Serializable;
 public class UserName implements Serializable {
     @SerializedName("Phone")
     private String Phone;
+    @SerializedName("FullName")
     private String Fullname;
+    @SerializedName("Password")
     private String Password;
+    @SerializedName("Avatar")
     private String Avatar;
+    @SerializedName("Birthday")
     private String Birthday;
+    @SerializedName("Gender")
     private String Gender;
+    @SerializedName("Address")
     private String Address;
+    @SerializedName("Hobby")
     private String Hobby;
+    @SerializedName("Character")
     private String Character;
 
     public UserName(){}

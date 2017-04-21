@@ -1,5 +1,6 @@
 package com.app.donteatalone.connectmongo;
 
+import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 
@@ -44,4 +45,9 @@ public interface Structure {
         Call<List<UserName>> deleteUser(@Path("id") String id );
         @PUT("/user/{id}")
         Call<List<UserName>> updateUser(@Path("id") String id );
+
+
+
+        @POST("/statusblog")
+        Call<Status> addStatusBlog(@Body InfoBlog infoBlog);
 }
