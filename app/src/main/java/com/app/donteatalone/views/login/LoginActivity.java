@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,9 +19,10 @@ import android.widget.Toast;
 import com.app.donteatalone.R;
 import com.app.donteatalone.blog.BlogActivity;
 import com.app.donteatalone.connectmongo.Connect;
-import com.app.donteatalone.connectmongo.GetDatafromDB;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.views.register.RegisterActivity;
+import com.victor.loading.rotate.RotateLoading;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,11 +37,12 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtRegister, txtForgetPass;
     private CheckBox ckbRemember;
     private String testPhone;
+    private RotateLoading loading;
+    private Dialog dialogLoading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //getDatafromRegister();
         init();
         storeReference();
         clickLogin();
@@ -95,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             saveReference(edtPhone.getText().toString(),edtPassword.getText().toString());
         }
         else {
-            clearReference();
+            notRemember();
         }
     }
 
@@ -107,10 +110,11 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void clearReference(){
+    public void notRemember(){
         SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.clear();
+        editor.putString("phoneLogin", "");
+        editor.putString("passwordLogin", "");
     }
 
     public void storeReference(){
@@ -138,9 +142,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<Status> call, Response<Status> response) {
 
                     if (response.body().getStatus().equals("Login success")==true){
-                        GetDatafromDB getData =new GetDatafromDB(getBaseContext());
-                        getData.execute(edtPhone.getText().toString());
                         Intent intent=new Intent(LoginActivity.this, BlogActivity.class);
+                        //loading.stop();
+                        //dialogLoading.cancel();
                         startActivity(intent);
 
                     }
@@ -156,6 +160,51 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void saveInfoUser(){
+        //setDialogLoading();
+        Connect connect=new Connect();
+        final UserName[] user = {new UserName()};
+        Call<UserName> userLogin = connect.getRetrofit().getProfileUser(edtPhone.getText().toString());
+        userLogin.enqueue(new Callback<UserName>() {
+            @Override
+            public void onResponse(Call<UserName> call, Response<UserName> response) {
+                //loading.start();
+                user[0] =response.body();
+                saveInfoReference(user[0]);
+                checkRemember();
+                checkAccount();
+            }
+
+            @Override
+            public void onFailure(Call<UserName> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void setDialogLoading(){
+        dialogLoading=new Dialog(LoginActivity.this);
+        dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogLoading.setContentView(R.layout.custom_dialog_processbar);
+        loading=(RotateLoading) dialogLoading.findViewById(R.id.custom_dialog_processbar_newton_cradle_loading);
+        dialogLoading.show();
+    }
+
+    private void saveInfoReference(UserName userName){
+        SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
+        SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.putString("phoneLogin", userName.getPhone());
+        editor.putString("fullnameLogin",userName.getFullname());
+        editor.putString("passwordLogin", userName.getPassword());
+        editor.putString("genderLogin",userName.getGender());
+        editor.putString("avatarLogin",userName.getAvatar());
+        editor.putString("birthdayLogin",userName.getBirthday());
+        editor.putString("addressLogin",userName.getAddress());
+        editor.putString("hobbyLogin",userName.getHobby());
+        editor.putString("characterLogin",userName.getCharacter());
+        editor.commit();
     }
 
     public boolean checkEntry(String values){
@@ -387,11 +436,9 @@ public class LoginActivity extends AppCompatActivity {
                     edtPassword.setError("Invalid Password");
                 }
                 if(checkEntry(edtPhone.getText().toString())==false&&checkEntry(edtPassword.getText().toString())==false) {
-                    checkRemember();
-                    checkAccount();
+                    saveInfoUser();
                 }
             }
         });
     }
-
 }

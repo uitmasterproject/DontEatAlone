@@ -27,7 +27,6 @@
         <activity android:name=".views.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,11 +34,16 @@
         <activity android:name=".views.register.RegisterActivity" />
 
         <activity android:name=".blog.BlogActivity">
+
+        </activity>
+
+        <activity android:name=".blog.StatusActivity">
+
         </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDgUzvGNb7ltnvdbBBLwV7saY8Q_b6UFYo"/>
+            android:value="AIzaSyCScmOg2hONYOE9OrD0YaDW44p31RwxYPw"/>
 
     </application>
 

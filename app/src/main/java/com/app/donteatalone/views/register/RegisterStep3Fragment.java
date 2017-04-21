@@ -2,11 +2,11 @@ package com.app.donteatalone.views.register;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,7 +18,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +35,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import static android.app.Activity.RESULT_OK;
@@ -145,10 +145,20 @@ public class RegisterStep3Fragment extends Fragment {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+//                    intent.putExtra("crop", "true");
+//                    intent.putExtra("aspectX", 0);
+//                    intent.putExtra("aspectY", 0);
+//                    intent.putExtra("outputX", 200);
+//                    intent.putExtra("outputY", 150);
                     startActivityForResult(intent, 1);
                 } else if (options[which].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
+//                    intent.putExtra("crop", "true");
+//                    intent.putExtra("aspectX", 0);
+//                    intent.putExtra("aspectY", 0);
+//                    intent.putExtra("outputX", 200);
+//                    intent.putExtra("outputY", 150);
                     startActivityForResult(intent, 2);
                 } else if (options[which].equals("Cancel"))
                     dialog.dismiss();
@@ -181,8 +191,9 @@ public class RegisterStep3Fragment extends Fragment {
                 try {
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                     Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
-                    tempbitmap=Bitmap.createScaledBitmap(tempbitmap, 90,90, true);
-                    bitmap=tempbitmap;
+                    //performCrop();
+                    tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+                    bitmap = tempbitmap;
                     imgAvatar.setImageBitmap(tempbitmap);
                     String path = android.os.Environment.getExternalStorageDirectory().toString();
                     f.delete();
@@ -204,22 +215,53 @@ public class RegisterStep3Fragment extends Fragment {
                     e.printStackTrace();
                 }
             } else if (requestCode == 2) {
-                Uri selectedImage = data.getData();
-                String[] filePath = { MediaStore.Images.Media.DATA };
-                Cursor c = getContext().getContentResolver().query(selectedImage, filePath, null, null, null);
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePath[0]);
-                String picturePath = c.getString(columnIndex);
-                c.close();
-                Bitmap tempbitmap = (BitmapFactory.decodeFile(picturePath));
+//                Uri selectedImage = data.getData();
+//                String[] filePath = { MediaStore.Images.Media.DATA };
+//                Cursor c = getContext().getContentResolver().query(selectedImage, filePath, null, null, null);
+//                c.moveToFirst();
+//                int columnIndex = c.getColumnIndex(filePath[0]);
+//                String picturePath = c.getString(columnIndex);
+//                c.close();
+//                Bitmap tempbitmap = (BitmapFactory.decodeFile(picturePath));
+//                performCrop();
+                final Uri imageUri = data.getData();
+                InputStream imageStream=null;
+                try {
+                    imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
                 tempbitmap=Bitmap.createScaledBitmap(tempbitmap, 90,90, true);
-                bitmap=tempbitmap;
-                Log.e("bitmap2",bitmap+"-------------------------------------------");
+                bitmap = tempbitmap;
                 imgAvatar.setImageBitmap(tempbitmap);
             }
+            else if(requestCode==3){
+                Bundle extras = data.getExtras();
+                Bitmap thePic = extras.getParcelable("data");
+
+                imgAvatar.setImageBitmap(thePic);
+            }
+        }
+    }
+
+
+    private void performCrop(){
+
+        try {
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            cropIntent.setType("image/*");
+            cropIntent.putExtra("crop", "true");
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
+            cropIntent.putExtra("return-data", true);
+            startActivityForResult(cropIntent, 3);
+        }
+        catch(ActivityNotFoundException anfe){
 
         }
-
     }
 
 
