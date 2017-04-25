@@ -27,5 +27,36 @@
         <item name="android:background">#00ffffff</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--Toolbar-->
+    <style name="Toolbar" />
+
+    <style name="Toolbar.ItemWrapper">
+        <item name="android:theme">@style/RippleTheme</item>
+        <item name="android:background">@drawable/ripple_selector</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Toolbar.ItemIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+
+    <!--Ripple style-->
+    <style name="RippleTheme">
+        <item name="colorControlHighlight">#FFF</item>
+    </style>
+
+    <style name="RippleItemBackground">
+        <item name="android:theme">@style/RippleTheme</item>
+        <item name="android:background">@drawable/ripple_selector</item>
+    </style>
+    <!--End ripple style-->
 
 </resources>
