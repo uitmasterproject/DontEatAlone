@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.widget.Button;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.widgets.Toolbar;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -13,6 +14,7 @@ public class RegisterActivity extends FragmentActivity {
     private CustomViewPager _mViewPager;
     private ViewPagerAdapter _adapter;
     private Button btnStep1,btnStep2,btnStep3,btnStep4,btnStep5,btnStep6,btnStep7;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +28,10 @@ public class RegisterActivity extends FragmentActivity {
         _mViewPager = (CustomViewPager) findViewById(R.id.activity_register_viewPager);
         _adapter = new ViewPagerAdapter(getApplicationContext(),getSupportFragmentManager());
         _mViewPager.setAdapter(_adapter);
-        _mViewPager.setCurrentItem(0);
-        initButton();
+        _mViewPager.setCurrentItem(2);
+      /*  initButton();*/
     }
+/*
 
     private void initButton(){
         btnStep1=(Button)findViewById(R.id.activity_register_btn_next_step1);
@@ -41,6 +44,7 @@ public class RegisterActivity extends FragmentActivity {
         setStatusButton(btnStep1,btnStep2,btnStep3,btnStep4,btnStep5,btnStep6,btnStep7);
     }
 
+*/
     private void setButton(Button btn,int res,int h, int w){
         btn.getLayoutParams().width=w;
         btn.getLayoutParams().height=h;

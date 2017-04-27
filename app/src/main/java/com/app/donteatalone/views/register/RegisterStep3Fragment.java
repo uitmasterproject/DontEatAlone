@@ -50,7 +50,7 @@ public class RegisterStep3Fragment extends Fragment {
     private View viewGroup;
     private ImageView imgWomanAvatar, imgManAvatar, imgAvatar;
     private RelativeLayout rltWomanAvatar, rltManAvatar, rltAvatar;
-    private Button btnNextStep;
+    private RelativeLayout rlNext;
     private Bitmap bitmap;
     private String gender;
     private ViewPager _mViewPager;
@@ -81,8 +81,8 @@ public class RegisterStep3Fragment extends Fragment {
         imgManAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_register_step3_img_avatar_man);
         imgWomanAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_register_step3_img_avatar_woman);
         imgAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_register_step3_img_avatar);
-        btnNextStep = (Button) viewGroup.findViewById(R.id.fragment_register_step3_btn_next);
-        btnNextStep.setVisibility(View.GONE);
+        rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step3_btn_next);
+        rlNext.setEnabled(false);
         rltAvatar.setVisibility(View.GONE);
     }
 
@@ -126,8 +126,7 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 SelectImage();
-                btnNextStep.setVisibility(View.VISIBLE);
-
+                rlNext.setEnabled(true);
             }
         });
     }
@@ -266,7 +265,7 @@ public class RegisterStep3Fragment extends Fragment {
 
 
     private void clickButtonNextStep(){
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
+        rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setAvatar(convertBitmaptoString());

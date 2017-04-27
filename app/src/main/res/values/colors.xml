@@ -11,7 +11,9 @@
     <color name="dot_tutorial_active">#1890c7</color>
     <color name="dot_tutorial_inactive">#9b9b9b</color>
 
-    <!--Login screen color-->
+    <!--Button color-->
     <color name="color_deep_orange">#FF5722</color>
+    <color name="color_orange_pressed">#E64A19</color>
+
 
 </resources>

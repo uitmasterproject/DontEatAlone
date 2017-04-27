@@ -8,15 +8,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.views.register.RegisterActivity;
 
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
 /**
  * -> Created by LeHoangHan on 4/24/2017.
  */
 
-@EActivity(R.layout.view_toolbar)
+@EViewGroup(R.layout.view_toolbar)
 public class Toolbar extends RelativeLayout {
     private static final String TAG = Toolbar.class.getSimpleName();
 
@@ -40,9 +42,7 @@ public class Toolbar extends RelativeLayout {
     }
 
     //Update for register ui
-    public void applyRegisterUi(AppCompatActivity activity, String title, final RegisterItemClick itemClick) {
-        //Setup toolbar
-        applyCommonUi(activity);
+    public void applyRegisterUi(RegisterActivity activity, String title, final RegisterItemClick itemClick) {
 
         tvTitle.setText(title);
         toolbarClose.setVisibility(View.VISIBLE);

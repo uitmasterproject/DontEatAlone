@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 
@@ -24,7 +25,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class RegisterStep2Fragment extends Fragment {
     private ViewGroup viewGroup;
     private EditText edtFullName, edtPassword;
-    private Button btnNextStep;
+    private RelativeLayout rlNext;
     private ViewPager _mViewPager;
 
     public static Fragment newInstance(Context context) {
@@ -49,8 +50,8 @@ public class RegisterStep2Fragment extends Fragment {
         edtFullName= (EditText) viewGroup.findViewById(R.id.fragment_register_step2_edt_fullname);
         edtPassword=(EditText) viewGroup.findViewById(R.id.fragment_register_step2_edt_password);
         edtPassword.setEnabled(false);
-        btnNextStep=(Button) viewGroup.findViewById(R.id.fragment_register_step2_btn_next);
-        btnNextStep.setVisibility(View.GONE);
+        rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step2_btn_next);
+        rlNext.setEnabled(false);
     }
 
     private void changeDataEditFullName(){
@@ -67,19 +68,19 @@ public class RegisterStep2Fragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(edtFullName.getText().toString().equals("")==false){
+                if(!edtFullName.getText().toString().equals("")){
                     edtPassword.setEnabled(true);
                     changDataEditPassword();
                     if(edtPassword.getText().toString().length()==0) {
-                        btnNextStep.setVisibility(View.GONE);
+                        rlNext.setEnabled(false);
                     }
                     else {
-                        btnNextStep.setVisibility(View.VISIBLE);
+                        rlNext.setEnabled(true);
                         edtPassword.setEnabled(true);
                     }
                 }
                 else {
-                    btnNextStep.setVisibility(View.GONE);
+                    rlNext.setEnabled(false);
                 }
             }
         });
@@ -100,11 +101,11 @@ public class RegisterStep2Fragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(edtPassword.getText().toString().equals("")==false){
-                    btnNextStep.setVisibility(View.VISIBLE);
+                if(!edtPassword.getText().toString().equals("")){
+                    rlNext.setEnabled(true);
                 }
                 else {
-                    btnNextStep.setVisibility(View.GONE);
+                    rlNext.setEnabled(false);
                 }
             }
         });
@@ -112,7 +113,7 @@ public class RegisterStep2Fragment extends Fragment {
 
 
     private void clickButtonNextStep(){
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
+        rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(edtPassword.getText().toString().length()<6){
@@ -134,6 +135,6 @@ public class RegisterStep2Fragment extends Fragment {
         SharedPreferences.Editor editor= sharedPreferences.edit();
         editor.putString("fullname",edtFullName.getText().toString());
         editor.putString("password", edtPassword.getText().toString());
-        editor.commit();
+        editor.apply();
     }
 }

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
@@ -30,10 +31,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class RegisterStep1Fragment extends Fragment {
 
     private ViewPager _mViewPager;
-    private Button btnNextCode, btnNextStep;
     private ViewGroup viewGroup;
+    private RelativeLayout rlNext, rlSendCode;
     private EditText edtCode, edtPhone;
-    private TextView txtRecomment;
     public static UserName userName;
 
     public static Fragment newInstance(Context context) {
@@ -51,33 +51,25 @@ public class RegisterStep1Fragment extends Fragment {
                              Bundle savedInstanceState) {
         viewGroup=(ViewGroup)inflater.inflate(R.layout.fragment_register_step1,null);
         init();
-        changeDataEdtPhone(edtPhone,btnNextCode);
-        clickButtonNextCode();
-        clickButtonNextStep();
+        changeDataEdtPhone(edtPhone,rlSendCode);
+        rlSendCodeClick();
+        rlNextClick();
         return viewGroup;
     }
 
     public void init(){
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        btnNextCode=(Button) viewGroup.findViewById(R.id.fragment_register_step1_btn_next);
+        rlSendCode=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_rl_send_code);
         edtPhone=(EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_phone);
-        btnNextStep=(Button) viewGroup.findViewById(R.id.fragment_register_step1_btn_nextnext);
+        rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_rl_next);
         edtCode=(EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_code);
-        txtRecomment=(TextView) viewGroup.findViewById(R.id.fragment_register_step1_txt_recomment);
         userName=new UserName();
-        if(edtPhone.getText().toString().equals("")==true){
-            btnNextCode.setVisibility(View.GONE);
-        }
-        txtRecomment.setVisibility(View.GONE);
-        edtCode.setVisibility(View.GONE);
-        btnNextStep.setVisibility(View.GONE);
     }
 
-    public void changeDataEdtPhone(final EditText edt, final Button btn){
+    public void changeDataEdtPhone(final EditText edt, final RelativeLayout rl){
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                txtRecomment.setVisibility(View.GONE);
             }
 
             @Override
@@ -88,17 +80,15 @@ public class RegisterStep1Fragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if(edt.getText().toString().equals("")==false){
-                    btn.setVisibility(View.VISIBLE);
+                    rl.setVisibility(View.VISIBLE);
                     if(edt.getId()==R.id.fragment_register_step1_edt_phone) {
-                        edtCode.setVisibility(View.GONE);
-                        btnNextStep.setVisibility(View.GONE);
+
                     }
                 }
                 else {
-                    btn.setVisibility(View.GONE);
+                    rl.setVisibility(View.GONE);
                     if(edt.getId()==R.id.fragment_register_step1_edt_phone) {
-                        edtCode.setVisibility(View.GONE);
-                        btnNextStep.setVisibility(View.GONE);
+
                     }
                 }
             }
@@ -112,18 +102,12 @@ public class RegisterStep1Fragment extends Fragment {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {
                 if(response.body().getStatus().equals("this phone isnt exits")==true){
-                    txtRecomment.setText("Wait for minute to recept code. Input code");
-                    txtRecomment.setTextColor(Color.GRAY);
-                    edtCode.setVisibility(View.VISIBLE);
-                    changeDataEdtPhone(edtCode,btnNextStep);
+                    changeDataEdtPhone(edtCode,rlNext);
                 }
                 else {
-//                    txtRecomment.setText("This phone was exit");
-//                    txtRecomment.setTextColor(Color.RED);
                     edtPhone.setError("This phone was exit");
                     edtPhone.setText("");
                 }
-
             }
 
             @Override
@@ -133,31 +117,22 @@ public class RegisterStep1Fragment extends Fragment {
         });
     }
 
-    private void clickButtonNextCode(){
-        btnNextCode.setOnClickListener(new View.OnClickListener() {
+    private void rlSendCodeClick(){
+        rlSendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtRecomment.setVisibility(View.VISIBLE);
-                btnNextCode.setVisibility(View.GONE);
                 checkExitsPhone();
             }
         });
     }
 
-
-
     //IN HERE, HAVEN'T METHOD CHECK CODE
-    private void clickButtonNextStep(){
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
+    private void rlNextClick(){
+        rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userName.setPhone(edtPhone.getText().toString());
                 saveReference();
-//                Bundle args = new Bundle();
-//                FragmentTransaction fragmentTx= getFragmentManager().beginTransaction();
-//                RegisterStep2Fragment ldf = new RegisterStep2Fragment ();
-//                args.putSerializable("userName", userName);
-//                ldf.setArguments(args);
                 _mViewPager.setCurrentItem(1,true);
             }
         });
@@ -167,7 +142,7 @@ public class RegisterStep1Fragment extends Fragment {
         SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
         editor.putString("phone",edtPhone.getText().toString());
-        editor.commit();
+        editor.apply();
     }
 
 
