@@ -87,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Mobile Number"
                 android:inputType="phone"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />
@@ -124,9 +125,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
                 android:text="Please enter your verify code"
-                android:textColor="@color/dot_tutorial_inactive" />
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
@@ -139,6 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Verify Code"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />

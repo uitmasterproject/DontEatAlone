@@ -1,35 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--Input Addess-->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:gravity="center">
-    <android.support.design.widget.TextInputLayout
+    tools:ignore="MissingPrefix,contentDescription">
+
+    <!--Set Toolbar below here-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintTextAppearance="@style/TextLabel">
-        <EditText
+        android:background="@color/color_deep_orange">
+
+        <RelativeLayout
+            android:id="@+id/fragment_register_step5_close"
+            style="@style/Toolbar.ItemWrapper">
+
+            <ImageView
+                style="@style/Toolbar.ItemIcon"
+                android:src="@drawable/ic_back_arrow_white" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/fragment_register_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Address"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+    </LinearLayout>
+    <!--Set content below here-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!--Hobby tutorial text-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"
-            android:id="@+id/fragment_register_step5_edt_address"
-            android:textColor="#FFFFFF" />
-    </android.support.design.widget.TextInputLayout>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next Step"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/fragment_register_step5_btn_next"
-        android:textColor="#FFFFFF"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="What's Your Address?"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Using your real address makes it easier for everybody to recognize you."
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="14sp"
+                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextLabel">
+
+            <EditText
+                android:id="@+id/fragment_register_step5_edt_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2" />
+
+        <!--Set Button Next-->
+        <RelativeLayout
+            android:id="@+id/fragment_register_step5_btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 </LinearLayout>

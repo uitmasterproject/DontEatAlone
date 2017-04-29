@@ -15,7 +15,7 @@
         android:background="@color/color_deep_orange">
 
         <RelativeLayout
-            android:id="@+id/fragment_register_step1_close"
+            android:id="@+id/fragment_register_step2_close"
             style="@style/Toolbar.ItemWrapper">
 
             <ImageView
@@ -87,8 +87,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Full Name"
+                android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -139,9 +141,11 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:maxLines="1"
                 android:text="password"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
 

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
@@ -40,7 +41,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private static final String LOG_TAG = "PlaceSelectionListener";
     private EditText edtAddress;
     private View viewGroup;
-    private Button btnNextStep;
+    private RelativeLayout rlNext;
     private ViewPager _mViewPager;
 
 
@@ -63,7 +64,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         edtAddress=(EditText) viewGroup.findViewById(R.id.fragment_register_step5_edt_address);
-        btnNextStep=(Button) viewGroup.findViewById(R.id.fragment_register_step5_btn_next);
+        rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step5_btn_next);
     }
 
 
@@ -122,7 +123,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     }
 
     private void clickButtonNextStep(){
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
+        rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setAddress(edtAddress.getText().toString());

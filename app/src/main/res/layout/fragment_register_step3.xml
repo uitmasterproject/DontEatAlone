@@ -15,7 +15,7 @@
         android:background="@color/color_deep_orange">
 
         <RelativeLayout
-            android:id="@+id/fragment_register_step1_close"
+            android:id="@+id/fragment_register_step3_close"
             style="@style/Toolbar.ItemWrapper">
 
             <ImageView
@@ -74,7 +74,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.15" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -157,8 +157,6 @@
             </LinearLayout>
 
         </FrameLayout>
-
-
 
         <View
             android:layout_width="match_parent"

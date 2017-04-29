@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.Hobby;
@@ -27,7 +28,7 @@ public class RegisterStep6Fragment extends Fragment {
     private AutoCompleteTextView actvHobby;
     private ArrayList<String> headerHobby;
     private ArrayList<Hobby> hobbies;
-    private Button btnNextStep;
+    private RelativeLayout rlNext;
     private View viewGroup;
     private ViewPager _mViewPager;
 
@@ -42,14 +43,14 @@ public class RegisterStep6Fragment extends Fragment {
         viewGroup=inflater.inflate(R.layout.fragment_register_step6,null);
         init();
         setActvHobby();
-        clickButtonNextStep();
+        rlNextClick();
         return viewGroup;
     }
 
     private void init(){
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         actvHobby=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_hobby);
-        btnNextStep=(Button) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
+        rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
     }
 
     private void setActvHobby(){
@@ -59,8 +60,8 @@ public class RegisterStep6Fragment extends Fragment {
 
     }
 
-    private void clickButtonNextStep(){
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
+    private void rlNextClick(){
+        rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setHobby(actvHobby.getText().toString());
@@ -101,6 +102,6 @@ public class RegisterStep6Fragment extends Fragment {
         SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
         editor.putString("hobby",actvHobby.getText().toString());
-        editor.commit();
+        editor.apply();
     }
 }

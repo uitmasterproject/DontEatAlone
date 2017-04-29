@@ -28,7 +28,7 @@ public class RegisterActivity extends FragmentActivity {
         _mViewPager = (CustomViewPager) findViewById(R.id.activity_register_viewPager);
         _adapter = new ViewPagerAdapter(getApplicationContext(),getSupportFragmentManager());
         _mViewPager.setAdapter(_adapter);
-        _mViewPager.setCurrentItem(2);
+        _mViewPager.setCurrentItem(0);
       /*  initButton();*/
     }
 /*
@@ -61,7 +61,7 @@ public class RegisterActivity extends FragmentActivity {
             @Override
             public void onPageSelected(int position) {
                 // TODO Auto-generated method stub
-                btnAction(position);
+//                btnAction(position);
             }
 
         });
