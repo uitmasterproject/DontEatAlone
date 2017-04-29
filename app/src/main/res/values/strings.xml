@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">Connect Server</string>
+    <string name="app_name">Dont Eat Alone</string>
+
+    <string name="facebook_app_id">160470204481557</string>
+
+    <string name="fb_login_protocol_scheme">fb160470204481557</string>
+
+
     <string name="formatted_place_data">
          %1$s %2$s
     </string>

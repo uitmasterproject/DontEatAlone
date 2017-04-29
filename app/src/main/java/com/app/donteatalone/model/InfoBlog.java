@@ -7,9 +7,13 @@ import java.util.ArrayList;
  */
 
 public class InfoBlog {
+    @SuppressWarnings("date")
     private String date;
+    @SuppressWarnings("infoStatus")
     private String infoStatus;
+    @SuppressWarnings("feeling")
     private String feeling;
+    @SuppressWarnings("image")
     private ArrayList<String> image;
 
     public InfoBlog(){}

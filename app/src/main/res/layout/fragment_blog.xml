@@ -28,17 +28,16 @@
             android:textColor="#75000000"/>
 
     </LinearLayout>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+    <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/background">
-        <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
-    </ScrollView>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/fragment_blog_rcv_my_blog">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </LinearLayout>
 
 

@@ -3,8 +3,16 @@ package com.app.donteatalone.connectmongo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.app.donteatalone.R;
+import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.UserName;
+import com.app.donteatalone.views.main.blog.CustomBlogRecyclerViewAdapter;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,39 +24,53 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by ChomChom on 3/16/2017.
  */
 
-public class GetDatafromDB extends AsyncTask<String,Void,UserName> {
+public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayList<InfoBlog>> {
 
-    private UserName user;
+    private ArrayList<InfoBlog> infoBlog;
     private Context context;
-    public GetDatafromDB(Context context) {
+    private View view;
+    private String phone;
+    public GetDatafromDB(Context context, View view) {
         super();
-        user=new UserName();
+        infoBlog=new ArrayList<>();
         this.context=context;
+        this.view=view;
     }
 
     @Override
-    protected UserName doInBackground(String... params) {
-        String phone=params[0];
+    protected ArrayList<InfoBlog> doInBackground(String... params) {
+        phone=params[0];
         Connect connect=new Connect();
-        Call<UserName> userLogin = connect.getRetrofit().getProfileUser(phone);
-        userLogin.enqueue(new Callback<UserName>() {
+        Call<ArrayList<InfoBlog>> userLogin = connect.getRetrofit().getListInfoBlog(phone);
+        userLogin.enqueue(new Callback<ArrayList<InfoBlog>>() {
             @Override
-            public void onResponse(Call<UserName> call, Response<UserName> response) {
-                user=response.body();
+            public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
+                infoBlog=response.body();
+                onProgressUpdate(infoBlog);
             }
 
             @Override
-            public void onFailure(Call<UserName> call, Throwable t) {
-
+            public void onFailure(Call<ArrayList<InfoBlog>> call, Throwable t) {
             }
         });
-        return user;
+        return infoBlog;
     }
 
     @Override
-    protected void onPostExecute(UserName userName) {
-        super.onPostExecute(userName);
-        saveReference(userName);
+    protected void onProgressUpdate(ArrayList<InfoBlog>... infoBlog) {
+        super.onProgressUpdate(infoBlog);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_blog_rcv_my_blog);
+        LinearLayoutManager llm = new LinearLayoutManager(context);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        CustomBlogRecyclerViewAdapter adapter=new CustomBlogRecyclerViewAdapter(context,infoBlog[0],phone);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<InfoBlog> infoBlog) {
+        super.onPostExecute(infoBlog);
+        //saveReference(userName);
 
     }
 

@@ -62,6 +62,7 @@ public class StatusActivity extends Activity {
     private EditText edtStatus;
     private HorizontalScrollView hsvcontainerImage;
     private Button btnCancel, btnPost;
+    private String phone;
     private int i=0;
 
     @Override
@@ -113,7 +114,7 @@ public class StatusActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Connect connect=new Connect();
-                Call<Status> addInfoBlog= connect.getRetrofit().addStatusBlog(setInfoStatus());
+                Call<Status> addInfoBlog= connect.getRetrofit().addStatusBlog(setInfoStatus(),phone);
                 addInfoBlog.enqueue(new Callback<Status>() {
                     @Override
                     public void onResponse(Call<Status> call, Response<Status> response) {
@@ -136,7 +137,7 @@ public class StatusActivity extends Activity {
     }
 
     private InfoBlog setInfoStatus(){
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         String thisDate=dateFormat.format(date);
         String status=edtStatus.getText().toString();
@@ -152,8 +153,15 @@ public class StatusActivity extends Activity {
         for(int j=0;j<llcontainerImage.getChildCount();j++){
             v=(ImageView) llcontainerImage.getChildAt(j);
             Bitmap bm=((BitmapDrawable)v.getDrawable()).getBitmap();
-            bm = Bitmap.createScaledBitmap(bm, 90, 90, true);
-            covertImage.add(convertBitmaptoString(bm));
+            if(bm!=null) {
+                if(bm.getHeight()< bm.getWidth()) {
+                    bm = Bitmap.createScaledBitmap(bm, bm.getWidth() * 100 / bm.getHeight(), 100, true);
+                }
+                else {
+                    bm = Bitmap.createScaledBitmap(bm, 100, bm.getHeight() * 100 / bm.getWidth(), true);
+                }
+                covertImage.add(convertBitmaptoString(bm));
+            }
         }
         return covertImage;
     }
@@ -316,20 +324,22 @@ public class StatusActivity extends Activity {
             hsvcontainerImage.setLayoutParams(paramsllcontainerImage);
         }
         imgAddPhotoContent=new ImageView(this);
-        imgAddPhotoContent.setLayoutParams(new LinearLayout.LayoutParams((bitmap.getWidth()*400)/bitmap.getHeight(), 400));
+        imgAddPhotoContent.setLayoutParams(new LinearLayout.LayoutParams((bitmap.getWidth()*300)/bitmap.getHeight(), 300));
         imgAddPhotoContent.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imgAddPhotoContent.setImageBitmap(bitmap);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgAddPhotoContent.getLayoutParams();
         layoutParams.setMargins(10, 10, 20, 10);
         imgAddPhotoContent.setLayoutParams(layoutParams);
         llcontainerImage.addView(imgAddPhotoContent);
-        View v;
+
         for(int count=0;count<llcontainerImage.getChildCount();count++){
-            v=llcontainerImage.getChildAt(count);
-            v.setOnLongClickListener(new View.OnLongClickListener() {
+            final ImageView dynamicImage=(ImageView)llcontainerImage.getChildAt(count);
+            dynamicImage.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    v.setVisibility(View.GONE);
+                    dynamicImage.setVisibility(View.GONE);
+                    dynamicImage.setImageBitmap(null);
+                    dynamicImage.destroyDrawingCache();
                     if(llcontainerImage.getChildCount()==0){
                         hsvcontainerImage.setVisibility(View.GONE);
                     }
@@ -348,6 +358,7 @@ public class StatusActivity extends Activity {
         {
             avatar=sharedPreferences.getString("avatarLogin", "");
             txtNameUser.setText(sharedPreferences.getString("fullnameLogin","").toUpperCase());
+            phone=sharedPreferences.getString("phoneLogin","");
         }
         return avatar;
     }

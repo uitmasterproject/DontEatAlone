@@ -145,20 +145,10 @@ public class RegisterStep3Fragment extends Fragment {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-//                    intent.putExtra("crop", "true");
-//                    intent.putExtra("aspectX", 0);
-//                    intent.putExtra("aspectY", 0);
-//                    intent.putExtra("outputX", 200);
-//                    intent.putExtra("outputY", 150);
                     startActivityForResult(intent, 1);
                 } else if (options[which].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
-//                    intent.putExtra("crop", "true");
-//                    intent.putExtra("aspectX", 0);
-//                    intent.putExtra("aspectY", 0);
-//                    intent.putExtra("outputX", 200);
-//                    intent.putExtra("outputY", 150);
                     startActivityForResult(intent, 2);
                 } else if (options[which].equals("Cancel"))
                     dialog.dismiss();
@@ -191,7 +181,6 @@ public class RegisterStep3Fragment extends Fragment {
                 try {
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                     Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
-                    //performCrop();
                     tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
                     bitmap = tempbitmap;
                     imgAvatar.setImageBitmap(tempbitmap);

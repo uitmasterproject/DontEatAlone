@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.connectmongo.GetDatafromDB;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -28,6 +29,7 @@ public class BlogFragment extends Fragment {
     private View viewGroup;
     private Button btnStatus;
     private ImageView imgAvatar;
+    private String phone;
 
     public static BlogFragment newInstance(){
 
@@ -40,8 +42,10 @@ public class BlogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup=inflater.inflate(R.layout.fragment_blog,null);
         init();
-        clickButtonbtnStatus();
         setimgAvatar();
+        GetDatafromDB getDatafromDB=new GetDatafromDB(getActivity(),viewGroup);
+        getDatafromDB.execute(phone);
+        clickButtonbtnStatus();
         return viewGroup;
     }
 
@@ -72,6 +76,7 @@ public class BlogFragment extends Fragment {
         if(bchk==false)
         {
             avatar=sharedPreferences.getString("avatarLogin", "");
+            phone=sharedPreferences.getString("phoneLogin", "");
 
         }
         return avatar;

@@ -4,6 +4,7 @@ import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,6 +49,10 @@ public interface Structure {
 
 
 
-        @POST("/statusblog")
-        Call<Status> addStatusBlog(@Body InfoBlog infoBlog);
+        @POST("/statusblog/{phone}")
+        Call<Status> addStatusBlog(@Body InfoBlog infoBlog, @Path("phone") String phone);
+        @GET("/statusblog/{phone}")
+        Call<ArrayList<InfoBlog>> getListInfoBlog(@Path("phone") String phone);
+        @DELETE("/statusblog/{phone}/{date}")
+        Call<Status> deleteStatusBlog(@Path("phone")String phone,@Path("date") String date);
 }
