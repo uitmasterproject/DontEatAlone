@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -27,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.app.donteatalone.R;
 
@@ -54,6 +56,8 @@ public class RegisterStep3Fragment extends Fragment {
     private Bitmap bitmap;
     private String gender;
     private ViewPager _mViewPager;
+    private TextView tvTutorial;
+    private int intChosen = -1;
 
     public static Fragment newInstance(Context context) {
         RegisterStep3Fragment f = new RegisterStep3Fragment();
@@ -71,7 +75,6 @@ public class RegisterStep3Fragment extends Fragment {
         return viewGroup;
     }
 
-
     //Khoi tao gia tri cho cac bien
     private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
@@ -82,29 +85,28 @@ public class RegisterStep3Fragment extends Fragment {
         imgWomanAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_register_step3_img_avatar_woman);
         imgAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_register_step3_img_avatar);
         rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step3_btn_next);
-        rlNext.setEnabled(false);
+        tvTutorial = (TextView) viewGroup.findViewById(R.id.fragment_register_step3_tv_tutorial);
         rltAvatar.setVisibility(View.GONE);
     }
 
-    private void setClickGender(){
+    private void setClickGender() {
         imgManAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               animationImageAvatar(rltManAvatar,R.drawable.manavatar,120);
+               animationImageAvatar(rltManAvatar,R.drawable.avatar_man,120);
                 gender="Man";
-
+                intChosen = 0;
             }
         });
         imgWomanAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animationImageAvatar(rltWomanAvatar,R.drawable.womanavatar,350);
+                animationImageAvatar(rltWomanAvatar,R.drawable.avatar_woman,350);
                 gender="Woman";
+                intChosen = 0;
             }
         });
-
     }
-
 
     private void animationImageAvatar(RelativeLayout re,int sourceimg, int px){
         bitmap=BitmapFactory.decodeResource(getResources(), sourceimg);
@@ -114,8 +116,8 @@ public class RegisterStep3Fragment extends Fragment {
         imgAvatar.setImageResource(sourceimg);
         int x=(int)re.getX();
         int y=(int)re.getY();
-        ObjectAnimator animX = ObjectAnimator.ofFloat(rltAvatar, "x", x-px);
-        ObjectAnimator animY = ObjectAnimator.ofFloat(rltAvatar, "y", y+200);
+        ObjectAnimator animX = ObjectAnimator.ofFloat(rltAvatar, "x", 350);
+        ObjectAnimator animY = ObjectAnimator.ofFloat(rltAvatar, "y", 0);
         AnimatorSet animSetXY = new AnimatorSet();
         animSetXY.playTogether(animX, animY);
         animSetXY.start();
@@ -126,11 +128,10 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 SelectImage();
-                rlNext.setEnabled(true);
+                intChosen = 1;
             }
         });
     }
-
 
     public void SelectImage(){
         final CharSequence[] options={"Take photo","Choose from Gallery","Cancel"};
@@ -161,7 +162,6 @@ public class RegisterStep3Fragment extends Fragment {
                     startActivityForResult(intent, 2);
                 } else if (options[which].equals("Cancel"))
                     dialog.dismiss();
-
             }
         });
         AlertDialog dialog = builder.create();
@@ -244,7 +244,6 @@ public class RegisterStep3Fragment extends Fragment {
         }
     }
 
-
     private void performCrop(){
 
         try {
@@ -263,15 +262,22 @@ public class RegisterStep3Fragment extends Fragment {
         }
     }
 
-
     private void clickButtonNextStep(){
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterStep1Fragment.userName.setAvatar(convertBitmaptoString());
-                RegisterStep1Fragment.userName.setGender(gender);
-                saveReference();
-                _mViewPager.setCurrentItem(3,true);
+                if (intChosen == 1) {
+                    RegisterStep1Fragment.userName.setAvatar(convertBitmaptoString());
+                    RegisterStep1Fragment.userName.setGender(gender);
+                    saveReference();
+                    _mViewPager.setCurrentItem(3,true);
+                } else if(intChosen == -1) {
+                    tvTutorial.setText("You have to choose your gender");
+                    tvTutorial.setTextColor(getResources().getColor(R.color.color_orange_pressed));
+                } else {
+                    tvTutorial.setText("You have to update your avatar");
+                    tvTutorial.setTextColor(getResources().getColor(R.color.color_orange_pressed));
+                }
             }
         });
     }
@@ -290,7 +296,6 @@ public class RegisterStep3Fragment extends Fragment {
         SharedPreferences.Editor editor= sharedPreferences.edit();
         editor.putString("avatar",convertBitmaptoString());
         editor.putString("gender",gender);
-        editor.commit();
+        editor.apply();
     }
-
 }

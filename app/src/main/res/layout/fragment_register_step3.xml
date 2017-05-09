@@ -55,12 +55,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:text="What Your Gender?"
+                android:text="What's Your Gender?"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
 
             <TextView
+                android:id="@+id/fragment_register_step3_tv_tutorial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -83,24 +84,38 @@
 
             <RelativeLayout
                 android:id="@+id/fragment_register_step3_rlt_avatar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center">
 
                 <ImageView
                     android:id="@+id/fragment_register_step3_img_avatar"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@drawable/design_img_avatar" />
 
-                <TextView
-                    android:id="@+id/fragment_register_step3_txt_avatar"
-                    android:layout_width="90dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginTop="70dp"
-                    android:background="@drawable/design_txt_edit_avatar"
-                    android:text="Edit"
-                    android:textAlignment="center" />
+                    android:orientation="horizontal"
+                    android:background="@color/black_anpha_40">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:src="@drawable/camera" />
+
+                    <TextView
+                        android:id="@+id/fragment_register_step3_txt_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="Edit"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
             </RelativeLayout>
 
             <LinearLayout
@@ -120,7 +135,7 @@
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:background="@drawable/design_img_avatar"
-                        android:src="@drawable/manavatar" />
+                        android:src="@drawable/avatar_man" />
 
                     <TextView
                         android:id="@+id/fragment_register_step3_txt_avatar_man"
@@ -132,18 +147,21 @@
                         android:textAlignment="center" />
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="0dp" />
+
                 <RelativeLayout
                     android:id="@+id/fragment_register_step3_rlt_woman_avatar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/fragment_register_step3_img_avatar_woman"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:background="@drawable/design_img_avatar"
-                        android:src="@drawable/womanavatar" />
+                        android:src="@drawable/avatar_woman" />
 
                     <TextView
                         android:id="@+id/fragment_register_step3_txt_avatar_woman"

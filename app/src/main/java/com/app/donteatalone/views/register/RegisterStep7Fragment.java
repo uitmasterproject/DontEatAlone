@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
@@ -36,7 +37,7 @@ public class RegisterStep7Fragment extends Fragment {
     private AutoCompleteTextView actvCharacter;
     private ArrayList<String> headerCharacter;
     private ArrayList<Hobby> character;
-    private Button btnNextStep;
+    private RelativeLayout rlNextStep;
 
     public static Fragment newInstance(Context context) {
         RegisterStep7Fragment f = new RegisterStep7Fragment();
@@ -53,7 +54,7 @@ public class RegisterStep7Fragment extends Fragment {
     }
     private void init(){
         actvCharacter=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
-        btnNextStep=(Button) viewGroup.findViewById(R.id.fragment_register_step7_btn_next);
+        rlNextStep=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_rl_register);
     }
 
     private void setActvHobby(){
@@ -64,7 +65,7 @@ public class RegisterStep7Fragment extends Fragment {
     }
 
     private void clickButtonNextStep(){
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
+        rlNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setCharacter(actvCharacter.getText().toString());

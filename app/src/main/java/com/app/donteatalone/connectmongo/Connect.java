@@ -10,14 +10,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Connect {
-//    private static String API_BASE_URL = "http://10.0.128.134:3000/"; //KTX/
-    private static String API_BASE_URL = "http://192.168.43.231:3000/"; //KTX
+    private static String API_BASE_URL = "http://10.50.214.87:3000/"; //KTX/
+//    private static String API_BASE_URL = "http://192.168.31.168:3000/"; //KTX
 
     //private static String API_BASE_URL = "http://10.86.85.185:3000/"; //FPT
 
-   // private static String API_BASE_URL = "http://10.129.202.127:3000/";
+    // private static String API_BASE_URL = "http://10.129.202.127:3000/";
 
-    public static Structure getRetrofit(){
+    public static Structure getRetrofit() {
 
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -34,7 +34,7 @@ public class Connect {
                         )
                         .build();
 
-        Structure client =  retrofit.create(Structure.class);
+        Structure client = retrofit.create(Structure.class);
 
         return client;
     }

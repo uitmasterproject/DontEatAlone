@@ -85,7 +85,6 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
                 }
             }
         });
-
     }
 
     //luu lai noi duoc chon
@@ -98,7 +97,6 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             edtAddress.setText(Html.fromHtml(place.getAttributions().toString()));
         }
     }
-
 
     //kiem tra loi cho noi duoc chon
     @Override
@@ -137,7 +135,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
         SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
         editor.putString("address",edtAddress.getText().toString());
-        editor.commit();
+        editor.apply();
     }
 
 }

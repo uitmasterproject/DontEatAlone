@@ -39,7 +39,6 @@ public class RegisterStep2Fragment extends Fragment {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_register_step2, null);
         init();
-        changeDataEditFullName();
         clickButtonNextStep();
         return viewGroup;
     }
@@ -49,12 +48,10 @@ public class RegisterStep2Fragment extends Fragment {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         edtFullName= (EditText) viewGroup.findViewById(R.id.fragment_register_step2_edt_fullname);
         edtPassword=(EditText) viewGroup.findViewById(R.id.fragment_register_step2_edt_password);
-        edtPassword.setEnabled(false);
         rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step2_btn_next);
-        rlNext.setEnabled(false);
     }
 
-    private void changeDataEditFullName(){
+/*    private void changeDataEditFullName(){
         edtFullName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,61 +66,60 @@ public class RegisterStep2Fragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if(!edtFullName.getText().toString().equals("")){
-                    edtPassword.setEnabled(true);
-                    changDataEditPassword();
+                   // changDataEditPassword();
                     if(edtPassword.getText().toString().length()==0) {
-                        rlNext.setEnabled(false);
                     }
                     else {
-                        rlNext.setEnabled(true);
-                        edtPassword.setEnabled(true);
                     }
                 }
                 else {
-                    rlNext.setEnabled(false);
                 }
             }
         });
 
-    }
+    }*/
 
-    private void changDataEditPassword(){
-        edtPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(!edtPassword.getText().toString().equals("")){
-                    rlNext.setEnabled(true);
-                }
-                else {
-                    rlNext.setEnabled(false);
-                }
-            }
-        });
-    }
+//    private void changDataEditPassword(){
+//        edtPassword.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//    }
 
 
     private void clickButtonNextStep(){
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edtPassword.getText().toString().length()<6){
-                    edtPassword.setError("Length password is longer 6 character");
-                }
-                else {
-                    RegisterStep1Fragment.userName.setFullname(edtFullName.getText().toString());
-                    RegisterStep1Fragment.userName.setPassword(edtPassword.getText().toString());
-                    saveReference();
-                    _mViewPager.setCurrentItem(2,true);
+                if (edtFullName.getText().toString().equals("") == true ||
+                        edtPassword.getText().toString().equals("") == true) {
+                    if (edtFullName.getText().toString().equals("") == true) {
+                        edtFullName.setError("Full Name field not entry");
+                    }
+                    if (edtPassword.getText().toString().equals("") == true) {
+                        edtPassword.setError("Password field not entry");
+                    }
+                } else {
+                    if(edtPassword.getText().toString().length()<6){
+                        edtPassword.setError("Length password is longer 6 character");
+                    } else {
+                        RegisterStep1Fragment.userName.setFullname(edtFullName.getText().toString());
+                        RegisterStep1Fragment.userName.setPassword(edtPassword.getText().toString());
+                        saveReference();
+                        _mViewPager.setCurrentItem(2,true);
+                    }
                 }
             }
         });
