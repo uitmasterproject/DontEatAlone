@@ -39,6 +39,7 @@
 
     <!--Set content below here-->
     <LinearLayout
+        android:id="@+id/fragment_register_step3_ll_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -46,7 +47,6 @@
 
         <!--Set tutorial text-->
         <LinearLayout
-            android:id="@+id/fragment_register_step3_ll_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

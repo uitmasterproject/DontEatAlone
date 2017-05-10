@@ -60,6 +60,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
         // Inflate the layout for this fragment
         viewGroup = inflater.inflate(R.layout.fragment_register_step5, null);
         init();
+        llRootTouch();
         setEdtAdress();
         clickButtonNextStep();
         rlCloseClick();

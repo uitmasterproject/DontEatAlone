@@ -73,6 +73,7 @@ public class RegisterStep3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_register_step3, null);
         init();
+        llRootTouch();
         setClickGender();
         setClickAvatar();
         clickButtonNextStep();

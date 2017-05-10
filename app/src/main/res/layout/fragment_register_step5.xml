@@ -36,6 +36,7 @@
             app:fontPath="fonts/Montserrat-Bold.ttf" />
 
     </LinearLayout>
+
     <!--Set content below here-->
     <LinearLayout
         android:id="@+id/fragment_register_step5_ll_root"

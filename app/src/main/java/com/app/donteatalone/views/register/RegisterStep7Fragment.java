@@ -7,16 +7,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Hobby;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ public class RegisterStep7Fragment extends Fragment {
     private ArrayList<String> headerCharacter;
     private ArrayList<Hobby> character;
     private RelativeLayout rlNextStep, rlClose;
+    private LinearLayout llRoot;
 
     public static Fragment newInstance(Context context) {
         RegisterStep7Fragment f = new RegisterStep7Fragment();
@@ -48,6 +52,7 @@ public class RegisterStep7Fragment extends Fragment {
                              Bundle savedInstanceState) {
         viewGroup=inflater.inflate(R.layout.fragment_register_step7,null);
         init();
+        llRootTouch();
         setActvHobby();
         clickButtonNextStep();
         rlCloseClick();
@@ -57,6 +62,7 @@ public class RegisterStep7Fragment extends Fragment {
         actvCharacter=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
         rlNextStep=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_rl_register);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_close);
+        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step7_ll_root);
     }
 
     private void setActvHobby(){
@@ -64,6 +70,17 @@ public class RegisterStep7Fragment extends Fragment {
         CustomAdapterCompleteTextView customAdapterCompleteTextView=new CustomAdapterCompleteTextView(this.getContext(), android.R.layout.simple_dropdown_item_1line,headerCharacter,character,actvCharacter);
         actvCharacter.setAdapter(customAdapterCompleteTextView);
 
+    }
+
+    /*Hide softkeyboard when touch outsite edittext*/
+    private void llRootTouch() {
+        llRoot.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                AppUtils.hideSoftKeyboard(getActivity());
+                return true;
+            }
+        });
     }
 
     private void clickButtonNextStep(){

@@ -60,6 +60,7 @@ public class RegisterStep4Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_register_step4, null);
         init();
+        llRootTouch();
         ChangeDate();
         clickButtonNextStep();
         rlCloseClick();

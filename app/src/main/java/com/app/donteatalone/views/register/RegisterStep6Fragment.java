@@ -7,14 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.Hobby;
+import com.app.donteatalone.utils.AppUtils;
 
 import java.util.ArrayList;
 
@@ -31,6 +34,7 @@ public class RegisterStep6Fragment extends Fragment {
     private RelativeLayout rlNext, rlClose;
     private View viewGroup;
     private ViewPager _mViewPager;
+    private LinearLayout llRoot;
 
     public static Fragment newInstance(Context context) {
         RegisterStep6Fragment f = new RegisterStep6Fragment();
@@ -42,6 +46,7 @@ public class RegisterStep6Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup=inflater.inflate(R.layout.fragment_register_step6,null);
         init();
+        llRootTouch();
         setActvHobby();
         rlNextClick();
         rlCloseClick();
@@ -53,6 +58,7 @@ public class RegisterStep6Fragment extends Fragment {
         actvHobby=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_hobby);
         rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_close);
+        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step6_ll_root);
     }
 
     private void setActvHobby(){
@@ -60,6 +66,17 @@ public class RegisterStep6Fragment extends Fragment {
         CustomAdapterCompleteTextView customAdapterCompleteTextView=new CustomAdapterCompleteTextView(this.getContext(), android.R.layout.simple_dropdown_item_1line,headerHobby,hobbies,actvHobby);
         actvHobby.setAdapter(customAdapterCompleteTextView);
 
+    }
+
+    /*Hide softkeyboard when touch outsite edittext*/
+    private void llRootTouch() {
+        llRoot.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                AppUtils.hideSoftKeyboard(getActivity());
+                return true;
+            }
+        });
     }
 
     private void rlNextClick(){

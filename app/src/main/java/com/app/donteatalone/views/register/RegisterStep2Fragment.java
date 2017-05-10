@@ -44,6 +44,7 @@ public class RegisterStep2Fragment extends Fragment {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_register_step2, null);
         init();
+        llRootTouch();
         clickButtonNextStep();
         rlCloseClick();
         return viewGroup;
