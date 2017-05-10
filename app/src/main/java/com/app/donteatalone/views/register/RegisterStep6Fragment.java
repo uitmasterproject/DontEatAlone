@@ -28,7 +28,7 @@ public class RegisterStep6Fragment extends Fragment {
     private AutoCompleteTextView actvHobby;
     private ArrayList<String> headerHobby;
     private ArrayList<Hobby> hobbies;
-    private RelativeLayout rlNext;
+    private RelativeLayout rlNext, rlClose;
     private View viewGroup;
     private ViewPager _mViewPager;
 
@@ -44,6 +44,7 @@ public class RegisterStep6Fragment extends Fragment {
         init();
         setActvHobby();
         rlNextClick();
+        rlCloseClick();
         return viewGroup;
     }
 
@@ -51,6 +52,7 @@ public class RegisterStep6Fragment extends Fragment {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         actvHobby=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_hobby);
         rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
+        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_close);
     }
 
     private void setActvHobby(){
@@ -67,6 +69,15 @@ public class RegisterStep6Fragment extends Fragment {
                 RegisterStep1Fragment.userName.setHobby(actvHobby.getText().toString());
                 saveReference();
                 _mViewPager.setCurrentItem(6,true);
+            }
+        });
+    }
+
+    private void rlCloseClick() {
+        rlClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
     }

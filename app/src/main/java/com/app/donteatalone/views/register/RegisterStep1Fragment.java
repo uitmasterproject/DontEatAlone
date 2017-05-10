@@ -10,10 +10,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
+import com.app.donteatalone.utils.AppUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +37,8 @@ public class RegisterStep1Fragment extends Fragment {
     private ViewGroup viewGroup;
     private RelativeLayout rlNext, rlSendCode, rlVerifyCode;
     private EditText edtCode, edtPhone;
+    private RelativeLayout rlClose;
+    private LinearLayout llRoot;
     public static UserName userName;
 
     public static Fragment newInstance(Context context) {
@@ -51,19 +56,23 @@ public class RegisterStep1Fragment extends Fragment {
                              Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_register_step1, null);
         init();
+        llRootTouch();
         changeDataEdtPhone();
         rlSendCodeClick();
         rlNextClick();
+        rlCloseClick();
         return viewGroup;
     }
 
     public void init() {
+        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step1_ll_root);
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         rlSendCode = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_rl_send_code);
         edtPhone = (EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_phone);
         rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_rl_next);
         edtCode = (EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_code);
         rlVerifyCode = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
+        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_close);
         userName = new UserName();
     }
 
@@ -108,6 +117,17 @@ public class RegisterStep1Fragment extends Fragment {
         });
     }
 
+   /* hide soft keyboard when touch outsite edittext*/
+   private void llRootTouch() {
+       llRoot.setOnTouchListener(new View.OnTouchListener() {
+           @Override
+           public boolean onTouch(View v, MotionEvent event) {
+               AppUtils.hideSoftKeyboard(getActivity());
+               return true;
+           }
+       });
+   }
+
     private void rlSendCodeClick() {
         rlSendCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +156,15 @@ public class RegisterStep1Fragment extends Fragment {
                     saveReference();
                     _mViewPager.setCurrentItem(1, true);
                 }
+            }
+        });
+    }
+
+    private void rlCloseClick() {
+        rlClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               getActivity().onBackPressed();
             }
         });
     }

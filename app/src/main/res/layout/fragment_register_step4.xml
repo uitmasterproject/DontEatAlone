@@ -10,12 +10,13 @@
 
     <!--Set Toolbar below here-->
     <LinearLayout
+        android:id="@+id/fragment_register_step4_ll_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_deep_orange">
 
         <RelativeLayout
-            android:id="@+id/fragment_register_step3_close"
+            android:id="@+id/fragment_register_step4_close"
             style="@style/Toolbar.ItemWrapper">
 
             <ImageView

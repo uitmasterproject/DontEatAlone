@@ -10,6 +10,7 @@
 
     <!--Set Toolbar below here-->
     <LinearLayout
+        android:id="@+id/fragment_register_step2_ll_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_deep_orange">

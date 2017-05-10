@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.aigestudio.wheelpicker.widgets.WheelYearPicker;
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
@@ -41,10 +44,11 @@ public class RegisterStep4Fragment extends Fragment {
     private View viewGroup;
     private WheelPicker dayWheelPicker, monthWhellPicker;
     private WheelYearPicker yearWheelPicker;
-    private RelativeLayout rlNext;
+    private RelativeLayout rlNext, rlClose;
     private ViewPager _mViewPager;
     private int intSelectYear, intSelectMonth;
     private LocalDate localDate;
+    private LinearLayout llRoot;
 
     public static Fragment newInstance(Context context) {
         RegisterStep4Fragment f = new RegisterStep4Fragment();
@@ -58,6 +62,7 @@ public class RegisterStep4Fragment extends Fragment {
         init();
         ChangeDate();
         clickButtonNextStep();
+        rlCloseClick();
         return viewGroup;
     }
 
@@ -67,6 +72,8 @@ public class RegisterStep4Fragment extends Fragment {
         yearWheelPicker = (WheelYearPicker) viewGroup.findViewById(R.id.fragment_register_step4_wheelpicker_year);
         rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step4_rl_next);
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
+        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step4_close);
+        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step4_ll_root);
 
         localDate = new LocalDate();
         dayWheelPicker.setSelectedItemPosition(localDate.getDayOfMonth() - 1);
@@ -164,6 +171,26 @@ public class RegisterStep4Fragment extends Fragment {
                 //RegisterStep1Fragment.userName.setBirthday(toStringDate());
                 saveReference();
                 _mViewPager.setCurrentItem(4, true);
+            }
+        });
+    }
+
+    private void rlCloseClick() {
+        rlClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+    }
+
+    /*Hide softkeyboard when touch outsite edittext*/
+    private void llRootTouch() {
+        llRoot.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                AppUtils.hideSoftKeyboard(getActivity());
+                return true;
             }
         });
     }

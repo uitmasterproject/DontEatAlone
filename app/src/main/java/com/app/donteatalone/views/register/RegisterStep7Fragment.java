@@ -37,7 +37,7 @@ public class RegisterStep7Fragment extends Fragment {
     private AutoCompleteTextView actvCharacter;
     private ArrayList<String> headerCharacter;
     private ArrayList<Hobby> character;
-    private RelativeLayout rlNextStep;
+    private RelativeLayout rlNextStep, rlClose;
 
     public static Fragment newInstance(Context context) {
         RegisterStep7Fragment f = new RegisterStep7Fragment();
@@ -50,11 +50,13 @@ public class RegisterStep7Fragment extends Fragment {
         init();
         setActvHobby();
         clickButtonNextStep();
+        rlCloseClick();
         return viewGroup;
     }
     private void init(){
         actvCharacter=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
         rlNextStep=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_rl_register);
+        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_close);
     }
 
     private void setActvHobby(){
@@ -73,7 +75,15 @@ public class RegisterStep7Fragment extends Fragment {
                 InsertUserintoDB();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
 
+    private  void rlCloseClick() {
+        rlClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
     }

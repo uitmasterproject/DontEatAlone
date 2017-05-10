@@ -39,6 +39,7 @@
 
     <!--Set content below here-->
     <LinearLayout
+        android:id="@+id/fragment_register_step1_ll_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

@@ -9,13 +9,16 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -27,6 +30,8 @@ public class RegisterStep2Fragment extends Fragment {
     private EditText edtFullName, edtPassword;
     private RelativeLayout rlNext;
     private ViewPager _mViewPager;
+    private RelativeLayout rlClose;
+    private LinearLayout llRoot;
 
     public static Fragment newInstance(Context context) {
         RegisterStep2Fragment f = new RegisterStep2Fragment();
@@ -40,6 +45,7 @@ public class RegisterStep2Fragment extends Fragment {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_register_step2, null);
         init();
         clickButtonNextStep();
+        rlCloseClick();
         return viewGroup;
     }
 
@@ -49,6 +55,8 @@ public class RegisterStep2Fragment extends Fragment {
         edtFullName= (EditText) viewGroup.findViewById(R.id.fragment_register_step2_edt_fullname);
         edtPassword=(EditText) viewGroup.findViewById(R.id.fragment_register_step2_edt_password);
         rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step2_btn_next);
+        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step2_close);
+        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step2_ll_root);
     }
 
 /*    private void changeDataEditFullName(){
@@ -98,7 +106,25 @@ public class RegisterStep2Fragment extends Fragment {
 //        });
 //    }
 
+    /*Hide keyboard when touch outsite edittext*/
+    private void llRootTouch() {
+        llRoot.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                AppUtils.hideSoftKeyboard(getActivity());
+                return true;
+            }
+        });
+    }
 
+    private void rlCloseClick() {
+        rlClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+    }
     private void clickButtonNextStep(){
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
