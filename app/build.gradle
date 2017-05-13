@@ -1,24 +1,21 @@
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
-    }
-    dependencies {
-    }
-}
-
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
-
-apt {
-    arguments {
-        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
-        resourcePackageName 'com.app.donteatalone'
-    }
-}
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId 'com.app.donteatalone'
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
     signingConfigs {
         release {
             keyAlias 'DontEatAlone'
@@ -34,17 +31,6 @@ android {
         }
     }
 
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-    defaultConfig {
-        applicationId 'com.app.donteatalone'
-        minSdkVersion 17
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled = true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
     buildTypes {
         release {
             debuggable false
@@ -57,6 +43,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
     productFlavors {
         development {
             manifestPlaceholders = [appName: "DEA-" + "development"]
@@ -65,21 +52,18 @@ android {
             manifestPlaceholders = [appName: "DEA-" + "production"]
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
-}
 
-apt {
-    arguments {
-        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
-        resourcePackageName android.defaultConfig.applicationId
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
     //Android Support
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -98,7 +82,7 @@ dependencies {
 
     //Joda time
     compile 'net.danlew:android.joda:2.9.9'
-    
+
     //Calligraphy
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
 
@@ -118,17 +102,16 @@ dependencies {
     //Hawk
     compile 'com.orhanobut:hawk:2.0.1'
 
+    //Wheel picker
+    compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
+
     //Nga's install
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
 
-    //RecyclerView
-    compile 'com.android.support:recyclerview-v7:25.2.0'
-    compile 'com.android.support:cardview-v7:24.0.0'
-
-    //Facebook
-    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+ /*   //Facebook
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'*/
 
     androidTestCompile 'org.testng:testng:6.9.6'
 

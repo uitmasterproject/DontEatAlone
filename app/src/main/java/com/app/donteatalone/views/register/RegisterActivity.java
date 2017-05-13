@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.widget.Button;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.widgets.Toolbar;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -13,6 +15,7 @@ public class RegisterActivity extends FragmentActivity {
     private CustomViewPager _mViewPager;
     private ViewPagerAdapter _adapter;
     private Button btnStep1,btnStep2,btnStep3,btnStep4,btnStep5,btnStep6,btnStep7;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +30,6 @@ public class RegisterActivity extends FragmentActivity {
         _adapter = new ViewPagerAdapter(getApplicationContext(),getSupportFragmentManager());
         _mViewPager.setAdapter(_adapter);
         _mViewPager.setCurrentItem(0);
-        initButton();
-    }
-
-    private void initButton(){
-        btnStep1=(Button)findViewById(R.id.activity_register_btn_next_step1);
-        btnStep2=(Button)findViewById(R.id.activity_register_btn_next_step2);
-        btnStep3=(Button)findViewById(R.id.activity_register_btn_next_step3);
-        btnStep4=(Button)findViewById(R.id.activity_register_btn_next_step4);
-        btnStep5=(Button)findViewById(R.id.activity_register_btn_next_step5);
-        btnStep6=(Button)findViewById(R.id.activity_register_btn_next_step6);
-        btnStep7=(Button)findViewById(R.id.activity_register_btn_finish);
-        setStatusButton(btnStep1,btnStep2,btnStep3,btnStep4,btnStep5,btnStep6,btnStep7);
     }
 
     private void setButton(Button btn,int res,int h, int w){
@@ -57,7 +48,7 @@ public class RegisterActivity extends FragmentActivity {
             @Override
             public void onPageSelected(int position) {
                 // TODO Auto-generated method stub
-                btnAction(position);
+//                btnAction(position);
             }
 
         });

@@ -2,87 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/root_frame">
-        <com.app.donteatalone.views.register.CustomViewPager
-            android:layout_marginTop="50dp"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/activity_register_viewPager">
-        </com.app.donteatalone.views.register.CustomViewPager>
-    </FrameLayout>
+    android:background="@android:color/white">
 
-    <LinearLayout
-        android:id="@+id/viewPagerIndicator"
+    <com.app.donteatalone.views.register.CustomViewPager
+        android:id="@+id/activity_register_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal|bottom">
+        android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/activity_register_btn_next_step1"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_selected"
-            />
-
-        <Button
-            android:id="@+id/activity_register_btn_next_step2"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_marginLeft="4dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_default"
-            android:contentDescription="Let's start" />
-
-        <Button
-            android:id="@+id/activity_register_btn_next_step3"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_marginLeft="4dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_default"
-            android:contentDescription="Let's start" />
-
-        <Button
-            android:id="@+id/activity_register_btn_next_step4"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_marginLeft="4dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_default"
-            android:contentDescription="Let's start" />
-
-        <Button
-            android:id="@+id/activity_register_btn_next_step5"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_marginLeft="4dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_default"
-            android:contentDescription="Let's start" />
-
-        <Button
-            android:id="@+id/activity_register_btn_next_step6"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_marginLeft="4dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_default"
-            android:contentDescription="Let's start" />
-        <Button
-            android:id="@+id/activity_register_btn_finish"
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_marginLeft="4dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/design_button_default"
-            android:contentDescription="Let's start" />
-    </LinearLayout>
 </FrameLayout>
 

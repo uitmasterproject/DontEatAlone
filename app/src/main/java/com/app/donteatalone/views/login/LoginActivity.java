@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.main.blog.BlogActivity;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private Dialog dialogLoading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppUtils.changeStatusBarColor(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
