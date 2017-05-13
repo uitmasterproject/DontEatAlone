@@ -128,7 +128,6 @@ public class CustomBlogRecyclerViewAdapter extends RecyclerView.Adapter<CustomVi
 
     @Override
     public int getItemCount() {
-        Log.e("Create",myInfoBlogses.size()+"Create======================");
         return myInfoBlogses.size();
     }
 

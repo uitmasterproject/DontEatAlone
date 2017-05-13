@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
-import com.app.donteatalone.views.main.blog.BlogActivity;
+import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<Status> call, Response<Status> response) {
 
                     if (response.body().getStatus().equals("Login success")==true){
-                        Intent intent=new Intent(LoginActivity.this, BlogActivity.class);
+                        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                         //loading.stop();
                         //dialogLoading.cancel();
                         startActivity(intent);
