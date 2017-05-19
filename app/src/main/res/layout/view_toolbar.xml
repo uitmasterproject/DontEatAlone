@@ -39,6 +39,17 @@
             android:textSize="17.3sp"
             app:fontPath="fonts/Montserrat-Bold.ttf" />
 
+        <RelativeLayout
+            android:id="@+id/view_toolbar_3dot"
+            style="@style/Toolbar.ItemWrapper"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                style="@style/Toolbar.ItemIcon"
+                android:src="@drawable/ic_dots_vertical_white_36dp" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>

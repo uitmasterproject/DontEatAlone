@@ -1,5 +1,6 @@
 package com.app.donteatalone.widgets;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
@@ -28,6 +29,8 @@ public class Toolbar extends RelativeLayout {
     View toolbarClose;
     @ViewById(R.id.view_toolbar_tv_title)
     TextView tvTitle;
+    @ViewById(R.id.view_toolbar_3dot)
+    View toolbar3Dot;
 
     public Toolbar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -41,19 +44,24 @@ public class Toolbar extends RelativeLayout {
         }
     }
 
-    //Update for register ui
-    public void applyRegisterUi(RegisterActivity activity, String title, final RegisterItemClick itemClick) {
+    public void applyMainUi(Activity activity, String title, final MainItemClick itemClick) {
 
         tvTitle.setText(title);
         toolbarClose.setVisibility(View.VISIBLE);
+        toolbar3Dot.setVisibility(View.VISIBLE);
 
         toolbarClose.setOnClickListener(v -> {
             itemClick.toolbarCloseClick();
         });
 
+        toolbar3Dot.setOnClickListener(v -> {
+            itemClick.toolbar3DotClick();
+        });
+
     }
 
-    public interface RegisterItemClick {
+    public interface MainItemClick {
         void toolbarCloseClick();
+        void toolbar3DotClick();
     }
 }
