@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPager;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseActivity;
-import com.app.donteatalone.views.main.blog.CustomAdapterPagerSlidingTabStrip;
 import com.app.donteatalone.widgets.Toolbar;
 import com.astuetz.PagerSlidingTabStrip;
 

@@ -1,6 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="fill_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:scrollbars="none"
+    tools:ignore="contentDescription, MissingPrefix">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/fragment_profile_rl_tap_edit"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/black_anpha_40"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tap on the sections you want to edit"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+        </RelativeLayout>
+
+        <!--Set avatar image-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/fragment_profile_iv_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar_man" />
+
+        </RelativeLayout>
+
+        <!--Set your name below here-->
+        <RelativeLayout
+            android:id="@+id/fragment_profile_rl_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="Dont Eat Alone"
+                android:textColor="@color/color_deep_orange"
+                android:textSize="20sp"
+                app:fontPath="fonts/Montserrat-Bold" />
+
+        </RelativeLayout>
+
+        <!--Set Age and Gender below here-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/fragment_profile_rl_age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="Age"
+                    android:textColor="@color/color_deep_orange"
+                    android:textSize="18sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_profile_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="left">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="Gender"
+                    android:textColor="@color/color_deep_orange"
+                    android:textSize="18sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp">
+
+            <!--phone-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_phone_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:text="0000000000000000000000000000000000000000000000000000000000000000000000000000000000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaafsafasfas"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+            <!--school-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_school_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+            <!--address-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_home_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+            <!--Hobby-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_thumb_up_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_hobby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+            <!--Character-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_emoticon_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+            <!--Relationship-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_heart_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_relationship"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+            <!--Hơmetown-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_map_marker_grey600_24dp" />
+
+                <TextView
+                    android:id="@+id/fragment_profile_tv_hometown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Album and history-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/fragment_profile_tl_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/white_1"
+                app:tabSelectedTextColor="@color/gray">
+
+            </android.support.design.widget.TabLayout>
+
+            <com.app.donteatalone.views.register.CustomViewPager
+                android:id="@+id/fragment_profile_vp_album_history"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+            </com.app.donteatalone.views.register.CustomViewPager>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
