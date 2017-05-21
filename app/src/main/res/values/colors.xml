@@ -5,17 +5,23 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="gray">#d1cccc</color>
+    <color name="gray_1">#30CCCCCC</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_anpha_40">#30FFFFFF</color>
     <color name="black">#000000</color>
     <color name="black_anpha_40">#66000000</color>
     <color name="white_1">#F0F0F0</color>
 
+    <color name="blue_gray">#CFD8DC</color>
+    <color name="blue_gray_1">#B0BEC5</color>
+
     <color name="dot_tutorial_active">#1890c7</color>
     <color name="dot_tutorial_inactive">#9b9b9b</color>
 
-    <!--Button color-->
+    <!--orange color-->
     <color name="color_deep_orange">#FF5722</color>
+    <color name="color_deep_orange_1">#FF8A65</color>
     <color name="color_orange_pressed">#E64A19</color>
-
+    <color name="color_orange_1">#FFF3E0</color>
 
 </resources>
