@@ -32,9 +32,9 @@ public class CustomAdapterPagerSlidingTabStrip extends FragmentPagerAdapter impl
                 f= BlogFragment.newInstance();
                 break;
             case 1:
-                f= ProfileFragment.newInstance();
                 break;
             case 2:
+                f= ProfileFragment.newInstance();
                 break;
             case 3:
                 break;

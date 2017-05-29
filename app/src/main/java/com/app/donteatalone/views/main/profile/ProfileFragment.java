@@ -1,12 +1,11 @@
 package com.app.donteatalone.views.main.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.register.CustomViewPager;
-import com.app.donteatalone.views.register.ViewPagerAdapter;
+import com.app.donteatalone.widgets.DialogCustom;
+
+import static com.app.donteatalone.views.main.MainActivity.stringTemp;
 
 /**
  * Created by ChomChom on 4/13/2017.
@@ -36,9 +36,10 @@ public class ProfileFragment extends Fragment {
     private LinearLayout llPhone, llAddress, llHobbyFood;
     private LinearLayout llHobbyCharacter, llHobbyStyle, llCharacter;
 
+    private DialogCustom dialogCustom;
+
     public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
-        return fragment;
+        return new ProfileFragment();
     }
 
     @Nullable
@@ -82,6 +83,12 @@ public class ProfileFragment extends Fragment {
         llHobbyCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_hobby_character);
         llHobbyStyle = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_hobby_style);
         llCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_character);
+
+        /* Set value for tvName from ProfileCustomDialogName => ProfileFragment*/
+        if(!stringTemp.equals(""))
+        {
+            tvName.setText(stringTemp);
+        }
     }
 
     private void itemClick() {
@@ -96,6 +103,13 @@ public class ProfileFragment extends Fragment {
         rlName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                dialogCustom = new DialogCustom(viewGroup.getContext(), R.layout.custom_dialog_profile_name, "Edit Name");
+//                dialogCustom.showDialogCustom();
+              /* Truyen du lieu tu ProfileFragment => ProfileCustomDialogName*/
+                Intent intent = new Intent(getContext(), ProfileCustomDialogName.class);
+                intent.putExtra("layout", R.layout.custom_dialog_profile_name);
+                intent.putExtra("value_current_name", tvName.getText().toString());
+                startActivity(intent);
 
             }
         });
@@ -103,7 +117,7 @@ public class ProfileFragment extends Fragment {
         rlAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Toast.makeText(viewGroup.getContext(),"Age Click", Toast.LENGTH_LONG).show();
+
             }
         });
 
