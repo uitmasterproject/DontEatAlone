@@ -16,9 +16,7 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.register.CustomViewPager;
-import com.app.donteatalone.widgets.DialogCustom;
 
-import static com.app.donteatalone.views.main.MainActivity.stringTemp;
 
 /**
  * Created by ChomChom on 4/13/2017.
@@ -36,7 +34,7 @@ public class ProfileFragment extends Fragment {
     private LinearLayout llPhone, llAddress, llHobbyFood;
     private LinearLayout llHobbyCharacter, llHobbyStyle, llCharacter;
 
-    private DialogCustom dialogCustom;
+    private ProfileDialogCustom dialogCustom;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -85,10 +83,7 @@ public class ProfileFragment extends Fragment {
         llCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_character);
 
         /* Set value for tvName from ProfileCustomDialogName => ProfileFragment*/
-        if(!stringTemp.equals(""))
-        {
-            tvName.setText(stringTemp);
-        }
+
     }
 
     private void itemClick() {
@@ -103,13 +98,18 @@ public class ProfileFragment extends Fragment {
         rlName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dialogCustom = new DialogCustom(viewGroup.getContext(), R.layout.custom_dialog_profile_name, "Edit Name");
+//                dialogCustom = new ProfileDialogCustom(viewGroup.getContext(), R.layout.custom_dialog_profile_name, "Edit Name");
 //                dialogCustom.showDialogCustom();
               /* Truyen du lieu tu ProfileFragment => ProfileCustomDialogName*/
-                Intent intent = new Intent(getContext(), ProfileCustomDialogName.class);
-                intent.putExtra("layout", R.layout.custom_dialog_profile_name);
-                intent.putExtra("value_current_name", tvName.getText().toString());
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), ProfileCustomDialogName.class);
+//                intent.putExtra("layout", R.layout.custom_dialog_profile_name);
+//                intent.putExtra("value_current_name", tvName.getText().toString());
+//                startActivity(intent);
+
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
+                        (viewGroup.getContext(), R.layout.custom_dialog_profile_name, "Edit Name", tvName);
+
+                profileDialogCustom.showDialogCustom();
 
             }
         });

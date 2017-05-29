@@ -26,9 +26,9 @@
             android:id="@+id/custom_dialog_profile_name_rl_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="end|center"
             android:background="@drawable/ripple_selector"
-            android:padding="10dp">
+            android:padding="6dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -54,7 +54,6 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:hint="Full Name"
-            android:text="abcvfhdhdfh"
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
             android:textSize="18sp"

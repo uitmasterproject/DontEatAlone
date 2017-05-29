@@ -1,20 +1,15 @@
 package com.app.donteatalone.views.main.profile;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseActivity;
 import com.app.donteatalone.views.main.MainActivity;
-import com.app.donteatalone.widgets.DialogCustom;
 
 /**
  * Created by Le Hoang Han on 5/21/2017.

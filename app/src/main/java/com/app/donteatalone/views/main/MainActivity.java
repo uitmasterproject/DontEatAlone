@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
 
-    public static String stringTemp ="";
+//    public static String stringTemp ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +45,11 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.activity_main_tabs);
         pagerSlidingTabStrip.setViewPager(viewPager);
 
-        //Get data from ProfileCustomDialogName to MainActivity
-        if(null != getIntent().getExtras()){
-            stringTemp = getIntent().getExtras().getString("value_new_name");
-            viewPager.setCurrentItem(2);
-        }
+//        //Get data from ProfileCustomDialogName to MainActivity
+//        if(null != getIntent().getExtras()){
+//            stringTemp = getIntent().getExtras().getString("value_new_name");
+//            viewPager.setCurrentItem(2);
+//        }
 
         pagerSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
