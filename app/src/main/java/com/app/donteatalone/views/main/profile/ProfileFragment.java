@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
 //                startActivity(intent);
 
                 ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
-                        (viewGroup.getContext(), R.layout.custom_dialog_profile_name, "Edit Name", tvName);
+                        (viewGroup.getContext(), R.layout.custom_dialog_profile_name, tvName);
 
                 profileDialogCustom.showDialogCustom();
 
@@ -124,7 +124,9 @@ public class ProfileFragment extends Fragment {
         rlGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
+                        (viewGroup.getContext(),R.layout.custom_dialog_profile_gender, tvGender);
+                profileDialogCustom.showDialogCustom();
             }
         });
 
