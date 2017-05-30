@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.main.profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.register.CustomViewPager;
-
 
 /**
  * Created by ChomChom on 4/13/2017.
@@ -117,7 +115,9 @@ public class ProfileFragment extends Fragment {
         rlAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
+                        (viewGroup.getContext(),R.layout.custom_dialog_profile_age, tvAge);
+                profileDialogCustom.showDialogCustom();
             }
         });
 
@@ -165,5 +165,4 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
 }
