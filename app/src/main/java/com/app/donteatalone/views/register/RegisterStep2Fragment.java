@@ -2,10 +2,9 @@ package com.app.donteatalone.views.register;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -15,8 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.app.donteatalone.R;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -121,19 +118,10 @@ public class RegisterStep2Fragment extends Fragment {
                 else {
                     RegisterStep1Fragment.userName.setFullname(edtFullName.getText().toString());
                     RegisterStep1Fragment.userName.setPassword(edtPassword.getText().toString());
-                    saveReference();
                     _mViewPager.setCurrentItem(2,true);
                 }
             }
         });
     }
 
-
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("fullname",edtFullName.getText().toString());
-        editor.putString("password", edtPassword.getText().toString());
-        editor.commit();
-    }
 }

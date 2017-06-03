@@ -2,12 +2,9 @@ package com.app.donteatalone.views.register;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +24,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -42,6 +38,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private View viewGroup;
     private Button btnNextStep;
     private ViewPager _mViewPager;
+    private String location;
 
 
     public static Fragment newInstance(Context context) {
@@ -90,12 +87,9 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     //luu lai noi duoc chon
     @Override
     public void onPlaceSelected(Place place) {
-        Log.i(LOG_TAG, "Place Selected: " + place.getName());
         edtAddress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
-        //, place.getPhoneNumber(), place.getWebsiteUri(), place.getRating(), place.getId()
-        if (!TextUtils.isEmpty(place.getAttributions())){
-            edtAddress.setText(Html.fromHtml(place.getAttributions().toString()));
-        }
+        Log.e("edtAdress", edtAddress.getText().toString());
+        location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);;
     }
 
 
@@ -126,17 +120,11 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setAddress(edtAddress.getText().toString());
-                saveReference();
+                RegisterStep1Fragment.userName.setLatLngAdress(location);
                 _mViewPager.setCurrentItem(5,true);
             }
         });
     }
 
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("address",edtAddress.getText().toString());
-        editor.commit();
-    }
 
 }

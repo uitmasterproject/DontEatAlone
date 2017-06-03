@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:weightSum="3"
+
+    android:background="#fff">
+    <com.aigestudio.wheelpicker.WheelPicker
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        app:wheel_indicator="true"
+        app:wheel_cyclic="true"
+        app:wheel_indicator_color="@color/dot_tutorial_active"
+        app:wheel_atmospheric="true"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/custom_dialog_require_off_choose_age_wpk_min"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:textColor="#000"
+        android:gravity="center"
+        android:text="-"/>
+    <com.aigestudio.wheelpicker.WheelPicker
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        app:wheel_indicator="true"
+        app:wheel_cyclic="true"
+        app:wheel_indicator_color="@color/dot_tutorial_active"
+        app:wheel_atmospheric="true"
+        android:layout_marginRight="60dp"
+        android:id="@+id/custom_dialog_require_off_choose_age_wpk_max"/>
+
+</LinearLayout>

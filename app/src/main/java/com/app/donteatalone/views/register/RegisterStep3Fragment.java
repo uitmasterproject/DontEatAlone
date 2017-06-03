@@ -6,7 +6,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -39,7 +38,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -204,15 +202,6 @@ public class RegisterStep3Fragment extends Fragment {
                     e.printStackTrace();
                 }
             } else if (requestCode == 2) {
-//                Uri selectedImage = data.getData();
-//                String[] filePath = { MediaStore.Images.Media.DATA };
-//                Cursor c = getContext().getContentResolver().query(selectedImage, filePath, null, null, null);
-//                c.moveToFirst();
-//                int columnIndex = c.getColumnIndex(filePath[0]);
-//                String picturePath = c.getString(columnIndex);
-//                c.close();
-//                Bitmap tempbitmap = (BitmapFactory.decodeFile(picturePath));
-//                performCrop();
                 final Uri imageUri = data.getData();
                 InputStream imageStream=null;
                 try {
@@ -260,7 +249,6 @@ public class RegisterStep3Fragment extends Fragment {
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setAvatar(convertBitmaptoString());
                 RegisterStep1Fragment.userName.setGender(gender);
-                saveReference();
                 _mViewPager.setCurrentItem(3,true);
             }
         });
@@ -275,12 +263,5 @@ public class RegisterStep3Fragment extends Fragment {
         return tempConvert;
     }
 
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("avatar",convertBitmaptoString());
-        editor.putString("gender",gender);
-        editor.commit();
-    }
 
 }

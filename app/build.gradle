@@ -128,7 +128,14 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.0.0'
 
     //Facebook
-    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile "com.squareup.picasso:picasso:2.4.0"
+
+    //Wheel Picker
+    compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
+
+    //socket
+    compile 'com.github.nkzawa:socket.io-client:0.3.0'
 
     androidTestCompile 'org.testng:testng:6.9.6'
 

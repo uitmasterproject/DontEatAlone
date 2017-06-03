@@ -9,6 +9,8 @@ public class Hobby  {
     private String itemHobby;
     private boolean type;
 
+    public Hobby(){}
+
     public Hobby(String headerHobby, String itemHobby, boolean type) {
         this.headerHobby = headerHobby;
         this.itemHobby = itemHobby;

@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.register;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,8 +17,6 @@ import android.widget.Spinner;
 import com.app.donteatalone.R;
 
 import java.lang.reflect.Field;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -238,7 +235,6 @@ public class RegisterStep4Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setBirthday(toStringDate());
-                saveReference();
                 _mViewPager.setCurrentItem(4,true);
             }
         });
@@ -254,12 +250,5 @@ public class RegisterStep4Fragment extends Fragment {
         }
         Log.e("Date",date+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         return date;
-    }
-
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("birthday",toStringDate());
-        editor.commit();
     }
 }

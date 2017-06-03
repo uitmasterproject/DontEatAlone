@@ -18,10 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.views.main.blog.BlogActivity;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
+import com.app.donteatalone.views.main.blog.BlogActivity;
 import com.app.donteatalone.views.register.RegisterActivity;
 import com.victor.loading.rotate.RotateLoading;
 
@@ -31,13 +31,10 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String passPhone, passPassword;
-    private Bundle bundle;
     private EditText edtPhone, edtPassword;
     private Button btnLogin;
     private RelativeLayout rlRegister, rlForgetPass;
     private CheckBox ckbRemember;
-    private String testPhone;
     private RotateLoading loading;
     private Dialog dialogLoading;
     @Override
@@ -45,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
-        storeReference();
         clickLogin();
         clickRegister();
         clickForgetPassword();
@@ -54,58 +50,28 @@ public class LoginActivity extends AppCompatActivity {
     public void init(){
         edtPhone=(EditText) findViewById(R.id.activity_login_edt_phone);
         edtPassword=(EditText) findViewById(R.id.activity_login_edt_password);
+        edtPhone.setText(storeReference("phoneLogin"));
+        edtPassword.setText(storeReference("passwordLogin"));
         ckbRemember=(CheckBox) findViewById(R.id.activity_login_ckb_remember);
         rlRegister=(RelativeLayout) findViewById(R.id.activity_login_rl_register);
         rlForgetPass=(RelativeLayout) findViewById(R.id.activity_login_rl_forgot_password);
         btnLogin=(Button) findViewById(R.id.activity_login_btn_login);
-//        /*Paint p = new Paint();
-//        p.setColor(Color.RED);
-//
-//        txtRegister.setPaintFlags(p.getColor());
-//        txtRegister.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-//        txtRegister.setText("Don't have a account");*/
-//
-//        /*String styledText = "<u style=\"color:'#FF4081'\"><font>Don't have a account</font></u>.";
-//        txtRegister.setText(Html.fromHtml(styledText),TextView.BufferType.SPANNABLE);*/
-    }
-
-    public void checkPassDatafromRegister(){
-        if ((null!=passPhone)|| (null!=passPassword)){
-            edtPhone.setText("");
-            edtPassword.setText("");
-        }
-        else{
-            edtPhone.setText(passPhone);
-            edtPassword.setText(passPassword);
-        }
-    }
-
-    public void getDatafromRegister(){
-        bundle=getIntent().getExtras();
-        if(null!=bundle.getString("phone")&&null!=bundle.getString("password")) {
-            passPhone = bundle.getString("phone");
-            passPassword = bundle.getString("password");
-        }
-        else {
-            passPhone = "";
-            passPassword="";
-        }
     }
 
     public void checkRemember(){
         if(ckbRemember.isChecked()==true){
-            saveReference(edtPhone.getText().toString(),edtPassword.getText().toString());
+            saveReference("phoneLogin",edtPhone.getText().toString());
+            saveReference("passwordLogin",edtPassword.getText().toString());
         }
         else {
             notRemember();
         }
     }
 
-    public void saveReference(String phone, String password){
+    public void saveReference(String key, String value){
         SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("phoneLogin",phone);
-        editor.putString("passwordLogin", password);
+        editor.putString(key,value);
         editor.commit();
     }
 
@@ -116,64 +82,65 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("passwordLogin", "");
     }
 
-    public void storeReference(){
+    private String storeReference(String key){
+        String value="";
         SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
-        Boolean bchk=sharedPreferences.getBoolean("checked", false);
-        if(bchk==false)
-        {
-            edtPhone.setText(sharedPreferences.getString("phoneLogin", ""));
-            edtPassword.setText(sharedPreferences.getString("passwordLogin", ""));
-        }
-        else {
-            edtPhone.setText("");
-            edtPassword.setText("");
-        }
+        value=sharedPreferences.getString(key, "");
+        return value;
     }
 
     public void checkAccount(){
-        testPhone=edtPhone.getText().toString();
+
         if(null!=edtPhone.getText().toString()&&null!=edtPassword.getText().toString()) {
             Connect connect = new Connect();
-            Call<Status> getPass = connect.getRetrofit().checkAccount(edtPhone.getText().toString(),edtPassword.getText().toString());
-
+            Call<Status> getPass = connect.getRetrofit().checkAccount(edtPhone.getText().toString(), edtPassword.getText().toString());
             getPass.enqueue(new Callback<Status>() {
                 @Override
                 public void onResponse(Call<Status> call, Response<Status> response) {
 
-                    if (response.body().getStatus().equals("Login success")==true){
-                        Intent intent=new Intent(LoginActivity.this, BlogActivity.class);
-                        //loading.stop();
-                        //dialogLoading.cancel();
-                        startActivity(intent);
-
+                    if (response.body() == null) {
+                        Toast.makeText(LoginActivity.this,"Don't connect server",Toast.LENGTH_SHORT).show();
                     }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this,"Password incorecct, Check phone or password again.", Toast.LENGTH_LONG).show();
+                    else {
+                        if (response.body().getStatus().equals("Login success") == true) {
+                            if(storeReference("phoneLogin").equals(edtPhone.getText().toString())==true){
+                                Log.e("not save user","not save user");
+                                checkRemember();
+                                Intent intent=new Intent(LoginActivity.this, BlogActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                Log.e("save user","save user");
+                                saveInfoUser();
+                            }
+                        } else if (response.body().getStatus().equals("This phone isnt exits") == true) {
+                            Toast.makeText(LoginActivity.this, "This phone isn't exits. Press register to create account", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Password incorecct, Check phone or password again.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Status> call, Throwable t) {
-                    Log.e("error",t.toString());
+                    Log.e("error", t.toString());
                 }
             });
         }
     }
 
     private void saveInfoUser(){
-        //setDialogLoading();
         Connect connect=new Connect();
         final UserName[] user = {new UserName()};
         Call<UserName> userLogin = connect.getRetrofit().getProfileUser(edtPhone.getText().toString());
         userLogin.enqueue(new Callback<UserName>() {
             @Override
             public void onResponse(Call<UserName> call, Response<UserName> response) {
-                //loading.start();
                 user[0] =response.body();
                 saveInfoReference(user[0]);
                 checkRemember();
-                checkAccount();
+                Intent intent=new Intent(LoginActivity.this, BlogActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -192,18 +159,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveInfoReference(UserName userName){
-        SharedPreferences sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("phoneLogin", userName.getPhone());
-        editor.putString("fullnameLogin",userName.getFullname());
-        editor.putString("passwordLogin", userName.getPassword());
-        editor.putString("genderLogin",userName.getGender());
-        editor.putString("avatarLogin",userName.getAvatar());
-        editor.putString("birthdayLogin",userName.getBirthday());
-        editor.putString("addressLogin",userName.getAddress());
-        editor.putString("hobbyLogin",userName.getHobby());
-        editor.putString("characterLogin",userName.getCharacter());
-        editor.commit();
+            SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("phoneLogin", userName.getPhone());
+            editor.putString("fullnameLogin", userName.getFullname());
+            editor.putString("passwordLogin", userName.getPassword());
+            editor.putString("genderLogin", userName.getGender());
+            editor.putString("avatarLogin", userName.getAvatar());
+            editor.putString("birthdayLogin", userName.getBirthday());
+            editor.putString("addressLogin", userName.getAddress());
+            editor.putString("latlngadressLogin",userName.getLatLngAdress());
+            editor.putString("hobbyLogin", userName.getHobby());
+            editor.putString("characterLogin", userName.getCharacter());
+            editor.commit();
     }
 
     public boolean checkEntry(String values){
@@ -402,9 +370,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Status> call, Response<Status> response) {
                             if (response.body().getStatus().equals("Update password success") == true) {
-                                saveReference(edtPhoneReset.getText().toString(),edtNewPassword.getText().toString());
+                                saveReference("phoneLogin",edtPhoneReset.getText().toString());
+                                saveReference("passwordLogin",edtNewPassword.getText().toString());
                                 dialog.cancel();
-                                storeReference();
+                                edtPhone.setText(storeReference("phoneLogin"));
+                                edtPassword.setText(storeReference("passwordLogin"));
                             } else {
                                 edtNewPassword.setError("Update password error");
                             }
@@ -434,7 +404,7 @@ public class LoginActivity extends AppCompatActivity {
                     edtPassword.setError("Invalid Password");
                 }
                 if(checkEntry(edtPhone.getText().toString())==false&&checkEntry(edtPassword.getText().toString())==false) {
-                    saveInfoUser();
+                    checkAccount();
                 }
             }
         });

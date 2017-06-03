@@ -23,6 +23,8 @@ public class UserName implements Serializable {
     private String Gender;
     @SerializedName("Address")
     private String Address;
+    @SerializedName("LatLngAdress")
+    private String LatLngAdress;
     @SerializedName("Hobby")
     private String Hobby;
     @SerializedName("Character")
@@ -108,6 +110,14 @@ public class UserName implements Serializable {
 
     public String getCharacter() {
         return Character;
+    }
+
+    public String getLatLngAdress() {
+        return LatLngAdress;
+    }
+
+    public void setLatLngAdress(String latLngAdress) {
+        LatLngAdress = latLngAdress;
     }
 
     public void setCharacter(String character) {

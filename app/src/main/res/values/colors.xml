@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="tranparent">#00ffffff</color>
 
     <color name="gray">#d1cccc</color>
     <color name="white">#FFFFFF</color>
@@ -13,5 +14,15 @@
 
     <!--Login screen color-->
     <color name="color_deep_orange">#FF5722</color>
+
+
+    <color name="require_off_txt_gender_selected">#2ee1e0e0</color>
+
+    <color name="font_color_for_require">#000</color>
+    <color name="color_background_for_hobby">#7dd1cccc</color>
+
+    <color name="comformat">#a848ff06</color>
+
+    <color name="footer_for_list_accordant_user">#bddcdcdc</color>
 
 </resources>

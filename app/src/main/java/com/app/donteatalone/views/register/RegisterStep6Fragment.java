@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.register;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,8 +15,6 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.model.Hobby;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -63,8 +60,10 @@ public class RegisterStep6Fragment extends Fragment {
         btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(actvHobby.getText().toString().endsWith(",")){
+                    actvHobby.setText(actvHobby.getText().toString().substring(0,actvHobby.getText().toString().length()-1));
+                }
                 RegisterStep1Fragment.userName.setHobby(actvHobby.getText().toString());
-                saveReference();
                 _mViewPager.setCurrentItem(6,true);
             }
         });
@@ -97,10 +96,4 @@ public class RegisterStep6Fragment extends Fragment {
         hobbies.add(new Hobby("Phong cách","trưởng thành",false));
     }
 
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("hobby",actvHobby.getText().toString());
-        editor.commit();
-    }
 }

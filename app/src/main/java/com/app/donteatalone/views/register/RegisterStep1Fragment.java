@@ -1,14 +1,12 @@
 package com.app.donteatalone.views.register;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +22,6 @@ import com.app.donteatalone.model.UserName;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class RegisterStep1Fragment extends Fragment {
 
@@ -118,17 +114,13 @@ public class RegisterStep1Fragment extends Fragment {
                     changeDataEdtPhone(edtCode,btnNextStep);
                 }
                 else {
-//                    txtRecomment.setText("This phone was exit");
-//                    txtRecomment.setTextColor(Color.RED);
                     edtPhone.setError("This phone was exit");
                     edtPhone.setText("");
                 }
-
             }
 
             @Override
             public void onFailure(Call<Status> call, Throwable t) {
-                Log.e("ERROR Phone Exits",t.toString()+"*************************************");
             }
         });
     }
@@ -152,22 +144,9 @@ public class RegisterStep1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 userName.setPhone(edtPhone.getText().toString());
-                saveReference();
-//                Bundle args = new Bundle();
-//                FragmentTransaction fragmentTx= getFragmentManager().beginTransaction();
-//                RegisterStep2Fragment ldf = new RegisterStep2Fragment ();
-//                args.putSerializable("userName", userName);
-//                ldf.setArguments(args);
                 _mViewPager.setCurrentItem(1,true);
             }
         });
-    }
-
-    public void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("phone",edtPhone.getText().toString());
-        editor.commit();
     }
 
 

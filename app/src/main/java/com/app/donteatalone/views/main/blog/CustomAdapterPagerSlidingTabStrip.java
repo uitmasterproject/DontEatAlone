@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.views.main.require.RequireFragment;
 import com.astuetz.PagerSlidingTabStrip;
 
 /**
@@ -27,7 +28,8 @@ public class CustomAdapterPagerSlidingTabStrip extends FragmentPagerAdapter impl
         Fragment f =new Fragment();
         switch (position){
             case 0:
-                f=BlogFragment.newInstance();
+                //f=BlogFragment.newInstance();
+                f= RequireFragment.newInstance();
                 break;
             case 1:
                 //f= ProfifeFragment.newInstance();
@@ -37,6 +39,7 @@ public class CustomAdapterPagerSlidingTabStrip extends FragmentPagerAdapter impl
             case 3:
                 break;
             case 4:
+                //f= RequireFragment.newInstance();
                 break;
         }
         return f;
