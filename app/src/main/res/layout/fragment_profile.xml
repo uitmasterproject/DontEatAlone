@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/white_anpha_40"
+            android:background="@color/blue_gray"
             android:gravity="center">
 
             <TextView
@@ -195,7 +195,7 @@
                     android:singleLine="true"
                     android:text="0939296324"
                     android:textColor="@color/gray"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
             </LinearLayout>
@@ -253,7 +253,7 @@
                     android:maxLines="3"
                     android:text="KTX Khu B Đại học quốc gia TP Hồ chí Minh"
                     android:textColor="@color/gray"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
             </LinearLayout>
@@ -301,7 +301,7 @@
                             android:maxLines="3"
                             android:text="gà, bò, rượu đế"
                             android:textColor="@color/gray"
-                            android:textSize="20sp"
+                            android:textSize="15sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
                     </LinearLayout>
@@ -329,7 +329,7 @@
                             android:maxLines="3"
                             android:text="Vui vẻ, Thoải mái"
                             android:textColor="@color/gray"
-                            android:textSize="20sp"
+                            android:textSize="15sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
                     </LinearLayout>
@@ -358,7 +358,7 @@
                             android:maxLines="3"
                             android:text="Lãng Mạn"
                             android:textColor="@color/gray"
-                            android:textSize="20sp"
+                            android:textSize="15sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
                     </LinearLayout>
@@ -393,7 +393,7 @@
                     android:maxLines="3"
                     android:text="Vui vẻ"
                     android:textColor="@color/gray"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
             </LinearLayout>
