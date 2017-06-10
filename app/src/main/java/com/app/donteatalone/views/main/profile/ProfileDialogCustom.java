@@ -2,12 +2,12 @@ package com.app.donteatalone.views.main.profile;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
+import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.aigestudio.wheelpicker.widgets.WheelYearPicker;
@@ -17,6 +17,8 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Le Hoang Han on 5/21/2017.
@@ -37,6 +39,12 @@ public class ProfileDialogCustom {
     private WheelYearPicker yearWheelPicker;
     private int intSelectYear, intSelectMonth;
     private LocalDate localDate;
+    //For hobby
+    private AutoCompleteTextView actvHobbyAboutFood;
+    private AutoCompleteTextView actvHobbyAboutCharacter;
+    private AutoCompleteTextView actvHobbyAboutStyle;
+    //For Character
+    private AutoCompleteTextView actvCharacter;
 
 
     public ProfileDialogCustom(Context _context, int _intLayout, TextView _textView) {
@@ -70,10 +78,8 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //code for save new name to database ==> Nga ;)))
-
-                        //code for show new name on profile screen
-
+                        textView.setText(edtName.getText().toString());
+                        saveInfoReference("fullnameLogin", edtName.getText().toString());
                         dialog.dismiss();
                     }
                 });
@@ -88,7 +94,7 @@ public class ProfileDialogCustom {
                 yearWheelPicker = (WheelYearPicker) dialog.findViewById(R.id.custom_dialog_profile_wheelpicker_year);
 
                 localDate = new LocalDate();
-                dayWheelPicker.setSelectedItemPosition(localDate.getDayOfMonth() - 2);
+                dayWheelPicker.setSelectedItemPosition(localDate.getDayOfMonth() - 1);
                 monthWhellPicker.setSelectedItemPosition(localDate.getMonthOfYear() - 1);
                 yearWheelPicker.setSelectedYear(localDate.getYear() - Integer.parseInt(textView.getText().toString()));
                 ChangeDate();
@@ -103,8 +109,11 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //code for save gender to database => Nga
-
+                        textView.setText((localDate.getYear() - yearWheelPicker.getCurrentYear()) + "");
+                        saveInfoReference("birthdayLogin",
+                                (dayWheelPicker.getCurrentItemPosition() - 1) + "/"
+                                        + (monthWhellPicker.getCurrentItemPosition() - 1) + "/"
+                                        + (yearWheelPicker.getCurrentYear()) + "");
                         dialog.dismiss();
                     }
                 });
@@ -127,6 +136,7 @@ public class ProfileDialogCustom {
                     public void onClick(View v) {
                         rlFemale.setBackgroundResource(R.drawable.bg_round);
                         rlMale.setBackgroundResource(R.drawable.btn_round_orange);
+                        textView.setText("M");
                     }
                 });
 
@@ -135,6 +145,7 @@ public class ProfileDialogCustom {
                     public void onClick(View v) {
                         rlFemale.setBackgroundResource(R.drawable.btn_round_orange);
                         rlMale.setBackgroundResource(R.drawable.bg_round);
+                        textView.setText("F");
                     }
                 });
 
@@ -148,8 +159,123 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //code for save gender to database => Nga
+                        if (textView.getText().equals("F")) {
+                            saveInfoReference("genderLogin", "Female");
+                        } else {
+                            saveInfoReference("genderLogin", "Male");
+                        }
+                        dialog.dismiss();
+                    }
+                });
+                break;
 
+            //Edit Profile Hobby about food
+            case R.layout.custom_dialog_profile_hobby_food:
+                rlClose = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_food_rl_close);
+                rlDone = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_food_rl_done);
+                actvHobbyAboutFood = (AutoCompleteTextView)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_food_actv);
+
+                actvHobbyAboutFood.setText(textView.getText().toString());
+
+                rlClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                rlDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textView.setText(actvHobbyAboutFood.getText().toString());
+                        saveInfoReference("hobbyLogin", actvHobbyAboutFood.getText().toString());
+                        dialog.dismiss();
+                    }
+                });
+                break;
+
+            //Hobby about character
+            case R.layout.custom_dialog_profile_hobby_character:
+                rlClose = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_character_rl_close);
+                rlDone = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_character_rl_done);
+                actvHobbyAboutCharacter = (AutoCompleteTextView)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_character_actv);
+
+                actvHobbyAboutCharacter.setText(textView.getText().toString());
+
+                rlClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                rlDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textView.setText(actvHobbyAboutCharacter.getText().toString());
+                        saveInfoReference("hobbyLogin", actvHobbyAboutCharacter.getText().toString());
+                        dialog.dismiss();
+                    }
+                });
+                break;
+
+            //Edit Profile hooby about style
+            case R.layout.custom_dialog_profile_hobby_style:
+                rlClose = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_style_rl_close);
+                rlDone = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_style_rl_done);
+                actvHobbyAboutStyle = (AutoCompleteTextView)
+                        dialog.findViewById(R.id.custom_dialog_profile_hobby_about_style_actv);
+
+                actvHobbyAboutStyle.setText(textView.getText().toString());
+
+                rlClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                rlDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textView.setText(actvHobbyAboutStyle.getText().toString());
+                        saveInfoReference("hobbyLogin", actvHobbyAboutStyle.getText().toString());
+                        dialog.dismiss();
+                    }
+                });
+                break;
+
+                //Edit profile Character
+            case R.layout.custom_dialog_profile_character:
+                rlClose = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_character_rl_close);
+                rlDone = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_profile_character_rl_done);
+                actvCharacter = (AutoCompleteTextView)
+                        dialog.findViewById(R.id.custom_dialog_profile_character_actv);
+
+                actvCharacter.setText(textView.getText().toString());
+
+                rlClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                rlDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textView.setText(actvCharacter.getText().toString());
+                        saveInfoReference("characterLogin", actvCharacter.getText().toString());
                         dialog.dismiss();
                     }
                 });
@@ -158,7 +284,8 @@ public class ProfileDialogCustom {
         dialog.show();
     }
 
-// Nhung ham dung cho edit Age =================================================================
+
+    // Nhung ham dung cho edit Age =================================================================
     private boolean checkLeapYear() {
         intSelectYear = yearWheelPicker.getCurrentYear();
         if (intSelectYear % 4 == 0) {
@@ -174,8 +301,8 @@ public class ProfileDialogCustom {
         return false;
     }
 
-    private ArrayList<String> getDateData(int arr){
-        String[] temp= context.getResources().getStringArray(arr);
+    private ArrayList<String> getDateData(int arr) {
+        String[] temp = context.getResources().getStringArray(arr);
         ArrayList<String> day = new ArrayList<String>(Arrays.asList(temp));
         return day;
     }
@@ -240,6 +367,13 @@ public class ProfileDialogCustom {
                     dayWheelPicker.setData(getDateData(R.array.Day_28));
                 }
         }
+    }
+
+    private void saveInfoReference(String key, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
     }
 //=================================================================================================
 }

@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.main;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
@@ -70,4 +71,5 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
 }

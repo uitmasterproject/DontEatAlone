@@ -1,13 +1,21 @@
 package com.app.donteatalone.views.main.profile;
 
+import android.app.Dialog;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,6 +23,10 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.register.CustomViewPager;
+
+import org.joda.time.LocalDate;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/13/2017.
@@ -55,6 +67,12 @@ public class ProfileFragment extends Fragment {
         return viewGroup;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        setDefaultValue();
+    }
+
     private void init() {
         tabLayout = (TabLayout) viewGroup.findViewById(R.id.fragment_profile_tl_tabs);
         customViewPager = (CustomViewPager) viewGroup.findViewById(R.id.fragment_profile_vp_album_history);
@@ -84,6 +102,30 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void setDefaultValue() {
+        LocalDate date = new LocalDate();
+        ivAvatar.setImageBitmap(decodeBitmap());
+        tvName.setText(storeReference("fullnameLogin"));
+        tvAge.setText(date.getYear() - Integer.parseInt(storeReference("birthdayLogin").split("/")[2]) + "");
+        if (storeReference("genderLogin").equals("Female") == true) {
+            tvGender.setText("F");
+        } else {
+            tvGender.setText("M");
+        }
+        tvPhone.setText(storeReference("phoneLogin"));
+        if (storeReference("addressLogin").equals("") == true) {
+            tvAddress.setText("Hồ Chí Minh");
+        } else {
+            tvAddress.setText(storeReference("addressLogin"));
+        }
+
+        tvHobbyFood.setText(storeReference("hobbyLogin" + ""));
+        tvHobbyCharacter.setText(storeReference("hobbyLogin" + ""));
+        tvHobbyStyle.setText(storeReference("hobbyLogin" + ""));
+
+        tvCharacter.setText(storeReference("characterLogin" + ""));
+    }
+
     private void itemClick() {
 
         ivAvatar.setOnClickListener(new View.OnClickListener() {
@@ -96,17 +138,8 @@ public class ProfileFragment extends Fragment {
         rlName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dialogCustom = new ProfileDialogCustom(viewGroup.getContext(), R.layout.custom_dialog_profile_name, "Edit Name");
-//                dialogCustom.showDialogCustom();
-              /* Truyen du lieu tu ProfileFragment => ProfileCustomDialogName*/
-//                Intent intent = new Intent(getContext(), ProfileCustomDialogName.class);
-//                intent.putExtra("layout", R.layout.custom_dialog_profile_name);
-//                intent.putExtra("value_current_name", tvName.getText().toString());
-//                startActivity(intent);
-
                 ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
                         (viewGroup.getContext(), R.layout.custom_dialog_profile_name, tvName);
-
                 profileDialogCustom.showDialogCustom();
 
             }
@@ -116,7 +149,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
-                        (viewGroup.getContext(),R.layout.custom_dialog_profile_age, tvAge);
+                        (viewGroup.getContext(), R.layout.custom_dialog_profile_age, tvAge);
                 profileDialogCustom.showDialogCustom();
             }
         });
@@ -125,7 +158,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
-                        (viewGroup.getContext(),R.layout.custom_dialog_profile_gender, tvGender);
+                        (viewGroup.getContext(), R.layout.custom_dialog_profile_gender, tvGender);
                 profileDialogCustom.showDialogCustom();
             }
         });
@@ -140,29 +173,57 @@ public class ProfileFragment extends Fragment {
         llHobbyFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
+                        viewGroup.getContext(), R.layout.custom_dialog_profile_hobby_food, tvHobbyFood);
+                profileDialogCustom.showDialogCustom();
             }
         });
 
         llHobbyCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
+                        viewGroup.getContext(), R.layout.custom_dialog_profile_hobby_character, tvHobbyCharacter);
+                profileDialogCustom.showDialogCustom();
             }
         });
 
         llHobbyStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
+                        viewGroup.getContext(), R.layout.custom_dialog_profile_hobby_style, tvHobbyStyle);
+                profileDialogCustom.showDialogCustom();
             }
         });
 
         llCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
+                        viewGroup.getContext(), R.layout.custom_dialog_profile_character, tvCharacter);
+                profileDialogCustom.showDialogCustom();
             }
         });
+    }
+
+    private String storeReference(String str) {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
+        String avatar = sharedPreferences.getString(str, "");
+        return avatar;
+    }
+
+    private Bitmap decodeBitmap() {
+        String avatar = storeReference("avatarLogin");
+        Bitmap bitmap = null;
+        if (avatar.equals("") != true) {
+            try {
+                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
+                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        }
+        return bitmap;
     }
 }
