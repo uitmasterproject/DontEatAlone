@@ -1,6 +1,7 @@
 package com.app.donteatalone.connectmongo;
 
 import com.app.donteatalone.model.InfoBlog;
+import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 
@@ -55,4 +56,11 @@ public interface Structure {
         Call<ArrayList<InfoBlog>> getListInfoBlog(@Path("phone") String phone);
         @DELETE("/statusblog/{phone}/{date}")
         Call<Status> deleteStatusBlog(@Path("phone")String phone,@Path("date") String date);
+
+
+        @GET("/notification/{phone}")
+        Call<ArrayList<InfoNotification>> getNotification(@Path("phone") String phone);
+        @PUT("/notification_update_read/{phoneRecevice}/{phoneSend}/{status}/{timeSend}")
+        Call<Status> updateReadNotification(@Path("phoneRecevice") String phoneRecevice, @Path("phoneSend") String phoneSend,
+                                                @Path("status") String status,@Path("timeSend") String timeSend);
 }

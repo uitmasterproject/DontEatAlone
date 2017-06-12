@@ -21,7 +21,9 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.model.AccordantUser;
 import com.github.nkzawa.socketio.client.Socket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by ChomChom on 30-May-17.
@@ -104,8 +106,12 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         btnInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String formattedDate = df.format(c.getTime());
+
                 socketIO.emit("invite",ownPhone+"|"+listAccordantUser.get(position).getAccordantUser()+"|"+
-                txtDate.getText().toString()+"|"+txtTimer.getText().toString()+"|"+txtAddress.getText().toString());
+                txtDate.getText().toString()+"|"+txtTimer.getText().toString()+"|"+txtAddress.getText().toString()+"|"+formattedDate);
                 dialog.cancel();
             }
         });

@@ -13,7 +13,7 @@ public class CustomSocket {
     private Socket mSocket;
     public CustomSocket() throws URISyntaxException {
         try {
-            //mSocket = IO.socket("http://10.86.85.72:3000"); //FPT
+            //mSocket = IO.socket("http://192.168.5.130:3000"); //FPT
             mSocket = IO.socket("http://10.0.128.134:3000");//KTX
             //mSocket = IO.socket("http://192.168.28.232:3000");//Feel
         } catch (Exception e) {

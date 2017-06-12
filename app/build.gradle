@@ -120,7 +120,7 @@ dependencies {
 
     //Nga's install
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    //compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
 
     //RecyclerView

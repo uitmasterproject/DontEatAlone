@@ -14,17 +14,13 @@
         android:layout_height="0dp"
         android:layout_weight="14"
         android:background="@android:color/white" />
-    <com.astuetz.PagerSlidingTabStrip
+    <android.support.design.widget.TabLayout
         android:id="@+id/activity_blog_tabs"
-        app:pstsShouldExpand="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:textSize="14sp"
         android:textColor="#000000"
-        app:pstsDividerColor="#dc4a02"
-        app:pstsIndicatorColor="#ffffff"
-        app:pstsIndicatorHeight="40dp"
-        app:pstsUnderlineColor="#dc4a02"
-        android:background="#dc4a02"/>
+        android:background="#dc4a02"
+        app:tabIndicatorColor="@color/footer_for_list_accordant_user"
+        app:tabIndicatorHeight="40dp" />
 </LinearLayout>
