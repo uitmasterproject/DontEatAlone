@@ -46,6 +46,7 @@ public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayLi
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
                 infoBlog=response.body();
+
                 onProgressUpdate(infoBlog);
             }
 

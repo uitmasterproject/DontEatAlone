@@ -32,6 +32,7 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Felling;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.views.main.MainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -103,7 +104,7 @@ public class StatusActivity extends Activity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StatusActivity.this,BlogActivity.class);
+                Intent intent = new Intent(StatusActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -119,7 +120,7 @@ public class StatusActivity extends Activity {
                     @Override
                     public void onResponse(Call<Status> call, Response<Status> response) {
                         if(response.body().getStatus().equals("Insert success")==true){
-                            Intent intent = new Intent(StatusActivity.this,BlogActivity.class);
+                            Intent intent = new Intent(StatusActivity.this,MainActivity.class);
                             startActivity(intent);
                         }
                         else {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/color_deep_orange"
+    app:contentInsetStart="0dp"
+    app:elevation="5dp"
+    app:layout_scrollFlags="scroll|enterAlways"
+    app:popupTheme="@style/AppTheme.PopupOverlay"
+    tools:ignore="MissingPrefix,contentDescription">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/view_toolbar_close"
+            style="@style/Toolbar.ItemWrapper"
+            android:layout_alignParentLeft="true">
+
+            <ImageView
+                style="@style/Toolbar.ItemIcon"
+                android:src="@drawable/ic_back_arrow_white" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/view_toolbar_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Dont Eat Alone"
+            android:textColor="@android:color/white"
+            android:textSize="17.3sp"
+            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+        <RelativeLayout
+            android:id="@+id/view_toolbar_3dot"
+            style="@style/Toolbar.ItemWrapper"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                style="@style/Toolbar.ItemIcon"
+                android:src="@drawable/ic_dots_vertical_white_36dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>

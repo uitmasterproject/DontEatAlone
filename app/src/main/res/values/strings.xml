@@ -22,7 +22,6 @@
     <string name="hide">HIDE</string>
     <string name="show">SHOW</string>
     <string-array name="Day_31">
-        <item>Day</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -55,7 +54,6 @@
         <item>31</item>
     </string-array>
     <string-array name="Day_30">
-        <item>Day</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -87,7 +85,6 @@
         <item>30</item>
     </string-array>
     <string-array name="Day_28">
-        <item>Day</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -117,7 +114,6 @@
         <item>28</item>
     </string-array>
     <string-array name="Day_29">
-        <item>Day</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -148,19 +144,18 @@
         <item>29</item>
     </string-array>
     <string-array name="Month">
-        <item>Month</item>
-        <item>Jan</item>
-        <item>Feb</item>
-        <item>Mar</item>
-        <item>Apr</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
         <item>May</item>
-        <item>Jun</item>
-        <item>Jul</item>
-        <item>Aug</item>
-        <item>Sep</item>
-        <item>Oct</item>
-        <item>Nov</item>
-        <item>Dec</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
     </string-array>
     <string-array name="Year">
         <item>Year</item>

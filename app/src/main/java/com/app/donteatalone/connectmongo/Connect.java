@@ -16,9 +16,7 @@ public class Connect {
 
     //private static String API_BASE_URL ="http://192.168.28.232:3000";//Feel
 
-    public static Structure getRetrofit(){
-
-
+    public static Structure getRetrofit() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         Retrofit.Builder builder =
@@ -33,7 +31,7 @@ public class Connect {
                         )
                         .build();
 
-        Structure client =  retrofit.create(Structure.class);
+        Structure client = retrofit.create(Structure.class);
 
         return client;
     }
