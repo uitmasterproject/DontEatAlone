@@ -3,9 +3,9 @@ package com.app.donteatalone.views.register;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -151,7 +151,6 @@ public class RegisterStep2Fragment extends Fragment {
             }
         });
     }
-
 
     private void saveReference(){
         SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);

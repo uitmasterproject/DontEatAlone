@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -26,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -108,7 +106,7 @@ public class RegisterStep3Fragment extends Fragment {
         });
     }
 
-    private void rlCloseClick(){
+    private void rlCloseClick() {
         rlClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,7 +205,7 @@ public class RegisterStep3Fragment extends Fragment {
                 }
                 try {
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                    Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
+                    Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
                     tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
                     bitmap = tempbitmap;
                     imgAvatar.setImageBitmap(tempbitmap);
@@ -231,15 +229,6 @@ public class RegisterStep3Fragment extends Fragment {
                     e.printStackTrace();
                 }
             } else if (requestCode == 2) {
-//                Uri selectedImage = data.getData();
-//                String[] filePath = { MediaStore.Images.Media.DATA };
-//                Cursor c = getContext().getContentResolver().query(selectedImage, filePath, null, null, null);
-//                c.moveToFirst();
-//                int columnIndex = c.getColumnIndex(filePath[0]);
-//                String picturePath = c.getString(columnIndex);
-//                c.close();
-//                Bitmap tempbitmap = (BitmapFactory.decodeFile(picturePath));
-//                performCrop();
                 final Uri imageUri = data.getData();
                 InputStream imageStream = null;
                 try {

@@ -87,6 +87,9 @@ public class RegisterStep7Fragment extends Fragment {
         rlNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(actvCharacter.getText().toString().endsWith(",")){
+                    actvCharacter.setText(actvCharacter.getText().toString().substring(0,actvCharacter.getText().toString().length()-1));
+                }
                 RegisterStep1Fragment.userName.setCharacter(actvCharacter.getText().toString());
                 saveReference();
                 InsertUserintoDB();
@@ -142,9 +145,16 @@ public class RegisterStep7Fragment extends Fragment {
     private void saveReference(){
         SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("character",actvCharacter.getText().toString());
         editor.putString("phoneLogin", RegisterStep1Fragment.userName.getPhone().toString());
+        editor.putString("fullnameLogin", RegisterStep1Fragment.userName.getFullname().toString());
         editor.putString("passwordLogin", RegisterStep1Fragment.userName.getPassword().toString());
+        editor.putString("avatarLogin", RegisterStep1Fragment.userName.getAvatar().toString());
+        editor.putString("birthdayLogin", RegisterStep1Fragment.userName.getBirthday().toString());
+        editor.putString("genderLogin", RegisterStep1Fragment.userName.getGender().toString());
+        editor.putString("addressLogin", RegisterStep1Fragment.userName.getAddress().toString());
+        editor.putString("latlngaddressLogin", RegisterStep1Fragment.userName.getLatLngAdress().toString());
+        editor.putString("hobbyLogin", RegisterStep1Fragment.userName.getHobby().toString());
+        editor.putString("characterLogin", RegisterStep1Fragment.userName.getCharacter().toString());
         editor.commit();
     }
 

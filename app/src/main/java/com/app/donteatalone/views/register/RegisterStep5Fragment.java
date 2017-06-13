@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -47,7 +45,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private RelativeLayout rlNext, rlClose;
     private ViewPager _mViewPager;
     private LinearLayout llRoot;
-
+    private String location;
 
     public static Fragment newInstance(Context context) {
         RegisterStep5Fragment f = new RegisterStep5Fragment();
@@ -108,12 +106,9 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     //luu lai noi duoc chon
     @Override
     public void onPlaceSelected(Place place) {
-        Log.i(LOG_TAG, "Place Selected: " + place.getName());
         edtAddress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
-        //, place.getPhoneNumber(), place.getWebsiteUri(), place.getRating(), place.getId()
-        if (!TextUtils.isEmpty(place.getAttributions())) {
-            edtAddress.setText(Html.fromHtml(place.getAttributions().toString()));
-        }
+        Log.e("edtAdress", edtAddress.getText().toString());
+        location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);;
     }
 
     //kiem tra loi cho noi duoc chon
@@ -164,5 +159,4 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
         editor.putString("address", edtAddress.getText().toString());
         editor.apply();
     }
-
 }

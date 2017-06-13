@@ -1,13 +1,12 @@
 <resources>
-    <string name="app_name">Dont Eat Alone</string>
+    <string name="app_name">Dont Eat Alone Alone</string>
 
     <string name="facebook_app_id">160470204481557</string>
 
     <string name="fb_login_protocol_scheme">fb160470204481557</string>
 
-
     <string name="formatted_place_data">
-         %1$s %2$s
+         %1$s, %2$s
     </string>
 
     <!--String for Login Screen-->
@@ -201,5 +200,67 @@
         <item>	2008	</item>
         <item>	2009	</item>
         <item>	2010	</item>
+    </string-array>
+    <string-array name="age_limit">
+        <item>	15	</item>
+        <item>	16	</item>
+        <item>	17	</item>
+        <item>	18	</item>
+        <item>	19	</item>
+        <item>	20	</item>
+        <item>	21	</item>
+        <item>	22	</item>
+        <item>	23	</item>
+        <item>	24	</item>
+        <item>	25	</item>
+        <item>	26	</item>
+        <item>	27	</item>
+        <item>	28	</item>
+        <item>	29	</item>
+        <item>	30	</item>
+        <item>	31	</item>
+        <item>	32	</item>
+        <item>	33	</item>
+        <item>	34	</item>
+        <item>	35	</item>
+        <item>	36	</item>
+        <item>	37	</item>
+        <item>	38	</item>
+        <item>	39	</item>
+        <item>	40	</item>
+        <item>	41	</item>
+        <item>	42	</item>
+        <item>	43	</item>
+        <item>	44	</item>
+        <item>	45	</item>
+        <item>	46	</item>
+        <item>	47	</item>
+        <item>	48	</item>
+        <item>	49	</item>
+        <item>	50	</item>
+
+    </string-array>
+
+
+    <string-array name="food">
+        <item>các món từ gà, gà rán, gà nướng, gà quay...</item>
+        <item>các loại lẩu</item>
+        <item>đồ xiên que</item>
+        <item>đồ ăn liền</item>
+        <item>các món ngọt</item>
+        <item>phở, bún, bánh canh cua...</item>
+    </string-array>
+
+    <string-array name="character">
+        <item>vui vẻ</item>
+        <item>trầm tĩnh</item>
+        <item>hóm hĩnh</item>
+        <item>thoải mái</item>
+    </string-array>
+
+    <string-array name="style">
+        <item>tự do</item>
+        <item>quái dị</item>
+        <item>trưởng thành</item>
     </string-array>
 </resources>

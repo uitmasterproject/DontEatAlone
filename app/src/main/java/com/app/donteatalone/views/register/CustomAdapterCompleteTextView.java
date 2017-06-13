@@ -102,7 +102,6 @@ public class CustomAdapterCompleteTextView extends BaseAdapter implements Filter
                 results.count = result.size();
 
             }
-            Log.e("Result________________", results.count + "+++++++++++++++++++");
 
             return results;
         }
@@ -152,81 +151,44 @@ public class CustomAdapterCompleteTextView extends BaseAdapter implements Filter
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
-//        if(hobbies.get(position).isType()==true) {
-//            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            v = layoutInflater.inflate(R.layout.custom_adapter_completetextview_register, null);
-//        }
-//
-//            RelativeLayout relativeLayoutContainer = (RelativeLayout) v.findViewById(R.id.custom_adapter_completetextview_register_rll_container);
-//            TextView txtTitle = (TextView) v.findViewById(R.id.custom_adapter_completetextview_register_txt_title);
-//            final ImageView imgControl = (ImageView) v.findViewById(R.id.custom_adapter_completetextview_register_img_icon);
-//            linearLayoutContainer = (LinearLayout) v.findViewById(R.id.custom_adapter_completetextview_register_ll_container);
-//
-//            txtTitle.setText(header.get(position));
-//            if (control == true) {
-//                linearLayoutContainer.setVisibility(View.GONE);
-//                imgControl.setBackgroundResource(R.drawable.actvnext);
-//            } else {
-//                linearLayoutContainer.setVisibility(View.VISIBLE);
-//                imgControl.setBackgroundResource(R.drawable.actvdown);
-//            }
-//
-//            relativeLayoutContainer.setOnTouchListener(new View.OnTouchListener() {
-//                @Override
-//                public boolean onTouch(View v, MotionEvent event) {
-//                    if (control == true) {
-//                        ArrayList<String> temp = null;
-//                        control = false;
-//                        imgControl.setBackgroundResource(R.drawable.actvdown);
-//                        linearLayoutContainer.setVisibility(View.VISIBLE);
-//                        linearLayoutContainer.removeAllViews();
-//                        for (int i = 0; i < hobbies.size(); i++) {
-//                            if (header.get(position).equals(hobbies.get(i).getHeaderHobby())) {
-//                                temp.add(hobbies.get(i).getItemHobby());
-//                            }
-//                        }
-//                        for (int i = 0; i < temp.size(); i++) {
-//                            final TextView txtItem = new TextView(v.getContext());
-//                            LinearLayout.LayoutParams Params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            txtItem.setLayoutParams(Params1);
-//                            txtItem.setTextSize(17);
-//                            txtItem.setGravity(Gravity.FILL_HORIZONTAL);
-//                            txtItem.setText(temp.get(i));
-//                            txtItem.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    actvHobby.setText(actvHobby.getText() + ", " + txtItem.getText());
-//                                }
-//                            });
-//                            linearLayoutContainer.addView(txtItem);
-//                        }
-//                    } else {
-//                        control = true;
-//                        imgControl.setBackgroundResource(R.drawable.actvnext);
-//                        linearLayoutContainer.setVisibility(View.GONE);
-//                        linearLayoutContainer.removeAllViews();
-//                    }
-//
-//                    return false;
-//                }
-//            });
-
-
 
         if (hobbies.get(position).isType() == true) {
             if (v == null) {
                 LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = layoutInflater.inflate(R.layout.custom_adapter_completetextview_register_final, null);
-                TextView txtTitle = (TextView) v.findViewById(R.id.custom_adapter_completetextview_register_final_txt_content);
+                final TextView txtTitle = (TextView) v.findViewById(R.id.custom_adapter_completetextview_register_final_txt_content);
                 txtTitle.setText(hobbies.get(position).getHeaderHobby());
                 txtTitle.setBackgroundColor(Color.GRAY);
+                txtTitle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        actvHobby.setText(actvHobby.getText().toString());
+                    }
+                });
             }
         } else {
             if (v == null) {
                 LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = layoutInflater.inflate(R.layout.custom_adapter_completetextview_register_final, null);
-                TextView txtTitle = (TextView) v.findViewById(R.id.custom_adapter_completetextview_register_final_txt_content);
+                final TextView txtTitle = (TextView) v.findViewById(R.id.custom_adapter_completetextview_register_final_txt_content);
                 txtTitle.setText(hobbies.get(position).getItemHobby());
+                txtTitle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        actvHobby.getText().toString();
+
+                        if(actvHobby.getText().toString()==null){
+                            actvHobby.setText(txtTitle.getText().toString());
+                        }
+                        else if(actvHobby.getText().toString().endsWith(",")==true) {
+                            actvHobby.setText(actvHobby.getText().toString() + txtTitle.getText().toString()+",");
+                        }
+                        else {
+                            actvHobby.setText(actvHobby.getText().toString().substring(0,actvHobby.getText().toString().lastIndexOf(",")+1)+
+                                    txtTitle.getText().toString()+",");
+                        }
+                    }
+                });
             }
         }
         return v;

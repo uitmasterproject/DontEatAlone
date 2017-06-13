@@ -105,6 +105,12 @@ public class RegisterStep1Fragment extends Fragment {
                 if (response.body().getStatus().equals("this phone isnt exits") == true) {
 //                    changeDataEdtPhone(edtCode,rlNext);
                 } else {
+             /*   if(response.body().getStatus().equals("this phone isnt exits")==true){
+                    txtRecomment.setText("Wait for minute to recept code. Input code");
+                    txtRecomment.setTextColor(Color.GRAY);
+                    edtCode.setVisibility(View.VISIBLE);
+                    changeDataEdtPhone(edtCode,btnNextStep);*/
+
                     edtPhone.setError("This phone was exit");
                     edtPhone.setText("");
                 }
@@ -175,6 +181,4 @@ public class RegisterStep1Fragment extends Fragment {
         editor.putString("phone", edtPhone.getText().toString());
         editor.apply();
     }
-
-
 }

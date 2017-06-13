@@ -18,7 +18,7 @@ public class CustomAdapterPagerSlidingTabStrip extends FragmentPagerAdapter impl
 
     int size_fragment=5;
     private String tabTitles[] = new String[] { "Tab1", "Tab2", "Tab3","Tab4","Tab5" };
-    private int srcIcon[]=new int[]{R.drawable.blogger,R.drawable.notification,R.drawable.avatar,R.drawable.salver,R.drawable.require};
+    private int srcIcon[]=new int[]{R.drawable.ic_blog,R.drawable.ic_notification,R.drawable.ic_profile,R.drawable.ic_restaurant,R.drawable.ic_require};
 
     public CustomAdapterPagerSlidingTabStrip(FragmentManager fm) {
         super(fm);

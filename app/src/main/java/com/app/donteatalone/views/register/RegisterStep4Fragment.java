@@ -189,6 +189,7 @@ public class RegisterStep4Fragment extends Fragment {
     private void llRootTouch() {
         llRoot.setOnTouchListener(new View.OnTouchListener() {
             @Override
+
             public boolean onTouch(View v, MotionEvent event) {
                 AppUtils.hideSoftKeyboard(getActivity());
                 return true;

@@ -44,7 +44,7 @@ public class RegisterStep6Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup=inflater.inflate(R.layout.fragment_register_step6,null);
+        viewGroup = inflater.inflate(R.layout.fragment_register_step6, null);
         init();
         llRootTouch();
         setActvHobby();
@@ -53,17 +53,17 @@ public class RegisterStep6Fragment extends Fragment {
         return viewGroup;
     }
 
-    private void init(){
+    private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        actvHobby=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_hobby);
-        rlNext=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
+        actvHobby = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_hobby);
+        rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_close);
         llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step6_ll_root);
     }
 
-    private void setActvHobby(){
+    private void setActvHobby() {
         clonebdHobby();
-        CustomAdapterCompleteTextView customAdapterCompleteTextView=new CustomAdapterCompleteTextView(this.getContext(), android.R.layout.simple_dropdown_item_1line,headerHobby,hobbies,actvHobby);
+        CustomAdapterCompleteTextView customAdapterCompleteTextView = new CustomAdapterCompleteTextView(this.getContext(), android.R.layout.simple_dropdown_item_1line, headerHobby, hobbies, actvHobby);
         actvHobby.setAdapter(customAdapterCompleteTextView);
 
     }
@@ -79,13 +79,15 @@ public class RegisterStep6Fragment extends Fragment {
         });
     }
 
-    private void rlNextClick(){
+    private void rlNextClick() {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (actvHobby.getText().toString().endsWith(",")) {
+                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().length() - 1));
+                }
                 RegisterStep1Fragment.userName.setHobby(actvHobby.getText().toString());
-                saveReference();
-                _mViewPager.setCurrentItem(6,true);
+                _mViewPager.setCurrentItem(6, true);
             }
         });
     }
@@ -99,37 +101,37 @@ public class RegisterStep6Fragment extends Fragment {
         });
     }
 
-    private void clonebdHobby(){
-        headerHobby=new ArrayList<>();
+    private void clonebdHobby() {
+        headerHobby = new ArrayList<>();
         headerHobby.add("Món ăn");
         headerHobby.add("Tính cách");
         headerHobby.add("Phong cách");
 
-        hobbies=new ArrayList<>();
-        hobbies.add(new Hobby("Món ăn","",true));
-        hobbies.add(new Hobby("Món ăn","các món từ gà, gà rán, gà nướng, gà quay...",false));
-        hobbies.add(new Hobby("Món ăn","các loại lẩu",false));
-        hobbies.add(new Hobby("Món ăn","đồ xiên que",false));
-        hobbies.add(new Hobby("Món ăn","đồ ăn liền",false));
-        hobbies.add(new Hobby("Món ăn","các món ngọt",false));
-        hobbies.add(new Hobby("Món ăn","phở, bún, bánh canh cua...",false));
+        hobbies = new ArrayList<>();
+        hobbies.add(new Hobby("Món ăn", "", true));
+        hobbies.add(new Hobby("Món ăn", "các món từ gà, gà rán, gà nướng, gà quay...", false));
+        hobbies.add(new Hobby("Món ăn", "các loại lẩu", false));
+        hobbies.add(new Hobby("Món ăn", "đồ xiên que", false));
+        hobbies.add(new Hobby("Món ăn", "đồ ăn liền", false));
+        hobbies.add(new Hobby("Món ăn", "các món ngọt", false));
+        hobbies.add(new Hobby("Món ăn", "phở, bún, bánh canh cua...", false));
 
-        hobbies.add(new Hobby("Tính cách","",true));
-        hobbies.add(new Hobby("Tính cách","vui vẻ",false));
-        hobbies.add(new Hobby("Tính cách","trầm tĩnh",false));
-        hobbies.add(new Hobby("Tính cách","hóm hĩnh",false));
-        hobbies.add(new Hobby("Tính cách","thoải mái",false));
+        hobbies.add(new Hobby("Tính cách", "", true));
+        hobbies.add(new Hobby("Tính cách", "vui vẻ", false));
+        hobbies.add(new Hobby("Tính cách", "trầm tĩnh", false));
+        hobbies.add(new Hobby("Tính cách", "hóm hĩnh", false));
+        hobbies.add(new Hobby("Tính cách", "thoải mái", false));
 
-        hobbies.add(new Hobby("Phong cách","",true));
-        hobbies.add(new Hobby("Phong cách","tự do",false));
-        hobbies.add(new Hobby("Phong cách","quái dị",false));
-        hobbies.add(new Hobby("Phong cách","trưởng thành",false));
+        hobbies.add(new Hobby("Phong cách", "", true));
+        hobbies.add(new Hobby("Phong cách", "tự do", false));
+        hobbies.add(new Hobby("Phong cách", "quái dị", false));
+        hobbies.add(new Hobby("Phong cách", "trưởng thành", false));
     }
 
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("hobby",actvHobby.getText().toString());
+    private void saveReference() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("hobby", actvHobby.getText().toString());
         editor.apply();
     }
 }

@@ -13,8 +13,6 @@ public class Connect {
     private static String API_BASE_URL = "http://192.168.1.13:3000/"; //FPT
 
     public static Structure getRetrofit() {
-
-
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         Retrofit.Builder builder =
