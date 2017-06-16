@@ -29,7 +29,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.app.donteatalone.views.main.blog.BlogActivity.txtNotification;
+import static com.app.donteatalone.views.main.MainActivity.txtNotification;
 import static com.google.android.gms.internal.zzir.runOnUiThread;
 
 /**

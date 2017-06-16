@@ -18,12 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.utils.AppUtils;
-import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
-import com.app.donteatalone.views.main.blog.BlogActivity;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.register.RegisterActivity;
 import com.victor.loading.rotate.RotateLoading;
 
@@ -93,28 +92,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkAccount() {
-
-        if (null != edtPhone.getText().toString() && null != edtPassword.getText().toString()) {
+        if(null!=edtPhone.getText().toString()&&null!=edtPassword.getText().toString()) {
             Connect connect = new Connect();
             Call<Status> getPass = connect.getRetrofit().checkAccount(edtPhone.getText().toString(), edtPassword.getText().toString());
             getPass.enqueue(new Callback<Status>() {
                 @Override
                 public void onResponse(Call<Status> call, Response<Status> response) {
 
-                    if (response.body().getStatus().equals("Login success") == true) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        //loading.stop();
-                        //dialogLoading.cancel();
-                        startActivity(intent);
-                    } else {
+                    if (response.body() == null) {
+                        Toast.makeText(LoginActivity.this,"Don't connect server",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
                         if (response.body().getStatus().equals("Login success") == true) {
-                            if (storeReference("phoneLogin").equals(edtPhone.getText().toString()) == true) {
-                                Log.e("not save user", "not save user");
+                            if(storeReference("phoneLogin").equals(edtPhone.getText().toString())==true){
+                                Log.e("not save user","not save user");
                                 checkRemember();
-                                Intent intent = new Intent(LoginActivity.this, BlogActivity.class);
+                                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
-                            } else {
-                                Log.e("save user", "save user");
+                            }
+                            else {
+                                Log.e("save user","save user");
                                 saveInfoUser();
                             }
                         } else if (response.body().getStatus().equals("This phone isnt exits") == true) {
@@ -143,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                 user[0] = response.body();
                 saveInfoReference(user[0]);
                 checkRemember();
-                Intent intent = new Intent(LoginActivity.this, BlogActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
 

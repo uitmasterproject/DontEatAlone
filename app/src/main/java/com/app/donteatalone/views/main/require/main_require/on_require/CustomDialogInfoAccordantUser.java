@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.views.main.blog.BlogActivity;
+import com.app.donteatalone.views.main.MainActivity;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
@@ -125,7 +125,7 @@ public class CustomDialogInfoAccordantUser {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Intent intent=new Intent(context, BlogActivity.class);
+                Intent intent=new Intent(context, MainActivity.class);
                 intent.putExtra("viewProfile","customer");
                 context.startActivity(intent);
             }

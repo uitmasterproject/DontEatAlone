@@ -4,42 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".views.main.MainActivity"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    android:weightSum="15">
-
-    <!--Set Tool bar below here-->
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/activity_about_app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Light">
-
-        <com.app.donteatalone.widgets.Toolbar_
-            android:id="@+id/activity_main_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-    </android.support.design.widget.AppBarLayout>
-
+    android:weightSum="15"
+    android:orientation="vertical">
     <android.support.v4.view.ViewPager
-        android:id="@+id/activity_main_viewpager"
+        android:id="@+id/activity_blog_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="14"
         android:background="@android:color/white" />
-
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/activity_main_tabs"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/activity_blog_tabs"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/color_deep_orange"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:pstsDividerColor="@color/color_deep_orange"
-        app:pstsIndicatorColor="@color/white"
-        app:pstsIndicatorHeight="40dp"
-        app:pstsShouldExpand="true"
-        app:pstsUnderlineColor="@color/color_deep_orange" />
+        android:textColor="#000000"
+        android:background="#dc4a02"
+        app:tabIndicatorColor="@color/footer_for_list_accordant_user"
+        app:tabIndicatorHeight="40dp" />
 </LinearLayout>

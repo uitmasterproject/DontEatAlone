@@ -456,7 +456,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             editor.putString("genderRequire","all");
 
             int currentYear=Calendar.getInstance().get(Calendar.YEAR);
-
+            Log.e("birthday",getInforfromShareReference("account","birthdayLogin")+"");
             int age=currentYear- Integer.parseInt(getInforfromShareReference("account","birthdayLogin").trim().split("/")[2]);
             editor.putString("ageminRequire",(age-4)+"");
             editor.putString("agemaxRequire",(age+4)+"");
