@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -39,6 +38,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -289,16 +289,17 @@ public class StatusActivity extends Activity {
                 }
             } else if (requestCode == 2) {
                 i++;
-                Uri selectedImage = data.getData();
-                String[] filePath = { MediaStore.Images.Media.DATA };
-                Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePath[0]);
-                String picturePath = c.getString(columnIndex);
-                c.close();
-                Bitmap tempbitmap = (BitmapFactory.decodeFile(picturePath));
-                //tempbitmap=Bitmap.createScaledBitmap(tempbitmap, 90,90, true);
-                bitmap=tempbitmap;
+                final Uri imageUri = data.getData();
+                InputStream imageStream = null;
+                try {
+                    imageStream = getContentResolver().openInputStream(imageUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
+                tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+                bitmap = tempbitmap;
+                imgAvatar.setImageBitmap(tempbitmap);
                 if(bitmap!=null){
                     setElementImageforLinearLayout(bitmap);
                 }

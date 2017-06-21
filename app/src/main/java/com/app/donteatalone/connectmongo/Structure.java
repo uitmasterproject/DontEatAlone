@@ -2,6 +2,7 @@ package com.app.donteatalone.connectmongo;
 
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.InfoNotification;
+import com.app.donteatalone.model.InfoProfileUpdate;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 
@@ -63,4 +64,8 @@ public interface Structure {
         @PUT("/notification_update_read/{phoneRecevice}/{phoneSend}/{status}/{timeSend}")
         Call<Status> updateReadNotification(@Path("phoneRecevice") String phoneRecevice, @Path("phoneSend") String phoneSend,
                                                 @Path("status") String status,@Path("timeSend") String timeSend);
+
+
+        @POST("/profile_update")
+        Call<Status> updateProfile(@Body InfoProfileUpdate item);
 }

@@ -482,7 +482,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             }
         }
         if(str.length()>0) {
-            str.substring(0, str.length() - 1);
+            str=str.substring(0, str.length() - 1);
         }
         editor.putString("hobbyFoodRequire",str);
 

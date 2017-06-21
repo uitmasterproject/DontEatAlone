@@ -121,7 +121,7 @@ public class CustomAdapterCompleteTextView extends BaseAdapter implements Filter
     };
 
 
-    CustomAdapterCompleteTextView(Context context, int resource, ArrayList<String> header, ArrayList<Hobby> hobbies, AutoCompleteTextView actvHobby) {
+    public CustomAdapterCompleteTextView(Context context, int resource, ArrayList<String> header, ArrayList<Hobby> hobbies, AutoCompleteTextView actvHobby) {
         this.context = context;
         this.resource = resource;
         this.header = header;

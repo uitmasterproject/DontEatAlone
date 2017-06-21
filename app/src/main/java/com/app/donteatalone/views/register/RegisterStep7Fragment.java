@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -19,7 +18,6 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Hobby;
 import com.app.donteatalone.model.Status;
-import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -77,7 +75,7 @@ public class RegisterStep7Fragment extends Fragment {
         llRoot.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                AppUtils.hideSoftKeyboard(getActivity());
+//                AppUtils.hideSoftKeyboard(getActivity());
                 return true;
             }
         });

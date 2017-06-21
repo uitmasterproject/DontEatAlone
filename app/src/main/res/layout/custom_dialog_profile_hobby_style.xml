@@ -50,7 +50,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <AutoCompleteTextView
+        <MultiAutoCompleteTextView
             android:id="@+id/custom_dialog_profile_hobby_about_style_actv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
             android:textSize="18sp"
+            android:completionThreshold="1"
             app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
 
         <View

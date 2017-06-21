@@ -1,38 +1,64 @@
 package com.app.donteatalone.views.main.profile;
 
-import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.register.CustomViewPager;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import org.joda.time.LocalDate;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/13/2017.
  */
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements PlaceSelectionListener {
+    private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
+            new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
+    private static final int REQUEST_SELECT_PLACE = 1000;
+    private static final String LOG_TAG = "PlaceSelectionListener";
+
     private View viewGroup;
     private TabLayout tabLayout;
     private CustomViewPager customViewPager;
@@ -119,9 +145,7 @@ public class ProfileFragment extends Fragment {
             tvAddress.setText(storeReference("addressLogin"));
         }
 
-        tvHobbyFood.setText(storeReference("hobbyLogin" + ""));
-        tvHobbyCharacter.setText(storeReference("hobbyLogin" + ""));
-        tvHobbyStyle.setText(storeReference("hobbyLogin" + ""));
+        putDataHobbyintoReference();
 
         tvCharacter.setText(storeReference("characterLogin" + ""));
     }
@@ -131,7 +155,7 @@ public class ProfileFragment extends Fragment {
         ivAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                SelectImage();
             }
         });
 
@@ -207,10 +231,175 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    public void SelectImage() {
+        final CharSequence[] options = {"Take photo", "Choose from Gallery", "Cancel"};
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.MyDialogTheme);
+
+        builder.setTitle("Add Photo");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (options[which].equals("Take photo")) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                    startActivityForResult(intent, 1);
+                } else if (options[which].equals("Choose from Gallery")) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, 2);
+                } else if (options[which].equals("Cancel"))
+                    dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams layoutParams = dialog.getWindow().getAttributes();
+        window.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+        layoutParams.x = 0;
+        layoutParams.y = 0;
+        layoutParams.alpha = 0.7f;
+        window.setAttributes(layoutParams);
+        dialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+                File f = new File(Environment.getExternalStorageDirectory().toString());
+                for (File temp : f.listFiles()) {
+                    if (temp.getName().equals("temp.jpg")) {
+                        f = temp;
+                        break;
+                    }
+                }
+                try {
+                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                    Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
+                    tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+                    ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
+                            viewGroup.getContext(), R.layout.custom_dialog_profile_avatar,ivAvatar,tempbitmap);
+                    profileDialogCustom.showDialogCustom();
+                    String path = android.os.Environment.getExternalStorageDirectory().toString();
+                    f.delete();
+                    OutputStream outFile = null;
+                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    try {
+                        outFile = new FileOutputStream(file);
+                        tempbitmap.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
+                        outFile.flush();
+                        outFile.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == 2) {
+                final Uri imageUri = data.getData();
+                InputStream imageStream = null;
+                try {
+                    imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
+                tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(getContext(), R.layout.custom_dialog_profile_avatar,ivAvatar,tempbitmap);
+                profileDialogCustom.showDialogCustom();
+            } else if (requestCode == 3) {
+                Bundle extras = data.getExtras();
+                Bitmap thePic = extras.getParcelable("data");
+            }
+            else if (requestCode == REQUEST_SELECT_PLACE){
+                if (resultCode == RESULT_OK) {
+                    Place place = PlaceAutocomplete.getPlace(getActivity(), data);
+                    this.onPlaceSelected(place);
+                } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                    Status status = PlaceAutocomplete.getStatus(getActivity(), data);
+                    this.onError(status);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onPlaceSelected(Place place) {
+        tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
+        saveInfoReference("addressLogin",tvAddress.getText().toString());
+        saveInfoReference("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+        ProfileDialogCustom dialogCustom=new ProfileDialogCustom();
+        dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+    }
+
+    @Override
+    public void onError(Status status) {
+        Log.e(LOG_TAG, "onError: Status = " + status.toString());
+        Toast.makeText(getContext(), "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void putDataHobbyintoReference(){
+        String str="";
+        String[] temp =storeReference("hobbyLogin").toString().trim().split(",");
+        String[] temhobby=getResources().getStringArray(R.array.food);
+        for(int j=0;j<temhobby.length;j++) {
+            for (int i = 0; i < temp.length; i++) {
+                if (temhobby[j].equals(temp[i])==true){
+                    str+=temp[i]+",";
+                }
+            }
+        }
+        if(str.length()>0) {
+            str=str.substring(0, str.length() - 1);
+        }
+        tvHobbyFood.setText(str);
+
+        str="";
+        temhobby=getResources().getStringArray(R.array.character);
+        for(int j=0;j<temhobby.length;j++) {
+            for (int i = 0; i < temp.length; i++) {
+                if (temhobby[j].equals(temp[i])==true){
+                    str+=temp[i]+",";
+                }
+            }
+        }
+        if(str.length()>0) {
+            str=str.substring(0, str.length() - 1);
+        }
+        tvHobbyCharacter.setText(str);
+
+        str="";
+        temhobby=getResources().getStringArray(R.array.style);
+        for(int j=0;j<temhobby.length;j++) {
+            for (int i = 0; i < temp.length; i++) {
+                if (temhobby[j].equals(temp[i])==true){
+                    str+=temp[i]+",";
+                }
+            }
+        }
+        if(str.length()>0) {
+            str=str.substring(0, str.length() - 1);
+        }
+        tvHobbyStyle.setText(str);
+    }
+
     private String storeReference(String str) {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
         String avatar = sharedPreferences.getString(str, "");
         return avatar;
+    }
+
+    private void saveInfoReference(String key, String value) {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
     }
 
     private Bitmap decodeBitmap() {
