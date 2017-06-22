@@ -171,8 +171,16 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 final WheelPicker wpkAgeMax=(WheelPicker) dialogView.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_max);
 
                 //init default value for age min and age max
-                wpkAgeMin.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(0,2))-15);
-                wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(5))-15);
+                Log.e("minage",Integer.parseInt(txtAge.getText().toString().trim().substring(0,2).trim())+"");
+                Log.e("maxage",Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim())+"");
+
+                wpkAgeMin.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(0,2).trim())-10);
+                if(Integer.parseInt(txtAge.getText().toString().trim().substring(0,2).trim())<10){
+                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(4).trim())-10);
+                }
+                else {
+                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim())-10);
+                }
 
                 //get value in resource
                 String[] list = getResources().getStringArray(R.array.age_limit);

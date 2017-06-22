@@ -6,7 +6,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -42,7 +41,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -273,7 +271,6 @@ public class RegisterStep3Fragment extends Fragment {
                 if (intChosen == 1) {
                     RegisterStep1Fragment.userName.setAvatar(convertBitmaptoString());
                     RegisterStep1Fragment.userName.setGender(gender);
-                    saveReference();
                     _mViewPager.setCurrentItem(3, true);
                 } else if (intChosen == -1) {
                     tvTutorial.setText("You have to choose your gender");
@@ -293,13 +290,5 @@ public class RegisterStep3Fragment extends Fragment {
         byte[] b = arrayOutputStream.toByteArray();
         tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
         return tempConvert;
-    }
-
-    private void saveReference() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("avatar", convertBitmaptoString());
-        editor.putString("gender", gender);
-        editor.apply();
     }
 }

@@ -127,11 +127,4 @@ public class RegisterStep6Fragment extends Fragment {
         hobbies.add(new Hobby("Phong cách", "quái dị", false));
         hobbies.add(new Hobby("Phong cách", "trưởng thành", false));
     }
-
-    private void saveReference() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("hobby", actvHobby.getText().toString());
-        editor.apply();
-    }
 }

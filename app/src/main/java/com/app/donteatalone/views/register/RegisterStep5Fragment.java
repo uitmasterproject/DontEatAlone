@@ -138,7 +138,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             @Override
             public void onClick(View v) {
                 RegisterStep1Fragment.userName.setAddress(edtAddress.getText().toString());
-                saveReference();
+                RegisterStep1Fragment.userName.setLatLngAdress(location);
                 _mViewPager.setCurrentItem(5, true);
             }
         });
@@ -151,12 +151,5 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
                 getActivity().onBackPressed();
             }
         });
-    }
-
-    private void saveReference() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("address", edtAddress.getText().toString());
-        editor.apply();
     }
 }

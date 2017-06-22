@@ -30,6 +30,8 @@ import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.register.CustomViewPager;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
@@ -132,7 +134,8 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         LocalDate date = new LocalDate();
         ivAvatar.setImageBitmap(decodeBitmap());
         tvName.setText(storeReference("fullnameLogin"));
-        tvAge.setText(date.getYear() - Integer.parseInt(storeReference("birthdayLogin").split("/")[2]) + "");
+
+        tvAge.setText((date.getYear() - Integer.parseInt(storeReference("birthdayLogin").split("/")[2])) + "");
         if (storeReference("genderLogin").equals("Female") == true) {
             tvGender.setText("F");
         } else {
@@ -190,7 +193,16 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         llAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                try {
+                    Intent intent = new PlaceAutocomplete.IntentBuilder
+                            (PlaceAutocomplete.MODE_OVERLAY)
+                            .setBoundsBias(BOUNDS_MOUNTAIN_VIEW)
+                            .build(getActivity());
+                    startActivityForResult(intent, REQUEST_SELECT_PLACE);
+                } catch (GooglePlayServicesRepairableException |
+                        GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -320,7 +332,12 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
             else if (requestCode == REQUEST_SELECT_PLACE){
                 if (resultCode == RESULT_OK) {
                     Place place = PlaceAutocomplete.getPlace(getActivity(), data);
-                    this.onPlaceSelected(place);
+                    tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
+                    saveInfoReference("addressLogin",tvAddress.getText().toString());
+                    saveInfoReference("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+                    //ProfileDialogCustom dialogCustom=new ProfileDialogCustom();
+//                    dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+                    //this.onPlaceSelected(place);
                 } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                     Status status = PlaceAutocomplete.getStatus(getActivity(), data);
                     this.onError(status);
@@ -331,11 +348,6 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
 
     @Override
     public void onPlaceSelected(Place place) {
-        tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
-        saveInfoReference("addressLogin",tvAddress.getText().toString());
-        saveInfoReference("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
-        ProfileDialogCustom dialogCustom=new ProfileDialogCustom();
-        dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
     }
 
     @Override

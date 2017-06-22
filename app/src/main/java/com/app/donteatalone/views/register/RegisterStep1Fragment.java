@@ -1,8 +1,6 @@
 package com.app.donteatalone.views.register;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -13,11 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
@@ -28,8 +24,6 @@ import com.app.donteatalone.utils.AppUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class RegisterStep1Fragment extends Fragment {
 
@@ -159,7 +153,6 @@ public class RegisterStep1Fragment extends Fragment {
                     edtCode.setError("Verify code field not entry");
                 } else {
                     userName.setPhone(edtPhone.getText().toString());
-                    saveReference();
                     _mViewPager.setCurrentItem(1, true);
                 }
             }
@@ -173,12 +166,5 @@ public class RegisterStep1Fragment extends Fragment {
                getActivity().onBackPressed();
             }
         });
-    }
-
-    public void saveReference() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("phone", edtPhone.getText().toString());
-        editor.apply();
     }
 }

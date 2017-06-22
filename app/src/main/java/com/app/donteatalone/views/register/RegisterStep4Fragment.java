@@ -169,8 +169,7 @@ public class RegisterStep4Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //RegisterStep1Fragment.userName.setBirthday(toStringDate());
-                saveReference();
+                RegisterStep1Fragment.userName.setBirthday(toStringDate());
                 _mViewPager.setCurrentItem(4, true);
             }
         });
@@ -204,14 +203,9 @@ public class RegisterStep4Fragment extends Fragment {
                + monthWhellPicker.getData().get(monthWhellPicker.getCurrentItemPosition()).toString()
                + "/"
                + yearWheelPicker.getData().get(yearWheelPicker.getCurrentItemPosition()).toString();
-        Log.e("Date", date + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        if(date.equals("")==true){
+            date="1/1/1970";
+        }
         return date;
-    }
-
-    private void saveReference() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("birthday", toStringDate());
-        editor.apply();
     }
 }
