@@ -1,120 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <!--<Button-->
-            <!--android:layout_width="20dp"-->
-            <!--android:layout_height="20dp"-->
-            <!--android:text="..."-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:background="#00000000"-->
-            <!--android:id="@+id/custom_adapter_recyclerview_my_status_blog_btn_more"/>-->
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_fb"
-            android:background="#00000000"
-            android:layout_alignParentRight="true"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_imgbtn_share_fb"/>
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_bin"
-            android:background="#00000000"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@id/custom_adapter_recyclerview_my_status_blog_imgbtn_share_fb"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_imgbtn_delete"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    </RelativeLayout>
+    //Show avatar and info and button
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="8dp">
+
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="#00000000"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_img_avatar"/>
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_img_avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_man" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            //show info
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                //name
+
                 <TextView
+                    android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_name"/>
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                //feeling
+
                 <LinearLayout
+                    android:id="@+id/custom_adapter_recyclerview_my_status_blog_ll_container_feeling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/custom_adapter_recyclerview_my_status_blog_ll_container_feeling">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="__"/>
+                        android:text="  " />
+
                     <ImageView
-                        android:layout_marginLeft="10dp"
+                        android:id="@+id/custom_adapter_recyclerview_my_status_blog_img_feeling"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="#00000000"
-                        android:id="@+id/custom_adapter_recyclerview_my_status_blog_img_feeling"/>
-                    <TextView
                         android:layout_marginLeft="10dp"
+                        android:background="@color/tranparent" />
+
+                    <TextView
+                        android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_feeling"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_feeling"/>
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
                 </LinearLayout>
+
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    //Show title
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/color_deep_orange">
+
+        <TextView
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_title_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="5dp"
+            android:text="Title"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+    </LinearLayout>
+
+    //Show content below here
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_info_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_btn_continue"
+            android:layout_width="55dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="-5dp"
+            android:background="@color/tranparent"
+            android:text="Continue..."
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_status_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray" />
+
+    //show button
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        //Button Edit blog
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:background="@drawable/btn_normal"
+            android:gravity="center"
+            android:padding="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_date"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="match_parent"
+                android:text="Edit"
+                android:textColor="@color/bg_text_color_black_orange"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        //Button Share via Facebook
+
+        <RelativeLayout
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_imgbtn_share_fb"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_info_status"/>
-        <Button
-            android:layout_marginTop="-5dp"
-            android:layout_width="55dp"
-            android:layout_height="20dp"
-            android:text="Continue"
-            android:textSize="11dp"
-            android:background="#00000000"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_btn_continue"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:layout_weight="0.33"
+            android:background="@drawable/btn_normal"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:textColor="@color/bg_text_color_black_orange"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        //Button Deletedd
+
+        <RelativeLayout
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_imgbtn_delete"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_txt_status_more"/>
+            android:layout_weight="0.33"
+            android:background="@drawable/btn_normal"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deleted"
+                android:textColor="@color/bg_text_color_black_orange"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
+
     <HorizontalScrollView
+        android:id="@+id/custom_adapter_recyclerview_my_status_blog_hsv_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/custom_adapter_recyclerview_my_status_blog_hsv_image">
+        android:paddingLeft="-5dp"
+        android:paddingRight="-5dp">
+
         <LinearLayout
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_ll_container_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_ll_container_image">
+            android:orientation="horizontal">
+
         </LinearLayout>
+
     </HorizontalScrollView>
-    <LinearLayout
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_marginTop="10dp"
-        android:background="#f1818181"></LinearLayout>
+        android:layout_height="15dp"
+        android:background="@color/gray" />
+
 </LinearLayout>

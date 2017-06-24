@@ -102,7 +102,7 @@ public class CustomBlogRecyclerViewAdapter extends RecyclerView.Adapter<CustomVi
             }
         });
 
-        holder.imgbtnDelete.setOnClickListener(new View.OnClickListener() {
+        holder.rlDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Connect connect=new Connect();

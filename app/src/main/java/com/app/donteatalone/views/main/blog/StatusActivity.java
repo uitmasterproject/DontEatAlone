@@ -23,6 +23,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class StatusActivity extends Activity {
     private Bitmap bitmap;
     private EditText edtStatus;
     private HorizontalScrollView hsvcontainerImage;
-    private Button btnCancel, btnPost;
+    private RelativeLayout rlCancel, rlPost;
     private String phone;
     private int i=0;
 
@@ -82,8 +83,8 @@ public class StatusActivity extends Activity {
 
 
     private void init(){
-        btnCancel=(Button) findViewById(R.id.activity_blog_write_status_btn_cancel);
-        btnPost=(Button) findViewById(R.id.activity_blog_write_status_btn_post);
+        rlCancel=(RelativeLayout) findViewById(R.id.activity_blog_write_status_btn_cancel);
+        rlPost=(RelativeLayout) findViewById(R.id.activity_blog_write_status_btn_post);
         edtStatus=(EditText) findViewById(R.id.activity_blog_write_status_edt_status);
         imgAvatar=(ImageView) findViewById(R.id.activity_blog_write_status_img_avatar);
         imgAddFeelingIcon=(ImageView) findViewById(R.id.activity_blog_write_status_img_add_icon_feeling);
@@ -101,7 +102,7 @@ public class StatusActivity extends Activity {
     }
 
     private void clickbtnCancel(){
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        rlCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StatusActivity.this,MainActivity.class);
@@ -111,7 +112,7 @@ public class StatusActivity extends Activity {
     }
 
     private void clickbtnPost(){
-        btnPost.setOnClickListener(new View.OnClickListener() {
+        rlPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Connect connect=new Connect();

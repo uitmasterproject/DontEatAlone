@@ -1,163 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    android:weightSum="27">
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:background="#eefa661c"
-        android:gravity="center_vertical">
-        <Button
+        android:layout_height="wrap_content"
+        android:background="@color/color_deep_orange"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/activity_blog_write_status_btn_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:text="Cancel"
-            android:gravity="left"
-            android:textColor="#90000000"
-            android:id="@+id/activity_blog_write_status_btn_cancel"/>
+            android:layout_weight="0.33"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="CANCEL"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+        </RelativeLayout>
+
+
         <TextView
+            android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Post Status"
+            android:layout_weight="0.34"
             android:gravity="center"
-            android:textColor="#90000000"/>
-        <Button
+            android:text="POST TO BLOG"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+
+        <RelativeLayout
+            android:id="@+id/activity_blog_write_status_btn_post"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:text="Post"
-            android:gravity="right"
-            android:textColor="#90000000"
-            android:id="@+id/activity_blog_write_status_btn_post"/>
+            android:layout_weight="0.33"
+            android:gravity="center_vertical|right"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POST"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+        </RelativeLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/avatar"
+            android:id="@+id/activity_blog_write_status_img_avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:background="@drawable/design_img_avatar"
-            android:id="@+id/activity_blog_write_status_img_avatar"/>
+            android:src="@drawable/avatar" />
+
         <TextView
+            android:id="@+id/activity_blog_write_status_txt_nameuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="my Name"
-            android:background="#00000000"
-            android:textColor="#c6000000"
             android:layout_marginLeft="10dp"
-            android:textSize="17dp"
-            android:id="@+id/activity_blog_write_status_txt_nameuser"/>
+            android:background="#00000000"
+            android:text="my Name"
+            android:textColor="#c6000000"
+            android:textSize="19sp" />
+
         <LinearLayout
+            android:id="@+id/activity_blog_write_status_ll_container_feeling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/activity_blog_write_status_ll_container_feeling">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="2dp"
-                android:text="__"
-                android:textColor="#79000000"/>
+                android:text="  "
+                android:textColor="#79000000" />
+
             <ImageView
+                android:id="@+id/activity_blog_write_status_img_add_icon_feeling"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="2dp"
-                android:background="#00000000"
-                android:id="@+id/activity_blog_write_status_img_add_icon_feeling" />
+                android:background="#00000000" />
+
             <TextView
+                android:id="@+id/activity_blog_write_status_txt_add_feeling"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textColor="#79000000"
-                android:id="@+id/activity_blog_write_status_txt_add_feeling" />
+                android:textStyle="bold"
+                app:fontPath="fonts/Montserrat-Bold.ttf" />
+
         </LinearLayout>
+
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#2d000000"></LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="23"
-        android:orientation="vertical"
-        android:weightSum="2">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:inputType="text|textMultiLine"
-            android:gravity="top"
-            android:textColor="#7a000000"
-            android:focusable="true"
-            android:background="@drawable/design_blog_edt_write_status"
-            android:hint="What do you think, today?"
-            android:textColorHint="#7a000000"
-            android:id="@+id/activity_blog_write_status_edt_status"/>
-        <HorizontalScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/activity_blog_write_status_hsv_container_image">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:id="@+id/activity_blog_write_status_ll_container_image">
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#2d000000"></LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/activity_blog_write_status_edt_status"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/design_blog_edt_write_status"
+            android:focusable="true"
+            android:gravity="top"
+            android:hint="What do you think, today?"
+            android:inputType="text|textMultiLine"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#7a000000" />
+
+        <HorizontalScrollView
+            android:id="@+id/activity_blog_write_status_hsv_container_image"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:id="@+id/activity_blog_write_status_ll_container_image"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"></LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#2d000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <ImageButton
+            android:id="@+id/activity_blog_write_status_imgbtn_camera"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00000000"
-            android:src="@drawable/camera"
-            android:id="@+id/activity_blog_write_status_imgbtn_camera"/>
+            android:background="@drawable/btn_normal"
+            android:padding="10dp"
+            android:src="@drawable/camera" />
+
         <ImageButton
+            android:id="@+id/activity_blog_write_status_imgbtn_photo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00000000"
-            android:src="@drawable/photo"
-            android:id="@+id/activity_blog_write_status_imgbtn_photo"/>
+            android:background="@drawable/btn_normal"
+            android:padding="10dp"
+            android:src="@drawable/photo" />
+
         <ImageButton
+            android:id="@+id/activity_blog_write_status_imgbtn_felling"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00000000"
-            android:src="@drawable/emoji"
-            android:id="@+id/activity_blog_write_status_imgbtn_felling"/>
+            android:background="@drawable/btn_normal"
+            android:padding="10dp"
+            android:src="@drawable/emoji" />
+
         <ImageButton
+            android:id="@+id/activity_blog_write_status_imgbtn_action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00000000"
-            android:src="@drawable/listen"
-            android:id="@+id/activity_blog_write_status_imgbtn_action"/>
+            android:background="@drawable/btn_normal"
+            android:padding="10dp"
+            android:src="@drawable/listen" />
     </LinearLayout>
 </LinearLayout>
