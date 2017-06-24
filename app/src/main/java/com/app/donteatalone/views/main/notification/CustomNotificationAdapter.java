@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,9 +47,11 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
         holder.txtName.setText(listInfoNotification.get(position).getNameSend());
         if(listInfoNotification.get(position).getStatus().equals("accept")==true){
             holder.txtContent.setText("was accepted your invite. Please, Let's contact their by phone: "+ listInfoNotification.get(position).getUserSend());
+            holder.imgIcon.setImageResource(R.drawable.ic_accepted);
+            holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
             if(listInfoNotification.get(position).getRead().equals("0")==true)
                 holder.llContainer.setBackgroundColor(Color.CYAN);
-            holder.llContainer.setOnClickListener(new View.OnClickListener() {
+                holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     holder.llContainer.setBackgroundColor(Color.WHITE);
@@ -58,9 +61,11 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
         }
         else if(listInfoNotification.get(position).getStatus().equals("refuse")==true){
             holder.txtContent.setText("was refuse your invite. Please, Let's choose a friend who is the best accordant than with you");
+            holder.imgIcon.setImageResource(R.drawable.ic_refuse);
+            holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
             if(listInfoNotification.get(position).getRead().equals("0")==true)
                 holder.llContainer.setBackgroundColor(Color.CYAN);
-            holder.llContainer.setOnClickListener(new View.OnClickListener() {
+                holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     holder.llContainer.setBackgroundColor(Color.WHITE);
@@ -70,6 +75,8 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
         }
         else{
             holder.txtContent.setText("was invited you eat their together                                                            ");
+            holder.imgIcon.setImageResource(R.drawable.ic_noti);
+            holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
             holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,12 +105,15 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtName,txtContent;
+        private TextView txtName,txtContent,txtTimer;
+        private ImageView imgIcon;
         private LinearLayout llContainer;
         public CustomViewHolder(View itemView) {
             super(itemView);
             txtName=(TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_name);
             txtContent=(TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_content);
+            txtTimer=(TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_timer);
+            imgIcon=(ImageView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_img_icon);
             llContainer=(LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_ll_container);
         }
     }

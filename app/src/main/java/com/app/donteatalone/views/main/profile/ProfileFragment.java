@@ -332,12 +332,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
             else if (requestCode == REQUEST_SELECT_PLACE){
                 if (resultCode == RESULT_OK) {
                     Place place = PlaceAutocomplete.getPlace(getActivity(), data);
-                    tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
-                    saveInfoReference("addressLogin",tvAddress.getText().toString());
-                    saveInfoReference("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
-                    //ProfileDialogCustom dialogCustom=new ProfileDialogCustom();
-//                    dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
-                    //this.onPlaceSelected(place);
+                    this.onPlaceSelected(place);
                 } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                     Status status = PlaceAutocomplete.getStatus(getActivity(), data);
                     this.onError(status);
@@ -348,6 +343,11 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
 
     @Override
     public void onPlaceSelected(Place place) {
+        tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
+        saveInfoReference("addressLogin",tvAddress.getText().toString());
+        saveInfoReference("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+        ProfileDialogCustom dialogCustom=new ProfileDialogCustom(getActivity());
+        dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
     }
 
     @Override

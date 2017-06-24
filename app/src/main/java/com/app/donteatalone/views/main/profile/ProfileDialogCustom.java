@@ -70,6 +70,9 @@ public class ProfileDialogCustom {
     //For Character
     private AutoCompleteTextView actvCharacter;
 
+    //Check infor from offRequireFragment?
+    private Boolean offRequireFragment=false;
+
 
     public ProfileDialogCustom(Context _context, int _intLayout, TextView _textView) {
         this.context = _context;
@@ -84,7 +87,15 @@ public class ProfileDialogCustom {
         this.bitmap=_bitmap;
     }
 
-    public ProfileDialogCustom() {
+    public ProfileDialogCustom(Context _context) {
+        this.context=_context;
+    }
+
+    public ProfileDialogCustom (Context _context, int _intLayout, TextView _textView, Boolean _offRequireFragment){
+        this.context = _context;
+        this.intLayout = _intLayout;
+        this.textView = _textView;
+        this.offRequireFragment=_offRequireFragment;
     }
 
     public void saveDataAddress(String address, String latlngaddress){
@@ -277,7 +288,7 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setOnclickDoneinHobby(actvHobbyAboutFood,textView);
+                        setOnclickDoneinHobby(actvHobbyAboutFood,textView,"hobbyFoodRequire");
                         dialog.dismiss();
                     }
                 });
@@ -319,7 +330,7 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setOnclickDoneinHobby(actvHobbyAboutCharacter,textView);
+                        setOnclickDoneinHobby(actvHobbyAboutCharacter,textView,"hobbyCharacterRequire");
                         dialog.dismiss();
                     }
                 });
@@ -361,7 +372,7 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setOnclickDoneinHobby(actvHobbyAboutStyle,textView);
+                        setOnclickDoneinHobby(actvHobbyAboutStyle,textView,"hobbyStyleRequire");
                         dialog.dismiss();
                     }
                 });
@@ -392,17 +403,65 @@ public class ProfileDialogCustom {
                     @Override
                     public void onClick(View v) {
                         String tempCharacter;
-                        if(checkComma(actvCharacter.getText().toString().trim())==true) {
-                            tempCharacter=actvCharacter.getText().toString().trim().substring(0,actvCharacter.getText().toString().trim().length()-1).replaceAll(", ",",");
+                        if(actvCharacter.getText().toString().trim().equals("")==true){
+                            tempCharacter="";
                         }
                         else {
-                            tempCharacter=actvCharacter.getText().toString().trim().replaceAll(", ",",");
+                            if (checkComma(actvCharacter.getText().toString().trim()) == true) {
+                                tempCharacter = actvCharacter.getText().toString().trim().substring(0, actvCharacter.getText().toString().trim().length() - 1).replaceAll(", ", ",");
+                            } else {
+                                tempCharacter = actvCharacter.getText().toString().trim().replaceAll(", ", ",");
+                            }
                         }
                         Log.e("Character",tempCharacter);
                         textView.setText(tempCharacter);
                         saveInfoReference("characterLogin",tempCharacter);
                         updateData("Character",tempCharacter);
                         dialog.dismiss();
+                    }
+                });
+                break;
+            case R.layout.custom_dialog_require_off_choose_age:
+                rlClose = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_require_off_choose_age_rl_close);
+                rlDone = (RelativeLayout)
+                        dialog.findViewById(R.id.custom_dialog_require_off_choose_age_rl_done);
+                WheelPicker wpkAgeMin=(WheelPicker) dialog.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_min);
+                WheelPicker wpkAgeMax=(WheelPicker) dialog.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_max);
+                wpkAgeMin.setSelectedItemPosition(Integer.parseInt(textView.getText().toString().trim().substring(0,2).trim())-10);
+                if(Integer.parseInt(textView.getText().toString().trim().substring(0,2).trim())<10){
+                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(textView.getText().toString().trim().substring(4).trim())-10);
+                }
+                else {
+                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(textView.getText().toString().trim().substring(5).trim())-10);
+                }
+                //get value in resource
+                String[] list = context.getResources().getStringArray(R.array.age_limit);
+                final ArrayList<String> ageLimit=new ArrayList(Arrays.asList(list));
+
+                //set data for age min and age max
+                wpkAgeMin.setData(ageLimit);
+                wpkAgeMax.setData(ageLimit);
+                setEventChooseValueAge(wpkAgeMin,wpkAgeMax);
+                rlClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                rlDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())!=
+                                Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())){
+                            textView.setText(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())+ " - "+
+                                    Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()) );
+                        }
+                        else {
+                            textView.setText(Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()));
+                        }
+                        saveInforintoRequireOff("ageRequire",textView.getText().toString());
+                        dialog.cancel();
                     }
                 });
                 break;
@@ -508,14 +567,26 @@ public class ProfileDialogCustom {
     }
 
     //set for event click btnDone in hobby
-    private void setOnclickDoneinHobby(MultiAutoCompleteTextView actvHobby, TextView text){
-        if(checkComma(actvHobby.getText().toString().trim())==true) {
-            saveHobbyInfoReference(actvHobby.getText().toString().trim().substring(0,actvHobby.getText().toString().trim().length()-1), text.getText().toString().trim());
-            textView.setText(actvHobby.getText().toString().trim().substring(0,actvHobby.getText().toString().trim().length()-1));
+    private void setOnclickDoneinHobby(MultiAutoCompleteTextView actvHobby, TextView text, String key){
+        String tempHobby="";
+        if(actvHobby.getText().toString().trim().equals("")==true){
+            tempHobby=actvHobby.getText().toString().trim();
         }
         else {
-            saveHobbyInfoReference(actvHobby.getText().toString().trim(), text.getText().toString().trim());
-            textView.setText(actvHobby.getText().toString().trim());
+            if (checkComma(actvHobby.getText().toString().trim()) == true) {
+                tempHobby=actvHobby.getText().toString().trim().substring(0, actvHobby.getText().toString().trim().length() - 1);
+            } else {
+                tempHobby=actvHobby.getText().toString().trim();
+            }
+        }
+
+        if(offRequireFragment==false){
+            saveHobbyInfoReference(tempHobby,text.getText().toString().trim());
+            textView.setText(tempHobby);
+        }
+        else {
+            saveInforintoRequireOff(key,tempHobby);
+            textView.setText(tempHobby);
         }
     }
 
@@ -524,12 +595,9 @@ public class ProfileDialogCustom {
         String[] item=elementHobby.split(",");
         String[] oldItem=oldHobby.split(",");
         String temp=storeReference("hobbyLogin")+",";
-        Log.e("tempHobby",temp);
         for(int i=0;i<oldItem.length;i++){
             if(temp.contains(oldItem[i])==true){
-                Log.e("oldItem",oldItem[i]);
                 temp=temp.replace(temp.substring(temp.indexOf(oldItem[i]),(temp.indexOf(oldItem[i])+oldItem[i].length()+1)),"");
-                Log.e("oldItemTemp",temp);
             }
         }
         for(int i=0;i<item.length;i++){
@@ -540,11 +608,15 @@ public class ProfileDialogCustom {
                     temp=temp+","+item[i];
             }
         }
-        Log.e("newItemTemp",temp);
         temp=temp.replaceAll(", ",",");
-        Log.e("newChangeItemTemp",temp);
-        saveInfoReference("hobbyLogin",temp.substring(0,temp.length()-1));
-        updateData("Hobby",temp.substring(0,temp.length()-1));
+        try {
+            saveInfoReference("hobbyLogin", temp.substring(0, temp.length() - 1));
+            updateData("Hobby", temp.substring(0, temp.length() - 1));
+        }
+        catch (Exception e){
+            saveInfoReference("hobbyLogin","");
+            updateData("Hobby", "");
+        }
     }
 
     //check string have contain comma?
@@ -558,6 +630,42 @@ public class ProfileDialogCustom {
     }
 
     //end methods use for hobby
+
+    //method set event when choose limit age for require off
+    private void setEventChooseValueAge(final WheelPicker wpkAgeMin, final WheelPicker wpkAgeMax){
+
+        //listen event when choose value
+        wpkAgeMax.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int i) {
+            }
+
+            @Override
+            public void onWheelSelected(int i) {
+                if(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())>
+                        Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())) {
+                    wpkAgeMin.setSelectedItemPosition(wpkAgeMax.getCurrentItemPosition());
+                }}
+            @Override
+            public void onWheelScrollStateChanged(int i) {
+            }
+        });
+
+        wpkAgeMin.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int i) {
+            }
+            @Override
+            public void onWheelSelected(int i) {
+                if(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())>
+                        Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())){
+                    wpkAgeMin.setSelectedItemPosition(wpkAgeMax.getCurrentItemPosition());
+                }}
+            @Override
+            public void onWheelScrollStateChanged(int i) {
+            }
+        });
+    }
 
     //method update content in data
     private void updateData(String which,String content){
@@ -579,6 +687,13 @@ public class ProfileDialogCustom {
     //save content was changed into Reference
     private void saveInfoReference(String key, String value) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
+    private void saveInforintoRequireOff(String key, String value){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("inforRequire"+"_"+storeReference("phoneLogin"), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
