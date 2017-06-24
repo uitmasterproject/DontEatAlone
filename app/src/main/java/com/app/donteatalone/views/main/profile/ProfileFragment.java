@@ -134,8 +134,10 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         LocalDate date = new LocalDate();
         ivAvatar.setImageBitmap(decodeBitmap());
         tvName.setText(storeReference("fullnameLogin"));
-
-        tvAge.setText((date.getYear() - Integer.parseInt(storeReference("birthdayLogin").split("/")[2])) + "");
+        if(storeReference("birthdayLogin").equals("")==true)
+            tvAge.setText("");
+        else
+            tvAge.setText((date.getYear() - Integer.parseInt(storeReference("birthdayLogin").split("/")[2])) + "");
         if (storeReference("genderLogin").equals("Female") == true) {
             tvGender.setText("F");
         } else {

@@ -37,7 +37,9 @@
 
         <activity android:name=".views.register.RegisterActivity">
         </activity>
-        <activity android:name=".views.main.MainActivity"/>
+        <activity android:name=".views.main.MainActivity">
+
+        </activity>
 
         <activity android:name=".views.main.blog.StatusActivity">
         </activity>
