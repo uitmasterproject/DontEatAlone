@@ -1,6 +1,7 @@
 package com.app.donteatalone.views.main.require.main_require;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +38,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import static android.R.attr.color;
+import static android.R.attr.dial;
+import static android.R.attr.dialogIcon;
+import static android.R.attr.drawableBottom;
 import static android.R.attr.key;
 import static android.R.attr.value;
 import static android.app.Activity.RESULT_OK;
@@ -53,10 +60,12 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     private static final String LOG_TAG = "PlaceSelectionListener";
 
     private View viewGroup;
+    private RelativeLayout rlGenderAll, rlGenderFemale, rlGenderMale, rlAgeClose;
     private TextView txtGenderAll, txtGenderFemale, txtGenderMale;
-    private RelativeLayout rlContainerAge, rlContainerAddress, rlContainerHobbyFood, rlContainerHobbyCharacter, rlContainerHobbyStyle;
+    private LinearLayout llContainerAge, llContainerAddress, llAgeAccept;
+    private LinearLayout llContainerHobbyFood, llContainerHobbyCharacter, llContainerHobbyStyle;
     private TextView txtAge, txtAdress, txtHobbyFood, txtHobbyCharacter, txtHobbyStyle;
-    private String location="", valuetemp, phone;
+    private String location = "", valuetemp, phone;
 
     public static OffRequireFragment newInstance() {
         OffRequireFragment fragment = new OffRequireFragment();
@@ -67,7 +76,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_off, null);
-        phone=getInforfromShareReference("account","phoneLogin");
+        phone = getInforfromShareReference("account", "phoneLogin");
         putInforRequireintoShareReference();
         init();
         setSelectedGender();
@@ -78,136 +87,137 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     }
 
     private void init() {
-        txtGenderAll=(TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_all);
-        txtGenderFemale=(TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_female);
-        txtGenderMale=(TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_male);
-        txtGenderAll.setTextColor(R.color.dot_tutorial_active);
-        txtGenderFemale.setTextColor(Color.WHITE);
-        txtGenderMale.setTextColor(Color.WHITE);
-        rlContainerAge=(RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_age);
-        txtAge=(TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_age);
-        txtAge.setText(setDefaultValue("ageminRequire","20")+" - "+setDefaultValue("agemaxRequire","25"));
-        rlContainerAddress=(RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_address);
-        txtAdress=(TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_address);
-        txtAdress.setText(setDefaultValue("addressRequire","Chợ Bến Thành, Quận 1, Hồ Chí Minh, Vietnam"));
-        location=setDefaultValue("latlngRequire","10.771423,106.698471");
-        rlContainerHobbyFood=(RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_hobby_food);
-        rlContainerHobbyCharacter=(RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_hobby_character);
-        rlContainerHobbyStyle=(RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_hobby_style);
-        txtHobbyFood=(TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_food);
-        txtHobbyFood.setText(setDefaultValue("hobbyFoodRequire",""));
-        txtHobbyCharacter=(TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_character);
-        txtHobbyCharacter.setText(setDefaultValue("hobbyCharacterRequire",""));
-        txtHobbyStyle=(TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_style);
-        txtHobbyStyle.setText(setDefaultValue("hobbyStyleRequire",""));
+        rlGenderAll = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_all);
+        rlGenderFemale = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_female);
+        rlGenderMale = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_male);
+        txtGenderAll = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_all);
+        txtGenderMale = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_male);
+        txtGenderFemale = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_female);
+        txtGenderAll.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
+        llContainerAge = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_range);
+        txtAge = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_age);
+        txtAge.setText(setDefaultValue("ageminRequire", "20") + " - " + setDefaultValue("agemaxRequire", "25"));
+        llContainerAddress = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_address);
+        txtAdress = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_address);
+        txtAdress.setText(setDefaultValue("addressRequire", "Chợ Bến Thành, Quận 1, Hồ Chí Minh, Vietnam"));
+        location = setDefaultValue("latlngRequire", "10.771423,106.698471");
+        llContainerHobbyFood = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_food);
+        llContainerHobbyCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_character);
+        llContainerHobbyStyle = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_style);
+        txtHobbyFood = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_food);
+        txtHobbyFood.setText(setDefaultValue("hobbyFoodRequire", ""));
+        txtHobbyCharacter = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_character);
+        txtHobbyCharacter.setText(setDefaultValue("hobbyCharacterRequire", ""));
+        txtHobbyStyle = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_style);
+        txtHobbyStyle.setText(setDefaultValue("hobbyStyleRequire", ""));
     }
 
-    private String setDefaultValue(String key, String defaul){
-        if(getInforfromShareReference("inforRequire"+"_"+phone,key).equals("")==true)
+    private String setDefaultValue(String key, String defaul) {
+        if (getInforfromShareReference("inforRequire" + "_" + phone, key).equals("") == true)
             return defaul;
         else
-            return getInforfromShareReference("inforRequire"+"_"+phone,key).trim();
+            return getInforfromShareReference("inforRequire" + "_" + phone, key).trim();
     }
 
     //Select Gender, Choose gender for require
-    private void setSelectedGender(){
-        txtGenderAll.setOnClickListener(new View.OnClickListener() {
+    private void setSelectedGender() {
+        rlGenderAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtGenderAll.setTextColor(R.color.dot_tutorial_active);
-                txtGenderFemale.setTextColor(Color.WHITE);
-                txtGenderMale.setTextColor(Color.WHITE);
+                txtGenderAll.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
+                txtGenderFemale.setTextColor(Color.GRAY);
+                txtGenderMale.setTextColor(Color.GRAY);
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_selector,
-                        R.color.gray,
+                        R.color.gray_1,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
-                editInforRequireintoShareReference("gender","all");
+                editInforRequireintoShareReference("gender", "all");
             }
         });
 
-        txtGenderFemale.setOnClickListener(new View.OnClickListener() {
+        rlGenderFemale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtGenderAll.setTextColor(Color.WHITE);
-                txtGenderFemale.setTextColor(R.color.dot_tutorial_active);
-                txtGenderMale.setTextColor(Color.WHITE);
+                txtGenderAll.setTextColor(Color.GRAY);
+                txtGenderFemale.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
+                txtGenderMale.setTextColor(Color.GRAY);
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.require_off_txt_gender_selected,
-                        R.drawable.design_require_off_txt_gender_rightsight_default );
-                editInforRequireintoShareReference("gender","female");
+                        R.drawable.design_require_off_txt_gender_rightsight_default);
+                editInforRequireintoShareReference("gender", "female");
             }
         });
 
-        txtGenderMale.setOnClickListener(new View.OnClickListener() {
+        rlGenderMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtGenderAll.setTextColor(Color.WHITE);
-                txtGenderFemale.setTextColor(Color.WHITE);
-                txtGenderMale.setTextColor(R.color.dot_tutorial_active);
+                txtGenderAll.setTextColor(Color.GRAY);
+                txtGenderFemale.setTextColor(Color.GRAY);
+                txtGenderMale.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
-                        R.color.gray,
-                        R.drawable.design_require_off_txt_gender_rightsight_selector );
-                editInforRequireintoShareReference("gender","male");
+                        R.color.gray_1,
+                        R.drawable.design_require_off_txt_gender_rightsight_selector);
+                editInforRequireintoShareReference("gender", "male");
             }
         });
     }
 
-    private void setClickGender(int res1, int res2, int res3){
-        txtGenderAll.setBackgroundResource(res1);
-        txtGenderFemale.setBackgroundResource(res2);
-        txtGenderMale.setBackgroundResource(res3);
+    private void setClickGender(int res1, int res2, int res3) {
+        rlGenderAll.setBackgroundResource(res1);
+        rlGenderFemale.setBackgroundResource(res2);
+        rlGenderMale.setBackgroundResource(res3);
     }
 
     //Select Age
-    private void setClickEditAge(){
-        rlContainerAge.setOnClickListener(new View.OnClickListener() {
+    private void setClickEditAge() {
+        llContainerAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialog = new  AlertDialog.Builder(getContext());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.custom_dialog_require_off_choose_age, null);
                 dialog.setView(dialogView);
-                dialog.setTitle("Choose age");
-                final WheelPicker wpkAgeMin=(WheelPicker) dialogView.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_min);
-                final WheelPicker wpkAgeMax=(WheelPicker) dialogView.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_max);
+                dialog.setCancelable(false);
+                final WheelPicker wpkAgeMin = (WheelPicker) dialogView.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_min);
+                final WheelPicker wpkAgeMax = (WheelPicker) dialogView.findViewById(R.id.custom_dialog_require_off_choose_age_wpk_max);
 
                 //init default value for age min and age max
-                Log.e("minage",Integer.parseInt(txtAge.getText().toString().trim().substring(0,2).trim())+"");
-                Log.e("maxage",Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim())+"");
+                Log.e("minage", Integer.parseInt(txtAge.getText().toString().trim().substring(0, 2).trim()) + "");
+                Log.e("maxage", Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim()) + "");
 
-                wpkAgeMin.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(0,2).trim())-10);
-                if(Integer.parseInt(txtAge.getText().toString().trim().substring(0,2).trim())<10){
-                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(4).trim())-10);
-                }
-                else {
-                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim())-10);
+                wpkAgeMin.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(0, 2).trim()) - 10);
+                if (Integer.parseInt(txtAge.getText().toString().trim().substring(0, 2).trim()) < 10) {
+                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(4).trim()) - 10);
+                } else {
+                    wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim()) - 10);
                 }
 
                 //get value in resource
                 String[] list = getResources().getStringArray(R.array.age_limit);
-                final ArrayList<String> ageLimit=new ArrayList(Arrays.asList(list));
+                final ArrayList<String> ageLimit = new ArrayList(Arrays.asList(list));
 
                 //set data for age min and age max
                 wpkAgeMin.setData(ageLimit);
                 wpkAgeMax.setData(ageLimit);
-                setEventChooseValueAge(wpkAgeMin,wpkAgeMax);
-                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                setEventChooseValueAge(wpkAgeMin, wpkAgeMax);
+
+                dialog.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())!=
-                                Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())){
-                            txtAge.setText(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())+ " - "+
-                                    Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()) );
-                        }
-                        else {
+                        if (Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) !=
+                                Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())) {
+                            txtAge.setText(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) + " - " +
+                                    Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()));
+                        } else {
                             txtAge.setText(Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()));
                         }
-                        editInforRequireintoShareReference("ageRequire",txtAge.getText().toString());
+                        editInforRequireintoShareReference("ageRequire", txtAge.getText().toString());
 
                     }
                 })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
                             }
                         });
                 AlertDialog alertDialog = dialog.create();
@@ -216,7 +226,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         });
     }
 
-    private void setEventChooseValueAge(final WheelPicker wpkAgeMin, final WheelPicker wpkAgeMax){
+    private void setEventChooseValueAge(final WheelPicker wpkAgeMin, final WheelPicker wpkAgeMax) {
 
         //listen event when choose value
         wpkAgeMax.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
@@ -226,10 +236,12 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
 
             @Override
             public void onWheelSelected(int i) {
-                if(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())>
+                if (Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) >
                         Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())) {
                     wpkAgeMin.setSelectedItemPosition(wpkAgeMax.getCurrentItemPosition());
-                }}
+                }
+            }
+
             @Override
             public void onWheelScrollStateChanged(int i) {
             }
@@ -239,12 +251,15 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             @Override
             public void onWheelScrolled(int i) {
             }
+
             @Override
             public void onWheelSelected(int i) {
-                if(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString())>
-                        Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())){
+                if (Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) >
+                        Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())) {
                     wpkAgeMin.setSelectedItemPosition(wpkAgeMax.getCurrentItemPosition());
-                }}
+                }
+            }
+
             @Override
             public void onWheelScrollStateChanged(int i) {
             }
@@ -252,13 +267,13 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     }
 
     //Select Address
-    private void setClickEditAddress(){
-        rlContainerAddress.setOnClickListener(new View.OnClickListener() {
+    private void setClickEditAddress() {
+        llContainerAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     Intent intent = new PlaceAutocomplete.IntentBuilder
-                            (PlaceAutocomplete.MODE_OVERLAY  )
+                            (PlaceAutocomplete.MODE_OVERLAY)
                             .setBoundsBias(BOUNDS_MOUNTAIN_VIEW)
                             .build(getActivity());
                     startActivityForResult(intent, REQUEST_SELECT_PLACE);
@@ -287,10 +302,10 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
 
     @Override
     public void onPlaceSelected(Place place) {
-        txtAdress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
-        location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);
-        editInforRequireintoShareReference("addressRequire",txtAdress.getText().toString());
-        editInforRequireintoShareReference("latlngRequire",location);
+        txtAdress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
+        location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
+        editInforRequireintoShareReference("addressRequire", txtAdress.getText().toString());
+        editInforRequireintoShareReference("latlngRequire", location);
 //        if (!TextUtils.isEmpty(place.getAttributions())){
 //            txtAdress.setText(Html.fromHtml(place.getAttributions().toString()));
 //        }
@@ -303,77 +318,27 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     }
 
     //Select hobby, in here, change value hobby
-    private void setClickEditHobby(){
-        rlContainerHobbyFood.setOnClickListener(new View.OnClickListener() {
+    private void setClickEditHobby() {
+        llContainerHobbyFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                            AlertDialog.Builder dialog = new  AlertDialog.Builder(getContext());
-                            LayoutInflater inflater = getActivity().getLayoutInflater();
-                            View dialogView = inflater.inflate(R.layout.custom_dialog_require_off_choose_hobby, null);
-                            dialog.setView(dialogView);
-                            dialog.setTitle("Choose hobby about food");
-                            final MultiAutoCompleteTextView atctcHobby=(MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
-                            ArrayAdapter<String> adapter=new ArrayAdapter<String>(dialog.getContext(),android.R.layout.simple_dropdown_item_1line,getResources().getStringArray(R.array.food));
-                            atctcHobby.setText(txtHobbyFood.getText().toString());
-                            valuetemp = txtHobbyFood.getText().toString();
-                            atctcHobby.setAdapter(adapter);
-                            atctcHobby.setThreshold(1);
-                            atctcHobby.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-                            atctcHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    atctcHobby.setText(atctcHobby.getItemSelectedListener().toString()+","+ valuetemp);
-                                    valuetemp =atctcHobby.getText().toString();
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
-                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    txtHobbyFood.setText(valuetemp);
-                                    editInforRequireintoShareReference("hobbyFoodRequire",valuetemp);
-                                }
-                            })
-                                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-
-                                        }
-                                    });
-                            AlertDialog alertDialog = dialog.create();
-                            alertDialog.show();
-            }
-        });
-
-        rlContainerHobbyCharacter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder dialog = new  AlertDialog.Builder(getContext());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.custom_dialog_require_off_choose_hobby, null);
                 dialog.setView(dialogView);
-                dialog.setTitle("Choose hobby about character");
-                final MultiAutoCompleteTextView atctcHobby=(MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
-                atctcHobby.setText(txtHobbyCharacter.getText().toString());
-                valuetemp=txtHobbyCharacter.getText().toString();
-                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.character));
+                dialog.setTitle("Choose hobby about food");
+                final MultiAutoCompleteTextView atctcHobby = (MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(dialog.getContext(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.food));
+                atctcHobby.setText(txtHobbyFood.getText().toString());
+                valuetemp = txtHobbyFood.getText().toString();
                 atctcHobby.setAdapter(adapter);
                 atctcHobby.setThreshold(1);
                 atctcHobby.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
                 atctcHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if(atctcHobby.getText().toString().length()>0) {
-                            atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + atctcHobby.getItemSelectedListener().toString());
-                        }
-                        else {
-                            atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(","))+"," + atctcHobby.getItemSelectedListener().toString());
-                        }
-                        valuetemp =atctcHobby.getText().toString();
+                        atctcHobby.setText(atctcHobby.getItemSelectedListener().toString() + "," + valuetemp);
+                        valuetemp = atctcHobby.getText().toString();
                     }
 
                     @Override
@@ -384,8 +349,8 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0,atctcHobby.getText().toString().length()-1));
-                        editInforRequireintoShareReference("hobbyCharacterRequire",valuetemp);
+                        txtHobbyFood.setText(valuetemp);
+                        editInforRequireintoShareReference("hobbyFoodRequire", valuetemp);
                     }
                 })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -399,31 +364,30 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             }
         });
 
-        rlContainerHobbyStyle.setOnClickListener(new View.OnClickListener() {
+        llContainerHobbyCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialog = new  AlertDialog.Builder(getContext());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.custom_dialog_require_off_choose_hobby, null);
                 dialog.setView(dialogView);
                 dialog.setTitle("Choose hobby about character");
-                final MultiAutoCompleteTextView atctcHobby=(MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
-                atctcHobby.setText(txtHobbyStyle.getText().toString());
-                valuetemp=txtHobbyStyle.getText().toString();
-                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.style));
+                final MultiAutoCompleteTextView atctcHobby = (MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
+                atctcHobby.setText(txtHobbyCharacter.getText().toString());
+                valuetemp = txtHobbyCharacter.getText().toString();
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.character));
                 atctcHobby.setAdapter(adapter);
                 atctcHobby.setThreshold(1);
                 atctcHobby.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
                 atctcHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if(atctcHobby.getText().toString().length()>0) {
+                        if (atctcHobby.getText().toString().length() > 0) {
                             atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + atctcHobby.getItemSelectedListener().toString());
+                        } else {
+                            atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + "," + atctcHobby.getItemSelectedListener().toString());
                         }
-                        else {
-                            atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(","))+"," + atctcHobby.getItemSelectedListener().toString());
-                        }
-                        valuetemp =atctcHobby.getText().toString();
+                        valuetemp = atctcHobby.getText().toString();
                     }
 
                     @Override
@@ -434,8 +398,57 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0,atctcHobby.getText().toString().length()-1));
-                        editInforRequireintoShareReference("hobbyStyleRequire",valuetemp);
+                        txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().length() - 1));
+                        editInforRequireintoShareReference("hobbyCharacterRequire", valuetemp);
+                    }
+                })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                AlertDialog alertDialog = dialog.create();
+                alertDialog.show();
+            }
+        });
+
+        llContainerHobbyStyle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.custom_dialog_require_off_choose_hobby, null);
+                dialog.setView(dialogView);
+                dialog.setTitle("Choose hobby about character");
+                final MultiAutoCompleteTextView atctcHobby = (MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
+                atctcHobby.setText(txtHobbyStyle.getText().toString());
+                valuetemp = txtHobbyStyle.getText().toString();
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.style));
+                atctcHobby.setAdapter(adapter);
+                atctcHobby.setThreshold(1);
+                atctcHobby.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+                atctcHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (atctcHobby.getText().toString().length() > 0) {
+                            atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + atctcHobby.getItemSelectedListener().toString());
+                        } else {
+                            atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + "," + atctcHobby.getItemSelectedListener().toString());
+                        }
+                        valuetemp = atctcHobby.getText().toString();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().length() - 1));
+                        editInforRequireintoShareReference("hobbyStyleRequire", valuetemp);
                     }
                 })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -449,83 +462,83 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         });
     }
 
-    private void editInforRequireintoShareReference(String key, String value){
-        SharedPreferences sharedPreferences=getActivity().getSharedPreferences("inforRequire"+"_"+phone,MODE_PRIVATE);
+    private void editInforRequireintoShareReference(String key, String value) {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("inforRequire" + "_" + phone, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key,value);
+        editor.putString(key, value);
         editor.commit();
     }
 
-    private void putInforRequireintoShareReference(){
-        File f = new File("/data/data/" + getContext().getPackageName() +  "/shared_prefs/" + "inforRequire"+"_"+phone + ".xml");
-        if(f.exists()==false){
-            SharedPreferences sharedPreferences = getContext().getSharedPreferences("inforRequire"+"_"+phone, MODE_PRIVATE);
+    private void putInforRequireintoShareReference() {
+        File f = new File("/data/data/" + getContext().getPackageName() + "/shared_prefs/" + "inforRequire" + "_" + phone + ".xml");
+        if (f.exists() == false) {
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences("inforRequire" + "_" + phone, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("genderRequire","all");
+            editor.putString("genderRequire", "all");
 
-            int currentYear=Calendar.getInstance().get(Calendar.YEAR);
-            Log.e("birthday",getInforfromShareReference("account","birthdayLogin")+"");
-            int age=currentYear- Integer.parseInt(getInforfromShareReference("account","birthdayLogin").trim().split("/")[2]);
-            editor.putString("ageminRequire",(age-4)+"");
-            editor.putString("agemaxRequire",(age+4)+"");
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            Log.e("birthday", getInforfromShareReference("account", "birthdayLogin") + "");
+            int age = currentYear - Integer.parseInt(getInforfromShareReference("account", "birthdayLogin").trim().split("/")[2]);
+            editor.putString("ageminRequire", (age - 4) + "");
+            editor.putString("agemaxRequire", (age + 4) + "");
 
-            editor.putString("addressRequire",getInforfromShareReference("account","addressLogin"));
-            Log.e("latlng",getInforfromShareReference("account","latlngadressLogin"));
-            editor.putString("latlngaddressRequire",getInforfromShareReference("account","latlngadressLogin"));
+            editor.putString("addressRequire", getInforfromShareReference("account", "addressLogin"));
+            Log.e("latlng", getInforfromShareReference("account", "latlngadressLogin"));
+            editor.putString("latlngaddressRequire", getInforfromShareReference("account", "latlngadressLogin"));
 
             putDataHobbyintoReference(editor);
             editor.commit();
         }
     }
 
-    private void putDataHobbyintoReference(SharedPreferences.Editor editor){
-        String str="";
-        String[] temp =getInforfromShareReference("account","hobbyLogin").toString().trim().split(",");
-        String[] temhobby=getResources().getStringArray(R.array.food);
-        for(int j=0;j<temhobby.length;j++) {
+    private void putDataHobbyintoReference(SharedPreferences.Editor editor) {
+        String str = "";
+        String[] temp = getInforfromShareReference("account", "hobbyLogin").toString().trim().split(",");
+        String[] temhobby = getResources().getStringArray(R.array.food);
+        for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i])==true){
-                    str+=temp[i]+",";
+                if (temhobby[j].equals(temp[i]) == true) {
+                    str += temp[i] + ",";
                 }
             }
         }
-        if(str.length()>0) {
-            str=str.substring(0, str.length() - 1);
+        if (str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
         }
-        editor.putString("hobbyFoodRequire",str);
+        editor.putString("hobbyFoodRequire", str);
 
-        str="";
-        temhobby=getResources().getStringArray(R.array.character);
-        for(int j=0;j<temhobby.length;j++) {
+        str = "";
+        temhobby = getResources().getStringArray(R.array.character);
+        for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i])==true){
-                    str+=temp[i]+",";
+                if (temhobby[j].equals(temp[i]) == true) {
+                    str += temp[i] + ",";
                 }
             }
         }
-        if(str.length()>0) {
-            str=str.substring(0, str.length() - 1);
+        if (str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
         }
-        editor.putString("hobbyCharacterRequire",str);
+        editor.putString("hobbyCharacterRequire", str);
 
-        str="";
-        temhobby=getResources().getStringArray(R.array.style);
-        for(int j=0;j<temhobby.length;j++) {
+        str = "";
+        temhobby = getResources().getStringArray(R.array.style);
+        for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i])==true){
-                    str+=temp[i]+",";
+                if (temhobby[j].equals(temp[i]) == true) {
+                    str += temp[i] + ",";
                 }
             }
         }
-        if(str.length()>0) {
-            str=str.substring(0, str.length() - 1);
+        if (str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
         }
-        editor.putString("hobbyStyleRequire",str);
+        editor.putString("hobbyStyleRequire", str);
     }
 
-    private String getInforfromShareReference(String file,String key){
+    private String getInforfromShareReference(String file, String key) {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(file, MODE_PRIVATE);
-        String value=sharedPreferences.getString(key,"");
+        String value = sharedPreferences.getString(key, "");
         return value;
     }
 }

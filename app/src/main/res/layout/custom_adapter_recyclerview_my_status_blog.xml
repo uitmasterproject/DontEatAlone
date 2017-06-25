@@ -146,7 +146,25 @@
             android:textSize="11sp" />
     </LinearLayout>
 
+    <HorizontalScrollView
+        android:id="@+id/custom_adapter_recyclerview_my_status_blog_hsv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="-5dp"
+        android:paddingRight="-5dp">
+
+        <LinearLayout
+            android:id="@+id/custom_adapter_recyclerview_my_status_blog_ll_container_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
     <View
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="10dp"
@@ -220,23 +238,6 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <HorizontalScrollView
-        android:id="@+id/custom_adapter_recyclerview_my_status_blog_hsv_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="-5dp"
-        android:paddingRight="-5dp">
-
-        <LinearLayout
-            android:id="@+id/custom_adapter_recyclerview_my_status_blog_ll_container_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
 
     <View
         android:layout_width="match_parent"

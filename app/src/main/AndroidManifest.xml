@@ -44,10 +44,6 @@
         <activity android:name=".views.main.blog.StatusActivity">
         </activity>
 
-        <activity android:name=".views.main.profile.ProfileCustomDialogName">
-
-        </activity>
-
         // for activity facebook
         <!--<activity android:name="com.facebook.FacebookActivity"-->
             <!--android:configChanges=-->
