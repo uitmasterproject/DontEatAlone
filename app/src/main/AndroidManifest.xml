@@ -29,16 +29,16 @@
         <activity android:name=".views.tutorial.TutorialActivity_">
         </activity>
         <activity android:name=".views.login.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".views.register.RegisterActivity">
         </activity>
         <activity android:name=".views.main.MainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".views.main.blog.StatusActivity">

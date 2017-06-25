@@ -66,7 +66,8 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5" />
+
         <com.aigestudio.wheelpicker.WheelPicker
             android:id="@+id/custom_dialog_profile_wheelpicker_day"
             android:layout_width="wrap_content"
@@ -84,7 +85,8 @@
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5" />
+
         <com.aigestudio.wheelpicker.widgets.WheelYearPicker
             android:id="@+id/custom_dialog_profile_wheelpicker_year"
             android:layout_width="wrap_content"
