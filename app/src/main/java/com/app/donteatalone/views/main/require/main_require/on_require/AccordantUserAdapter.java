@@ -89,7 +89,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
             public void onClick(View v) {
                 Dialog dialog=new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.custom_dialog_require_on_invite);
+                dialog.setContentView(R.layout.custom_dialog_require_on_invite_setting_time);
                 initDialog(dialog,position);
                 dialog.show();
             }

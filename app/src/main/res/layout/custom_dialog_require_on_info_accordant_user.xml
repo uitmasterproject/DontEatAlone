@@ -1,177 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:background="@color/color_deep_orange">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center_vertical"
-            android:text="Invite"
-            android:layout_marginLeft="5dp"/>
-        <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:src="@android:drawable/ic_delete"
-            android:id="@+id/custom_dialog_require_on_info_account_user_img_close"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:background="@drawable/ripple_selector"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/custom_dialog_require_on_info_account_user_img_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_close_white_36dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Invite"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp">
+        android:padding="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:gravity="center">
+
             <ImageView
+                android:id="@+id/custom_dialog_require_on_info_account_user_img_avatar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/avatar"
-                android:id="@+id/custom_dialog_require_on_info_account_user_img_avatar"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar" />
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
+
             <TextView
+                android:id="@+id/custom_dialog_require_on_info_account_user_txt_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="22"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_age"/>
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="17sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:text="|"
-                android:textSize="23dp"
-                android:textStyle="bold"/>
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
             <ImageView
+                android:id="@+id/custom_dialog_require_on_info_account_user_img_gender"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:src="@drawable/ic_male"
-                android:id="@+id/custom_dialog_require_on_info_account_user_img_gender"/>
+                android:src="@drawable/ic_male" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <!--For name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Full Name:"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7">
+
+                    <TextView
+                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_fullname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phan Thi Hong Hanh"
+                        android:textColor="@color/color_deep_orange_1"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--For phone-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phone:"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7">
+
+                    <TextView
+                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0979662236"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--For character-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Character"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7">
+
+                    <TextView
+                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_character"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="vui ve"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--For time-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time:"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7">
+
+                    <TextView
+                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="31/05"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="08:30"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--For place-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Place:"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7">
+
+                    <TextView
+                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_place"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="KTX khu B, dai hoc quoc gia TP.HCM, Ho Chi Minh"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="15dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/gray" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Full Name: " />
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="Phan Thi Hong Hanh"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_fullname"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Phone: " />
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="0979662236"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_phone"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Character: "/>
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="vui ve"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_character"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Time: "/>
-            <TextView
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:text="31/05"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_date"/>
-            <TextView
-                android:layout_width="145dp"
-                android:layout_height="wrap_content"
-                android:text="08:30"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_time"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Place: "/>
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="KTX khu B, dai hoc quoc gia TP.HCM, Ho Chi Minh"
-                android:textSize="17dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_txt_place"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+
             <Button
-                android:layout_width="80dp"
+                android:id="@+id/custom_dialog_require_on_info_account_user_btn_viewprofile"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:background="@drawable/btn_login"
                 android:text="View Profile"
-                android:textSize="12dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_btn_viewprofile"/>
+                android:textSize="12sp" />
+
             <Button
-                android:layout_width="80dp"
+                android:id="@+id/custom_dialog_require_on_info_account_user_btn_accept"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/btn_login"
                 android:text="Accept"
-                android:textSize="12dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_btn_accept"/>
+                android:textSize="12sp" />
+
             <Button
-                android:layout_width="80dp"
+                android:id="@+id/custom_dialog_require_on_info_account_user_btn_refuse"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/btn_login"
                 android:text="Refuse"
-                android:textSize="12dp"
-                android:id="@+id/custom_dialog_require_on_info_account_user_btn_refuse" />
+                android:textSize="12dp" />
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

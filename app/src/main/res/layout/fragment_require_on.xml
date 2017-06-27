@@ -1,39 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp">
+        android:padding="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="List Accordant User"
-            android:textColor="@color/dot_tutorial_inactive"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:text="The Best Results"
+            android:textColor="@color/dot_tutorial_inactive"
+            android:textSize="20dp" />
+
+
         <Button
+            android:id="@+id/fragment_require_on_btn_load"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_login"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
+            android:background="@drawable/btn_login"
             android:text="Load"
             android:textColor="@color/comformat"
             android:textSize="20sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf"
-            android:id="@+id/fragment_require_on_btn_load"/>
+            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
     </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="10dp"
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/fragment_require_on_rcv_list_accordant_user">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fragment_require_on_srl_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_require_on_rcv_list_accordant_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
