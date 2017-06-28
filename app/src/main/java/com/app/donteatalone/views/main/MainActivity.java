@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private FragmentAdapter mFragmentAdapter;
-    public static ViewPager viewPager;
+    public ViewPager viewPager;
     public static TextView txtNotification;
     public View view;
     public LinearLayout llContainer;
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private void setViewPager(ViewPager viewPager) {
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         mFragmentAdapter.mFragmentList.add(BlogFragment.newInstance());
@@ -135,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
             }
         });
     }

@@ -117,5 +117,4 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
             llContainer=(LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_ll_container);
         }
     }
-
 }
