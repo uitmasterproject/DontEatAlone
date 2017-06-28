@@ -3,6 +3,7 @@ package com.app.donteatalone.connectmongo;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.InfoProfileUpdate;
+import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 
@@ -68,4 +69,7 @@ public interface Structure {
 
         @POST("/profile_update")
         Call<Status> updateProfile(@Body InfoProfileUpdate item);
+
+        @GET("/restaurant/{latlng}")
+        Call<ArrayList<Restaurant>> getRestaurant(@Path("latlng") String latlng);
 }
