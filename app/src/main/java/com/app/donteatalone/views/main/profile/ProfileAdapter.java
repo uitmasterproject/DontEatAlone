@@ -22,6 +22,7 @@ public class ProfileAdapter extends FragmentStatePagerAdapter {
                 break;
             case 1:
                 frag = new ProfileHistoryFragment();
+                break;
         }
         return frag;
     }

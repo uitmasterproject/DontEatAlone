@@ -26,27 +26,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/fragment_blog_avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
             android:background="@drawable/design_img_avatar"
+            android:scaleType="centerCrop"
             android:src="@drawable/avatar" />
 
         <Button
             android:id="@+id/fragment_blog_edt_status"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#00000000"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:stateListAnimator="@null"
             android:text="What do you think, today?..."
             android:textColor="#75000000" />
