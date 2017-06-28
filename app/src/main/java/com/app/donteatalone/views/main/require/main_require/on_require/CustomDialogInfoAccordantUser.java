@@ -3,6 +3,7 @@ package com.app.donteatalone.views.main.require.main_require.on_require;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -13,11 +14,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.views.main.MainActivity;
+import com.app.donteatalone.views.main.notification.CustomNotificationAdapter;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.app.donteatalone.views.main.MainActivity.viewPager;
+import static com.app.donteatalone.views.main.notification.NotificationFragment.rcvInfoNotification;
 
 /**
  * Created by ChomChom on 05-Jun-17.
@@ -74,6 +89,9 @@ public class CustomDialogInfoAccordantUser {
                     e.printStackTrace();
                 }
                 dialog.dismiss();
+                if(viewPager.getCurrentItem()==1) {
+                    setNotification();
+                }
             }
         });
     }
@@ -125,6 +143,7 @@ public class CustomDialogInfoAccordantUser {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                dialog.dismiss();
                 Intent intent=new Intent(context, MainActivity.class);
                 intent.putExtra("viewProfile","customer");
                 context.startActivity(intent);
@@ -185,6 +204,37 @@ public class CustomDialogInfoAccordantUser {
             }
         }
         return bitmap;
+    }
+
+    private String getInfointoSharedPreferences(String str) {
+        SharedPreferences pre = context.getSharedPreferences("account", MODE_PRIVATE);
+        String data = pre.getString(str, "");
+        return data;
+    }
+
+    public void setNotification() {
+        Connect connect = new Connect();
+        Log.e("listInfoNotification", "notification");
+        final ArrayList<InfoNotification> listInfoNotification = new ArrayList();
+        final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, context, getInfointoSharedPreferences("phoneLogin"));
+        Call<ArrayList<InfoNotification>> getInfoNotification = connect.getRetrofit().getNotification(getInfointoSharedPreferences("phoneLogin"));
+        getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
+            @Override
+            public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
+                for (InfoNotification element : response.body()) {
+                    InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
+                            element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
+                    listInfoNotification.add(info);
+                }
+                Collections.reverse(listInfoNotification);
+                rcvInfoNotification.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<InfoNotification>> call, Throwable t) {
+                Log.e("listInfoNotification2", t.toString() + "");
+            }
+        });
     }
 
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="match_parent"
     android:gravity="center">
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,59 +13,64 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center_vertical"
-            android:text="Setting time for schedule test english" />
+            android:text="Setting time and place"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:id="@+id/custom_dialog_require_on_invite_rl_container_time">
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:text="Time"/>
+                    android:textSize="18dp"
+                    android:text="Time: "/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_alignParentRight="true">
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="110dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="13/06"
-                        android:textSize="20dp"
+                        android:textSize="16dp"
                         android:id="@+id/custom_dialog_require_on_invite_txt_date"/>
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="14:00"
-                        android:textSize="20dp"
+                        android:textSize="16dp"
                         android:id="@+id/custom_dialog_require_on_invite_txt_time"/>
                 </LinearLayout>
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:weightSum="4"
                 android:layout_marginBottom="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:id="@+id/custom_dialog_require_on_invite_ll_container_time">
                 <com.aigestudio.wheelpicker.WheelPicker
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    app:wheel_item_text_size="20dp"
                     app:wheel_atmospheric="true"
                     app:wheel_item_align="center"
                     app:wheel_cyclic="true"
@@ -77,10 +82,10 @@
                     app:wheel_curtain_color="@color/color_background_for_hobby"
                     android:id="@+id/custom_dialog_require_on_invite_wp_date"/>
                 <com.aigestudio.wheelpicker.WheelPicker
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
+                    app:wheel_item_text_size="20dp"
                     app:wheel_atmospheric="true"
                     app:wheel_item_align="center"
                     app:wheel_cyclic="true"
@@ -92,10 +97,10 @@
                     app:wheel_curtain_color="@color/color_background_for_hobby"
                     android:id="@+id/custom_dialog_require_on_invite_wp_month"/>
                 <com.aigestudio.wheelpicker.WheelPicker
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
+                    app:wheel_item_text_size="20dp"
                     app:wheel_atmospheric="true"
                     app:wheel_item_align="center"
                     app:wheel_cyclic="true"
@@ -107,10 +112,10 @@
                     app:wheel_curtain_color="@color/color_background_for_hobby"
                     android:id="@+id/custom_dialog_require_on_invite_wp_hour"/>
                 <com.aigestudio.wheelpicker.WheelPicker
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
+                    app:wheel_item_text_size="20dp"
                     app:wheel_atmospheric="true"
                     app:wheel_item_align="center"
                     app:wheel_cyclic="true"
@@ -126,35 +131,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/custom_dialog_require_on_invite_rl_container_place">
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:text="Address"/>
+                    android:textSize="18dp"
+                    android:text="Address: "/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_alignParentRight="true">
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="110dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Chợ đêm"
-                        android:textSize="20dp"
+                        android:textSize="16dp"
                         android:id="@+id/custom_dialog_require_on_invite_txt_address"/>
                 </LinearLayout>
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="180dp"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:id="@+id/custom_dialog_require_on_invite_ll_container_place">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/custom_dialog_require_on_invite_ll_container_place">
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/custom_dialog_require_on_invite_ll_container_search">
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -171,22 +181,70 @@
                         android:background="@color/white"
                         android:lineSpacingMultiplier="1"/>
                 </RelativeLayout>
-                <ListView
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:orientation="horizontal"
+                        android:id="@+id/custom_adapter_recyclerview_restaurant_container">
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/blue_gray_1"/>
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Name"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/blue_gray_1"/>
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:text="Address"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/blue_gray_1"/>
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Open Day"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/blue_gray_1"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="@color/blue_gray_1"/>
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/custom_dialog_require_on_invite_lst_place">
-                </ListView>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
             <Button
                 android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:background="@drawable/btn_login"
                 android:gravity="center"
-                android:text="invite"
+                android:text="INVITE"
                 android:textSize="18sp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf"
                 android:id="@+id/custom_dialog_require_on_invite_btn_invite"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/suggestInvite"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

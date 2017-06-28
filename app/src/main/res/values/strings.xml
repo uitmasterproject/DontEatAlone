@@ -9,6 +9,9 @@
          %1$s, %2$s
     </string>
 
+    <string name="suggestInvite"><u>You need wait for 5 minute to they respond</u></string>
+    <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
+    <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
     <!--String for Login Screen-->
     <string name="login_text">LOGIN</string>
 
@@ -42,6 +45,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>21</item>
         <item>22</item>
         <item>23</item>
         <item>24</item>
@@ -74,6 +78,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>21</item>
         <item>22</item>
         <item>23</item>
         <item>24</item>
@@ -105,6 +110,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>21</item>
         <item>22</item>
         <item>23</item>
         <item>24</item>
@@ -134,6 +140,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>21</item>
         <item>22</item>
         <item>23</item>
         <item>24</item>
@@ -243,9 +250,42 @@
         <item>	48	</item>
         <item>	49	</item>
         <item>	50	</item>
-
     </string-array>
 
+    <string-array name="Hour">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+
+    <string-array name="Minute">
+        <item>00</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+    </string-array>
 
     <string-array name="food">
         <item>các món từ gà, gà rán, gà nướng, gà quay...</item>
