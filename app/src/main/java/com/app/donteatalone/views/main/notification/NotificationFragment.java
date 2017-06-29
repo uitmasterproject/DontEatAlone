@@ -39,6 +39,4 @@ public class NotificationFragment extends Fragment {
         rcvInfoNotification.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-
-
 }

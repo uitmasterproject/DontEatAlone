@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.AccordantUser;
@@ -116,8 +117,10 @@ public class OnRequireFragment extends Fragment {
                     public void run() {
                         JSONObject data = (JSONObject) args[0];
                         try {
+
                             for (int i = 0; i < data.getJSONArray("listUserLike").length(); i++) {
                                 Log.e("data", data.getJSONArray("listUserLike").getJSONObject(i) + "");
+                                Log.e("latlng", data.getJSONArray("listUserLike").getJSONObject(i).getString("latlng"));
                                 listAccordantUser.add(new AccordantUser(data.getJSONArray("listUserLike").getJSONObject(i).getString("accordantUser"),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("avatar"),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("fullName"),
@@ -125,8 +128,10 @@ public class OnRequireFragment extends Fragment {
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("gender"),
                                         Integer.parseInt(data.getJSONArray("listUserLike").getJSONObject(i).getString("age")),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("address"),
+                                        data.getJSONArray("listUserLike").getJSONObject(i).getString("latlng"),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("character")));
                             }
+                            Log.e("size", listAccordantUser.size() + "");
                             accordantUserAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -230,6 +235,8 @@ public class OnRequireFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        Toast.makeText(getContext(), "off", Toast.LENGTH_SHORT).show();
         socketIO.disconnect();
+        socketIO = null;
     }
 }
