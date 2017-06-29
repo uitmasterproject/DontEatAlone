@@ -13,15 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Select your D.O.B"
-            android:textColor="@color/color_deep_orange"
-            android:textSize="20sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
         <RelativeLayout
             android:id="@+id/custom_dialog_profile_age_rl_close"
             android:layout_width="wrap_content"
@@ -37,6 +28,16 @@
                 android:src="@drawable/ic_close_grey600_36dp" />
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Select your D.O.B"
+            android:textColor="@color/color_deep_orange"
+            android:textSize="20sp"
+            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
 
     </FrameLayout>
 
