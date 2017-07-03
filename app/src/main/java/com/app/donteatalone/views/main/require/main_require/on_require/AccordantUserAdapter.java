@@ -120,8 +120,8 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
     private void initDialog(final Dialog dialog, final int position){
         final TextView txtDate, txtTimer, txtAddress;
         Button btnInvite;
-        LinearLayout llContainerTime, llContainerPlace;
-        RelativeLayout rlContainerTime,rlContainerSearch, rlContainerPlace;
+        LinearLayout llContainerTime, llContainerPlace, llContainerSearch;
+        RelativeLayout rlContainerTime,rlContainerSearch;
         ArrayList<Restaurant> listRestaurant=new ArrayList<>();
         txtDate=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_invite_txt_date);
         txtTimer=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_invite_txt_time);
@@ -129,9 +129,9 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         btnInvite=(Button) dialog.findViewById(R.id.custom_dialog_require_on_invite_btn_invite);
         rlContainerTime=(RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_rl_container_time);
         llContainerTime=(LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_ll_container_time);
-        rlContainerPlace=(RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_rl_container_place);
         llContainerPlace=(LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_ll_container_place);
-        rlContainerSearch=(RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_ll_container_search);
+        llContainerSearch=(LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_ll_container_search);
+        rlContainerSearch=(RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_invite_rl_container_search);
         setValueTime(txtTimer,txtDate);
         setValuePlace(txtAddress,position, listRestaurant);
         btnInvite.setOnClickListener(new View.OnClickListener() {
@@ -165,13 +165,13 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
             }
         });
 
-        rlContainerPlace.setOnClickListener(new View.OnClickListener() {
+        llContainerPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(llContainerPlace.getVisibility()==View.VISIBLE)
-                    llContainerPlace.setVisibility(View.GONE);
+                if(llContainerSearch.getVisibility()==View.VISIBLE)
+                    llContainerSearch.setVisibility(View.GONE);
                 else {
-                    llContainerPlace.setVisibility(View.VISIBLE);
+                    llContainerSearch.setVisibility(View.VISIBLE);
                     setOnclickllContainerPlace(dialog,txtAddress,listRestaurant);
                 }
             }
@@ -238,10 +238,20 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
     }
 
     private void setValuePlace(TextView txtPlace,int position, ArrayList<Restaurant>listRestaurant){
+        Log.e("test","set Value Place");
+        Log.e("tag1",getRequireintoSharedPreferences("latlngaddressRequire").split(",")[0].trim());
+        Log.e("tag2",listAccordantUser.get(position).getLatlng().split(",")[0].trim());
+        Log.e("tag3",getRequireintoSharedPreferences("latlngaddressRequire").split(",")[1].trim());
+        Log.e("tag4",listAccordantUser.get(position).getLatlng().split(",")[1].trim());
+
         String latlng=Math.abs((Float.parseFloat(getRequireintoSharedPreferences("latlngaddressRequire").split(",")[0].trim())-
                 Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[0].trim()))/2)+","+
                 Math.abs((Float.parseFloat(getRequireintoSharedPreferences("latlngaddressRequire").split(",")[1].trim())-
                         Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[1].trim()))/2);
+
+
+
+
         Connect connect=new Connect();
         Call<ArrayList<Restaurant>>getListRestaurant = connect.getRetrofit().getRestaurant(latlng);
         getListRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {

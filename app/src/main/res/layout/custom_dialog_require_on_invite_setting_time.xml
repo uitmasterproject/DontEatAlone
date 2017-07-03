@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:background="@color/color_deep_orange">
 
         <TextView
@@ -34,8 +34,8 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <RelativeLayout
                 android:id="@+id/custom_dialog_require_on_invite_rl_container_time"
@@ -85,14 +85,14 @@
                 android:id="@+id/custom_dialog_require_on_invite_ll_container_time"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_marginBottom="5dp"
+                android:padding="5dp"
                 android:visibility="gone">
 
                 <com.aigestudio.wheelpicker.WheelPicker
                     android:id="@+id/custom_dialog_require_on_invite_wp_date"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     app:wheel_atmospheric="true"
                     app:wheel_curtain="true"
                     app:wheel_curtain_color="@color/color_background_for_hobby"
@@ -102,13 +102,14 @@
                     app:wheel_indicator_color="@color/gray"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
+                    app:wheel_item_space="10dp"
                     app:wheel_item_text_size="20dp" />
 
                 <com.aigestudio.wheelpicker.WheelPicker
                     android:id="@+id/custom_dialog_require_on_invite_wp_month"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_weight="3"
                     app:wheel_atmospheric="true"
                     app:wheel_curtain="true"
                     app:wheel_curtain_color="@color/color_background_for_hobby"
@@ -118,13 +119,14 @@
                     app:wheel_indicator_color="@color/gray"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
+                    app:wheel_item_space="10dp"
                     app:wheel_item_text_size="20dp" />
 
                 <com.aigestudio.wheelpicker.WheelPicker
                     android:id="@+id/custom_dialog_require_on_invite_wp_hour"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     app:wheel_atmospheric="true"
                     app:wheel_curtain="true"
                     app:wheel_curtain_color="@color/color_background_for_hobby"
@@ -134,13 +136,14 @@
                     app:wheel_indicator_color="@color/gray"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
+                    app:wheel_item_space="10dp"
                     app:wheel_item_text_size="20dp" />
 
                 <com.aigestudio.wheelpicker.WheelPicker
                     android:id="@+id/custom_dialog_require_on_invite_wp_minute"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     app:wheel_atmospheric="true"
                     app:wheel_curtain="true"
                     app:wheel_curtain_color="@color/color_background_for_hobby"
@@ -150,30 +153,39 @@
                     app:wheel_indicator_color="@color/gray"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
+                    app:wheel_item_space="10dp"
                     app:wheel_item_text_size="20dp" />
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/custom_dialog_require_on_invite_rl_container_place"
+            <LinearLayout
+                android:id="@+id/custom_dialog_require_on_invite_ll_container_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Address: "
-                    android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="16sp"
-                    app:fontPath="fonts/Montserrat-Medium.ttf" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:text="Address: "
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="16sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_weight="0.75"
+                    android:gravity="end"
                     android:orientation="horizontal">
 
                     <TextView
@@ -187,17 +199,17 @@
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/custom_dialog_require_on_invite_ll_container_place"
+                android:id="@+id/custom_dialog_require_on_invite_ll_container_search"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:orientation="vertical"
                 android:visibility="gone">
 
                 <RelativeLayout
-                    android:id="@+id/custom_dialog_require_on_invite_ll_container_search"
+                    android:id="@+id/custom_dialog_require_on_invite_rl_container_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"

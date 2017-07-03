@@ -40,6 +40,6 @@ public class ProfileHistoryFragment extends android.support.v4.app.Fragment {
         rclvHistory = (RecyclerView) viewGroup.findViewById(R.id.fragment_profile_history_rclv_history);
         rclvHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         profileHistoryAdapter = new ProfileHistoryAdapter(listProfileHistory,getContext());
-        rclvHistory.setAdapter(profileHistoryAdapter);
+//        rclvHistory.setAdapter(profileHistoryAdapter);
     }
 }
