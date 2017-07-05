@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.main.require.main_require;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,14 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aigestudio.wheelpicker.WheelPicker;
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.main.profile.ProfileDialogCustom;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -35,16 +32,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
-import static android.R.attr.color;
-import static android.R.attr.dial;
-import static android.R.attr.dialogIcon;
-import static android.R.attr.drawableBottom;
-import static android.R.attr.key;
-import static android.R.attr.value;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
@@ -217,7 +206,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         txtAdress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
         location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
         editInforRequireintoShareReference("addressRequire", txtAdress.getText().toString());
-        editInforRequireintoShareReference("latlngRequire", location);
+        editInforRequireintoShareReference("latlngaddressRequire", location);
     }
 
     @Override
@@ -323,8 +312,8 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             editor.putString("agemaxRequire", (age + 4) + "");
 
             editor.putString("addressRequire", getInforfromShareReference("account", "addressLogin"));
-            Log.e("latlng", getInforfromShareReference("account", "latlngadressLogin"));
-            editor.putString("latlngaddressRequire", getInforfromShareReference("account", "latlngadressLogin"));
+            Log.e("latlng", getInforfromShareReference("account", "latlngaddressLogin"));
+            editor.putString("latlngaddressRequire", getInforfromShareReference("account", "latlngaddressLogin"));
 
             putDataHobbyintoReference(editor);
             editor.commit();
