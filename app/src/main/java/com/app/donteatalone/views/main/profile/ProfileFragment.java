@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.register.CustomViewPager;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -71,6 +73,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     private RelativeLayout rlName, rlAge, rlGender;
     private LinearLayout llPhone, llAddress, llHobbyFood;
     private LinearLayout llHobbyCharacter, llHobbyStyle, llCharacter;
+    private ImageButton ibtnExit;
 
     private ProfileDialogCustom dialogCustom;
 
@@ -84,6 +87,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         viewGroup = inflater.inflate(R.layout.fragment_profile, null);
         init();
         itemClick();
+        clickButtonExit();
 
         FragmentManager manager = getFragmentManager();
         ProfileAdapter adapter = new ProfileAdapter(manager);
@@ -104,6 +108,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     private void init() {
         tabLayout = (TabLayout) viewGroup.findViewById(R.id.fragment_profile_tl_tabs);
         customViewPager = (CustomViewPager) viewGroup.findViewById(R.id.fragment_profile_vp_album_history);
+        ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_profile_ibtn_exit);
 
         ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_profile_iv_avatar);
         tvName = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_name);
@@ -401,6 +406,16 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
             str=str.substring(0, str.length() - 1);
         }
         tvHobbyStyle.setText(str);
+    }
+
+    private void clickButtonExit(){
+        ibtnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private String storeReference(String str) {

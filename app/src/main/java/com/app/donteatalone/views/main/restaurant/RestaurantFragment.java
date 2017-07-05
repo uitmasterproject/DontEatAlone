@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.main.restaurant;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.widget.ImageButton;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Restaurant;
+import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.CustomInvitedRestaurantAdapter;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class RestaurantFragment extends Fragment {
     private RecyclerView rcvListRestaurant;
     private CustomInvitedRestaurantAdapter adapter;
     private ArrayList<Restaurant> listRestaurant;
+    private ImageButton ibtnExit;
 
     public static RestaurantFragment newInstance() {
 
@@ -52,11 +55,13 @@ public class RestaurantFragment extends Fragment {
         init();
         showListRestaurant();
         setClickSearch();
+        clickButtonExit();
         return viewGroup;
     }
 
     private void init(){
         atctInputSearch=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_restaurant_atct_inputSearch);
+        ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_exit);
         ArrayAdapter adapterView=new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,getContext().getResources().getStringArray(R.array.District));
         atctInputSearch.setAdapter(adapterView);
         ibtnSearch=(ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_search);
@@ -69,7 +74,7 @@ public class RestaurantFragment extends Fragment {
 
     private void showListRestaurant(){
         Connect connect=new Connect();
-        Call<ArrayList<Restaurant>> methodlistRestaurant=connect.getRetrofit().getRestaurantFollowLatlng(getInfointoSharedPreferences("latlngadressLogin"));
+        Call<ArrayList<Restaurant>> methodlistRestaurant=connect.getRetrofit().getRestaurantFollowLatlng(getInfointoSharedPreferences("latlngaddressLogin"));
         methodlistRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
             @Override
             public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
@@ -134,6 +139,16 @@ public class RestaurantFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+    }
+
+    private void clickButtonExit(){
+        ibtnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

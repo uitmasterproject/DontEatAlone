@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
@@ -151,14 +150,13 @@ public class CustomDialogItemNotification {
 
     private void clickbtnResponseInvatition(String result) throws URISyntaxException, JSONException {
         if(socketIO==null){
-            Toast.makeText(context,"off",Toast.LENGTH_SHORT).show();
             CustomSocket socket=new CustomSocket();
             socketIO=socket.getmSocket();
             socketIO.connect();
             setEventSendResult(result,false);
         }
         else {
-            Toast.makeText(context,socketIO+"",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,socketIO+"",Toast.LENGTH_SHORT).show();
             setEventSendResult(result, true);
         }
     }

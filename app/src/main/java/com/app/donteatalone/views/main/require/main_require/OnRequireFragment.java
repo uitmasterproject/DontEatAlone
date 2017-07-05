@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.AccordantUser;
@@ -235,7 +234,6 @@ public class OnRequireFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        Toast.makeText(getContext(), "off", Toast.LENGTH_SHORT).show();
         socketIO.disconnect();
         socketIO = null;
     }

@@ -13,10 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.GetDatafromDB;
+import com.app.donteatalone.views.login.LoginActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -30,6 +32,7 @@ public class BlogFragment extends Fragment {
     private Button btnStatus;
     private ImageView imgAvatar;
     private String phone;
+    private ImageButton ibtnExit;
 
     public static BlogFragment newInstance(){
 
@@ -46,12 +49,14 @@ public class BlogFragment extends Fragment {
         GetDatafromDB getDatafromDB=new GetDatafromDB(getActivity(),viewGroup);
         getDatafromDB.execute(phone);
         clickButtonbtnStatus();
+        clickButtonExit();
         return viewGroup;
     }
 
     private void init(){
         btnStatus=(Button) viewGroup.findViewById(R.id.fragment_blog_edt_status);
         imgAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_blog_avatar);
+        ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_blog_ibtn_exit);
     }
 
     private void clickButtonbtnStatus(){
@@ -61,6 +66,16 @@ public class BlogFragment extends Fragment {
                 Intent intent=new Intent(getActivity(),StatusActivity.class);
                 startActivity(intent);
                 //getActivity().overridePendingTransition(R.animator.animator_bottom_up, R.animator.stay);
+            }
+        });
+    }
+
+    private void clickButtonExit(){
+        ibtnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

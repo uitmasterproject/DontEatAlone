@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Connect {
 
-//    private static String API_BASE_URL = "http://10.0.214.87:3000/"; //KTX
+//    private static String API_BASE_URL = "http://10.0.214.87:3000/"; //KTX'Han
     private static String API_BASE_URL = "http://10.0.128.134:3000/"; //KTX's Nga
 
     public static Structure getRetrofit() {
