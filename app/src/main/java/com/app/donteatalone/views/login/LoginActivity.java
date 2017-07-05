@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("avatarLogin", userName.getAvatar());
         editor.putString("birthdayLogin", userName.getBirthday());
         editor.putString("addressLogin", userName.getAddress());
-        editor.putString("latlngadressLogin", userName.getLatLngAdress());
+        editor.putString("latlngaddressLogin", userName.getLatLngAdress());
         editor.putString("hobbyLogin", userName.getHobby());
         editor.putString("characterLogin", userName.getCharacter());
         editor.commit();

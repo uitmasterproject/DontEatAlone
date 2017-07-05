@@ -13,6 +13,7 @@ import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.views.main.blog.CustomBlogRecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +47,7 @@ public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayLi
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
                 infoBlog=response.body();
-
+                Collections.reverse(infoBlog);
                 onProgressUpdate(infoBlog);
             }
 

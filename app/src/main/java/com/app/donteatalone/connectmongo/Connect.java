@@ -10,13 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Connect {
-    //private static String API_BASE_URL = "http://10.50.214.87:3000/"; //KTX
 
-    //private static String API_BASE_URL = "http://192.168.5.46:3000/"; //Test
-
-   private static String API_BASE_URL = "http://192.168.31.169:3000/"; //Test
-
-    //private static String API_BASE_URL ="http://192.168.28.232:3000";//Feel
+//    private static String API_BASE_URL = "http://10.0.214.87:3000/"; //KTX
+    private static String API_BASE_URL = "http://10.0.128.134:3000/"; //KTX's Nga
 
     public static Structure getRetrofit() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile Album Fragment"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+    <GridView android:id="@+id/fragment_profile_album_gv_image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center" />
 
 </LinearLayout>

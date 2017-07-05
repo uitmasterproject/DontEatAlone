@@ -16,7 +16,6 @@ import android.util.Base64;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
@@ -300,7 +299,6 @@ public class StatusActivity extends Activity {
                 Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
                 tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
                 bitmap = tempbitmap;
-                imgAvatar.setImageBitmap(tempbitmap);
                 if(bitmap!=null){
                     setElementImageforLinearLayout(bitmap);
                 }

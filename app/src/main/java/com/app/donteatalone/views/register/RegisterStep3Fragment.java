@@ -226,6 +226,30 @@ public class RegisterStep3Fragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
+//                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+//                File destination = new File(Environment.getExternalStorageDirectory(),
+//                        System.currentTimeMillis() + ".jpg");
+//                FileOutputStream fo;
+//                try {
+//                    destination.createNewFile();
+//                    fo = new FileOutputStream(destination);
+//                    fo.write(bytes.toByteArray());
+//                    fo.close();
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                bitmap=Bitmap.createScaledBitmap(thumbnail,90,90,true);
+//                imgAvatar.setImageBitmap(thumbnail);
+
+
+
+
             } else if (requestCode == 2) {
                 final Uri imageUri = data.getData();
                 InputStream imageStream = null;

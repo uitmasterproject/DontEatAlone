@@ -69,7 +69,16 @@ public interface Structure {
 
         @POST("/profile_update")
         Call<Status> updateProfile(@Body InfoProfileUpdate item);
+        @GET("/profile/allImage/{phone}")
+        Call<ArrayList<String>> getAllImage(@Path("phone") String phone);
+
 
         @GET("/restaurant/{latlng}")
         Call<ArrayList<Restaurant>> getRestaurant(@Path("latlng") String latlng);
+        @GET("/restaurant/latlng/{latlng}")
+        Call<ArrayList<Restaurant>> getRestaurantFollowLatlng(@Path("latlng") String latlng);
+        @GET("/restaurant/district/{district}")
+        Call<ArrayList<Restaurant>> getRestaurantFollowDistrict(@Path("district") String district);
+        @GET("/restaurant")
+        Call<ArrayList<Restaurant>> getAllRestaurant();
 }

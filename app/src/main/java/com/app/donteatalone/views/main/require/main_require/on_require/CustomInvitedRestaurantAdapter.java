@@ -25,6 +25,10 @@ public class CustomInvitedRestaurantAdapter extends RecyclerView.Adapter<CustomI
         this.textView=textView;
     }
 
+    public CustomInvitedRestaurantAdapter(ArrayList<Restaurant> _listRestaurant){
+        this.listRestaurant=_listRestaurant;
+    }
+
     @Override
     public CustomInvitedRestaurantAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recyclerview_restaurant,null);
@@ -39,7 +43,8 @@ public class CustomInvitedRestaurantAdapter extends RecyclerView.Adapter<CustomI
         holder.tblContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView.setText(listRestaurant.get(position).getName());
+                if(textView!=null)
+                    textView.setText(listRestaurant.get(position).getName());
             }
         });
     }
