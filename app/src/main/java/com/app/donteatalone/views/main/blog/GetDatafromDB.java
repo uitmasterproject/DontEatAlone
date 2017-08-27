@@ -1,16 +1,17 @@
-package com.app.donteatalone.connectmongo;
+package com.app.donteatalone.views.main.blog;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.UserName;
-import com.app.donteatalone.views.main.blog.CustomBlogRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,7 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by ChomChom on 3/16/2017.
+ * Created by ChomChom on 3/16/2017
  */
 
 public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayList<InfoBlog>> {
@@ -47,6 +48,7 @@ public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayLi
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
                 infoBlog=response.body();
+                Log.e("inforBlog",infoBlog.toString());
                 Collections.reverse(infoBlog);
                 onProgressUpdate(infoBlog);
             }
@@ -61,11 +63,20 @@ public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayLi
     @Override
     protected void onProgressUpdate(ArrayList<InfoBlog>... infoBlog) {
         super.onProgressUpdate(infoBlog);
+        ArrayList<ArrayList<InfoBlog>> myInfoBlogs = new ArrayList<>();
+        for(int i=0;i<infoBlog[0].size();i=i+2){
+            ArrayList<InfoBlog> temp=new ArrayList<>();
+            temp.add(infoBlog[0].get(i));
+            if((i+1)< infoBlog[0].size()) {
+                temp.add(infoBlog[0].get(i + 1));
+            }
+            myInfoBlogs.add(temp);
+        }
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_blog_rcv_my_blog);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        CustomBlogRecyclerViewAdapter adapter=new CustomBlogRecyclerViewAdapter(context,infoBlog[0],phone);
+        CustomBlogRecyclerViewAdapter adapter=new CustomBlogRecyclerViewAdapter(context,myInfoBlogs);
         recyclerView.setAdapter(adapter);
     }
 

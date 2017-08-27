@@ -97,14 +97,10 @@ public class RegisterStep1Fragment extends Fragment {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {
                 if (response.body().getStatus().equals("this phone isnt exits") == true) {
-//                    changeDataEdtPhone(edtCode,rlNext);
-                } else {
-             /*   if(response.body().getStatus().equals("this phone isnt exits")==true){
-                    txtRecomment.setText("Wait for minute to recept code. Input code");
-                    txtRecomment.setTextColor(Color.GRAY);
+                    rlVerifyCode.setVisibility(View.VISIBLE);
                     edtCode.setVisibility(View.VISIBLE);
-                    changeDataEdtPhone(edtCode,btnNextStep);*/
-
+                    rlNext.setVisibility(View.VISIBLE);
+                } else {
                     edtPhone.setError("This phone was exit");
                     edtPhone.setText("");
                 }
@@ -135,10 +131,8 @@ public class RegisterStep1Fragment extends Fragment {
                 if (edtPhone.getText().toString().equals("") == true) {
                     edtPhone.setError("Mobile Number field not entry");
                 } else {
-                    rlVerifyCode.setVisibility(View.VISIBLE);
-                    edtCode.setVisibility(View.VISIBLE);
-                    rlNext.setVisibility(View.VISIBLE);
                     checkExitsPhone();
+
                 }
             }
         });
@@ -153,6 +147,7 @@ public class RegisterStep1Fragment extends Fragment {
                     edtCode.setError("Verify code field not entry");
                 } else {
                     userName.setPhone(edtPhone.getText().toString());
+                    Log.e("phone",userName.getPhone());
                     _mViewPager.setCurrentItem(1, true);
                 }
             }

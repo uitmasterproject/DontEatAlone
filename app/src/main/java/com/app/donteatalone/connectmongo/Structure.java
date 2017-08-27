@@ -58,7 +58,8 @@ public interface Structure {
         Call<ArrayList<InfoBlog>> getListInfoBlog(@Path("phone") String phone);
         @DELETE("/statusblog/{phone}/{date}")
         Call<Status> deleteStatusBlog(@Path("phone")String phone,@Path("date") String date);
-
+        @PUT("/statusblog/{phone}")
+        Call<Status> editStatusBlog(@Body InfoBlog infoBlog, @Path("phone") String phone);
 
         @GET("/notification/{phone}")
         Call<ArrayList<InfoNotification>> getNotification(@Path("phone") String phone);
@@ -71,6 +72,8 @@ public interface Structure {
         Call<Status> updateProfile(@Body InfoProfileUpdate item);
         @GET("/profile/allImage/{phone}")
         Call<ArrayList<String>> getAllImage(@Path("phone") String phone);
+        @GET("/profile/publicBlog/{phone}/{limit}")
+        Call<ArrayList<InfoBlog>> getPublicBlog(@Path("phone") String phone, @Path("limit") String limit);
 
 
         @GET("/restaurant/{latlng}")

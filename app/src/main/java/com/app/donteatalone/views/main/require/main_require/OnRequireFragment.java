@@ -34,7 +34,7 @@ import static com.app.donteatalone.views.main.MainActivity.txtNotification;
 import static com.google.android.gms.internal.zzir.runOnUiThread;
 
 /**
- * Created by ChomChom on 5/8/2017.
+ * Created by ChomChom on 5/8/2017
  */
 
 public class OnRequireFragment extends Fragment {

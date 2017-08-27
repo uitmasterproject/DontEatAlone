@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
+
+import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,8 +91,10 @@ public class RegisterStep2Fragment extends Fragment {
                     if(edtPassword.getText().toString().length()<6){
                         edtPassword.setError("Length password is longer 6 character");
                     } else {
-                        RegisterStep1Fragment.userName.setFullname(edtFullName.getText().toString());
-                        RegisterStep1Fragment.userName.setPassword(edtPassword.getText().toString());
+                        userName.setFullname(edtFullName.getText().toString());
+                        userName.setPassword(edtPassword.getText().toString());
+                        Log.e("fullname",userName.getFullname());
+                        Log.e("password",userName.getPassword());
                         _mViewPager.setCurrentItem(2,true);
                     }
                 }

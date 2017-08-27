@@ -129,4 +129,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.victor:lib:1.0.4'
+
 }

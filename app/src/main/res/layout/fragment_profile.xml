@@ -43,7 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/blue_gray"
-            android:gravity="center">
+            android:gravity="center"
+            android:id="@+id/fragment_profile_rl_suggest">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +82,8 @@
                     android:layout_alignBottom="@id/fragment_profile_iv_avatar"
                     android:layout_alignEnd="@id/fragment_profile_iv_avatar"
                     android:background="@color/white_anpha_40"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/fragment_profile_ll_edit_avatar">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -224,33 +226,6 @@
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
             </LinearLayout>
-
-            <!--&lt;!&ndash;school&ndash;&gt;-->
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="10dp">-->
-
-            <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="start"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@drawable/ic_school_grey600_24dp" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/fragment_profile_tv_school"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:maxLines="3"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textSize="16sp"-->
-            <!--app:fontPath="fonts/Montserrat-Medium" />-->
-
-            <!--</LinearLayout>-->
 
             <!--address-->
             <LinearLayout
@@ -483,7 +458,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/white">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/fragment_profile_tl_tabs"

@@ -335,4 +335,9 @@
         <item>Huyện Nhà Bè</item>
         <item>Huyện Cần Giờ</item>
     </string-array>
+
+    <string-array name="limit">
+        <item>private</item>
+        <item>public</item>
+    </string-array>
 </resources>

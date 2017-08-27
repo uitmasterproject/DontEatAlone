@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.connectmongo.GetDatafromDB;
 import com.app.donteatalone.views.login.LoginActivity;
 
 import static android.content.Context.MODE_PRIVATE;

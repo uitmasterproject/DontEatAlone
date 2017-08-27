@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.register;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,29 +10,20 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.aigestudio.wheelpicker.widgets.WheelYearPicker;
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 
-import net.danlew.android.joda.JodaTimeAndroid;
-
 import org.joda.time.LocalDate;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
-import static android.content.Context.MODE_PRIVATE;
+import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -169,7 +159,8 @@ public class RegisterStep4Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterStep1Fragment.userName.setBirthday(toStringDate());
+                userName.setBirthday(toStringDate());
+                Log.e("birthday",userName.getBirthday());
                 _mViewPager.setCurrentItem(4, true);
             }
         });

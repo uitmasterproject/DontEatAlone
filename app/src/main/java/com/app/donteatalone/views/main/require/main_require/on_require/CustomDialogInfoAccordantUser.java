@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoNotification;
-import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.notification.CustomNotificationAdapter;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -144,8 +143,12 @@ public class CustomDialogInfoAccordantUser {
                     e.printStackTrace();
                 }
                 dialog.dismiss();
-                Intent intent=new Intent(context, MainActivity.class);
-                intent.putExtra("viewProfile","customer");
+                Intent intent=new Intent(context, ProfileAccordantUser.class);
+                try {
+                    intent.putExtra("PhoneAccordantUser",data.getJSONObject("invitation").getString("phoneInviter"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 context.startActivity(intent);
             }
         });

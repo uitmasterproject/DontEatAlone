@@ -1,7 +1,5 @@
 package com.app.donteatalone.views.register;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +15,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
+import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -41,6 +42,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.WINDOW_SERVICE;
+import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -117,7 +120,7 @@ public class RegisterStep3Fragment extends Fragment {
         imgManAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animationImageAvatar(rltManAvatar, R.drawable.avatar_man, 120);
+                animationImageAvatar(rltManAvatar, R.drawable.avatar_man);
                 gender = "Man";
                 intChosen = 0;
             }
@@ -125,27 +128,32 @@ public class RegisterStep3Fragment extends Fragment {
         imgWomanAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animationImageAvatar(rltWomanAvatar, R.drawable.avatar_woman, 350);
+                animationImageAvatar(rltWomanAvatar, R.drawable.avatar_woman);
                 gender = "Woman";
                 intChosen = 0;
             }
         });
     }
 
-    private void animationImageAvatar(RelativeLayout re, int sourceimg, int px) {
+    private void animationImageAvatar(RelativeLayout re, int sourceimg) {
+        Display size=((WindowManager) getContext().getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        int x=size.getWidth()/2 - re.getWidth()/2;
         bitmap = BitmapFactory.decodeResource(getResources(), sourceimg);
         rltManAvatar.setVisibility(View.GONE);
         rltWomanAvatar.setVisibility(View.GONE);
         rltAvatar.setVisibility(View.VISIBLE);
         imgAvatar.setImageResource(sourceimg);
-        int x = (int) re.getX();
-        int y = (int) re.getY();
-        ObjectAnimator animX = ObjectAnimator.ofFloat(rltAvatar, "x", 350);
-        ObjectAnimator animY = ObjectAnimator.ofFloat(rltAvatar, "y", 0);
-        AnimatorSet animSetXY = new AnimatorSet();
-        animSetXY.playTogether(animX, animY);
-        animSetXY.start();
+//        ObjectAnimator animX = ObjectAnimator.ofFloat(rltAvatar, "x", 350);
+//        ObjectAnimator animY = ObjectAnimator.ofFloat(rltAvatar, "y", 0);
+//        AnimatorSet animSetXY = new AnimatorSet();
+//        animSetXY.playTogether(animX, animY);
+//        animSetXY.start();
+        TranslateAnimation animation=new TranslateAnimation(imgManAvatar.getX(),imgAvatar.getX(),re.getY(),re.getY());
+        animation.setDuration(100000);
+        animation.setFillAfter(false);
+        rltAvatar.startAnimation(animation);
     }
+
 
     private void setClickAvatar() {
         rltAvatar.setOnClickListener(new View.OnClickListener() {
@@ -293,8 +301,10 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (intChosen == 1) {
-                    RegisterStep1Fragment.userName.setAvatar(convertBitmaptoString());
-                    RegisterStep1Fragment.userName.setGender(gender);
+                    userName.setAvatar(convertBitmaptoString());
+                    userName.setGender(gender);
+                    Log.e("gender",userName.getGender());
+                    Log.e("avatar",userName.getAvatar());
                     _mViewPager.setCurrentItem(3, true);
                 } else if (intChosen == -1) {
                     tvTutorial.setText("You have to choose your gender");

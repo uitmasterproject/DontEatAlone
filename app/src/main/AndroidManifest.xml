@@ -20,6 +20,8 @@
     <application
         android:name="com.app.donteatalone.MainApplication_"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -34,15 +36,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".views.register.RegisterActivity">
         </activity>
         <activity android:name=".views.main.MainActivity">
-
         </activity>
-
         <activity android:name=".views.main.blog.StatusActivity">
         </activity>
+        <activity android:name=".views.main.require.main_require.on_require.ProfileAccordantUser">
+        </activity>
+        <activity android:name=".views.main.blog.DetailBlogActivity"/>
 
         // for activity facebook
         <!--<activity android:name="com.facebook.FacebookActivity"-->

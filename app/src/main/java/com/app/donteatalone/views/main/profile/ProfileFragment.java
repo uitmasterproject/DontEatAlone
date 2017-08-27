@@ -49,6 +49,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
@@ -74,11 +75,11 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     private LinearLayout llPhone, llAddress, llHobbyFood;
     private LinearLayout llHobbyCharacter, llHobbyStyle, llCharacter;
     private ImageButton ibtnExit;
-
-    private ProfileDialogCustom dialogCustom;
+    private ArrayList<Fragment> listFragment;
 
     public static ProfileFragment newInstance() {
-        return new ProfileFragment();
+        ProfileFragment fragment=new ProfileFragment();
+        return fragment;
     }
 
     @Nullable
@@ -89,12 +90,17 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         itemClick();
         clickButtonExit();
 
-        FragmentManager manager = getFragmentManager();
-        ProfileAdapter adapter = new ProfileAdapter(manager);
-        customViewPager.setAdapter(adapter);
+        FragmentManager manager = getChildFragmentManager();
+        listFragment=new ArrayList<>();
+        listFragment.add(new ProfileBlogFragment("ownViewProfile"));
+        listFragment.add(new ProfileHistoryFragment("ownViewProfile"));
         tabLayout.setupWithViewPager(customViewPager);
         customViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setTabsFromPagerAdapter(adapter);
+        ProfileAdapter adapter = new ProfileAdapter(manager,listFragment);
+        customViewPager.setAdapter(adapter);
+        tabLayout.getTabAt(0).setText("Blog");
+        tabLayout.getTabAt(1).setText("History");
+        Log.e("ProfileFragment","ProfileFragment");
 
         return viewGroup;
     }

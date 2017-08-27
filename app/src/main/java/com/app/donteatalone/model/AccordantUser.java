@@ -1,7 +1,7 @@
 package com.app.donteatalone.model;
 
 /**
- * Created by ChomChom on 30-May-17.
+ * Created by ChomChom on 30-May-17
  */
 
 public class AccordantUser {

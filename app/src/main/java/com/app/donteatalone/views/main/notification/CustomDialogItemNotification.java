@@ -2,6 +2,7 @@ package com.app.donteatalone.views.main.notification;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.CustomSocket;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 import com.github.nkzawa.emitter.Emitter;
 
 import org.json.JSONException;
@@ -99,7 +101,9 @@ public class CustomDialogItemNotification {
         btnViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(context, ProfileAccordantUser.class);
+                intent.putExtra("PhoneAccordantUser",data.getUserSend());
+                context.startActivity(intent);
             }
         });
 

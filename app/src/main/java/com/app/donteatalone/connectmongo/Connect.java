@@ -13,6 +13,8 @@ public class Connect {
 
 //    private static String API_BASE_URL = "http://10.0.214.87:3000/"; //KTX'Han
     private static String API_BASE_URL = "http://10.0.128.134:3000/"; //KTX's Nga
+    //private static String API_BASE_URL = "http://192.168.0.27:3000/";//STYL
+    //private static String API_BASE_URL = "http://192.168.28.237:3000/";//Feel
 
     public static Structure getRetrofit() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -24,9 +26,7 @@ public class Connect {
 
         Retrofit retrofit =
                 builder
-                        .client(
-                                httpClient.build()
-                        )
+                        .client(httpClient.build())
                         .build();
 
         Structure client = retrofit.create(Structure.class);

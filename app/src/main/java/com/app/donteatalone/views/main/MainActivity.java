@@ -66,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
         setupTabIcons();
 
         if (getIntent().getStringExtra("viewProfile") != null) {
-            viewPager.setCurrentItem(2);
+            if (getIntent().getStringExtra("viewProfile").equals("notification"))
+                viewPager.setCurrentItem(1);
+            else if (getIntent().getStringExtra("viewProfile").equals("viewProfile"))
+                viewPager.setCurrentItem(2);
+            else if(getIntent().getStringExtra("viewProfile").equals("blogFragmment"))
+                viewPager.setCurrentItem(0);
         }
     }
 

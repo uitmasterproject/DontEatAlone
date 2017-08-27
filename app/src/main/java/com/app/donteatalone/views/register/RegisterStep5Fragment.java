@@ -2,7 +2,6 @@ package com.app.donteatalone.views.register;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,7 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
+import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
  * Created by ChomChom on 4/7/2017.
@@ -137,8 +135,10 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterStep1Fragment.userName.setAddress(edtAddress.getText().toString());
-                RegisterStep1Fragment.userName.setLatLngAdress(location);
+                userName.setAddress(edtAddress.getText().toString());
+                userName.setLatLngAdress(location);
+                Log.e("address",userName.getAddress());
+                Log.e("latlng",userName.getLatLngAdress());
                 _mViewPager.setCurrentItem(5, true);
             }
         });
