@@ -58,7 +58,7 @@ public interface Structure {
         Call<ArrayList<InfoBlog>> getListInfoBlog(@Path("phone") String phone);
         @DELETE("/statusblog/{phone}/{date}")
         Call<Status> deleteStatusBlog(@Path("phone")String phone,@Path("date") String date);
-        @PUT("/statusblog/{phone}")
+        @PUT("/statusblog/edit/{phone}")
         Call<Status> editStatusBlog(@Body InfoBlog infoBlog, @Path("phone") String phone);
 
         @GET("/notification/{phone}")

@@ -192,7 +192,7 @@ public class StatusActivity extends Activity {
             public void onClick(View v) {
                 Connect connect = new Connect();
                 Call<Status> modifiedInfoBlog;
-                if (infoBlog != null) {
+                if (infoBlog == null) {
                     modifiedInfoBlog = connect.getRetrofit().addStatusBlog(setInfoStatus(), phone);
                 } else {
                     modifiedInfoBlog = connect.getRetrofit().editStatusBlog(setInfoStatus(), phone);
@@ -456,7 +456,7 @@ public class StatusActivity extends Activity {
         if (check == 1) {
             llContainer.addView(imgAddPhotoContent);
 
-            EditText edtAddContentBlog = new EditText(this);
+            EditText edtAddContentBlog = new EditText(StatusActivity.this);
             edtAddContentBlog.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             edtAddContentBlog.setBackgroundResource(R.drawable.design_blog_edt_write_status);
             edtAddContentBlog.requestFocus();
