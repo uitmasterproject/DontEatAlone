@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.register;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,9 +44,8 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private LinearLayout llRoot;
     private String location;
 
-    public static Fragment newInstance(Context context) {
-        RegisterStep5Fragment f = new RegisterStep5Fragment();
-        return f;
+    public static Fragment newInstance() {
+        return new RegisterStep5Fragment();
     }
 
     @Override
@@ -66,6 +64,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         edtAddress = (EditText) viewGroup.findViewById(R.id.fragment_register_step5_edt_address);
+        edtAddress.requestFocus();
         rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step5_btn_next);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step5_close);
         llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step5_ll_root);
@@ -137,8 +136,6 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             public void onClick(View v) {
                 userName.setAddress(edtAddress.getText().toString());
                 userName.setLatLngAdress(location);
-                Log.e("address",userName.getAddress());
-                Log.e("latlng",userName.getLatLngAdress());
                 _mViewPager.setCurrentItem(5, true);
             }
         });

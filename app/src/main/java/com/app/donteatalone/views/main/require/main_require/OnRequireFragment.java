@@ -179,12 +179,6 @@ public class OnRequireFragment extends Fragment {
                             if (((JSONObject) args[0]).getString("phoneReceiver").equals(getInfointoSharedPreferences("phoneLogin")) == true) {
                                 Log.e("sendInvite", Integer.parseInt(txtNotification.getText().toString()) + 1 + "");
                                 txtNotification.setText(Integer.parseInt(txtNotification.getText().toString()) + 1 + "");
-//                                llContainer.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        viewPager.setCurrentItem(1);
-//                                    }
-//                                });
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

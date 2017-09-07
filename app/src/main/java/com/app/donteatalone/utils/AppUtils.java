@@ -1,11 +1,9 @@
 package com.app.donteatalone.utils;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
@@ -60,7 +58,9 @@ public class AppUtils {
     //Hide keyboard when touch outside
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        if(activity.getCurrentFocus()!=null) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     public static void onBackPressed() {

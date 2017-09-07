@@ -23,19 +23,19 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         Fragment f = new Fragment();
         switch(position){
             case 0:
-                f=RegisterStep1Fragment.newInstance(_context);
+                f=RegisterStep1Fragment.newInstance();
                 break;
             case 1:
-                f=RegisterStep2Fragment.newInstance(_context);
+                f=RegisterStep2Fragment.newInstance();
                 break;
             case 2:
-                f=RegisterStep3Fragment.newInstance(_context);
+                f=RegisterStep3Fragment.newInstance();
                 break;
             case 3:
                 f=RegisterStep4Fragment.newInstance(_context);
                 break;
             case 4:
-                f=RegisterStep5Fragment.newInstance(_context);
+                f=RegisterStep5Fragment.newInstance();
                 break;
             case 5:
                 f=RegisterStep6Fragment.newInstance(_context);

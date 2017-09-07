@@ -24,7 +24,7 @@
     </style>
 
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">

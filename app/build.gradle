@@ -20,7 +20,7 @@ android {
         release {
             keyAlias 'DontEatAlone'
             keyPassword 'com.app.donteatalone'
-            storeFile file('E:/DontEatAlone/app/keystores/release-keystore.jks')
+//            storeFile file('E:/DontEatAlone/app/keystores/release-keystore.jks')
             storePassword 'com.app.donteatalone'
         }
         debug {

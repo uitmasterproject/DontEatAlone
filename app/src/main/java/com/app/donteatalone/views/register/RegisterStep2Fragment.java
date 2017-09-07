@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.register;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -30,9 +29,8 @@ public class RegisterStep2Fragment extends Fragment {
     private RelativeLayout rlClose;
     private LinearLayout llRoot;
 
-    public static Fragment newInstance(Context context) {
-        RegisterStep2Fragment f = new RegisterStep2Fragment();
-        return f;
+    public static Fragment newInstance() {
+        return new RegisterStep2Fragment();
     }
 
     @Override
@@ -79,12 +77,12 @@ public class RegisterStep2Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edtFullName.getText().toString().equals("") == true ||
-                        edtPassword.getText().toString().equals("") == true) {
-                    if (edtFullName.getText().toString().equals("") == true) {
+                if (edtFullName.getText().toString().equals("") ||
+                        edtPassword.getText().toString().equals("")) {
+                    if (edtFullName.getText().toString().equals("")) {
                         edtFullName.setError("Full Name field not entry");
                     }
-                    if (edtPassword.getText().toString().equals("") == true) {
+                    if (edtPassword.getText().toString().equals("")) {
                         edtPassword.setError("Password field not entry");
                     }
                 } else {
@@ -93,8 +91,6 @@ public class RegisterStep2Fragment extends Fragment {
                     } else {
                         userName.setFullname(edtFullName.getText().toString());
                         userName.setPassword(edtPassword.getText().toString());
-                        Log.e("fullname",userName.getFullname());
-                        Log.e("password",userName.getPassword());
                         _mViewPager.setCurrentItem(2,true);
                     }
                 }

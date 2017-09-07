@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.register;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,7 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -62,9 +60,8 @@ public class RegisterStep3Fragment extends Fragment {
     private LinearLayout llRoot;
     private int intChosen = -1;
 
-    public static Fragment newInstance(Context context) {
-        RegisterStep3Fragment f = new RegisterStep3Fragment();
-        return f;
+    public static Fragment newInstance() {
+        return new RegisterStep3Fragment();
     }
 
     @Nullable
@@ -213,8 +210,9 @@ public class RegisterStep3Fragment extends Fragment {
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                     Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
                     tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+                    performCrop(data.getData());
                     bitmap = tempbitmap;
-                    imgAvatar.setImageBitmap(tempbitmap);
+//                    imgAvatar.setImageBitmap(tempbitmap);
                     String path = android.os.Environment.getExternalStorageDirectory().toString();
                     f.delete();
                     OutputStream outFile = null;
@@ -268,27 +266,26 @@ public class RegisterStep3Fragment extends Fragment {
                 }
                 Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
                 tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+                performCrop(data.getData());
                 bitmap = tempbitmap;
-                imgAvatar.setImageBitmap(tempbitmap);
+//                imgAvatar.setImageBitmap(tempbitmap);
             } else if (requestCode == 3) {
                 Bundle extras = data.getExtras();
-                Bitmap thePic = extras.getParcelable("data");
-
-                imgAvatar.setImageBitmap(thePic);
+                    Bitmap thePic = extras.getParcelable("data");
+                    imgAvatar.setImageBitmap(thePic);
             }
         }
     }
 
-    private void performCrop() {
-
+    private void performCrop(Uri uri) {
         try {
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            cropIntent.setType("image/*");
-            cropIntent.putExtra("crop", "true");
+            cropIntent.setDataAndType(uri, "image/*");
+            cropIntent.putExtra("crop", true);
             cropIntent.putExtra("aspectX", 1);
             cropIntent.putExtra("aspectY", 1);
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
+            cropIntent.putExtra("outputX", 128);
+            cropIntent.putExtra("outputY", 128);
             cropIntent.putExtra("return-data", true);
             startActivityForResult(cropIntent, 3);
         } catch (ActivityNotFoundException anfe) {
@@ -303,8 +300,6 @@ public class RegisterStep3Fragment extends Fragment {
                 if (intChosen == 1) {
                     userName.setAvatar(convertBitmaptoString());
                     userName.setGender(gender);
-                    Log.e("gender",userName.getGender());
-                    Log.e("avatar",userName.getAvatar());
                     _mViewPager.setCurrentItem(3, true);
                 } else if (intChosen == -1) {
                     tvTutorial.setText("You have to choose your gender");

@@ -1,12 +1,10 @@
 package com.app.donteatalone.views.register;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,9 +33,8 @@ public class RegisterStep1Fragment extends Fragment {
     private LinearLayout llRoot;
     public static UserName userName;
 
-    public static Fragment newInstance(Context context) {
-        RegisterStep1Fragment f = new RegisterStep1Fragment();
-        return f;
+    public static Fragment newInstance() {
+        return new RegisterStep1Fragment();
     }
 
     @Override
@@ -96,10 +93,11 @@ public class RegisterStep1Fragment extends Fragment {
         checkPhone.enqueue(new Callback<Status>() {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {
-                if (response.body().getStatus().equals("this phone isnt exits") == true) {
+                if (response.body().getStatus().equals("0")) {
                     rlVerifyCode.setVisibility(View.VISIBLE);
                     edtCode.setVisibility(View.VISIBLE);
                     rlNext.setVisibility(View.VISIBLE);
+                    edtCode.requestFocus();
                 } else {
                     edtPhone.setError("This phone was exit");
                     edtPhone.setText("");
@@ -108,7 +106,6 @@ public class RegisterStep1Fragment extends Fragment {
 
             @Override
             public void onFailure(Call<Status> call, Throwable t) {
-                Log.e("ERROR Phone Exits", t.toString() + "*************************************");
             }
         });
     }
@@ -128,7 +125,8 @@ public class RegisterStep1Fragment extends Fragment {
         rlSendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edtPhone.getText().toString().equals("") == true) {
+                AppUtils.hideSoftKeyboard(getActivity());
+                if (edtPhone.getText().toString().equals("")) {
                     edtPhone.setError("Mobile Number field not entry");
                 } else {
                     checkExitsPhone();
@@ -143,11 +141,10 @@ public class RegisterStep1Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edtCode.getText().toString().equals("") == true) {
+                if (edtCode.getText().toString().equals("")) {
                     edtCode.setError("Verify code field not entry");
                 } else {
                     userName.setPhone(edtPhone.getText().toString());
-                    Log.e("phone",userName.getPhone());
                     _mViewPager.setCurrentItem(1, true);
                 }
             }

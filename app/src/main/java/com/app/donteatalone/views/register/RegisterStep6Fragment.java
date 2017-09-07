@@ -1,7 +1,6 @@
 package com.app.donteatalone.views.register;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -20,8 +18,6 @@ import com.app.donteatalone.model.Hobby;
 import com.app.donteatalone.utils.AppUtils;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/7/2017.
