@@ -73,10 +73,12 @@ public class ProfileBlogFragment extends Fragment {
         getPublicBlog.enqueue(new Callback<ArrayList<InfoBlog>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
-                listBlog.clear();
-                listBlog.addAll(response.body());
-                Collections.reverse(listBlog);
-                adapter.notifyDataSetChanged();
+                if(response.body()!=null) {
+                    listBlog.clear();
+                    listBlog.addAll(response.body());
+                    Collections.reverse(listBlog);
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override

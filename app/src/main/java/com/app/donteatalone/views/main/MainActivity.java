@@ -98,12 +98,14 @@ public class MainActivity extends AppCompatActivity {
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
-                for (InfoNotification element : response.body()) {
-                    InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
-                            element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
-                    listInfoNotification.add(info);
+                if(response.body()!=null) {
+                    for (InfoNotification element : response.body()) {
+                        InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
+                                element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
+                        listInfoNotification.add(info);
+                    }
+                    Collections.reverse(listInfoNotification);
                 }
-                Collections.reverse(listInfoNotification);
                 rcvInfoNotification.setAdapter(adapter);
             }
 

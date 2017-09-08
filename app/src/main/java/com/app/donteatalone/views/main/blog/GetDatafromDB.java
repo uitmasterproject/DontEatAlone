@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.app.donteatalone.R;
@@ -47,10 +46,11 @@ public class GetDatafromDB extends AsyncTask<String,ArrayList<InfoBlog>, ArrayLi
         userLogin.enqueue(new Callback<ArrayList<InfoBlog>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
-                infoBlog=response.body();
-                Log.e("inforBlog",infoBlog.toString());
-                Collections.reverse(infoBlog);
-                onProgressUpdate(infoBlog);
+                if(response.body()!=null) {
+                    infoBlog = response.body();
+                    Collections.reverse(infoBlog);
+                    onProgressUpdate(infoBlog);
+                }
             }
 
             @Override
