@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
@@ -32,6 +34,7 @@ public class RegisterStep1Fragment extends Fragment {
     private RelativeLayout rlClose;
     private LinearLayout llRoot;
     public static UserName userName;
+    private BaseProgress progressDialog;
 
     public static Fragment newInstance() {
         return new RegisterStep1Fragment();
@@ -65,6 +68,7 @@ public class RegisterStep1Fragment extends Fragment {
         rlVerifyCode = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_close);
         userName = new UserName();
+        progressDialog=new BaseProgress();
     }
 
     public void changeDataEdtPhone() {
@@ -88,24 +92,32 @@ public class RegisterStep1Fragment extends Fragment {
     }
 
     private void checkExitsPhone() {
-        Connect connect = new Connect();
-        Call<Status> checkPhone = connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
+        progressDialog.showProgressLoading(getActivity());
+        Call<Status> checkPhone = Connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
         checkPhone.enqueue(new Callback<Status>() {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {
-                if (response.body().getStatus().equals("0")) {
-                    rlVerifyCode.setVisibility(View.VISIBLE);
-                    edtCode.setVisibility(View.VISIBLE);
-                    rlNext.setVisibility(View.VISIBLE);
-                    edtCode.requestFocus();
-                } else {
-                    edtPhone.setError("This phone was exit");
-                    edtPhone.setText("");
+                if(response.body()!=null) {
+                    progressDialog.hideProgressLoading();
+                    if (response.body().getStatus().equals("0")) {
+                        rlVerifyCode.setVisibility(View.VISIBLE);
+                        edtCode.setVisibility(View.VISIBLE);
+                        rlNext.setVisibility(View.VISIBLE);
+                        edtCode.requestFocus();
+                    } else {
+                        edtPhone.setError("This phone was exit");
+                        edtPhone.setText("");
+                    }
+                }
+                else {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Status> call, Throwable t) {
+                progressDialog.hideProgressLoading();
+                Toast.makeText(getActivity(), getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -130,7 +142,6 @@ public class RegisterStep1Fragment extends Fragment {
                     edtPhone.setError("Mobile Number field not entry");
                 } else {
                     checkExitsPhone();
-
                 }
             }
         });

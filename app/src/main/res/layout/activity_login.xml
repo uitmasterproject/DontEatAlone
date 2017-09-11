@@ -7,6 +7,7 @@
     android:background="@drawable/background"
     android:fitsSystemWindows="false"
     android:orientation="vertical"
+    android:id="@+id/activity_login_fl"
     tools:ignore="contentDescription, MissingPrefix">
 
     <!--Set background below here-->

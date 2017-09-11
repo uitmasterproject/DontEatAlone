@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.register;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,12 +9,10 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private Context _context;
     public static int totalPage=7;
 
-    public ViewPagerAdapter(Context context, FragmentManager fm) {
+    public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
-        _context=context;
     }
 
     @Override
@@ -32,16 +29,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 f=RegisterStep3Fragment.newInstance();
                 break;
             case 3:
-                f=RegisterStep4Fragment.newInstance(_context);
+                f=RegisterStep4Fragment.newInstance();
                 break;
             case 4:
                 f=RegisterStep5Fragment.newInstance();
                 break;
             case 5:
-                f=RegisterStep6Fragment.newInstance(_context);
+                f=RegisterStep6Fragment.newInstance();
                 break;
             case 6:
-                f=RegisterStep7Fragment.newInstance(_context);
+                f=RegisterStep7Fragment.newInstance();
                 break;
         }
         return f;

@@ -15,6 +15,12 @@
     <!--String for Login Screen-->
     <string name="login_text">LOGIN</string>
 
+    <string name="tutorial_step_4">You\'re older than 15 year old </string>
+
+    <string name="phone_isnt_exist">This phone isn\'t exits. Press register to create account</string>
+    <string name="password_incorecct">Password incorecct, Check phone or password again</string>
+    <string name="register_fail">Register Fail. Try again</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="phone">Mobile Number</string>
@@ -24,6 +30,7 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="hide">HIDE</string>
     <string name="show">SHOW</string>
+    <string name="invalid_network">Invalid network</string>
     <string-array name="Day_31">
         <item>1</item>
         <item>2</item>

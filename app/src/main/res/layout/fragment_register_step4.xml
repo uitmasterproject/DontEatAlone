@@ -68,7 +68,8 @@
                 android:text="Providing your birthday creates the best DEA experience for you"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="14sp"
-                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
+                app:fontPath="fonts/RobotoCondensed-Mudium.ttf"
+                android:id="@+id/fragment_register_step4_txt_tutorial"/>
 
         </LinearLayout>
 

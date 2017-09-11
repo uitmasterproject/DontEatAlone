@@ -4,17 +4,14 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.util.Base64;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,16 +28,7 @@ import android.widget.TextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.WINDOW_SERVICE;
 import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
@@ -53,7 +41,6 @@ public class RegisterStep3Fragment extends Fragment {
     private ImageView imgWomanAvatar, imgManAvatar, imgAvatar;
     private RelativeLayout rltWomanAvatar, rltManAvatar, rltAvatar;
     private RelativeLayout rlNext, rlClose;
-    private Bitmap bitmap;
     private String gender;
     private ViewPager _mViewPager;
     private TextView tvTutorial;
@@ -133,19 +120,11 @@ public class RegisterStep3Fragment extends Fragment {
     }
 
     private void animationImageAvatar(RelativeLayout re, int sourceimg) {
-        Display size=((WindowManager) getContext().getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-        int x=size.getWidth()/2 - re.getWidth()/2;
-        bitmap = BitmapFactory.decodeResource(getResources(), sourceimg);
         rltManAvatar.setVisibility(View.GONE);
         rltWomanAvatar.setVisibility(View.GONE);
         rltAvatar.setVisibility(View.VISIBLE);
         imgAvatar.setImageResource(sourceimg);
-//        ObjectAnimator animX = ObjectAnimator.ofFloat(rltAvatar, "x", 350);
-//        ObjectAnimator animY = ObjectAnimator.ofFloat(rltAvatar, "y", 0);
-//        AnimatorSet animSetXY = new AnimatorSet();
-//        animSetXY.playTogether(animX, animY);
-//        animSetXY.start();
-        TranslateAnimation animation=new TranslateAnimation(imgManAvatar.getX(),imgAvatar.getX(),re.getY(),re.getY());
+        TranslateAnimation animation = new TranslateAnimation(imgManAvatar.getX(), imgAvatar.getX(), re.getY(), re.getY());
         animation.setDuration(100000);
         animation.setFillAfter(false);
         rltAvatar.startAnimation(animation);
@@ -172,8 +151,6 @@ public class RegisterStep3Fragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 if (options[which].equals("Take photo")) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
                     startActivityForResult(intent, 1);
                 } else if (options[which].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -197,82 +174,17 @@ public class RegisterStep3Fragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
-                File f = new File(Environment.getExternalStorageDirectory().toString());
-                for (File temp : f.listFiles()) {
-                    if (temp.getName().equals("temp.jpg")) {
-                        f = temp;
-                        break;
-                    }
-                }
-                try {
-                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                    Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
-                    tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
+        if(data!=null) {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == 1) {
                     performCrop(data.getData());
-                    bitmap = tempbitmap;
-//                    imgAvatar.setImageBitmap(tempbitmap);
-                    String path = android.os.Environment.getExternalStorageDirectory().toString();
-                    f.delete();
-                    OutputStream outFile = null;
-                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                    try {
-                        outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
-                        outFile.flush();
-                        outFile.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-//                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-//                File destination = new File(Environment.getExternalStorageDirectory(),
-//                        System.currentTimeMillis() + ".jpg");
-//                FileOutputStream fo;
-//                try {
-//                    destination.createNewFile();
-//                    fo = new FileOutputStream(destination);
-//                    fo.write(bytes.toByteArray());
-//                    fo.close();
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                bitmap=Bitmap.createScaledBitmap(thumbnail,90,90,true);
-//                imgAvatar.setImageBitmap(thumbnail);
-
-
-
-
-            } else if (requestCode == 2) {
-                final Uri imageUri = data.getData();
-                InputStream imageStream = null;
-                try {
-                    imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
-                tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
-                performCrop(data.getData());
-                bitmap = tempbitmap;
-//                imgAvatar.setImageBitmap(tempbitmap);
-            } else if (requestCode == 3) {
-                Bundle extras = data.getExtras();
+                } else if (requestCode == 2) {
+                    performCrop(data.getData());
+                } else if (requestCode == 3) {
+                    Bundle extras = data.getExtras();
                     Bitmap thePic = extras.getParcelable("data");
                     imgAvatar.setImageBitmap(thePic);
+                }
             }
         }
     }
@@ -298,7 +210,7 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (intChosen == 1) {
-                    userName.setAvatar(convertBitmaptoString());
+                    userName.setAvatar(AppUtils.convertBitmaptoString(((BitmapDrawable)imgAvatar.getDrawable()).getBitmap()));
                     userName.setGender(gender);
                     _mViewPager.setCurrentItem(3, true);
                 } else if (intChosen == -1) {
@@ -312,12 +224,5 @@ public class RegisterStep3Fragment extends Fragment {
         });
     }
 
-    private String convertBitmaptoString() {
-        String tempConvert = "";
-        ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, arrayOutputStream);
-        byte[] b = arrayOutputStream.toByteArray();
-        tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
-        return tempConvert;
-    }
+
 }

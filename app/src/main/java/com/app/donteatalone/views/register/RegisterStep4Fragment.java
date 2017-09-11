@@ -4,14 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.aigestudio.wheelpicker.widgets.WheelYearPicker;
@@ -22,6 +23,7 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
@@ -39,8 +41,9 @@ public class RegisterStep4Fragment extends Fragment {
     private int intSelectYear, intSelectMonth;
     private LocalDate localDate;
     private LinearLayout llRoot;
+    private TextView txtTutorial;
 
-    public static Fragment newInstance(Context context) {
+    public static Fragment newInstance() {
         RegisterStep4Fragment f = new RegisterStep4Fragment();
         return f;
     }
@@ -65,6 +68,7 @@ public class RegisterStep4Fragment extends Fragment {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step4_close);
         llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step4_ll_root);
+        txtTutorial = (TextView) viewGroup.findViewById(R.id.fragment_register_step4_txt_tutorial);
 
         localDate = new LocalDate();
         dayWheelPicker.setSelectedItemPosition(localDate.getDayOfMonth() - 1);
@@ -88,8 +92,8 @@ public class RegisterStep4Fragment extends Fragment {
     }
 
 
-    private ArrayList<String> getDateData(int arr){
-        String[] temp= getResources().getStringArray(arr);
+    private ArrayList<String> getDateData(int arr) {
+        String[] temp = getResources().getStringArray(arr);
         ArrayList<String> day = new ArrayList<String>(Arrays.asList(temp));
         return day;
     }
@@ -159,12 +163,16 @@ public class RegisterStep4Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userName.setBirthday(toStringDate());
-                Log.e("birthday",userName.getBirthday());
-                _mViewPager.setCurrentItem(4, true);
-            }
-        });
-    }
+                Calendar calendar = Calendar.getInstance();
+                if ((calendar.get(Calendar.YEAR) - Integer.parseInt(yearWheelPicker.getData().get(yearWheelPicker.getCurrentItemPosition()).toString())) > 15) {
+                    userName.setBirthday(toStringDate());
+                    _mViewPager.setCurrentItem(4, true);
+                } else {
+                    txtTutorial.setText(getResources().getString(R.string.tutorial_step_4));
+                    txtTutorial.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_orange_pressed));
+                }
+            }});
+        }
 
     private void rlCloseClick() {
         rlClose.setOnClickListener(new View.OnClickListener() {
@@ -189,13 +197,14 @@ public class RegisterStep4Fragment extends Fragment {
 
     private String toStringDate() {
         String date = "";
-       date = dayWheelPicker.getData().get(dayWheelPicker.getCurrentItemPosition()).toString()
-               + "/"
-               + monthWhellPicker.getData().get(monthWhellPicker.getCurrentItemPosition()).toString()
-               + "/"
-               + yearWheelPicker.getData().get(yearWheelPicker.getCurrentItemPosition()).toString();
-        if(date.equals("")==true){
-            date="1/1/1970";
+        date = dayWheelPicker.getData().get(dayWheelPicker.getCurrentItemPosition()).toString()
+                + "/"
+                + monthWhellPicker.getData().get(monthWhellPicker.getCurrentItemPosition()).toString()
+                + "/"
+                + yearWheelPicker.getData().get(yearWheelPicker.getCurrentItemPosition()).toString();
+
+        if (date.equals("")) {
+            date = "1/1/1970";
         }
         return date;
     }

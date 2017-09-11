@@ -1,16 +1,13 @@
 package com.app.donteatalone.views.tutorial;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.base.BaseActivity;
 import com.app.donteatalone.utils.AppUtils;
-import com.app.donteatalone.utils.PrefManager;
 import com.app.donteatalone.views.login.LoginActivity;
 
 import org.androidannotations.annotations.AfterViews;
@@ -19,7 +16,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_tutorial)
-public class TutorialActivity extends BaseActivity {
+public class TutorialActivity extends AppCompatActivity {
 
     @ViewById(R.id.activity_tutorial_viewpager)
     ViewPager viewPager;

@@ -4,7 +4,6 @@ package com.app.donteatalone.views.register;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,6 +59,12 @@ public class RegisterStep2Fragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 AppUtils.hideSoftKeyboard(getActivity());
+                if(edtFullName.hasFocus()){
+                    edtPassword.requestFocus();
+                }
+                else {
+                    edtFullName.requestFocus();
+                }
                 return true;
             }
         });

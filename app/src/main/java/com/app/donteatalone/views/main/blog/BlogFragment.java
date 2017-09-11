@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,78 +32,74 @@ public class BlogFragment extends Fragment {
     private String phone;
     private ImageButton ibtnExit;
 
-    public static BlogFragment newInstance(){
-
-        BlogFragment fragment=new BlogFragment();
-        return fragment;
+    public static BlogFragment newInstance() {
+        return new BlogFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup=inflater.inflate(R.layout.fragment_blog,null);
+        viewGroup = inflater.inflate(R.layout.fragment_blog, null);
         init();
         setimgAvatar();
-        GetDatafromDB getDatafromDB=new GetDatafromDB(getActivity(),viewGroup);
+        GetDatafromDB getDatafromDB = new GetDatafromDB(getActivity(), viewGroup);
         getDatafromDB.execute(phone);
         clickButtonbtnStatus();
         clickButtonExit();
         return viewGroup;
     }
 
-    private void init(){
-        btnStatus=(Button) viewGroup.findViewById(R.id.fragment_blog_edt_status);
-        imgAvatar=(ImageView) viewGroup.findViewById(R.id.fragment_blog_avatar);
-        ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_blog_ibtn_exit);
+    private void init() {
+        btnStatus = (Button) viewGroup.findViewById(R.id.fragment_blog_edt_status);
+        imgAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_blog_avatar);
+        ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_blog_ibtn_exit);
     }
 
-    private void clickButtonbtnStatus(){
+    private void clickButtonbtnStatus() {
         btnStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),StatusActivity.class);
+                Intent intent = new Intent(getActivity(), StatusActivity.class);
                 startActivity(intent);
                 //getActivity().overridePendingTransition(R.animator.animator_bottom_up, R.animator.stay);
             }
         });
     }
 
-    private void clickButtonExit(){
+    private void clickButtonExit() {
         ibtnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), LoginActivity.class);
+                Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void setimgAvatar(){
+    private void setimgAvatar() {
         imgAvatar.setImageBitmap(decodeBitmap());
     }
 
-    private String storeReference(){
-        SharedPreferences sharedPreferences=getActivity().getSharedPreferences("account",MODE_PRIVATE);
-        Boolean bchk=sharedPreferences.getBoolean("checked", false);
-        String avatar="";
-        if(bchk==false)
-        {
-            avatar=sharedPreferences.getString("avatarLogin", "");
-            phone=sharedPreferences.getString("phoneLogin", "");
+    private String storeReference() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
+        Boolean bchk = sharedPreferences.getBoolean("checked", false);
+        String avatar = "";
+        if (bchk == false) {
+            avatar = sharedPreferences.getString("avatarLogin", "");
+            phone = sharedPreferences.getString("phoneLogin", "");
 
         }
         return avatar;
     }
 
 
-    private Bitmap decodeBitmap(){
+    private Bitmap decodeBitmap() {
         String avatar = storeReference();
-        Bitmap bitmap=null;
-        if(avatar.equals("")!=true) {
+        Bitmap bitmap = null;
+        if (avatar.equals("")) {
             try {
                 byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                 bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                Log.e("bitmap",bitmap.getWidth()+"-----------"+bitmap.getHeight()+"------------");
+                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             } catch (Exception e) {
                 e.getMessage();
             }

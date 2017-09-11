@@ -1,32 +1,31 @@
 package com.app.donteatalone.views.register;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
-import com.app.donteatalone.model.Hobby;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.MODE_PRIVATE;
+import static com.app.donteatalone.R.array.character;
 
 
 /**
@@ -36,14 +35,13 @@ import static android.content.Context.MODE_PRIVATE;
 public class RegisterStep7Fragment extends Fragment {
     private View viewGroup;
     private AutoCompleteTextView actvCharacter;
-    private ArrayList<String> headerCharacter;
-    private ArrayList<Hobby> character;
+    private AutoCompleteTextView actvStyle;
     private RelativeLayout rlNextStep, rlClose;
     private LinearLayout llRoot;
+    private BaseProgress dialog;
 
-    public static Fragment newInstance(Context context) {
-        RegisterStep7Fragment f = new RegisterStep7Fragment();
-        return f;
+    public static Fragment newInstance() {
+        return new RegisterStep7Fragment();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,16 +56,18 @@ public class RegisterStep7Fragment extends Fragment {
     }
     private void init(){
         actvCharacter=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
+        actvStyle=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_style);
         rlNextStep=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_rl_register);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_close);
         llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step7_ll_root);
+        dialog=new BaseProgress();
     }
 
     private void setActvHobby(){
-        clonebdHobby();
-        CustomAdapterCompleteTextView customAdapterCompleteTextView=new CustomAdapterCompleteTextView(this.getContext(), android.R.layout.simple_dropdown_item_1line,headerCharacter,character,actvCharacter);
-        actvCharacter.setAdapter(customAdapterCompleteTextView);
-
+        ArrayAdapter hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(character));
+        actvCharacter.setAdapter(hobbyAdapter);
+        hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.style));
+        actvStyle.setAdapter(hobbyAdapter);
     }
 
     /*Hide softkeyboard when touch outsite edittext*/
@@ -75,7 +75,7 @@ public class RegisterStep7Fragment extends Fragment {
         llRoot.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-//                AppUtils.hideSoftKeyboard(getActivity());
+                AppUtils.hideSoftKeyboard(getActivity());
                 return true;
             }
         });
@@ -88,11 +88,13 @@ public class RegisterStep7Fragment extends Fragment {
                 if(actvCharacter.getText().toString().endsWith(",")){
                     actvCharacter.setText(actvCharacter.getText().toString().substring(0,actvCharacter.getText().toString().length()-1));
                 }
-                RegisterStep1Fragment.userName.setCharacter(actvCharacter.getText().toString());
-                saveReference();
+
+                if(actvStyle.getText().toString().endsWith(",")){
+                    actvStyle.setText(actvStyle.getText().toString().substring(0,actvStyle.getText().toString().length()-1));
+                }
+                RegisterStep1Fragment.userName.setCharacter(actvCharacter.getText().toString()+","+actvStyle.getText().toString());
+                new MySharePreference(getActivity()).saveAccountInfo(RegisterStep1Fragment.userName);
                 InsertUserintoDB();
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -107,53 +109,31 @@ public class RegisterStep7Fragment extends Fragment {
     }
 
     private void InsertUserintoDB(){
-        Connect connect=new Connect();
-        Call<Status> insertUser = connect.getRetrofit().insertUser(RegisterStep1Fragment.userName);
+        dialog.showProgressLoading(getActivity());
+        Call<Status> insertUser = Connect.getRetrofit().insertUser(RegisterStep1Fragment.userName);
         insertUser.enqueue(new Callback<Status>() {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {
-                Log.e("result:",response.body().getStatus()+"++++++++++++++++++++++++++++++++++++");
+                dialog.hideProgressLoading();
+                if(response.body()!=null){
+                    if (response.body().getStatus().equals("0")){
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toast.makeText(getActivity(),getResources().getString(R.string.register_fail),Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getActivity(),getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<Status> call, Throwable t) {
-
+                dialog.hideProgressLoading();
+                Toast.makeText(getActivity(),getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    private void clonebdHobby(){
-        headerCharacter=new ArrayList<>();
-        headerCharacter.add("Tính cách");
-        headerCharacter.add("Phong cách");
-
-        character=new ArrayList<>();
-        character.add(new Hobby("Tính cách","",true));
-        character.add(new Hobby("Tính cách","vui vẻ",false));
-        character.add(new Hobby("Tính cách","trầm tĩnh",false));
-        character.add(new Hobby("Tính cách","hóm hĩnh",false));
-        character.add(new Hobby("Tính cách","thoải mái",false));
-
-        character.add(new Hobby("Phong cách","",true));
-        character.add(new Hobby("Phong cách","tự do",false));
-        character.add(new Hobby("Phong cách","quái dị",false));
-        character.add(new Hobby("Phong cách","trưởng thành",false));
-    }
-
-    private void saveReference(){
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString("phoneLogin", RegisterStep1Fragment.userName.getPhone().toString());
-        editor.putString("fullnameLogin", RegisterStep1Fragment.userName.getFullname().toString());
-        editor.putString("passwordLogin", RegisterStep1Fragment.userName.getPassword().toString());
-        editor.putString("avatarLogin", RegisterStep1Fragment.userName.getAvatar().toString());
-        editor.putString("birthdayLogin", RegisterStep1Fragment.userName.getBirthday().toString());
-        editor.putString("genderLogin", RegisterStep1Fragment.userName.getGender().toString());
-        editor.putString("addressLogin", RegisterStep1Fragment.userName.getAddress().toString());
-        editor.putString("latlngaddressLogin", RegisterStep1Fragment.userName.getLatLngAdress().toString());
-        editor.putString("hobbyLogin", RegisterStep1Fragment.userName.getHobby().toString());
-        editor.putString("characterLogin", RegisterStep1Fragment.userName.getCharacter().toString());
-        editor.commit();
-    }
-
 }

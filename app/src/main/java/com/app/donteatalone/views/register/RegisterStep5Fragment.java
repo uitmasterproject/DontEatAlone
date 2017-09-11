@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,7 +41,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private RelativeLayout rlNext, rlClose;
     private ViewPager _mViewPager;
     private LinearLayout llRoot;
-    private String location;
+    private String location="";
 
     public static Fragment newInstance() {
         return new RegisterStep5Fragment();
@@ -104,14 +103,12 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     @Override
     public void onPlaceSelected(Place place) {
         edtAddress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
-        Log.e("edtAdress", edtAddress.getText().toString());
         location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);;
     }
 
     //kiem tra loi cho noi duoc chon
     @Override
     public void onError(Status status) {
-        Log.e(LOG_TAG, "onError: Status = " + status.toString());
         Toast.makeText(getContext(), "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
     }
 

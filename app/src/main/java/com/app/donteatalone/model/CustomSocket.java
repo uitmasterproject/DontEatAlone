@@ -6,7 +6,7 @@ import com.github.nkzawa.socketio.client.Socket;
 import java.net.URISyntaxException;
 
 /**
- * Created by ChomChom on 5/18/2017.
+ * Created by ChomChom on 5/18/2017
  */
 
 public class CustomSocket {
