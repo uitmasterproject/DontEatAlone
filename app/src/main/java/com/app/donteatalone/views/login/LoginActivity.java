@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -35,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox ckbRemember;
     private MySharePreference mySharePreference;
     private BaseProgress dialog;
-    private FrameLayout flContainer;
+    private LinearLayout llRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         clickLogin();
         clickRegister();
         clickForgetPassword();
-        flRootTouch();
+        llRootTouch();
     }
 
     public void init() {
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         rlRegister = (RelativeLayout) findViewById(R.id.activity_login_rl_register);
         rlForgetPass = (RelativeLayout) findViewById(R.id.activity_login_rl_forgot_password);
         btnLogin = (Button) findViewById(R.id.activity_login_btn_login);
-        flContainer=(FrameLayout) findViewById(R.id.activity_login_fl);
+        llRoot=(LinearLayout) findViewById(R.id.activity_login_ll_root);
         dialog=new BaseProgress();
     }
 
@@ -179,12 +178,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /*Hide softkeyboard when touch outsite edittext*/
-    private void flRootTouch() {
-        flContainer.setOnTouchListener(new View.OnTouchListener() {
+    private void llRootTouch() {
+        llRoot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
                 AppUtils.hideSoftKeyboard(LoginActivity.this);
-                return true;
             }
         });
     }
