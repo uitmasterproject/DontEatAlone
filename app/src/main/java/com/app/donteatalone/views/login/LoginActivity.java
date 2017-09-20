@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!AppUtils.isNetworkAvailable(LoginActivity.this)) {
             Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
         }
+
         init();
         clickLogin();
         clickRegister();
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (response.body() == null) {
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+                        dialog.hideProgressLoading();
                     } else {
                         if (response.body().getStatus().equals("0")) {
                             if (mySharePreference.getValue("phoneLogin").equals(edtPhone.getText().toString())) {

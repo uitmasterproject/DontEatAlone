@@ -17,6 +17,10 @@ public class MySharePreference {
         sharedPreferences=activity.getSharedPreferences("DONTEATALONE.ACCOUNT", Context.MODE_PRIVATE);
     }
 
+    public MySharePreference(Activity activity, String phone){
+        sharedPreferences=activity.getSharedPreferences("DONTEATALONE.INFORREQUIRE"+"_"+phone, Context.MODE_PRIVATE);
+    }
+
     public void setValue (String key,String value){
         SharedPreferences.Editor editor =sharedPreferences.edit();
         editor.putString(key,value);

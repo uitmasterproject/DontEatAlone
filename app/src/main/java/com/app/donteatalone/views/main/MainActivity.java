@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.main;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,32 +7,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.connectmongo.Connect;
-import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.views.main.blog.BlogFragment;
-import com.app.donteatalone.views.main.notification.CustomNotificationAdapter;
 import com.app.donteatalone.views.main.notification.NotificationFragment;
 import com.app.donteatalone.views.main.profile.ProfileFragment;
 import com.app.donteatalone.views.main.require.RequireFragment;
 import com.app.donteatalone.views.main.restaurant.RestaurantFragment;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.app.donteatalone.views.main.notification.NotificationFragment.rcvInfoNotification;
-import static java.security.AccessController.getContext;
 
 /**
  * -> Created by LeHoangHan on 4/22/2017.
@@ -43,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private FragmentAdapter mFragmentAdapter;
-    public static ViewPager viewPager;
-    public static TextView txtNotification;
+    public  ViewPager viewPager;
+    public TextView txtNotification;
     public View view;
     public LinearLayout llContainer;
 
@@ -55,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initNotification();
-
         viewPager = (ViewPager) findViewById(R.id.activity_blog_viewpager);
-        setViewPager(viewPager);
+        view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab_notification, null);
+        setViewPager();
 
         tabLayout = (TabLayout) findViewById(R.id.activity_blog_tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -75,55 +61,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initNotification() {
-        view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab_notification, null);
-        txtNotification = (TextView) view.findViewById(R.id.custom_tab_notification_txt_count);
-        llContainer = (LinearLayout) view.findViewById(R.id.custom_tab_notification_ll_container);
-        llContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtNotification.setText(0 + "");
-                viewPager.setCurrentItem(1);
-                setNotification();
-            }
-        });
-    }
-
-    public void setNotification() {
-        Connect connect = new Connect();
-        Log.e("listInfoNotification", "notification");
-        final ArrayList<InfoNotification> listInfoNotification = new ArrayList();
-        final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, MainActivity.this, getInfointoSharedPreferences("phoneLogin"));
-        Call<ArrayList<InfoNotification>> getInfoNotification = connect.getRetrofit().getNotification(getInfointoSharedPreferences("phoneLogin"));
-        getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
-            @Override
-            public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
-                if(response.body()!=null) {
-                    for (InfoNotification element : response.body()) {
-                        InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
-                                element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
-                        listInfoNotification.add(info);
-                    }
-                    Collections.reverse(listInfoNotification);
-                }
-                rcvInfoNotification.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<InfoNotification>> call, Throwable t) {
-                Log.e("listInfoNotification2", t.toString() + "");
-            }
-        });
-    }
-
-
-    private void setViewPager(ViewPager viewPager) {
+    private void setViewPager() {
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
-        mFragmentAdapter.mFragmentList.add(BlogFragment.newInstance());
-        mFragmentAdapter.mFragmentList.add(NotificationFragment.newInstance());
+        mFragmentAdapter.mFragmentList.add(BlogFragment.newInstance(viewPager));
+        mFragmentAdapter.mFragmentList.add(NotificationFragment.newInstance(viewPager,view));
         mFragmentAdapter.mFragmentList.add(ProfileFragment.newInstance());
         mFragmentAdapter.mFragmentList.add(RestaurantFragment.newInstance());
-        mFragmentAdapter.mFragmentList.add(RequireFragment.newInstance());
+        mFragmentAdapter.mFragmentList.add(RequireFragment.newInstance(viewPager));
 
         viewPager.setAdapter(mFragmentAdapter);
 
@@ -135,9 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-                    setNotification();
-                }
+
             }
 
             @Override
@@ -170,15 +112,6 @@ public class MainActivity extends AppCompatActivity {
         public int getCount() {
             return mFragmentList.size();
         }
-    }
-
-    private String getInfointoSharedPreferences(String str) {
-        String data = "";
-        if (getContext() != null) {
-            SharedPreferences pre = getSharedPreferences("account", MODE_PRIVATE);
-            data = pre.getString(str, "");
-        }
-        return data;
     }
 
 }

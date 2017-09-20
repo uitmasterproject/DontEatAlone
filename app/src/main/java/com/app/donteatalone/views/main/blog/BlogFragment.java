@@ -1,13 +1,10 @@
 package com.app.donteatalone.views.main.blog;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +13,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/13/2017.
@@ -29,11 +26,18 @@ public class BlogFragment extends Fragment {
     private View viewGroup;
     private Button btnStatus;
     private ImageView imgAvatar;
-    private String phone;
     private ImageButton ibtnExit;
+    private MySharePreference mySharePreference;
+    private ViewPager viewPager;
 
-    public static BlogFragment newInstance() {
-        return new BlogFragment();
+    public static BlogFragment newInstance(ViewPager viewPager) {
+        BlogFragment fragment=new BlogFragment();
+        fragment.setViewPager(viewPager);
+        return fragment;
+    }
+
+    public void setViewPager(ViewPager viewPager) {
+        this.viewPager = viewPager;
     }
 
     @Nullable
@@ -43,7 +47,7 @@ public class BlogFragment extends Fragment {
         init();
         setimgAvatar();
         GetDatafromDB getDatafromDB = new GetDatafromDB(getActivity(), viewGroup);
-        getDatafromDB.execute(phone);
+        getDatafromDB.execute(mySharePreference.getValue("phoneLogin"));
         clickButtonbtnStatus();
         clickButtonExit();
         return viewGroup;
@@ -53,6 +57,7 @@ public class BlogFragment extends Fragment {
         btnStatus = (Button) viewGroup.findViewById(R.id.fragment_blog_edt_status);
         imgAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_blog_avatar);
         ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_blog_ibtn_exit);
+        mySharePreference = new MySharePreference(getActivity());
     }
 
     private void clickButtonbtnStatus() {
@@ -77,33 +82,6 @@ public class BlogFragment extends Fragment {
     }
 
     private void setimgAvatar() {
-        imgAvatar.setImageBitmap(decodeBitmap());
-    }
-
-    private String storeReference() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
-        Boolean bchk = sharedPreferences.getBoolean("checked", false);
-        String avatar = "";
-        if (bchk == false) {
-            avatar = sharedPreferences.getString("avatarLogin", "");
-            phone = sharedPreferences.getString("phoneLogin", "");
-
-        }
-        return avatar;
-    }
-
-
-    private Bitmap decodeBitmap() {
-        String avatar = storeReference();
-        Bitmap bitmap = null;
-        if (avatar.equals("")) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
+        imgAvatar.setImageBitmap(AppUtils.decodeBitmap(mySharePreference.getValue("avatarLogin")));
     }
 }

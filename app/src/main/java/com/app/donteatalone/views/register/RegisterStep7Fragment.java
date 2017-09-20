@@ -7,9 +7,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -34,8 +35,8 @@ import static com.app.donteatalone.R.array.character;
 
 public class RegisterStep7Fragment extends Fragment {
     private View viewGroup;
-    private AutoCompleteTextView actvCharacter;
-    private AutoCompleteTextView actvStyle;
+    private MultiAutoCompleteTextView actvCharacter;
+    private MultiAutoCompleteTextView actvStyle;
     private RelativeLayout rlNextStep, rlClose;
     private LinearLayout llRoot;
     private BaseProgress dialog;
@@ -55,8 +56,10 @@ public class RegisterStep7Fragment extends Fragment {
         return viewGroup;
     }
     private void init(){
-        actvCharacter=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
-        actvStyle=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_style);
+        actvCharacter=(MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
+        actvCharacter.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        actvStyle=(MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_style);
+        actvStyle.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
         rlNextStep=(RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_rl_register);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_close);
         llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step7_ll_root);
@@ -64,10 +67,24 @@ public class RegisterStep7Fragment extends Fragment {
     }
 
     private void setActvHobby(){
-        ArrayAdapter hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(character));
+        ArrayAdapter hobbyAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(character));
         actvCharacter.setAdapter(hobbyAdapter);
-        hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.style));
+        actvCharacter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                actvCharacter.setText(AppUtils.convertStringToNFD(actvCharacter.getText().toString()));
+                actvCharacter.setSelection(actvCharacter.getText().toString().length());
+            }
+        });
+        hobbyAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.style));
         actvStyle.setAdapter(hobbyAdapter);
+        actvStyle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                actvStyle.setText(AppUtils.convertStringToNFD(actvStyle.getText().toString()));
+                actvStyle.setSelection(actvStyle.getText().toString().length());
+            }
+        });
     }
 
     /*Hide softkeyboard when touch outsite edittext*/
@@ -85,12 +102,12 @@ public class RegisterStep7Fragment extends Fragment {
         rlNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(actvCharacter.getText().toString().endsWith(",")){
-                    actvCharacter.setText(actvCharacter.getText().toString().substring(0,actvCharacter.getText().toString().length()-1));
+                if(actvCharacter.getText().toString().trim().endsWith(",")){
+                    actvCharacter.setText(actvCharacter.getText().toString().trim().substring(0,actvCharacter.getText().toString().lastIndexOf(",")));
                 }
 
-                if(actvStyle.getText().toString().endsWith(",")){
-                    actvStyle.setText(actvStyle.getText().toString().substring(0,actvStyle.getText().toString().length()-1));
+                if(actvStyle.getText().toString().trim().endsWith(",")){
+                    actvStyle.setText(actvStyle.getText().toString().substring(0,actvStyle.getText().toString().trim().lastIndexOf(",")));
                 }
                 RegisterStep1Fragment.userName.setCharacter(actvCharacter.getText().toString()+","+actvStyle.getText().toString());
                 new MySharePreference(getActivity()).saveAccountInfo(RegisterStep1Fragment.userName);

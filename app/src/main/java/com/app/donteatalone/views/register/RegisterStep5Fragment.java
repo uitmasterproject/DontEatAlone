@@ -102,7 +102,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     //luu lai noi duoc chon
     @Override
     public void onPlaceSelected(Place place) {
-        edtAddress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
+        edtAddress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
         location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);;
     }
 

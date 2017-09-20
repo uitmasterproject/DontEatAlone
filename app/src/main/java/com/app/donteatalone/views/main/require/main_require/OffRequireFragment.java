@@ -3,12 +3,10 @@ package com.app.donteatalone.views.main.require.main_require;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.profile.ProfileDialogCustom;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -35,7 +35,6 @@ import java.io.File;
 import java.util.Calendar;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 5/8/2017.
@@ -45,7 +44,6 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
-    private static final String LOG_TAG = "PlaceSelectionListener";
 
     private View viewGroup;
     private RelativeLayout rlGenderAll, rlGenderFemale, rlGenderMale, rlAgeClose;
@@ -54,17 +52,19 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     private LinearLayout llContainerHobbyFood, llContainerHobbyCharacter, llContainerHobbyStyle;
     private TextView txtAge, txtAdress, txtHobbyFood, txtHobbyCharacter, txtHobbyStyle;
     private String location = "", valuetemp, phone;
+    private MySharePreference accountSharePreference;
+    private MySharePreference infoRequireSharePreference;
 
     public static OffRequireFragment newInstance() {
-        OffRequireFragment fragment = new OffRequireFragment();
-        return fragment;
+        return new OffRequireFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_off, null);
-        phone = getInforfromShareReference("account", "phoneLogin");
+        accountSharePreference =new MySharePreference(getActivity());
+        phone = accountSharePreference.getValue("phoneLogin");
         putInforRequireintoShareReference();
         init();
         setSelectedGender();
@@ -87,7 +87,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         txtAge.setText(setDefaultValue("ageminRequire", "20") + " - " + setDefaultValue("agemaxRequire", "25"));
         llContainerAddress = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_address);
         txtAdress = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_address);
-        txtAdress.setText(setDefaultValue("addressRequire", "Chợ Bến Thành, Quận 1, Hồ Chí Minh, Vietnam"));
+        txtAdress.setText(setDefaultValue("addressRequire", "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam"));
         location = setDefaultValue("latlngRequire", "10.771423,106.698471");
         llContainerHobbyFood = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_food);
         llContainerHobbyCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_character);
@@ -101,10 +101,11 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     }
 
     private String setDefaultValue(String key, String defaul) {
-        if (getInforfromShareReference("inforRequire" + "_" + phone, key).equals("") == true)
+        MySharePreference sharePreference=new MySharePreference(getActivity(),phone);
+        if (sharePreference.getValue(key).equals(""))
             return defaul;
         else
-            return getInforfromShareReference("inforRequire" + "_" + phone, key).trim();
+            return sharePreference.getValue(key).trim();
     }
 
     //Select Gender, Choose gender for require
@@ -118,7 +119,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_selector,
                         R.color.gray_1,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
-                editInforRequireintoShareReference("gender", "all");
+                infoRequireSharePreference.setValue("genderRequire", "all");
             }
         });
 
@@ -131,7 +132,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.require_off_txt_gender_selected,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
-                editInforRequireintoShareReference("gender", "female");
+                infoRequireSharePreference.setValue("genderRequire", "female");
             }
         });
 
@@ -144,7 +145,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.gray_1,
                         R.drawable.design_require_off_txt_gender_rightsight_selector);
-                editInforRequireintoShareReference("gender", "male");
+                infoRequireSharePreference.setValue("genderRequire", "male");
             }
         });
     }
@@ -203,15 +204,14 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
 
     @Override
     public void onPlaceSelected(Place place) {
-        txtAdress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
+        txtAdress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
         location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
-        editInforRequireintoShareReference("addressRequire", txtAdress.getText().toString());
-        editInforRequireintoShareReference("latlngaddressRequire", location);
+        infoRequireSharePreference.setValue("addressRequire", txtAdress.getText().toString());
+        infoRequireSharePreference.setValue("latlngaddressRequire", location);
     }
 
     @Override
     public void onError(Status status) {
-        Log.e(LOG_TAG, "onError: Status = " + status.toString());
         Toast.makeText(getContext(), "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
     }
 
@@ -279,7 +279,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().length() - 1));
-                editInforRequireintoShareReference("hobbyStyleRequire", valuetemp);
+                infoRequireSharePreference.setValue("hobbyStyleRequire", valuetemp);
             }
         })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -291,42 +291,31 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         alertDialog.show();
     }
 
-    private void editInforRequireintoShareReference(String key, String value) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("inforRequire" + "_" + phone, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-
     private void putInforRequireintoShareReference() {
-        File f = new File("/data/data/" + getContext().getPackageName() + "/shared_prefs/" + "inforRequire" + "_" + phone + ".xml");
-        if (f.exists() == false) {
-            SharedPreferences sharedPreferences = getContext().getSharedPreferences("inforRequire" + "_" + phone, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("genderRequire", "all");
+        File f = new File("/data/data/" + getContext().getPackageName() + "/shared_prefs/" + "DONTEATALONE.INFORREQUIRE" + "_" + phone + ".xml");
+        if (!f.exists()) {
+            infoRequireSharePreference=new MySharePreference(getActivity(),phone);
+            infoRequireSharePreference.setValue("genderRequire", "all");
 
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            Log.e("birthday", getInforfromShareReference("account", "birthdayLogin") + "");
-            int age = currentYear - Integer.parseInt(getInforfromShareReference("account", "birthdayLogin").trim().split("/")[2]);
-            editor.putString("ageminRequire", (age - 4) + "");
-            editor.putString("agemaxRequire", (age + 4) + "");
+            int age = currentYear - Integer.parseInt(accountSharePreference.getValue("birthdayLogin").trim().split("/")[2]);
+            infoRequireSharePreference.setValue("ageminRequire", (age - 4) + "");
+            infoRequireSharePreference.setValue("agemaxRequire", (age + 4) + "");
 
-            editor.putString("addressRequire", getInforfromShareReference("account", "addressLogin"));
-            Log.e("latlng", getInforfromShareReference("account", "latlngaddressLogin"));
-            editor.putString("latlngaddressRequire", getInforfromShareReference("account", "latlngaddressLogin"));
+            infoRequireSharePreference.setValue("addressRequire", accountSharePreference.getValue("addressLogin"));
+            infoRequireSharePreference.setValue("latlngaddressRequire", accountSharePreference.getValue("latlngaddressLogin"));
 
-            putDataHobbyintoReference(editor);
-            editor.commit();
+            putDataHobbyintoReference();
         }
     }
 
-    private void putDataHobbyintoReference(SharedPreferences.Editor editor) {
+    private void putDataHobbyintoReference() {
         String str = "";
-        String[] temp = getInforfromShareReference("account", "hobbyLogin").toString().trim().split(",");
+        String[] temp = accountSharePreference.getValue("hobbyLogin").trim().split(",");
         String[] temhobby = getResources().getStringArray(R.array.food);
         for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i]) == true) {
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])) {
                     str += temp[i] + ",";
                 }
             }
@@ -334,13 +323,13 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         if (str.length() > 0) {
             str = str.trim().substring(0, str.length() - 1);
         }
-        editor.putString("hobbyFoodRequire", str);
+        infoRequireSharePreference.setValue("hobbyFoodRequire", str);
 
         str = "";
         temhobby = getResources().getStringArray(R.array.character);
         for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i]) == true) {
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])) {
                     str += temp[i] + ",";
                 }
             }
@@ -348,13 +337,13 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         if (str.length() > 0) {
             str = str.trim().substring(0, str.length() - 1);
         }
-        editor.putString("hobbyCharacterRequire", str);
+        infoRequireSharePreference.setValue("hobbyCharacterRequire", str);
 
         str = "";
         temhobby = getResources().getStringArray(R.array.style);
         for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i]) == true) {
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])) {
                     str += temp[i] + ",";
                 }
             }
@@ -363,12 +352,6 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         if (str.length() > 0) {
             str = str.trim().substring(0, str.length() - 1);
         }
-        editor.putString("hobbyStyleRequire", str);
-    }
-
-    private String getInforfromShareReference(String file, String key) {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(file, MODE_PRIVATE);
-        String value = sharedPreferences.getString(key, "");
-        return value;
+        infoRequireSharePreference.setValue("hobbyStyleRequire", str);
     }
 }

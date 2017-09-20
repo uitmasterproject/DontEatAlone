@@ -2,11 +2,10 @@ package com.app.donteatalone.views.main.blog;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.InfoBlog;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 
@@ -60,7 +60,7 @@ public class DetailBlogActivity extends AppCompatActivity {
         rlEdit = (RelativeLayout) findViewById(R.id.activity_detail_blog_btn_edit);
         llContainer = (LinearLayout) findViewById(R.id.activity_detail_blog_ll_container);
         llContainer.removeAllViews();
-        if (own.equals("ownBlogFragmment") == true || own.equals("ownViewProfile")) {
+        if (own.equals("ownBlogFragmment") || own.equals("ownViewProfile")) {
         } else {
             rlEdit.setVisibility(View.INVISIBLE);
         }
@@ -81,11 +81,11 @@ public class DetailBlogActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                if (own.equals("ownBlogFragmment") == true || own.equals("ownViewProfile") == true) {
+                if (own.equals("ownBlogFragmment") || own.equals("ownViewProfile")) {
                     intent = new Intent(DetailBlogActivity.this, MainActivity.class);
-                    if (own.equals("ownViewProfile") == true)
+                    if (own.equals("ownViewProfile"))
                         intent.putExtra("viewProfile", "viewProfile");
-                    if (own.equals("ownBlogFragmment") == true)
+                    if (own.equals("ownBlogFragmment"))
                         intent.putExtra("viewProfile", "blogFragmment");
                 } else {
                     intent = new Intent(DetailBlogActivity.this, ProfileAccordantUser.class);
@@ -110,19 +110,19 @@ public class DetailBlogActivity extends AppCompatActivity {
     private void setValueContent() {
         String str = infoBlog.getInfoStatus();
         while (str.length() != 0) {
-            if (str.startsWith("<text>") == true) {
+            if (str.startsWith("<text>")) {
                 TextView txtText = new TextView(this);
                 int index = str.indexOf("</text>");
                 txtText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
-                txtText.setTextColor(getResources().getColor(R.color.black));
+                txtText.setTextColor(ContextCompat.getColor(DetailBlogActivity.this, R.color.black));
                 txtText.setText(str.substring(6, index));
                 llContainer.addView(txtText);
                 str = str.substring(index + 7);
-            } else if (str.startsWith("<image>") == true) {
+            } else if (str.startsWith("<image>")) {
                 ImageView imgImage = new ImageView(this);
                 int index = str.indexOf("</image>");
-                Bitmap bitmap = decodeBitmap(str.substring(7, index));
+                Bitmap bitmap = AppUtils.decodeBitmap(str.substring(7, index));
                 imgImage.setLayoutParams(new LinearLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight()));
                 imgImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imgImage.setImageBitmap(bitmap);
@@ -139,32 +139,18 @@ public class DetailBlogActivity extends AppCompatActivity {
         }
     }
 
-    private Bitmap decodeBitmap(String avatar) {
-        Bitmap bitmap = null;
-        if (avatar.equals("") != true) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                return bitmap;
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
-    }
-
     private int defineIconforFeeling(String feeling) {
         int icon = 0;
-        if (feeling.equals("feeling đáng yêu") == true) {
+        if (feeling.equals("feeling đáng yêu")) {
             icon = R.drawable.ic_felling_cute;
             return icon;
-        } else if (feeling.equals("feeling thú vị") == true) {
+        } else if (feeling.equals("feeling thú vị") ) {
             icon = R.drawable.ic_felling_exciting;
             return icon;
-        } else if (feeling.equals("feeling vui vẻ") == true) {
+        } else if (feeling.equals("feeling vui vẻ")) {
             icon = R.drawable.ic_felling_smile;
             return icon;
-        } else if (feeling.equals("feeling buồn") == true) {
+        } else if (feeling.equals("feeling buồn")) {
             icon = R.drawable.ic_felling_sad;
             return icon;
         }

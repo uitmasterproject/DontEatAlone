@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.main.profile;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +12,7 @@ import android.view.ViewGroup;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
+import com.app.donteatalone.utils.MySharePreference;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,8 +20,6 @@ import java.util.Collections;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Le Hoang Han on 5/19/2017
@@ -61,15 +59,7 @@ public class ProfileBlogFragment extends Fragment {
     }
 
     private void setValueRecyclerView(){
-        Connect connect=new Connect();
-        String phone;
-        if(phoneBlog.equals("ownViewProfile")){
-            phone=storeReference("phoneLogin");
-        }
-        else {
-            phone=phoneBlog;
-        }
-        Call<ArrayList<InfoBlog>> getPublicBlog=connect.getRetrofit().getPublicBlog(storeReference("phoneLogin"),limit);
+        Call<ArrayList<InfoBlog>> getPublicBlog=Connect.getRetrofit().getPublicBlog(new MySharePreference(getActivity()).getValue("phoneLogin"),limit);
         getPublicBlog.enqueue(new Callback<ArrayList<InfoBlog>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
@@ -86,11 +76,5 @@ public class ProfileBlogFragment extends Fragment {
 
             }
         });
-    }
-
-    private String storeReference(String str) {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        String avatar = sharedPreferences.getString(str, "");
-        return avatar;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +25,17 @@ public class RequireFragment extends Fragment {
     private View viewGroup;
     private SwitchCompat scControl;
     private ImageButton ibtnExit;
+    private ViewPager viewPager;
 
-    public static RequireFragment newInstance() {
+    public static RequireFragment newInstance(ViewPager viewPager) {
 
         RequireFragment fragment = new RequireFragment();
+        fragment.setViewPager(viewPager);
         return fragment;
+    }
+
+    public void setViewPager(ViewPager viewPager) {
+        this.viewPager = viewPager;
     }
 
     @Nullable
@@ -51,11 +58,11 @@ public class RequireFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(scControl.isChecked()==false){
-                    OffRequireFragment fragment= new OffRequireFragment();
+                    OffRequireFragment fragment= OffRequireFragment.newInstance();
                     getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
                 }
                 else {
-                    OnRequireFragment fragmentOn= new OnRequireFragment();
+                    OnRequireFragment fragmentOn= OnRequireFragment.newInstance(viewPager);
                     getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragmentOn).commit();
                 }
             }

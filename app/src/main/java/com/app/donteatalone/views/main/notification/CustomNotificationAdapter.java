@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,57 +22,52 @@ import java.util.ArrayList;
  * Created by ChomChom on 09-Jun-17.
  */
 
-public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotificationAdapter.CustomViewHolder>{
+public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotificationAdapter.CustomViewHolder> {
 
     private ArrayList<InfoNotification> listInfoNotification;
     private Context context;
-    private String phone;
 
-    public CustomNotificationAdapter(ArrayList<InfoNotification> _listInfoNotification, Context _context, String phone){
-        this.listInfoNotification=_listInfoNotification;
-        this.context=_context;
-        this.phone=phone;
+    public CustomNotificationAdapter(ArrayList<InfoNotification> listInfoNotification, Context context) {
+        this.listInfoNotification = listInfoNotification;
+        this.context = context;
     }
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recycleview_notification,null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recycleview_notification, null);
         return new CustomViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final CustomViewHolder holder, final int position) {
-        Log.e("data",listInfoNotification.get(position)+"");
+    public void onBindViewHolder(final CustomViewHolder holder, int position) {
         holder.txtName.setText(listInfoNotification.get(position).getNameSend());
-        if(listInfoNotification.get(position).getStatus().equals("accept")==true){
-            holder.txtContent.setText("was accepted your invite. Please, Let's contact their by phone: "+ listInfoNotification.get(position).getUserSend());
+        if (listInfoNotification.get(position).getStatus().equals("accept")) {
+            holder.txtContent.setText("was accepted your invite. Please, Let's contact their by phone: " + listInfoNotification.get(position).getUserSend());
             holder.imgIcon.setImageResource(R.drawable.ic_accepted);
             holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
-            if(listInfoNotification.get(position).getRead().equals("0")==true)
+            if (listInfoNotification.get(position).getRead().equals("0"))
                 holder.llContainer.setBackgroundColor(Color.CYAN);
-                holder.llContainer.setOnClickListener(new View.OnClickListener() {
+            holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     holder.llContainer.setBackgroundColor(Color.WHITE);
                     showDialog(position);
                 }
             });
-        }
-        else if(listInfoNotification.get(position).getStatus().equals("refuse")==true){
+        } else if (listInfoNotification.get(position).getStatus().equals("refuse")) {
             holder.txtContent.setText("was refuse your invite. Please, Let's choose a friend who is the best accordant than with you");
             holder.imgIcon.setImageResource(R.drawable.ic_refuse);
             holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
-            if(listInfoNotification.get(position).getRead().equals("0")==true)
+            if (listInfoNotification.get(position).getRead().equals("0"))
                 holder.llContainer.setBackgroundColor(Color.CYAN);
-                holder.llContainer.setOnClickListener(new View.OnClickListener() {
+            holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     holder.llContainer.setBackgroundColor(Color.WHITE);
                     showDialog(position);
                 }
             });
-        }
-        else{
+        } else {
             holder.txtContent.setText("was invited you eat their together                                                            ");
             holder.imgIcon.setImageResource(R.drawable.ic_noti);
             holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
@@ -86,11 +80,11 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
         }
     }
 
-    private void showDialog(int position){
-        Dialog dialog=new Dialog(context);
+    private void showDialog(int position) {
+        Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog_require_on_result_invite);
-        CustomDialogItemNotification customDialog=new CustomDialogItemNotification(dialog,context,listInfoNotification.get(position),phone);
+        CustomDialogItemNotification customDialog = new CustomDialogItemNotification(dialog, context, listInfoNotification.get(position));
         try {
             customDialog.setDefaultValue();
         } catch (ParseException e) {
@@ -105,16 +99,17 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtName,txtContent,txtTimer;
+        private TextView txtName, txtContent, txtTimer;
         private ImageView imgIcon;
         private LinearLayout llContainer;
+
         public CustomViewHolder(View itemView) {
             super(itemView);
-            txtName=(TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_name);
-            txtContent=(TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_content);
-            txtTimer=(TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_timer);
-            imgIcon=(ImageView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_img_icon);
-            llContainer=(LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_ll_container);
+            txtName = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_name);
+            txtContent = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_content);
+            txtTimer = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_timer);
+            imgIcon = (ImageView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_img_icon);
+            llContainer = (LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_ll_container);
         }
     }
 

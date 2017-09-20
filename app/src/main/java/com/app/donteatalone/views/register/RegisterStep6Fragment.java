@@ -8,9 +8,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
@@ -21,9 +22,9 @@ import com.app.donteatalone.utils.AppUtils;
  */
 
 public class RegisterStep6Fragment extends Fragment {
-    private AutoCompleteTextView actvFood;
-    private AutoCompleteTextView actvCharacter;
-    private AutoCompleteTextView actvStyle;
+    private MultiAutoCompleteTextView actvFood;
+    private MultiAutoCompleteTextView actvCharacter;
+    private MultiAutoCompleteTextView actvStyle;
     private RelativeLayout rlNext, rlClose;
     private View viewGroup;
     private ViewPager _mViewPager;
@@ -48,21 +49,45 @@ public class RegisterStep6Fragment extends Fragment {
 
     private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        actvFood = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_food);
-        actvCharacter = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_character);
-        actvStyle = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_style);
+        actvFood = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_food);
+        actvFood.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        actvCharacter = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_character);
+        actvCharacter.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        actvStyle = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_actv_style);
+        actvStyle.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
         rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_close);
         llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step6_ll_root);
     }
 
     private void setActvHobby() {
-        ArrayAdapter hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.food));
+        ArrayAdapter hobbyAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.food));
         actvFood.setAdapter(hobbyAdapter);
-        hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.character));
+        actvFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                actvFood.setText(AppUtils.convertStringToNFD(actvFood.getText().toString()));
+                actvFood.setSelection(actvFood.getText().toString().length());
+            }
+        });
+        hobbyAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.character));
         actvCharacter.setAdapter(hobbyAdapter);
-        hobbyAdapter=new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.style));
+        actvCharacter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                actvCharacter.setText(AppUtils.convertStringToNFD(actvCharacter.getText().toString()));
+                actvCharacter.setSelection(actvCharacter.getText().toString().length());
+            }
+        });
+        hobbyAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.style));
         actvStyle.setAdapter(hobbyAdapter);
+        actvStyle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                actvStyle.setText(AppUtils.convertStringToNFD(actvStyle.getText().toString()));
+                actvStyle.setSelection(actvStyle.getText().toString().length());
+            }
+        });
 
     }
 
@@ -81,18 +106,18 @@ public class RegisterStep6Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (actvFood.getText().toString().endsWith(",")) {
-                    actvFood.setText(actvFood.getText().toString().substring(0, actvFood.getText().toString().length() - 1));
+                if (actvFood.getText().toString().trim().endsWith(",")) {
+                    actvFood.setText(actvFood.getText().toString().substring(0, actvFood.getText().toString().lastIndexOf(",")));
                 }
 
-                if(actvCharacter.getText().toString().endsWith(",")){
-                    actvCharacter.setText(actvCharacter.getText().toString().substring(0, actvCharacter.getText().toString().length() - 1));
+                if (actvCharacter.getText().toString().trim().endsWith(",")) {
+                    actvCharacter.setText(actvCharacter.getText().toString().substring(0, actvCharacter.getText().toString().lastIndexOf(",")));
                 }
 
-                if(actvStyle.getText().toString().endsWith(",")){
-                    actvStyle.setText(actvStyle.getText().toString().substring(0, actvStyle.getText().toString().length() - 1));
+                if (actvStyle.getText().toString().trim().endsWith(",")) {
+                    actvStyle.setText(actvStyle.getText().toString().substring(0, actvStyle.getText().toString().lastIndexOf(",")));
                 }
-                RegisterStep1Fragment.userName.setHobby(actvFood.getText().toString()+","+actvCharacter.getText().toString()+","+actvStyle.getText().toString());
+                RegisterStep1Fragment.userName.setHobby(actvFood.getText().toString() + "," + actvCharacter.getText().toString() + "," + actvStyle.getText().toString());
                 _mViewPager.setCurrentItem(6, true);
             }
         });

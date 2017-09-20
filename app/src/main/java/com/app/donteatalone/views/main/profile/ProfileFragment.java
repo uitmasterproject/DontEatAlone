@@ -2,7 +2,6 @@ package com.app.donteatalone.views.main.profile;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,8 +13,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.register.CustomViewPager;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -52,7 +51,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 4/13/2017.
@@ -62,7 +60,6 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
-    private static final String LOG_TAG = "PlaceSelectionListener";
 
     private View viewGroup;
     private TabLayout tabLayout;
@@ -76,10 +73,10 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     private LinearLayout llHobbyCharacter, llHobbyStyle, llCharacter;
     private ImageButton ibtnExit;
     private ArrayList<Fragment> listFragment;
+    private MySharePreference mySharePreference;
 
     public static ProfileFragment newInstance() {
-        ProfileFragment fragment=new ProfileFragment();
-        return fragment;
+        return new ProfileFragment();
     }
 
     @Nullable
@@ -100,7 +97,6 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         customViewPager.setAdapter(adapter);
         tabLayout.getTabAt(0).setText("Blog");
         tabLayout.getTabAt(1).setText("History");
-        Log.e("ProfileFragment","ProfileFragment");
 
         return viewGroup;
     }
@@ -112,6 +108,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     }
 
     private void init() {
+        mySharePreference=new MySharePreference(getActivity());
         tabLayout = (TabLayout) viewGroup.findViewById(R.id.fragment_profile_tl_tabs);
         customViewPager = (CustomViewPager) viewGroup.findViewById(R.id.fragment_profile_vp_album_history);
         ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_profile_ibtn_exit);
@@ -143,27 +140,27 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
 
     private void setDefaultValue() {
         LocalDate date = new LocalDate();
-        ivAvatar.setImageBitmap(decodeBitmap());
-        tvName.setText(storeReference("fullnameLogin"));
-        if(storeReference("birthdayLogin").equals("")==true)
+        ivAvatar.setImageBitmap(AppUtils.decodeBitmap(mySharePreference.getValue("avatarLogin")));
+        tvName.setText(mySharePreference.getValue("fullnameLogin"));
+        if(mySharePreference.getValue("birthdayLogin").equals(""))
             tvAge.setText("");
         else
-            tvAge.setText((date.getYear() - Integer.parseInt(storeReference("birthdayLogin").split("/")[2])) + "");
-        if (storeReference("genderLogin").equals("Female") == true) {
+            tvAge.setText((date.getYear() - Integer.parseInt(mySharePreference.getValue("birthdayLogin").split("/")[2])) + "");
+        if (mySharePreference.getValue("genderLogin").equals("Female")) {
             tvGender.setText("F");
         } else {
             tvGender.setText("M");
         }
-        tvPhone.setText(storeReference("phoneLogin"));
-        if (storeReference("addressLogin").equals("") == true) {
-            tvAddress.setText("Hồ Chí Minh");
+        tvPhone.setText(mySharePreference.getValue("phoneLogin"));
+        if (mySharePreference.getValue("addressLogin").equals("")) {
+            tvAddress.setText("Ho Chi Minh");
         } else {
-            tvAddress.setText(storeReference("addressLogin"));
+            tvAddress.setText(mySharePreference.getValue("addressLogin"));
         }
 
         putDataHobbyintoReference();
 
-        tvCharacter.setText(storeReference("characterLogin" + ""));
+        tvCharacter.setText(mySharePreference.getValue("characterLogin" + ""));
     }
 
     private void itemClick() {
@@ -357,25 +354,24 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     @Override
     public void onPlaceSelected(Place place) {
         tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
-        saveInfoReference("addressLogin",tvAddress.getText().toString());
-        saveInfoReference("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+        mySharePreference.setValue("addressLogin",tvAddress.getText().toString());
+        mySharePreference.setValue("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
         ProfileDialogCustom dialogCustom=new ProfileDialogCustom(getActivity());
         dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
     }
 
     @Override
     public void onError(Status status) {
-        Log.e(LOG_TAG, "onError: Status = " + status.toString());
         Toast.makeText(getContext(), "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
     }
 
     private void putDataHobbyintoReference(){
         String str="";
-        String[] temp =storeReference("hobbyLogin").toString().trim().split(",");
+        String[] temp =mySharePreference.getValue("hobbyLogin").trim().split(",");
         String[] temhobby=getResources().getStringArray(R.array.food);
         for(int j=0;j<temhobby.length;j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i])==true){
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])){
                     str+=temp[i]+",";
                 }
             }
@@ -389,7 +385,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         temhobby=getResources().getStringArray(R.array.character);
         for(int j=0;j<temhobby.length;j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i])==true){
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])){
                     str+=temp[i]+",";
                 }
             }
@@ -403,7 +399,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         temhobby=getResources().getStringArray(R.array.style);
         for(int j=0;j<temhobby.length;j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i])==true){
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])){
                     str+=temp[i]+",";
                 }
             }
@@ -424,30 +420,5 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         });
     }
 
-    private String storeReference(String str) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
-        String avatar = sharedPreferences.getString(str, "");
-        return avatar;
-    }
 
-    private void saveInfoReference(String key, String value) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-
-    private Bitmap decodeBitmap() {
-        String avatar = storeReference("avatarLogin");
-        Bitmap bitmap = null;
-        if (avatar.equals("") != true) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
-    }
 }

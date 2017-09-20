@@ -3,6 +3,7 @@ package com.app.donteatalone.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -14,8 +15,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.MultiAutoCompleteTextView;
 
 import java.io.ByteArrayOutputStream;
+import java.text.Normalizer;
+import java.util.regex.Pattern;
 
 /**
  * -> Created by LeHoangHan on 4/4/2017.
@@ -78,6 +83,17 @@ public class AppUtils {
         return tempConvert;
     }
 
+    public static Bitmap decodeBitmap(String str) {
+        Bitmap bitmap = null;
+        try {
+            byte[] encodeByte = Base64.decode(str, Base64.DEFAULT);
+            bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return bitmap;
+    }
+
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
@@ -91,5 +107,35 @@ public class AppUtils {
         else {
             return str;
         }
+    }
+
+    public static String convertStringToNFD(String str) {
+        try {
+            String temp = Normalizer.normalize(str, Normalizer.Form.NFD);
+            Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+            return pattern.matcher(temp).replaceAll("").replaceAll("đ", "d").replaceAll("Đ", "D");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static void setOnSelectedItemInMACT(MultiAutoCompleteTextView actvHobby){
+        actvHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(actvHobby.getText().toString().length()>0) {
+                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(",")) + convertStringToNFD((String) parent.getItemAtPosition(position)));
+                }
+                else {
+                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(","))+"," + convertStringToNFD((String) parent.getItemAtPosition(position)));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }

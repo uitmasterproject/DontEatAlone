@@ -60,7 +60,7 @@ public class ProfileBlogInnerAdapter extends BaseAdapter {
 
     private Bitmap decodeBitmap(String avatar){
         Bitmap bitmap=null;
-        if(avatar.equals("")!=true) {
+        if(!avatar.equals("")) {
             try {
                 byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
                 bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);

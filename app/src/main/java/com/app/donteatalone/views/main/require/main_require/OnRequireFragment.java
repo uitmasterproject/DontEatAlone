@@ -1,23 +1,22 @@
 package com.app.donteatalone.views.main.require.main_require;
 
 import android.app.Dialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.AccordantUser;
 import com.app.donteatalone.model.CustomSocket;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.require.main_require.on_require.AccordantUserAdapter;
 import com.app.donteatalone.views.main.require.main_require.on_require.CustomDialogInfoAccordantUser;
 import com.github.nkzawa.emitter.Emitter;
@@ -29,8 +28,7 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.app.donteatalone.views.main.MainActivity.txtNotification;
+import static com.app.donteatalone.views.main.notification.NotificationFragment.txtNotification;
 import static com.google.android.gms.internal.zzir.runOnUiThread;
 
 /**
@@ -42,65 +40,79 @@ public class OnRequireFragment extends Fragment {
     private View viewGroup;
     public static Socket socketIO;
     private String phone;
-    private Button btnLoad;
     private RecyclerView rcvListAccordantUser;
     private AccordantUserAdapter accordantUserAdapter;
     private ArrayList<AccordantUser> listAccordantUser;
+    private ViewPager viewPager;
+    private MySharePreference infoRequireSharePreference;
 
     private SwipeRefreshLayout srlResultsList;
 
-    public static OnRequireFragment newInstance() {
-
+    public static OnRequireFragment newInstance(ViewPager viewPager) {
         OnRequireFragment fragment = new OnRequireFragment();
+        fragment.setViewPager(viewPager);
         return fragment;
+    }
+
+    public void setViewPager(ViewPager viewPager) {
+        this.viewPager = viewPager;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_on, null);
-        phone = getInfointoSharedPreferences("phoneLogin");
-        try {
-            initSocket();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        init();
-        socketIO.emit("UserOnline", getInforRequire());
-        listenComfortableUserOnline();
-        setClickbtnLoad();
-        listenInvitation();
-        listenResultInvitation();
-        SwipeRefreshLayout();
+        phone = new MySharePreference(getActivity()).getValue("phoneLogin");
         return viewGroup;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (socketIO == null) {
+            try {
+                initSocket();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+
+        init();
+
+        socketIO.emit("UserOnline", getInforRequire());
+        listenComfortableUserOnline();
+
+        listenInvitation();
+        listenResultInvitation();
+        swipeRefreshLayout();
+    }
+
     private void init() {
-        btnLoad = (Button) viewGroup.findViewById(R.id.fragment_require_on_btn_load);
+        infoRequireSharePreference = new MySharePreference(getActivity(), phone);
         listAccordantUser = new ArrayList<AccordantUser>();
         rcvListAccordantUser = (RecyclerView) viewGroup.findViewById(R.id.fragment_require_on_rcv_list_accordant_user);
         LinearLayoutManager llManager = new LinearLayoutManager(getContext());
         llManager.setOrientation(LinearLayoutManager.VERTICAL);
         rcvListAccordantUser.setLayoutManager(llManager);
-        accordantUserAdapter = new AccordantUserAdapter(listAccordantUser, getContext(), socketIO, phone);
+        accordantUserAdapter = new AccordantUserAdapter(listAccordantUser, getContext(), socketIO);
         rcvListAccordantUser.setAdapter(accordantUserAdapter);
 
         srlResultsList = (SwipeRefreshLayout) viewGroup.findViewById(R.id.fragment_require_on_srl_results);
     }
 
     private void initSocket() throws URISyntaxException {
-        CustomSocket socket = new CustomSocket();
-        socketIO = socket.getmSocket();
+        socketIO = new CustomSocket().getmSocket();
         socketIO.connect();
     }
 
-    private void SwipeRefreshLayout() {
+    private void swipeRefreshLayout() {
         srlResultsList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 listAccordantUser.clear();
                 accordantUserAdapter.notifyDataSetChanged();
                 socketIO.emit("UserOnline", getInforRequire());
+
                 // Stop refresh animation
                 srlResultsList.setRefreshing(false);
             }
@@ -115,11 +127,10 @@ public class OnRequireFragment extends Fragment {
                     @Override
                     public void run() {
                         JSONObject data = (JSONObject) args[0];
+
                         try {
 
                             for (int i = 0; i < data.getJSONArray("listUserLike").length(); i++) {
-                                Log.e("data", data.getJSONArray("listUserLike").getJSONObject(i) + "");
-                                Log.e("latlng", data.getJSONArray("listUserLike").getJSONObject(i).getString("latlng"));
                                 listAccordantUser.add(new AccordantUser(data.getJSONArray("listUserLike").getJSONObject(i).getString("accordantUser"),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("avatar"),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("fullName"),
@@ -130,7 +141,6 @@ public class OnRequireFragment extends Fragment {
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("latlng"),
                                         data.getJSONArray("listUserLike").getJSONObject(i).getString("character")));
                             }
-                            Log.e("size", listAccordantUser.size() + "");
                             accordantUserAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -149,12 +159,12 @@ public class OnRequireFragment extends Fragment {
                     @Override
                     public void run() {
                         try {
-                            if (((JSONObject) args[0]).getString("phoneInvited").equals(getInfointoSharedPreferences("phoneLogin")) == true) {
+                            if (((JSONObject) args[0]).getString("phoneInvited").equals(phone)) {
                                 JSONObject data = (JSONObject) args[0];
-                                Dialog dialog = new Dialog(getContext());
+                                Dialog dialog = new Dialog(getContext(), R.style.MyDialogTheme);
                                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                                 dialog.setContentView(R.layout.custom_dialog_require_on_info_accordant_user);
-                                CustomDialogInfoAccordantUser customDialog = new CustomDialogInfoAccordantUser(dialog, getContext(), data, socketIO, getInfointoSharedPreferences("fullnameLogin"));
+                                CustomDialogInfoAccordantUser customDialog = new CustomDialogInfoAccordantUser(dialog, getContext(), data, socketIO, new MySharePreference(getActivity()).getValue("fullnameLogin"), viewPager);
                                 customDialog.setDefaultValue();
                                 dialog.show();
                             }
@@ -175,9 +185,7 @@ public class OnRequireFragment extends Fragment {
                     @Override
                     public void run() {
                         try {
-                            Log.e("sendInvitetext", "text result");
-                            if (((JSONObject) args[0]).getString("phoneReceiver").equals(getInfointoSharedPreferences("phoneLogin")) == true) {
-                                Log.e("sendInvite", Integer.parseInt(txtNotification.getText().toString()) + 1 + "");
+                            if (((JSONObject) args[0]).getString("phoneReceiver").equals(phone)) {
                                 txtNotification.setText(Integer.parseInt(txtNotification.getText().toString()) + 1 + "");
                             }
                         } catch (JSONException e) {
@@ -189,40 +197,13 @@ public class OnRequireFragment extends Fragment {
         });
     }
 
-
-    private void setClickbtnLoad() {
-        btnLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listAccordantUser.clear();
-                accordantUserAdapter.notifyDataSetChanged();
-                socketIO.emit("UserOnline", getInforRequire());
-            }
-        });
-    }
-
     private String getInforRequire() {
         String require;
-        require = getInfointoSharedPreferences("phoneLogin") + "|" + getRequireintoSharedPreferences("genderRequire") + "|" + getRequireintoSharedPreferences("ageminRequire") + "|" +
-                getRequireintoSharedPreferences("agemaxRequire") + "|" + getRequireintoSharedPreferences("addressRequire") + "|" +
-                getRequireintoSharedPreferences("latlngaddressRequire") + "|" + getRequireintoSharedPreferences("hobbyFoodRequire") + "|" +
-                getRequireintoSharedPreferences("hobbyCharacterRequire") + "|" + getRequireintoSharedPreferences("hobbyStyleRequire");
+        require = phone + "|" + setDefaultValue("genderRequire", "all") + "|" + setDefaultValue("ageminRequire", "18") + "|" +
+                setDefaultValue("agemaxRequire", "25") + "|" + setDefaultValue("addressRequire", "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam") + "|" +
+                setDefaultValue("latlngaddressRequire", "10.771423,106.698471") + "|" + setDefaultValue("hobbyFoodRequire", "") + "|" +
+                setDefaultValue("hobbyCharacterRequire", "") + "|" + setDefaultValue("hobbyStyleRequire", "");
         return require;
-    }
-
-    private String getInfointoSharedPreferences(String str) {
-        String data = "";
-        if (getContext() != null) {
-            SharedPreferences pre = getContext().getSharedPreferences("account", MODE_PRIVATE);
-            data = pre.getString(str, "");
-        }
-        return data;
-    }
-
-    private String getRequireintoSharedPreferences(String str) {
-        SharedPreferences pre = getContext().getSharedPreferences("inforRequire" + "_" + phone, MODE_PRIVATE);
-        String data = pre.getString(str, "");
-        return data;
     }
 
     @Override
@@ -230,5 +211,12 @@ public class OnRequireFragment extends Fragment {
         super.onStop();
         socketIO.disconnect();
         socketIO = null;
+    }
+
+    private String setDefaultValue(String key, String defaul) {
+        if (infoRequireSharePreference.getValue(key).equals(""))
+            return defaul;
+        else
+            return infoRequireSharePreference.getValue(key).trim();
     }
 }

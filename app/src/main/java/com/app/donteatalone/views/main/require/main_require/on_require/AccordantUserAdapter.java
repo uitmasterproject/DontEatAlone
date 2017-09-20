@@ -1,8 +1,8 @@
 package com.app.donteatalone.views.main.require.main_require.on_require;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
@@ -27,6 +27,8 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.AccordantUser;
 import com.app.donteatalone.model.Restaurant;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.joda.time.LocalDate;
@@ -35,12 +37,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 30-May-17.
@@ -50,20 +51,17 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
     private ArrayList<AccordantUser> listAccordantUser;
     private Context context;
     private Socket socketIO;
-    private String ownPhone;
 
-    public AccordantUserAdapter(ArrayList<AccordantUser> _listAccordantUser,Context _context, Socket _socketIO, String _ownPhone){
+    public AccordantUserAdapter(ArrayList<AccordantUser> _listAccordantUser,Context _context, Socket _socketIO){
         this.listAccordantUser=_listAccordantUser;
         this.context=_context;
         this.socketIO=_socketIO;
-        this.ownPhone=_ownPhone;
     }
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recyclerview_fragment_require_on, null);
-        CustomViewHolder viewHolder = new CustomViewHolder(view);
-        return viewHolder;
+        return new CustomViewHolder(view);
     }
 
     @Override
@@ -82,7 +80,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
 
         holder.txtPercent.setText(listAccordantUser.get(position).getPercent()+" %");
 
-        if(listAccordantUser.get(position).getGender().equals("Man")==true){
+        if(listAccordantUser.get(position).getGender().equals("Male")){
             holder.imgGender.setImageResource(R.drawable.ic_male);
         }
         else {
@@ -101,7 +99,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
             }
         });
 
-        if(listAccordantUser.get(position).getControl()==true)
+        if(listAccordantUser.get(position).getControl())
             holder.ibtnInvite.setVisibility(View.VISIBLE);
         else
             holder.ibtnInvite.setVisibility(View.INVISIBLE);
@@ -138,11 +136,11 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
             @Override
             public void onClick(View v) {
                 Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
                 String formattedDate = df.format(c.getTime());
 
-                socketIO.emit("invite",ownPhone+"|"+listAccordantUser.get(position).getAccordantUser()+"|"+
-                txtDate.getText().toString()+"|"+txtTimer.getText().toString()+"|"+txtAddress.getText().toString()+"|"+formattedDate);
+                socketIO.emit("invite",new MySharePreference((Activity)context).getValue("phoneLogin")+"|"+listAccordantUser.get(position).getAccordantUser()+"|"+
+                txtDate.getText().toString()+"|"+txtTimer.getText().toString()+"|"+ AppUtils.convertStringToNFD(txtAddress.getText().toString())+"|"+formattedDate);
                 for(AccordantUser temp:listAccordantUser){
                     temp.setControl(false);
                 }
@@ -238,22 +236,15 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
     }
 
     private void setValuePlace(TextView txtPlace,int position, ArrayList<Restaurant>listRestaurant){
-        Log.e("test","set Value Place");
-        Log.e("tag1",getRequireintoSharedPreferences("latlngaddressRequire").split(",")[0].trim());
-        Log.e("tag2",listAccordantUser.get(position).getLatlng().split(",")[0].trim());
-        Log.e("tag3",getRequireintoSharedPreferences("latlngaddressRequire").split(",")[1].trim());
-        Log.e("tag4",listAccordantUser.get(position).getLatlng().split(",")[1].trim());
 
-        String latlng=Math.abs((Float.parseFloat(getRequireintoSharedPreferences("latlngaddressRequire").split(",")[0].trim())-
+        MySharePreference requireInfoSharePreference=new MySharePreference((Activity)context,new MySharePreference((Activity)context).getValue("phoneLogin"));
+
+        String latlng=Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngaddressRequire").split(",")[0].trim())-
                 Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[0].trim()))/2)+","+
-                Math.abs((Float.parseFloat(getRequireintoSharedPreferences("latlngaddressRequire").split(",")[1].trim())-
+                Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngaddressRequire").split(",")[1].trim())-
                         Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[1].trim()))/2);
 
-
-
-
-        Connect connect=new Connect();
-        Call<ArrayList<Restaurant>>getListRestaurant = connect.getRetrofit().getRestaurant(latlng);
+        Call<ArrayList<Restaurant>>getListRestaurant = Connect.getRetrofit().getRestaurant(latlng);
         getListRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
             @Override
             public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
@@ -404,11 +395,5 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         recycleview.setLayoutManager(new LinearLayoutManager(context));
         CustomInvitedRestaurantAdapter adapter=new CustomInvitedRestaurantAdapter(listRestaurant,txtPlace);
         recycleview.setAdapter(adapter);
-    }
-
-    private String getRequireintoSharedPreferences(String str){
-        SharedPreferences pre=context.getSharedPreferences ("inforRequire"+"_"+ownPhone,MODE_PRIVATE);
-        String data=pre.getString(str,"");
-        return data;
     }
 }

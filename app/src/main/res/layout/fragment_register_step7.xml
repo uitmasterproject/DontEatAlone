@@ -84,7 +84,7 @@
             android:paddingRight="2dp"
             android:textColorHint="@color/gray">
 
-            <AutoCompleteTextView
+            <MultiAutoCompleteTextView
                 android:id="@+id/fragment_register_step7_actv_character"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:textColorHint="@color/gray">
 
-            <AutoCompleteTextView
+            <MultiAutoCompleteTextView
                 android:id="@+id/fragment_register_step7_actv_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

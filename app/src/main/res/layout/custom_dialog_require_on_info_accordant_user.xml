@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <FrameLayout
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_fullname"
@@ -149,7 +149,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_phone"
@@ -188,7 +188,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_character"
@@ -227,7 +227,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_date"
@@ -281,7 +281,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -296,7 +296,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_place"
@@ -304,7 +304,7 @@
                         android:layout_height="wrap_content"
                         android:text="KTX khu B, dai hoc quoc gia TP.HCM, Ho Chi Minh"
                         android:textColor="@color/black"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         app:fontPath="fonts/Montserrat-Medium.ttf" />
 
                 </RelativeLayout>
@@ -317,26 +317,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingBottom="15dp">
+        android:paddingBottom="10dp">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@color/gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center">
 
             <Button
                 android:id="@+id/custom_dialog_require_on_info_account_user_btn_viewprofile"
                 android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:background="@drawable/btn_login"
                 android:text="View Profile"
                 android:textSize="12sp" />
@@ -344,7 +344,7 @@
             <Button
                 android:id="@+id/custom_dialog_require_on_info_account_user_btn_accept"
                 android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/btn_login"
                 android:text="Accept"
@@ -353,11 +353,11 @@
             <Button
                 android:id="@+id/custom_dialog_require_on_info_account_user_btn_refuse"
                 android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/btn_login"
                 android:text="Refuse"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>

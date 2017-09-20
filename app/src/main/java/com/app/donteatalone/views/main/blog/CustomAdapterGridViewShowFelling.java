@@ -73,7 +73,7 @@ public class CustomAdapterGridViewShowFelling extends BaseAdapter implements Fil
         return filter;
     }
 
-    class CustomFilter extends Filter{
+    private class CustomFilter extends Filter{
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -81,7 +81,7 @@ public class CustomAdapterGridViewShowFelling extends BaseAdapter implements Fil
             ArrayList<Felling> listFilter=new ArrayList<>();
             if(constraint!=null&&constraint.length()>0){
                 for(int i=0;i<fellingsResult.size();i++){
-                    if(fellingsResult.get(i).getFelling().contains(constraint)==true){
+                    if(fellingsResult.get(i).getFelling().contains(constraint)){
                         listFilter.add(fellingsResult.get(i));
                     }
                 }

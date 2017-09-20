@@ -94,7 +94,7 @@ public class RegisterStep2Fragment extends Fragment {
                     if(edtPassword.getText().toString().length()<6){
                         edtPassword.setError("Length password is longer 6 character");
                     } else {
-                        userName.setFullname(edtFullName.getText().toString());
+                        userName.setFullname(AppUtils.convertStringToNFD(edtFullName.getText().toString()));
                         userName.setPassword(edtPassword.getText().toString());
                         _mViewPager.setCurrentItem(2,true);
                     }

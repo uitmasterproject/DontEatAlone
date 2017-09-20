@@ -105,7 +105,7 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 animationImageAvatar(rltManAvatar, R.drawable.avatar_man);
-                gender = "Man";
+                gender = "Male";
                 intChosen = 0;
             }
         });
@@ -113,7 +113,7 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 animationImageAvatar(rltWomanAvatar, R.drawable.avatar_woman);
-                gender = "Woman";
+                gender = "Female";
                 intChosen = 0;
             }
         });

@@ -1,13 +1,11 @@
 package com.app.donteatalone.views.main.restaurant;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Restaurant;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.CustomInvitedRestaurantAdapter;
 
@@ -26,8 +26,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 16-Jun-17.
@@ -41,6 +39,7 @@ public class RestaurantFragment extends Fragment {
     private CustomInvitedRestaurantAdapter adapter;
     private ArrayList<Restaurant> listRestaurant;
     private ImageButton ibtnExit;
+    private BaseProgress dialog;
 
     public static RestaurantFragment newInstance() {
 
@@ -59,28 +58,36 @@ public class RestaurantFragment extends Fragment {
         return viewGroup;
     }
 
-    private void init(){
-        atctInputSearch=(AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_restaurant_atct_inputSearch);
-        ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_exit);
-        ArrayAdapter adapterView=new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,getContext().getResources().getStringArray(R.array.District));
+    private void init() {
+        dialog = new BaseProgress();
+        atctInputSearch = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_restaurant_atct_inputSearch);
+        ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_exit);
+        ArrayAdapter adapterView = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, getContext().getResources().getStringArray(R.array.District));
         atctInputSearch.setAdapter(adapterView);
-        ibtnSearch=(ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_search);
-        rcvListRestaurant=(RecyclerView) viewGroup.findViewById(R.id.fragment_restaurant_rcv_lst_place);
+        ibtnSearch = (ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_search);
+        rcvListRestaurant = (RecyclerView) viewGroup.findViewById(R.id.fragment_restaurant_rcv_lst_place);
         rcvListRestaurant.setLayoutManager(new LinearLayoutManager(getContext()));
-        listRestaurant=new ArrayList<Restaurant>();
-        adapter=new CustomInvitedRestaurantAdapter(listRestaurant);
+        listRestaurant = new ArrayList<Restaurant>();
+        adapter = new CustomInvitedRestaurantAdapter(listRestaurant);
         rcvListRestaurant.setAdapter(adapter);
     }
 
-    private void showListRestaurant(){
-        Connect connect=new Connect();
-        Call<ArrayList<Restaurant>> methodlistRestaurant=connect.getRetrofit().getRestaurantFollowLatlng(getInfointoSharedPreferences("latlngaddressLogin"));
+    private void showListRestaurant() {
+        String latlng;
+        if (new MySharePreference(getActivity()).getValue("latlngaddressLogin").equals("")) {
+            latlng = "10.8231,106.6297";
+        } else {
+            latlng = new MySharePreference(getActivity()).getValue("latlngaddressLogin");
+        }
+        dialog.showProgressLoading(getContext());
+        Call<ArrayList<Restaurant>> methodlistRestaurant = Connect.getRetrofit().getRestaurantFollowLatlng(latlng);
         methodlistRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
             @Override
             public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
-                if(response.body().size()>0){
-                    for (Restaurant res:response.body()) {
-                        listRestaurant.add(new Restaurant(res.getName(),res.getAddress(),res.getLatlng(),res.getOpenDay()));
+                dialog.hideProgressLoading();
+                if (response.body() != null) {
+                    for (Restaurant res : response.body()) {
+                        listRestaurant.add(new Restaurant(res.getName(), res.getAddress(), res.getLatlng(), res.getOpenDay()));
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -88,24 +95,24 @@ public class RestaurantFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Restaurant>> call, Throwable t) {
-
+                dialog.hideProgressLoading();
             }
         });
     }
 
-    private void setClickSearch(){
+    private void setClickSearch() {
         ibtnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listRestaurant.clear();
-                Connect connect=new Connect();
-                Log.e("Result",atctInputSearch.getText().toString().equals("")+"");
-                if(atctInputSearch.getText().toString().equals("")==true){
-                    Call<ArrayList<Restaurant>> methodlistAllRestaurant = connect.getRetrofit().getAllRestaurant();
+                if (atctInputSearch.getText().toString().equals("")) {
+                    dialog.showProgressLoading(getContext());
+                    Call<ArrayList<Restaurant>> methodlistAllRestaurant = Connect.getRetrofit().getAllRestaurant();
                     methodlistAllRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
                         @Override
                         public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
-                            if (response.body().size() > 0) {
+                            if (response.body() !=null) {
+                                dialog.hideProgressLoading();
                                 for (Restaurant res : response.body()) {
                                     listRestaurant.add(new Restaurant(res.getName(), res.getAddress(), res.getLatlng(), res.getOpenDay()));
                                 }
@@ -115,17 +122,17 @@ public class RestaurantFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<ArrayList<Restaurant>> call, Throwable t) {
-
+                            dialog.hideProgressLoading();
                         }
                     });
-                }
-                else {
-                    Log.e("District",atctInputSearch.getText().toString());
-                    Call<ArrayList<Restaurant>> methodlistRestaurantFollowDistrict = connect.getRetrofit().getRestaurantFollowDistrict(atctInputSearch.getText().toString());
+                } else {
+                    Call<ArrayList<Restaurant>> methodlistRestaurantFollowDistrict = Connect.getRetrofit().getRestaurantFollowDistrict(atctInputSearch.getText().toString());
+                    dialog.showProgressLoading(getContext());
                     methodlistRestaurantFollowDistrict.enqueue(new Callback<ArrayList<Restaurant>>() {
                         @Override
                         public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
-                            if (response.body().size() > 0) {
+                            dialog.hideProgressLoading();
+                            if (response.body()!=null) {
                                 for (Restaurant res : response.body()) {
                                     listRestaurant.add(new Restaurant(res.getName(), res.getAddress(), res.getLatlng(), res.getOpenDay()));
                                 }
@@ -135,7 +142,7 @@ public class RestaurantFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<ArrayList<Restaurant>> call, Throwable t) {
-
+                            dialog.hideProgressLoading();
                         }
                     });
                 }
@@ -143,19 +150,14 @@ public class RestaurantFragment extends Fragment {
         });
     }
 
-    private void clickButtonExit(){
+    private void clickButtonExit() {
         ibtnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), LoginActivity.class);
+                Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private String getInfointoSharedPreferences(String str) {
-        SharedPreferences pre = getContext().getSharedPreferences("account", MODE_PRIVATE);
-        String data = pre.getString(str, "");
-        return data;
-    }
 }

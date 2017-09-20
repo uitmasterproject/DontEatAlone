@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class CustomAdapterSpinnerLimit extends ArrayAdapter {
-    ArrayList<String> listLimit;
+    private ArrayList<String> listLimit;
     public CustomAdapterSpinnerLimit(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<String> objects) {
         super(context, resource, objects);
         listLimit= objects;

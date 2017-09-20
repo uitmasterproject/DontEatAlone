@@ -12,7 +12,7 @@
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_marginLeft="3dp"
-            android:background="@drawable/custom_bg_book"></LinearLayout>
+            android:background="@drawable/custom_bg_book"/>
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="200dp"

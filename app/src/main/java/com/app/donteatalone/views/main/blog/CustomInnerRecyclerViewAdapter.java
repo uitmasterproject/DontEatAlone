@@ -95,12 +95,11 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Connect connect = new Connect();
-                Call<Status> deleteStatus = connect.getRetrofit().deleteStatusBlog(storeReference("phoneLogin"), holder.txtDate.getText().toString());
+                Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(storeReference("phoneLogin"), holder.txtDate.getText().toString());
                 deleteStatus.enqueue(new Callback<Status>() {
                     @Override
                     public void onResponse(Call<Status> call, Response<Status> response) {
-                        if (response.body().getStatus().equals("Delete success") == true) {
+                        if (response.body().getStatus().equals("Delete success")) {
                             listInnerBlog.remove(position);
                             notifyDataSetChanged();
                         }

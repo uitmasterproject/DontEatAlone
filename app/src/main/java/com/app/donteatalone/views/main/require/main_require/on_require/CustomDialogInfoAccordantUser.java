@@ -1,11 +1,12 @@
 package com.app.donteatalone.views.main.require.main_require.on_require;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.view.ViewPager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoNotification;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.notification.CustomNotificationAdapter;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -29,8 +31,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.app.donteatalone.views.main.MainActivity.viewPager;
 import static com.app.donteatalone.views.main.notification.NotificationFragment.rcvInfoNotification;
 
 /**
@@ -43,12 +43,16 @@ public class CustomDialogInfoAccordantUser {
     private JSONObject data;
     private Socket socketIO;
     private String name;
-    public CustomDialogInfoAccordantUser(Dialog dialog, Context context, JSONObject data, Socket socketIO, String name) {
+    private MySharePreference mySharePreference;
+    private ViewPager viewPager;
+    public CustomDialogInfoAccordantUser(Dialog dialog, Context context, JSONObject data, Socket socketIO, String name, ViewPager viewpager) {
         this.dialog=dialog;
         this.context=context;
+        mySharePreference=new MySharePreference((Activity)context);
         this.data=data;
         this.socketIO=socketIO;
         this.name=name;
+        this.viewPager=viewpager;
     }
 
     public void setDefaultValue() throws JSONException {
@@ -104,7 +108,7 @@ public class CustomDialogInfoAccordantUser {
     }
 
     private void setValueGender(ImageView imgGender) throws JSONException {
-        if(data.getJSONObject("invitation").getString("gender").equals("Male")==true){
+        if(data.getJSONObject("invitation").getString("gender").equals("Male")){
             imgGender.setImageResource(R.drawable.ic_male);
         }
         else {
@@ -197,7 +201,7 @@ public class CustomDialogInfoAccordantUser {
 
     private Bitmap convertStringtoBitmap(String str){
         Bitmap bitmap= BitmapFactory.decodeResource(context.getResources(),R.drawable.avatar);
-        if(str.equals("")!=true){
+        if(!str.equals("")){
             try {
                 byte[] encodeByte = Base64.decode(str, Base64.DEFAULT);
                 bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -209,18 +213,10 @@ public class CustomDialogInfoAccordantUser {
         return bitmap;
     }
 
-    private String getInfointoSharedPreferences(String str) {
-        SharedPreferences pre = context.getSharedPreferences("account", MODE_PRIVATE);
-        String data = pre.getString(str, "");
-        return data;
-    }
-
     public void setNotification() {
-        Connect connect = new Connect();
-        Log.e("listInfoNotification", "notification");
         final ArrayList<InfoNotification> listInfoNotification = new ArrayList();
-        final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, context, getInfointoSharedPreferences("phoneLogin"));
-        Call<ArrayList<InfoNotification>> getInfoNotification = connect.getRetrofit().getNotification(getInfointoSharedPreferences("phoneLogin"));
+        final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, context);
+        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(mySharePreference.getValue("phoneLogin"));
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {

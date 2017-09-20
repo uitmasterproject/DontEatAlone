@@ -1,14 +1,11 @@
 package com.app.donteatalone.views.main.profile;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -24,11 +21,12 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Hobby;
 import com.app.donteatalone.model.InfoProfileUpdate;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.register.CustomAdapterCompleteTextView;
 
 import org.joda.time.LocalDate;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -36,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.MODE_PRIVATE;
+import static com.app.donteatalone.utils.AppUtils.convertBitmaptoString;
 
 /**
  * Created by Le Hoang Han on 5/21/2017.
@@ -73,15 +71,22 @@ public class ProfileDialogCustom {
     //Check infor from offRequireFragment?
     private Boolean offRequireFragment=false;
 
+    private MySharePreference accoutSharePreference;
+    private MySharePreference infoRequireSharePreference;
+
 
     public ProfileDialogCustom(Context _context, int _intLayout, TextView _textView) {
         this.context = _context;
+        this.accoutSharePreference=new MySharePreference((Activity)context);
+        this.accoutSharePreference=new MySharePreference((Activity)context,accoutSharePreference.getValue("phoneLogin"));
         this.intLayout = _intLayout;
         this.textView = _textView;
     }
 
     public ProfileDialogCustom(Context _context, int _intLayout, ImageView _imageView, Bitmap _bitmap) {
         this.context = _context;
+        this.accoutSharePreference=new MySharePreference((Activity)context);
+        this.accoutSharePreference=new MySharePreference((Activity)context,accoutSharePreference.getValue("phoneLogin"));
         this.intLayout = _intLayout;
         this.imgOldAvatar = _imageView;
         this.bitmap=_bitmap;
@@ -89,10 +94,14 @@ public class ProfileDialogCustom {
 
     public ProfileDialogCustom(Context _context) {
         this.context=_context;
+        this.accoutSharePreference=new MySharePreference((Activity)context);
+        this.accoutSharePreference=new MySharePreference((Activity)context,accoutSharePreference.getValue("phoneLogin"));
     }
 
     public ProfileDialogCustom (Context _context, int _intLayout, TextView _textView, Boolean _offRequireFragment){
         this.context = _context;
+        this.accoutSharePreference=new MySharePreference((Activity)context);
+        this.accoutSharePreference=new MySharePreference((Activity)context,accoutSharePreference.getValue("phoneLogin"));
         this.intLayout = _intLayout;
         this.textView = _textView;
         this.offRequireFragment=_offRequireFragment;
@@ -131,7 +140,7 @@ public class ProfileDialogCustom {
                     @Override
                     public void onClick(View v) {
                         imgOldAvatar.setImageBitmap(bitmap);
-                        saveInfoReference("avatarLogin", convertBitmaptoString(bitmap));
+                        accoutSharePreference.setValue("avatarLogin", convertBitmaptoString(bitmap));
                         updateData("Avatar",convertBitmaptoString(bitmap));
                         dialog.dismiss();
                     }
@@ -156,7 +165,7 @@ public class ProfileDialogCustom {
                     @Override
                     public void onClick(View v) {
                         textView.setText(edtName.getText().toString());
-                        saveInfoReference("fullnameLogin", edtName.getText().toString());
+                        accoutSharePreference.setValue("fullnameLogin", edtName.getText().toString());
                         updateData("FullName",edtName.getText().toString());
                         dialog.dismiss();
                     }
@@ -188,7 +197,7 @@ public class ProfileDialogCustom {
                     @Override
                     public void onClick(View v) {
                         textView.setText((localDate.getYear() - yearWheelPicker.getCurrentYear()) + "");
-                        saveInfoReference("birthdayLogin",
+                        accoutSharePreference.setValue("birthdayLogin",
                                 (dayWheelPicker.getCurrentItemPosition() - 1) + "/"
                                         + (monthWhellPicker.getCurrentItemPosition() - 1) + "/"
                                         + (yearWheelPicker.getCurrentYear()) + "");
@@ -241,10 +250,10 @@ public class ProfileDialogCustom {
                     @Override
                     public void onClick(View v) {
                         if (textView.getText().equals("F")) {
-                            saveInfoReference("genderLogin", "Female");
+                            accoutSharePreference.setValue("genderLogin", "Female");
                             updateData("Gender","Female");
                         } else {
-                            saveInfoReference("genderLogin", "Male");
+                            accoutSharePreference.setValue("genderLogin", "Male");
                             updateData("Gender","Male");
                         }
                         dialog.dismiss();
@@ -266,17 +275,7 @@ public class ProfileDialogCustom {
                 actvHobbyAboutFood.setAdapter(adapter);
                 actvHobbyAboutFood.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-                actvHobbyAboutFood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        setOnselectedIteminHobby(actvHobbyAboutFood);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
+                AppUtils.setOnSelectedItemInMACT(actvHobbyAboutFood);
 
                 rlClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -308,17 +307,7 @@ public class ProfileDialogCustom {
                 actvHobbyAboutCharacter.setAdapter(adapter);
                 actvHobbyAboutCharacter.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-                actvHobbyAboutCharacter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        setOnselectedIteminHobby(actvHobbyAboutCharacter);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
+                AppUtils.setOnSelectedItemInMACT(actvHobbyAboutCharacter);
 
                 rlClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -350,17 +339,7 @@ public class ProfileDialogCustom {
                 actvHobbyAboutStyle.setAdapter(adapter);
                 actvHobbyAboutStyle.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-                actvHobbyAboutStyle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        setOnselectedIteminHobby(actvHobbyAboutStyle);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
+                AppUtils.setOnSelectedItemInMACT(actvHobbyAboutStyle);
 
                 rlClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -403,19 +382,18 @@ public class ProfileDialogCustom {
                     @Override
                     public void onClick(View v) {
                         String tempCharacter;
-                        if(actvCharacter.getText().toString().trim().equals("")==true){
+                        if(actvCharacter.getText().toString().trim().equals("")){
                             tempCharacter="";
                         }
                         else {
-                            if (checkComma(actvCharacter.getText().toString().trim()) == true) {
+                            if (checkComma(actvCharacter.getText().toString().trim())) {
                                 tempCharacter = actvCharacter.getText().toString().trim().substring(0, actvCharacter.getText().toString().trim().length() - 1).replaceAll(", ", ",");
                             } else {
                                 tempCharacter = actvCharacter.getText().toString().trim().replaceAll(", ", ",");
                             }
                         }
-                        Log.e("Character",tempCharacter);
                         textView.setText(tempCharacter);
-                        saveInfoReference("characterLogin",tempCharacter);
+                        accoutSharePreference.setValue("characterLogin",tempCharacter);
                         updateData("Character",tempCharacter);
                         dialog.dismiss();
                     }
@@ -460,7 +438,7 @@ public class ProfileDialogCustom {
                         else {
                             textView.setText(Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()));
                         }
-                        saveInforintoRequireOff("ageRequire",textView.getText().toString());
+                        infoRequireSharePreference.setValue("ageRequire",textView.getText().toString());
                         dialog.cancel();
                     }
                 });
@@ -557,35 +535,28 @@ public class ProfileDialogCustom {
     //start methods use for hobby
 
     //set for event selected item in mutiautocomplete hobby
-    private void setOnselectedIteminHobby(MultiAutoCompleteTextView actvHobby){
-        if(actvHobby.getText().toString().length()>0) {
-            actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(",")) + actvHobby.getItemSelectedListener().toString());
-        }
-        else {
-            actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(","))+"," + actvHobby.getItemSelectedListener().toString());
-        }
-    }
+
 
     //set for event click btnDone in hobby
     private void setOnclickDoneinHobby(MultiAutoCompleteTextView actvHobby, TextView text, String key){
         String tempHobby="";
-        if(actvHobby.getText().toString().trim().equals("")==true){
+        if(actvHobby.getText().toString().trim().equals("")){
             tempHobby=actvHobby.getText().toString().trim();
         }
         else {
-            if (checkComma(actvHobby.getText().toString().trim()) == true) {
+            if (checkComma(actvHobby.getText().toString().trim())) {
                 tempHobby=actvHobby.getText().toString().trim().substring(0, actvHobby.getText().toString().trim().length() - 1);
             } else {
                 tempHobby=actvHobby.getText().toString().trim();
             }
         }
 
-        if(offRequireFragment==false){
+        if(!offRequireFragment){
             saveHobbyInfoReference(tempHobby,text.getText().toString().trim());
             textView.setText(tempHobby);
         }
         else {
-            saveInforintoRequireOff(key,tempHobby);
+            infoRequireSharePreference.setValue(key,tempHobby);
             textView.setText(tempHobby);
         }
     }
@@ -594,15 +565,15 @@ public class ProfileDialogCustom {
     private void saveHobbyInfoReference(String elementHobby, String oldHobby){
         String[] item=elementHobby.split(",");
         String[] oldItem=oldHobby.split(",");
-        String temp=storeReference("hobbyLogin")+",";
+        String temp=accoutSharePreference.getValue("hobbyLogin")+",";
         for(int i=0;i<oldItem.length;i++){
-            if(temp.contains(oldItem[i])==true){
+            if(temp.contains(oldItem[i])){
                 temp=temp.replace(temp.substring(temp.indexOf(oldItem[i]),(temp.indexOf(oldItem[i])+oldItem[i].length()+1)),"");
             }
         }
         for(int i=0;i<item.length;i++){
-            if(temp.contains(item[i])!=true){
-                if(checkComma(temp)==true)
+            if(!temp.contains(item[i])){
+                if(checkComma(temp))
                     temp=temp+item[i]+",";
                 else
                     temp=temp+","+item[i];
@@ -610,11 +581,11 @@ public class ProfileDialogCustom {
         }
         temp=temp.replaceAll(", ",",");
         try {
-            saveInfoReference("hobbyLogin", temp.substring(0, temp.length() - 1));
+            accoutSharePreference.setValue("hobbyLogin", temp.substring(0, temp.length() - 1));
             updateData("Hobby", temp.substring(0, temp.length() - 1));
         }
         catch (Exception e){
-            saveInfoReference("hobbyLogin","");
+            accoutSharePreference.setValue("hobbyLogin","");
             updateData("Hobby", "");
         }
     }
@@ -669,8 +640,7 @@ public class ProfileDialogCustom {
 
     //method update content in data
     private void updateData(String which,String content){
-        Connect connect=new Connect();
-        Call<Status> updateProfile=connect.getRetrofit().updateProfile(new InfoProfileUpdate(storeReference("phoneLogin"),which,content));
+        Call<Status> updateProfile=Connect.getRetrofit().updateProfile(new InfoProfileUpdate(accoutSharePreference.getValue("phoneLogin"),which,content));
         updateProfile.enqueue(new Callback<Status>() {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {
@@ -684,37 +654,6 @@ public class ProfileDialogCustom {
         });
     }
 
-    //save content was changed into Reference
-    private void saveInfoReference(String key, String value) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("account", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-
-    private void saveInforintoRequireOff(String key, String value){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("inforRequire"+"_"+storeReference("phoneLogin"), MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-
-    //get data from Reference
-    private String storeReference(String str) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("account", MODE_PRIVATE);
-        String avatar = sharedPreferences.getString(str, "");
-        return avatar;
-    }
-
-    //convert data from bitmap to String
-    private String convertBitmaptoString(Bitmap bm){
-        String tempConvert="";
-        ByteArrayOutputStream arrayOutputStream=new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,90,arrayOutputStream);
-        byte[] b=arrayOutputStream.toByteArray();
-        tempConvert= Base64.encodeToString(b,Base64.DEFAULT);
-        return tempConvert;
-    }
 
     //clone data of Character.
     private void clonebdHobby(){
@@ -734,6 +673,5 @@ public class ProfileDialogCustom {
         character.add(new Hobby("Phong cách","quái dị",false));
         character.add(new Hobby("Phong cách","trưởng thành",false));
     }
-//=================================================================================================
 }
 

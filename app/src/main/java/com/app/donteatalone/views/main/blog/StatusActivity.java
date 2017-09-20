@@ -3,7 +3,6 @@ package com.app.donteatalone.views.main.blog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.SearchView;
-import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,14 +28,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Felling;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.ExifUtil;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -48,10 +48,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.app.donteatalone.utils.AppUtils.decodeBitmap;
 
 /**
  * Created by ChomChom on 4/14/2017.
@@ -67,8 +70,9 @@ public class StatusActivity extends Activity {
     private EditText edtStatus, edtTitle;
     private TextView txtCancel, txtPost;
     private Spinner snLimit;
-    private String phone;
     private InfoBlog infoBlog;
+    private MySharePreference mySharePreference;
+    private BaseProgress dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +90,7 @@ public class StatusActivity extends Activity {
 
 
     private void init() {
+        mySharePreference = new MySharePreference(StatusActivity.this);
         txtCancel = (TextView) findViewById(R.id.activity_blog_write_status_btn_cancel);
         txtPost = (TextView) findViewById(R.id.activity_blog_write_status_btn_post);
         txtTitle = (TextView) findViewById(R.id.activity_blog_write_status_txt_title);
@@ -132,7 +137,9 @@ public class StatusActivity extends Activity {
     private void setValueContent() {
         String str = infoBlog.getInfoStatus();
         while (str.length() != 0) {
-            if (str.startsWith("<text>") == true) {
+
+            if (str.startsWith("<text>")) {
+
                 EditText editText = new EditText(this);
                 int index = str.indexOf("</text>");
                 editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -141,7 +148,9 @@ public class StatusActivity extends Activity {
                 editText.setText(str.substring(6, index));
                 llContainer.addView(editText);
                 str = str.substring(index + 7);
-            } else if (str.startsWith("<image>") == true) {
+
+            } else if (str.startsWith("<image>")) {
+
                 ImageView imgImage = new ImageView(this);
                 int index = str.indexOf("</image>");
                 Bitmap bitmap = decodeBitmap(str.substring(7, index));
@@ -162,20 +171,6 @@ public class StatusActivity extends Activity {
         }
     }
 
-    private Bitmap decodeBitmap(String avatar) {
-        Bitmap bitmap = null;
-        if (avatar.equals("") != true) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                return bitmap;
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
-    }
-
     private void clickbtnCancel() {
         txtCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,21 +182,26 @@ public class StatusActivity extends Activity {
     }
 
     private void clickbtnPost() {
+
         txtPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Connect connect = new Connect();
+                dialog=new BaseProgress();
+                dialog.showProgressLoading(StatusActivity.this);
+
                 Call<Status> modifiedInfoBlog;
                 if (infoBlog == null) {
-                    modifiedInfoBlog = connect.getRetrofit().addStatusBlog(setInfoStatus(), phone);
+                    modifiedInfoBlog = Connect.getRetrofit().addStatusBlog(setInfoStatus(), mySharePreference.getValue("phoneLogin"));
                 } else {
-                    modifiedInfoBlog = connect.getRetrofit().editStatusBlog(setInfoStatus(), phone);
+                    modifiedInfoBlog = Connect.getRetrofit().editStatusBlog(setInfoStatus(), mySharePreference.getValue("phoneLogin"));
                 }
+
                 modifiedInfoBlog.enqueue(new Callback<Status>() {
                     @Override
                     public void onResponse(Call<Status> call, Response<Status> response) {
-                        if (response != null) {
-                            if (response.body().getStatus().equals("Insert success") == true) {
+                        dialog.hideProgressLoading();
+                        if (response.body() != null) {
+                            if (response.body().getStatus().equals("Insert success")) {
                                 Intent intent = new Intent(StatusActivity.this, MainActivity.class);
                                 startActivity(intent);
                             } else {
@@ -222,7 +222,7 @@ public class StatusActivity extends Activity {
     private InfoBlog setInfoStatus() {
         String thisDate = "";
         if (infoBlog == null) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
             Date date = new Date();
             thisDate = dateFormat.format(date);
         } else {
@@ -234,18 +234,17 @@ public class StatusActivity extends Activity {
 
         String content = "";
         for (int count = 0; count < llContainer.getChildCount(); count++) {
-            if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.EditText") == true) {
+            if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.EditText")) {
                 EditText editText = (EditText) llContainer.getChildAt(count);
                 content += "<text>" + editText.getText().toString() + "</text>";
-            } else if(llContainer.getChildAt(count).getClass().getName().equals("android.widget.ImageView")==true) {
+            } else if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
                 ImageView imageView = (ImageView) llContainer.getChildAt(count);
-                content += "<image>" + convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()) + "</image>";
-                image.add(convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
+                content += "<image>" + AppUtils.convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()) + "</image>";
+                image.add(AppUtils.convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
             }
         }
 
-        InfoBlog infoBlog = new InfoBlog(edtTitle.getText().toString(), thisDate, content, feeling, image, snLimit.getSelectedItem().toString());
-        return infoBlog;
+        return new InfoBlog(edtTitle.getText().toString(), thisDate, content, feeling, image, snLimit.getSelectedItem().toString());
     }
 
     private void clickimgbtnCamera() {
@@ -331,16 +330,16 @@ public class StatusActivity extends Activity {
 
     private int defineIconforFeeling(String feeling) {
         int icon = 0;
-        if (feeling.equals("feeling đáng yêu") == true) {
+        if (feeling.equals("feeling đáng yêu")) {
             icon = R.drawable.ic_felling_cute;
             return icon;
-        } else if (feeling.equals("feeling thú vị") == true) {
+        } else if (feeling.equals("feeling thú vị")) {
             icon = R.drawable.ic_felling_exciting;
             return icon;
-        } else if (feeling.equals("feeling vui vẻ") == true) {
+        } else if (feeling.equals("feeling vui vẻ")) {
             icon = R.drawable.ic_felling_smile;
             return icon;
-        } else if (feeling.equals("feeling buồn") == true) {
+        } else if (feeling.equals("feeling buồn")) {
             icon = R.drawable.ic_felling_sad;
             return icon;
         }
@@ -392,15 +391,18 @@ public class StatusActivity extends Activity {
 
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
-                cursor.moveToFirst();
+                if(cursor!=null) {
+                    cursor.moveToFirst();
 
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String picturePath = cursor.getString(columnIndex);
-                cursor.close();
 
-                Bitmap loadedBitmap = BitmapFactory.decodeFile(picturePath);
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String picturePath = cursor.getString(columnIndex);
+                    cursor.close();
 
-                bitmap = ExifUtil.definiteRotate(picturePath, loadedBitmap);
+                    Bitmap loadedBitmap = BitmapFactory.decodeFile(picturePath);
+
+                    bitmap = ExifUtil.definiteRotate(picturePath, loadedBitmap);
+                }
                 bitmap = ExifUtil.scaleBitmap(bitmap, StatusActivity.this);
                 if (bitmap != null) {
                     setElementImageforLinearLayout(bitmap, 1);
@@ -410,15 +412,17 @@ public class StatusActivity extends Activity {
 
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
-                cursor.moveToFirst();
+                if(cursor!=null) {
+                    cursor.moveToFirst();
 
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String picturePath = cursor.getString(columnIndex);
-                cursor.close();
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String picturePath = cursor.getString(columnIndex);
+                    cursor.close();
 
-                Bitmap loadedBitmap = BitmapFactory.decodeFile(picturePath);
+                    Bitmap loadedBitmap = BitmapFactory.decodeFile(picturePath);
 
-                bitmap = ExifUtil.definiteRotate(picturePath, loadedBitmap);
+                    bitmap = ExifUtil.definiteRotate(picturePath, loadedBitmap);
+                }
                 bitmap = ExifUtil.scaleBitmap(bitmap, StatusActivity.this);
                 if (bitmap != null) {
                     setElementImageforLinearLayout(bitmap, requestCode);
@@ -437,7 +441,7 @@ public class StatusActivity extends Activity {
     //3. thisview.set action.
     private void setElementImageforLinearLayout(Bitmap bitmap, int check) {
         if (check == 1) {
-            if (llContainer.getChildAt(llContainer.getChildCount() - 1).getClass().getName().equals("android.widget.EditText") == true &&
+            if (llContainer.getChildAt(llContainer.getChildCount() - 1).getClass().getName().equals("android.widget.EditText") &&
                     ((EditText) llContainer.getChildAt(llContainer.getChildCount() - 1)).getText().toString().trim().length() <= 0) {
                 llContainer.removeViewAt(llContainer.getChildCount() - 1);
             }
@@ -468,7 +472,6 @@ public class StatusActivity extends Activity {
         }
 
         setClickImageContent();
-
     }
 
     private void setClickImageContent() {
@@ -487,32 +490,10 @@ public class StatusActivity extends Activity {
         }
     }
 
-
-    private String storeReference() {
-        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
-        Boolean bchk = sharedPreferences.getBoolean("checked", false);
-        String avatar = "";
-        if (bchk == false) {
-            avatar = sharedPreferences.getString("avatarLogin", "");
-            txtNameUser.setText(sharedPreferences.getString("fullnameLogin", "").toUpperCase());
-            phone = sharedPreferences.getString("phoneLogin", "");
-        }
-        return avatar;
-    }
-
-    private String convertBitmaptoString(Bitmap bm) {
-        String tempConvert = "";
-        ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 90, arrayOutputStream);
-        byte[] b = arrayOutputStream.toByteArray();
-        tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
-        return tempConvert;
-    }
-
     private void setAvatarforimgAvatar() {
-        Bitmap bitmap = decodeBitmap(storeReference());
-        if (bitmap != null) {
-            imgAvatar.setImageBitmap(bitmap);
+        Bitmap avatarBitmap = AppUtils.decodeBitmap(mySharePreference.getValue("avatarLogin"));
+        if (avatarBitmap != null) {
+            imgAvatar.setImageBitmap(avatarBitmap);
         }
     }
 
@@ -521,6 +502,4 @@ public class StatusActivity extends Activity {
         super.onResume();
         overridePendingTransition(R.animator.animator_bottom_up, R.animator.stay);
     }
-
-
 }

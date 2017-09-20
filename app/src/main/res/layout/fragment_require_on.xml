@@ -5,36 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="The Best Results"
-            android:textColor="@color/dot_tutorial_inactive"
-            android:textSize="20dp" />
-
-
-        <Button
-            android:id="@+id/fragment_require_on_btn_load"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btn_login"
-            android:text="Load"
-            android:textColor="@color/comformat"
-            android:textSize="20sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-    </RelativeLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

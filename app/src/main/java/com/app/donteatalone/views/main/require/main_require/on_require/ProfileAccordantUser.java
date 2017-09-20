@@ -150,7 +150,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
         }
         tvPhone.setText(userName.getPhone());
         if (userName.getAddress().equals("") == true) {
-            tvAddress.setText("Hồ Chí Minh");
+            tvAddress.setText("Ho Chi Minh");
         } else {
             tvAddress.setText(userName.getAddress());
         }
