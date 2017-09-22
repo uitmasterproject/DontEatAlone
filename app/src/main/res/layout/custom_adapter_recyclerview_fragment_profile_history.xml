@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tool="http://schemas.android.com/tools"
     tool:ignore="MissingPrefix,contentDescription">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingLeft="2dp"
         android:paddingRight="2dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
 
-            <ImageView
-                android:layout_width="1dp"
-                android:layout_height="135dp"
-                android:background="@color/colorPrimary"
-                android:src="@drawable/ic_blue_line" />
-
-        </LinearLayout>
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_blue_line" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,7 +40,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dp"
+                    android:paddingLeft="4dp"
                     android:src="@drawable/blue_dot" />
 
                 <TextView
@@ -70,7 +65,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="6.5dp"
+                    android:paddingLeft="7dp"
                     android:paddingTop="3dp"
                     android:src="@drawable/blue_dot_05x" />
 
@@ -97,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:paddingLeft="6.5dp"
+                    android:paddingLeft="7dp"
                     android:paddingRight="0dp"
                     android:paddingTop="3dp"
                     android:src="@drawable/blue_dot_05x" />
@@ -118,6 +113,7 @@
 
             <!--Các button thả tim (vote cho cuộc hẹn), share (để khoe chiến tích), delete để xóa-->
             <LinearLayout
+                android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_ll_appraise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -125,48 +121,126 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="2dp">
 
-                <LinearLayout
+                <!--Share-->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_appraise" />
+
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Appraise"
+                    android:textColor="@color/blue_gray_1" />
 
-                    <!--Tim-->
-                    <RelativeLayout
-                        android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_rl_heart"
-                        android:layout_width="wrap_content"
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_ll_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_ll_accordantappraise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:padding="5dp">
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_iv_heart"
+                            android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_iv_accordantrate"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_heart_black_18dp" />
+                            android:src="@drawable/ic_heart_black" />
 
-                    </RelativeLayout>
+                        <TextView
+                            android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_txt_accordantappraise"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="7dp"
+                            android:text="abc"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
 
-                    <!--Share-->
-                    <RelativeLayout
-                        android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_rl_share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_share_1" />
-
-                    </RelativeLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray" />
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp">
+
+                    <ImageView
+                        android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_iv_myrate"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_heart_black" />
+
+                    <TextView
+                        android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_txt_myappraise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="27dp"
+                        android:text="abc"
+                        android:textColor="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="27dp"
+                        android:weightSum="7"
+                        android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_ll_writeappraise">
+
+                        <EditText
+                            android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_edt_writeappraise"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:textSize="15dp"
+                            android:background="@drawable/bg_solid_white"
+                            android:hint="write appraise"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:padding="3dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray" />
+
+                        <ImageButton
+                            android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_ibtn_send"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:scaleType="centerInside"
+                            android:background="@color/transparent"
+                            android:src="@android:drawable/ic_media_play" />
+                    </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="30dp"
+                android:layout_height="2dp"
+                android:layout_marginLeft="15dp"
                 android:background="@color/gray" />
 
         </LinearLayout>

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="180dp"
     android:layout_height="205dp"
-    android:background="@color/tranparent">
+    android:background="@color/transparent">
     <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="205dp"

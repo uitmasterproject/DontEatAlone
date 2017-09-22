@@ -30,6 +30,7 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
+import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryFragment;
 import com.app.donteatalone.views.register.CustomViewPager;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Setting time and place"
+            android:text="Setting timer and place"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:fontPath="fonts/RobotoCondensed-Bold.ttf" />

@@ -25,7 +25,7 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.profile.ProfileBlogFragment;
-import com.app.donteatalone.views.main.profile.ProfileHistoryFragment;
+import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryFragment;
 
 import org.joda.time.LocalDate;
 

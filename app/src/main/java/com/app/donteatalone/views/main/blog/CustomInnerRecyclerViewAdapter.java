@@ -1,12 +1,9 @@
 package com.app.donteatalone.views.main.blog;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +16,14 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.MySharePreference;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ChomChom on 19-Aug-17
@@ -52,7 +49,11 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
         holder.txtTitle.setText(listInnerBlog.get(position).getTitle());
         holder.imgIcon.setImageResource(defineIconforFeeling(listInnerBlog.get(position).getFeeling()));
         holder.txtFeel.setText(listInnerBlog.get(position).getFeeling());
-        holder.imgImage.setImageBitmap(decodeBitmap(listInnerBlog.get(position).getImage().get(0)));
+        if(listInnerBlog.get(position).getImage().size()>0) {
+            holder.imgImage.setImageBitmap(AppUtils.decodeBitmap(listInnerBlog.get(position).getImage().get(0)));
+        }else {
+            holder.imgImage.setImageBitmap(null);
+        }
         holder.txtDate.setText(listInnerBlog.get(position).getDate());
 
         holder.rlContent.setOnClickListener(new View.OnClickListener() {
@@ -95,13 +96,15 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(storeReference("phoneLogin"), holder.txtDate.getText().toString());
+                Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(new MySharePreference((Activity)context).getValue("phoneLogin"), holder.txtDate.getText().toString());
                 deleteStatus.enqueue(new Callback<Status>() {
                     @Override
                     public void onResponse(Call<Status> call, Response<Status> response) {
-                        if (response.body().getStatus().equals("Delete success")) {
-                            listInnerBlog.remove(position);
-                            notifyDataSetChanged();
+                        if(response.body()!=null) {
+                            if (response.body().getStatus().equals("Delete success")) {
+                                listInnerBlog.remove(position);
+                                notifyDataSetChanged();
+                            }
                         }
                     }
 
@@ -135,25 +138,6 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
             return icon;
         }
         return icon;
-    }
-
-    private String storeReference(String key) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("account", MODE_PRIVATE);
-        return sharedPreferences.getString(key, "");
-    }
-
-    private Bitmap decodeBitmap(String avatar) {
-        Bitmap bitmap = null;
-        if (avatar.equals("") != true) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                return bitmap;
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
     }
 
     public class InnerVH extends RecyclerView.ViewHolder {
