@@ -127,7 +127,7 @@
                                 android:id="@+id/fragment_require_on_custom_cardview_ibtn_invite"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/tranparent"
+                                android:background="@color/transparent"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/ic_invite" />
 

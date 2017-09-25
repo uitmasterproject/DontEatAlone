@@ -3,6 +3,7 @@ package com.app.donteatalone.connectmongo;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.InfoProfileUpdate;
+import com.app.donteatalone.model.ProfileHistoryModel;
 import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
@@ -84,4 +85,9 @@ public interface Structure {
         Call<ArrayList<Restaurant>> getRestaurantFollowDistrict(@Path("district") String district);
         @GET("/restaurant")
         Call<ArrayList<Restaurant>> getAllRestaurant();
+
+        @GET("/eventhistory/{phone}")
+        Call<ArrayList<ProfileHistoryModel>> getEventHistory(@Path("phone") String phone);
+        @POST("/eventhistory/edit/{phone}")
+        Call<ArrayList<ProfileHistoryModel>> editEventHistory(@Path("phone") String phone, @Body ProfileHistoryModel profileHistoryModel);
 }

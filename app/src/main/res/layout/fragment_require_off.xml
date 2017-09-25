@@ -184,7 +184,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/tranparent" />
+        android:background="@color/transparent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -350,7 +350,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/tranparent" />
+        android:background="@color/transparent" />
 
     <!--location you are looking for-->
     <LinearLayout

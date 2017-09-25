@@ -56,7 +56,7 @@
                 android:id="@+id/custom_adapter_recyclerview_notification_img_icon"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/tranparent" />
+                android:background="@color/transparent" />
 
             <TextView
                 android:id="@+id/custom_adapter_recyclerview_notification_txt_timer"

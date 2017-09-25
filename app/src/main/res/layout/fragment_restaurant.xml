@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_exit"
-            android:background="@color/tranparent"
+            android:background="@color/transparent"
             android:id="@+id/fragment_restaurant_ibtn_exit"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:layout_weight="1"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
-                android:background="@color/tranparent"
+                android:background="@color/transparent"
                 android:src="@android:drawable/ic_menu_search"
                 android:id="@+id/fragment_restaurant_ibtn_search"/>
         </LinearLayout>
