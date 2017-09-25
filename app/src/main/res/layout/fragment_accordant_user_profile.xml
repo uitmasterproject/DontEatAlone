@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical"
+    tools:ignore="contentDescription, MissingPrefix">
+
+    <!--Tool bar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_deep_orange">
+
+        <RelativeLayout
+            android:id="@+id/fragment_accordant_user_profile_rl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_back_arrow_white" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_accordant_user_profile_tv_target_name_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hoang Han Le"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 's profile"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!--Content-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <!--Persional information and Achievements and more information-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <!--Set avatar image-->
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp">
+
+                            <ImageView
+                                android:id="@+id/fragment_accordant_user_profile_iv_avatar"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/avatar_man" />
+
+                        </RelativeLayout>
+
+                        <!--Set your name below here-->
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/ripple_selector_rectangle"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp">
+
+                            <TextView
+                                android:id="@+id/fragment_accordant_user_profile_tv_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="Display name"
+                                android:textColor="@color/bg_text_color_orange_orange2"
+                                android:textSize="20sp"
+                                app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+                        </RelativeLayout>
+
+                        <!--Set Age and Gender below here-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/ripple_selector"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:id="@+id/fragment_accordant_user_profile_tv_age"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/color_deep_orange"
+                                    android:textSize="18sp"
+                                    app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_line_dots2x" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/ripple_selector"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:id="@+id/fragment_accordant_user_profile_tv_gender"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:singleLine="true"
+                                    android:text="F"
+                                    android:textColor="@color/color_deep_orange"
+                                    android:textSize="18sp"
+                                    app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_1" />
+
+                <!--Achievements-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="2dp">
+
+                    <!--Counts Like-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <!--Quantity-->
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_counts_like"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+                        <!--Text Like-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="likes"
+                            android:textColor="@color/grey"
+                            android:textSize="18sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Counts appoitments-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <!--Quantity-->
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_counts_appointment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+                        <!--Text Appointment-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="appointment"
+                            android:textColor="@color/grey"
+                            android:textSize="18sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <!--Quantity-->
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_counts_star"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+
+                        <!--Text Star-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="star"
+                            android:textColor="@color/grey"
+                            android:textSize="18sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Button Like-->
+                    <LinearLayout
+                        android:id="@+id/fragment_accordant_user_profile_ll_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/fragment_accordant_user_profile_iv_like"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_thumb_up_grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_1" />
+
+                <!--More Infomation-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <!--Address-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_home_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Live in "
+                            android:textColor="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Character-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personality_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_character"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Characters  "
+                            android:textColor="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Style-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_style_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_styles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Styles are "
+                            android:textColor="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Food-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_food_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_foods"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Like "
+                            android:textColor="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Phone number-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_phone_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="0902323 "
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--information of Hoang Han's target-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <!--Label-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_find_target" />
+
+                    <TextView
+                        android:id="@+id/fragment_accordant_user_profile_tv_target_name_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="'s Target is ..."
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_1" />
+
+                <!--Target's character and target's style-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <!--Targert's Character-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_target_personality_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_target_characters"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Characters  "
+                            android:textColor="@color/grey"
+                            android:textSize="15sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <!--Targert's Style-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_target_style_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_target_styles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Styles are "
+                            android:textColor="@color/grey"
+                            android:textSize="15sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Blog View and History view-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/fragment_accordant_user_profile_tl_tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/grey_1">
+
+                </android.support.design.widget.TabLayout>
+
+                <com.app.donteatalone.views.register.CustomViewPager
+                    android:id="@+id/fragment_accordant_user_profile_cvp_blog_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                </com.app.donteatalone.views.register.CustomViewPager>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

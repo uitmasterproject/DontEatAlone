@@ -41,19 +41,19 @@ import retrofit2.Response;
 
 public class ProfileAccordantUser extends AppCompatActivity {
 
-    private ImageView ivAvatar;
-    private TextView tvName, tvAge, tvGender, tvPhone, tvAddress;
-    private TextView tvHobbyFood, tvHobbyCharacter, tvHobbyStyle, tvCharacter;
-    private ImageButton ibtnExit;
-    private RelativeLayout rlSuggest;
-    private LinearLayout llEditAvatar;
+    private ImageView ivAvatar, ivLike;
+    private TextView tvName1, tvName2, tvName, tvAge, tvGender, tvPhone, tvAddress;
+    private TextView tvTargetCharacters, tvTargetStyles, tvCharacters, tvStyles, tvFoods;
+    private RelativeLayout rlBack;
+    private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
+    private LinearLayout llButtonLike;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_profile);
+        setContentView(R.layout.fragment_accordant_user_profile);
         init();
         getValueProfilefromDatabase();
         setClickButtonExit();
@@ -62,39 +62,50 @@ public class ProfileAccordantUser extends AppCompatActivity {
     }
 
     private void init() {
-        ivAvatar = (ImageView) findViewById(R.id.fragment_profile_iv_avatar);
-        tvName = (TextView) findViewById(R.id.fragment_profile_tv_name);
-        tvAge = (TextView) findViewById(R.id.fragment_profile_tv_age);
-        tvGender = (TextView) findViewById(R.id.fragment_profile_tv_gender);
-        tvPhone = (TextView) findViewById(R.id.fragment_profile_tv_phone);
-        tvAddress = (TextView) findViewById(R.id.fragment_profile_tv_address);
-        tvHobbyFood = (TextView) findViewById(R.id.fragment_profile_tv_hobby_food);
-        tvHobbyCharacter = (TextView) findViewById(R.id.fragment_profile_tv_hobby_character);
-        tvHobbyStyle = (TextView) findViewById(R.id.fragment_profile_tv_hobby_style);
-        tvCharacter = (TextView) findViewById(R.id.fragment_profile_tv_character);
-        ibtnExit = (ImageButton) findViewById(R.id.fragment_profile_ibtn_exit);
-        rlSuggest=(RelativeLayout) findViewById(R.id.fragment_profile_rl_suggest);
-        rlSuggest.setBackgroundColor(getResources().getColor(R.color.white));
-        llEditAvatar=(LinearLayout) findViewById(R.id.fragment_profile_ll_edit_avatar);
-        llEditAvatar.setVisibility(View.GONE);
-        tabLayout=(TabLayout) findViewById(R.id.fragment_profile_tl_tabs);
-        viewPager=(ViewPager) findViewById(R.id.fragment_profile_vp_album_history);
+        /*Toolbar*/
+        rlBack = (RelativeLayout) findViewById(R.id.fragment_accordant_user_profile_rl_back);
+        tvName1 = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_name_1);
+        tvName2 = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_name_2);
+        /*Personal Information*/
+        ivAvatar = (ImageView) findViewById(R.id.fragment_accordant_user_profile_iv_avatar);
+        tvName = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_name);
+        tvAge = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_age);
+        tvGender = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_gender);
+        /*Achievements*/
+        tvCountsLike = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_counts_like);
+        tvCountsAppointment = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_counts_appointment);
+        tvCountsStar = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_counts_star);
+        /*Button Like - dislike*/
+        llButtonLike = (LinearLayout) findViewById(R.id.fragment_accordant_user_profile_ll_like);
+        ivLike = (ImageView) findViewById(R.id.fragment_accordant_user_profile_iv_like);
+        /*More information*/
+        tvAddress = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_address);
+        tvCharacters = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_character);
+        tvStyles = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_styles);
+        tvFoods = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_foods);
+        tvPhone = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_phone);
+        /*Target's Information*/
+        tvTargetCharacters = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_characters);
+        tvTargetStyles = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_styles);
+        /*Show Blog and History*/
+        tabLayout = (TabLayout) findViewById(R.id.fragment_accordant_user_profile_tl_tabs);
+        viewPager = (ViewPager) findViewById(R.id.fragment_accordant_user_profile_cvp_blog_history);
 
     }
 
-    private void setValueViewPager(){
-        ArrayList<Fragment> listFragment=new ArrayList<>();
+    private void setValueViewPager() {
+        ArrayList<Fragment> listFragment = new ArrayList<>();
         if (getIntent().getStringExtra("PhoneAccordantUser") != null) {
             listFragment.add(new ProfileBlogFragment(getIntent().getStringExtra("PhoneAccordantUser")));
             listFragment.add(new ProfileHistoryFragment(getIntent().getStringExtra("PhoneAccordantUser")));
         }
 
-        ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager(),listFragment);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
 
         viewPager.setAdapter(adapter);
     }
 
-    private void setValueTabLayout(){
+    private void setValueTabLayout() {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setText("BLOG");
         tabLayout.getTabAt(1).setText("HISTORY");
@@ -124,12 +135,12 @@ public class ProfileAccordantUser extends AppCompatActivity {
         }
     }
 
-    private void setClickButtonExit(){
-        ibtnExit.setOnClickListener(new View.OnClickListener() {
+    private void setClickButtonExit() {
+        rlBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ProfileAccordantUser.this, MainActivity.class);
-                intent.putExtra("viewProfile","notification");
+                Intent intent = new Intent(ProfileAccordantUser.this, MainActivity.class);
+                intent.putExtra("viewProfile", "notification");
                 startActivity(intent);
             }
         });
@@ -157,7 +168,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
         putDataHobbyintoReference(userName.getHobby());
 
-        tvCharacter.setText(userName.getCharacter());
+        tvCharacters.setText(userName.getCharacter());
     }
 
     private void putDataHobbyintoReference(String strHobby) {
@@ -174,7 +185,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
         if (str.length() > 0) {
             str = str.substring(0, str.length() - 1);
         }
-        tvHobbyFood.setText(str);
+        tvFoods.setText(str);
 
         str = "";
         temhobby = getResources().getStringArray(R.array.character);
@@ -188,7 +199,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
         if (str.length() > 0) {
             str = str.substring(0, str.length() - 1);
         }
-        tvHobbyCharacter.setText(str);
+        tvTargetCharacters.setText(str);
 
         str = "";
         temhobby = getResources().getStringArray(R.array.style);
@@ -202,7 +213,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
         if (str.length() > 0) {
             str = str.substring(0, str.length() - 1);
         }
-        tvHobbyStyle.setText(str);
+        tvTargetStyles.setText(str);
     }
 
     private Bitmap decodeBitmap(String str) {
@@ -218,12 +229,12 @@ public class ProfileAccordantUser extends AppCompatActivity {
         return bitmap;
     }
 
-    public class ViewPagerAdapter extends FragmentStatePagerAdapter{
+    public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private ArrayList<Fragment> listFragment;
 
         public ViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> listFragment) {
             super(fm);
-            this.listFragment=listFragment;
+            this.listFragment = listFragment;
         }
 
         @Override

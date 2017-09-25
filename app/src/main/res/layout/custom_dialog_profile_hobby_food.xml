@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/grey"
             android:textSize="18sp"
             android:completionThreshold="1"
             app:fontPath="fonts/RobotoCondensed-Medium.ttf" />

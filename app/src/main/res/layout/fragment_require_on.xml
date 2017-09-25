@@ -8,7 +8,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray" />
+        android:background="@color/grey" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/fragment_require_on_srl_results"

@@ -42,7 +42,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/blue_gray"
+            android:background="@color/blue_grey"
             android:gravity="center"
             android:id="@+id/fragment_profile_rl_suggest">
 
@@ -189,7 +189,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/gray" />
+            android:background="@color/grey" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:singleLine="true"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/grey"
                     android:textSize="15sp"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -251,7 +251,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:maxLines="3"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/grey"
                     android:textSize="15sp"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -298,7 +298,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="15dp"
                             android:maxLines="3"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/grey"
                             android:textSize="15sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -325,7 +325,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="15dp"
                             android:maxLines="3"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/grey"
                             android:textSize="15sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -353,7 +353,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="15dp"
                             android:maxLines="3"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/grey"
                             android:textSize="15sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -387,7 +387,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:maxLines="3"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/grey"
                     android:textSize="15sp"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -452,7 +452,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/gray" />
+            android:background="@color/grey" />
 
         <!--Album and history-->
         <LinearLayout

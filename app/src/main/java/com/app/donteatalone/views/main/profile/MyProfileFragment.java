@@ -9,17 +9,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,9 +28,6 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
-import com.app.donteatalone.views.register.CustomViewPager;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
@@ -56,47 +51,47 @@ import static android.app.Activity.RESULT_OK;
  * Created by ChomChom on 4/13/2017.
  */
 
-public class ProfileFragment extends Fragment implements PlaceSelectionListener {
+public class MyProfileFragment extends Fragment implements PlaceSelectionListener {
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
 
     private View viewGroup;
-    private TabLayout tabLayout;
-    private CustomViewPager customViewPager;
 
     private ImageView ivAvatar;
-    private TextView tvName, tvAge, tvGender, tvPhone, tvAddress;
-    private TextView tvHobbyFood, tvHobbyCharacter, tvHobbyStyle, tvCharacter;
-    private RelativeLayout rlName, rlAge, rlGender;
-    private LinearLayout llPhone, llAddress, llHobbyFood;
-    private LinearLayout llHobbyCharacter, llHobbyStyle, llCharacter;
-    private ImageButton ibtnExit;
+    private TextView tvNames, tvName, tvAge, tvGender;
+    private TextView tvPhone, tvAddress, tvFoods, tvCharacters, tvStyles;
+    private TextView tvTargetCharacters, tvTargetStyles;
+    private RelativeLayout rlBack, rlName, rlAge, rlGender;
+    private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
+    private LinearLayout llEditProfile;
+    private RecyclerView rvHistory;
+
     private ArrayList<Fragment> listFragment;
     private MySharePreference mySharePreference;
 
-    public static ProfileFragment newInstance() {
-        return new ProfileFragment();
+    public static MyProfileFragment newInstance() {
+        return new MyProfileFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_profile, null);
+        viewGroup = inflater.inflate(R.layout.fragment_my_profile, null);
         init();
         itemClick();
         clickButtonExit();
 
-        FragmentManager manager = getChildFragmentManager();
-        listFragment=new ArrayList<>();
+        /*FragmentManager manager = getChildFragmentManager();
+        listFragment = new ArrayList<>();
         listFragment.add(new ProfileBlogFragment("ownViewProfile"));
         listFragment.add(new ProfileHistoryFragment("ownViewProfile"));
         tabLayout.setupWithViewPager(customViewPager);
         customViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        ProfileAdapter adapter = new ProfileAdapter(manager,listFragment);
+        ProfileAdapter adapter = new ProfileAdapter(manager, listFragment);
         customViewPager.setAdapter(adapter);
         tabLayout.getTabAt(0).setText("Blog");
-        tabLayout.getTabAt(1).setText("History");
+        tabLayout.getTabAt(1).setText("History");*/
 
         return viewGroup;
     }
@@ -108,33 +103,44 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
     }
 
     private void init() {
-        mySharePreference=new MySharePreference(getActivity());
-        tabLayout = (TabLayout) viewGroup.findViewById(R.id.fragment_profile_tl_tabs);
-        customViewPager = (CustomViewPager) viewGroup.findViewById(R.id.fragment_profile_vp_album_history);
-        ibtnExit=(ImageButton) viewGroup.findViewById(R.id.fragment_profile_ibtn_exit);
+        mySharePreference = new MySharePreference(getActivity());
+       /* tabLayout = (TabLayout) viewGroup.findViewById(R.id.fragment_profile_tl_tabs);
+        customViewPager = (CustomViewPager) viewGroup.findViewById(R.id.fragment_profile_vp_album_history);*/
 
-        ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_profile_iv_avatar);
-        tvName = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_name);
-        tvAge = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_age);
-        tvGender = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_gender);
-        tvPhone = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_phone);
-        tvAddress = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_address);
-        tvHobbyFood = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_hobby_food);
-        tvHobbyCharacter = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_hobby_character);
-        tvHobbyStyle = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_hobby_style);
-        tvCharacter = (TextView) viewGroup.findViewById(R.id.fragment_profile_tv_character);
+        rlBack = (RelativeLayout) viewGroup.findViewById(R.id.fragment_my_profile_rl_back);
+        tvNames = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name_s);
 
-        rlName = (RelativeLayout) viewGroup.findViewById(R.id.fragment_profile_rl_name);
-        rlAge = (RelativeLayout) viewGroup.findViewById(R.id.fragment_profile_rl_age);
-        rlGender = (RelativeLayout) viewGroup.findViewById(R.id.fragment_profile_rl_gender);
-        llPhone = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_phone);
-        llAddress = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_address);
-        llHobbyFood = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_hobby_food);
-        llHobbyCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_hobby_character);
-        llHobbyStyle = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_hobby_style);
-        llCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_profile_ll_character);
+        /*Personal inforamtion*/
+        ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_my_profile_iv_avatar);
+        rlName = (RelativeLayout) viewGroup.findViewById(R.id.fragment_my_profile_rl_name);
+        tvName = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name);
+        rlAge = (RelativeLayout) viewGroup.findViewById(R.id.fragment_my_profile_rl_age);
+        tvAge = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_age);
+        rlGender = (RelativeLayout) viewGroup.findViewById(R.id.fragment_my_profile_rl_gender);
+        tvGender = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_gender);
 
-        /* Set value for tvName from ProfileCustomDialogName => ProfileFragment*/
+        /*Achievements*/
+        tvCountsLike = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_counts_like);
+        tvCountsAppointment = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_counts_appointment);
+        tvCountsStar = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_counts_star);
+
+        /*Edit profile button*/
+        llEditProfile = (LinearLayout) viewGroup.findViewById(R.id.fragment_my_profile_ll_edit_profile);
+
+        /*Detail Information*/
+        tvAddress = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_address);
+        tvCharacters = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_character);
+        tvStyles = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_styles);
+        tvFoods = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_foods);
+        tvPhone = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_phone);
+
+        /*Target Information*/
+        tvTargetCharacters = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_target_characters);
+        tvTargetStyles = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_target_styles);
+
+        /*History*/
+        rvHistory = (RecyclerView) viewGroup.findViewById(R.id.fragment_my_profile_rv_history);
+        /* Set value for tvName from ProfileCustomDialogName => MyProfileFragment*/
 
     }
 
@@ -142,7 +148,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         LocalDate date = new LocalDate();
         ivAvatar.setImageBitmap(AppUtils.decodeBitmap(mySharePreference.getValue("avatarLogin")));
         tvName.setText(mySharePreference.getValue("fullnameLogin"));
-        if(mySharePreference.getValue("birthdayLogin").equals(""))
+        if (mySharePreference.getValue("birthdayLogin").equals(""))
             tvAge.setText("");
         else
             tvAge.setText((date.getYear() - Integer.parseInt(mySharePreference.getValue("birthdayLogin").split("/")[2])) + "");
@@ -160,7 +166,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
 
         putDataHobbyintoReference();
 
-        tvCharacter.setText(mySharePreference.getValue("characterLogin" + ""));
+        tvCharacters.setText(mySharePreference.getValue("characterLogin" + ""));
     }
 
     private void itemClick() {
@@ -172,7 +178,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
             }
         });
 
-        rlName.setOnClickListener(new View.OnClickListener() {
+        /*rlName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom
@@ -198,9 +204,9 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
                         (viewGroup.getContext(), R.layout.custom_dialog_profile_gender, tvGender);
                 profileDialogCustom.showDialogCustom();
             }
-        });
+        });*/
 
-        llAddress.setOnClickListener(new View.OnClickListener() {
+        /*llAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -249,6 +255,14 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
                 ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
                         viewGroup.getContext(), R.layout.custom_dialog_profile_character, tvCharacter);
                 profileDialogCustom.showDialogCustom();
+            }
+       });*/
+
+        llEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -302,7 +316,7 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
                     Bitmap tempbitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
                     tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
                     ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
-                            viewGroup.getContext(), R.layout.custom_dialog_profile_avatar,ivAvatar,tempbitmap);
+                            viewGroup.getContext(), R.layout.custom_dialog_profile_avatar, ivAvatar, tempbitmap);
                     profileDialogCustom.showDialogCustom();
                     String path = android.os.Environment.getExternalStorageDirectory().toString();
                     f.delete();
@@ -333,13 +347,12 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
                 }
                 Bitmap tempbitmap = BitmapFactory.decodeStream(imageStream);
                 tempbitmap = Bitmap.createScaledBitmap(tempbitmap, 90, 90, true);
-                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(getContext(), R.layout.custom_dialog_profile_avatar,ivAvatar,tempbitmap);
+                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(getContext(), R.layout.custom_dialog_profile_avatar, ivAvatar, tempbitmap);
                 profileDialogCustom.showDialogCustom();
             } else if (requestCode == 3) {
                 Bundle extras = data.getExtras();
                 Bitmap thePic = extras.getParcelable("data");
-            }
-            else if (requestCode == REQUEST_SELECT_PLACE){
+            } else if (requestCode == REQUEST_SELECT_PLACE) {
                 if (resultCode == RESULT_OK) {
                     Place place = PlaceAutocomplete.getPlace(getActivity(), data);
                     this.onPlaceSelected(place);
@@ -353,11 +366,11 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
 
     @Override
     public void onPlaceSelected(Place place) {
-        tvAddress.setText(getString(R.string.formatted_place_data,place.getName(),place.getAddress()));
-        mySharePreference.setValue("addressLogin",tvAddress.getText().toString());
-        mySharePreference.setValue("latlngaddressLogin",place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
-        ProfileDialogCustom dialogCustom=new ProfileDialogCustom(getActivity());
-        dialogCustom.saveDataAddress(tvAddress.getText().toString(),place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1));
+        tvAddress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
+        mySharePreference.setValue("addressLogin", tvAddress.getText().toString());
+        mySharePreference.setValue("latlngaddressLogin", place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1));
+        ProfileDialogCustom dialogCustom = new ProfileDialogCustom(getActivity());
+        dialogCustom.saveDataAddress(tvAddress.getText().toString(), place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1));
     }
 
     @Override
@@ -365,56 +378,56 @@ public class ProfileFragment extends Fragment implements PlaceSelectionListener 
         Toast.makeText(getContext(), "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
     }
 
-    private void putDataHobbyintoReference(){
-        String str="";
-        String[] temp =mySharePreference.getValue("hobbyLogin").trim().split(",");
-        String[] temhobby=getResources().getStringArray(R.array.food);
-        for(int j=0;j<temhobby.length;j++) {
+    private void putDataHobbyintoReference() {
+        String str = "";
+        String[] temp = mySharePreference.getValue("hobbyLogin").trim().split(",");
+        String[] temhobby = getResources().getStringArray(R.array.food);
+        for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])){
-                    str+=temp[i]+",";
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])) {
+                    str += temp[i] + ",";
                 }
             }
         }
-        if(str.length()>0) {
-            str=str.substring(0, str.length() - 1);
+        if (str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
         }
-        tvHobbyFood.setText(str);
+        tvFoods.setText(str);
 
-        str="";
-        temhobby=getResources().getStringArray(R.array.character);
-        for(int j=0;j<temhobby.length;j++) {
+        str = "";
+        temhobby = getResources().getStringArray(R.array.character);
+        for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])){
-                    str+=temp[i]+",";
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])) {
+                    str += temp[i] + ",";
                 }
             }
         }
-        if(str.length()>0) {
-            str=str.substring(0, str.length() - 1);
+        if (str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
         }
-        tvHobbyCharacter.setText(str);
+        tvTargetCharacters.setText(str);
 
-        str="";
-        temhobby=getResources().getStringArray(R.array.style);
-        for(int j=0;j<temhobby.length;j++) {
+        str = "";
+        temhobby = getResources().getStringArray(R.array.style);
+        for (int j = 0; j < temhobby.length; j++) {
             for (int i = 0; i < temp.length; i++) {
-                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])){
-                    str+=temp[i]+",";
+                if (AppUtils.convertStringToNFD(temhobby[j]).equals(temp[i])) {
+                    str += temp[i] + ",";
                 }
             }
         }
-        if(str.length()>0) {
-            str=str.substring(0, str.length() - 1);
+        if (str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
         }
-        tvHobbyStyle.setText(str);
+        tvTargetStyles.setText(str);
     }
 
-    private void clickButtonExit(){
-        ibtnExit.setOnClickListener(new View.OnClickListener() {
+    private void clickButtonExit() {
+        rlBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), LoginActivity.class);
+                Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

@@ -156,7 +156,7 @@
             android:id="@+id/activity_blog_write_staus_edt_title"
             android:hint="New Blog"
             android:singleLine="true"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/grey"
             android:textColor="@color/black"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"

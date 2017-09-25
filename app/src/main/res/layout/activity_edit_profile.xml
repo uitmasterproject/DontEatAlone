@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical"
+    tools:ignore="contentDescription, MissingPrefix">
+
+    <!--Tool bar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_deep_orange">
+
+        <RelativeLayout
+            android:id="@+id/activity_edit_profile_rl_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="Cancel"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/activity_edit_profile_rl_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--Content-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Edit Avatar-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingTop="17dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/activity_edit_profile_iv_avatar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/bg_avatar"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:id="@+id/activity_edit_profile_ll_edit_avatar"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/activity_edit_profile_iv_avatar"
+                        android:layout_alignEnd="@id/activity_edit_profile_iv_avatar"
+                        android:background="@color/white_anpha_40"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="Edit"
+                            android:textColor="@color/black_anpha_40"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--Personal information-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Label-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
+                    android:text="PERSONAL INFORMATION"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+                <!--Edit Username-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <EditText
+                            android:id="@+id/activity_edit_profile_et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tranparent"
+                            android:hint="Full Name"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Edit gender-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!--Show gender-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_gender_color" />
+
+                        <LinearLayout
+                            android:id="@+id/activity_edit_profile_ll_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/tranparent"
+                                android:hint="Gender"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/grey"
+                                android:textSize="16sp"
+                                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/grey" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--Customize gender-->
+                    <RadioGroup
+                        android:id="@+id/activity_edit_profile_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        android:orientation="horizontal"
+                        android:paddingEnd="20dp"
+                        android:paddingStart="50dp"
+                        android:visibility="gone">
+
+                        <!--Option Male-->
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/activity_edit_profile_radio_male"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="Male"
+                            android:textColor="@color/black" />
+
+                        <!--Option Male-->
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/activity_edit_profile_radio_female"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="false"
+                            android:text="Female"
+                            android:textColor="@color/black" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <!--Edit D.o.B-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!--Show dob-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="DoB"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/activity_edit_profile_ll_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/tranparent"
+                                android:gravity="end"
+                                android:hint="December 5th 1995"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/grey"
+                                android:textSize="16sp"
+                                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/grey" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--Customize dob-->
+                    <LinearLayout
+                        android:id="@+id/activity_edit_profile_ll_dob_customize"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@color/app_background"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:visibility="gone">
+
+                        <com.aigestudio.wheelpicker.WheelPicker
+                            android:id="@+id/activity_edit_profile_wheelpicker_dob_months"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            app:wheel_atmospheric="true"
+                            app:wheel_curtain="true"
+                            app:wheel_curved="true"
+                            app:wheel_cyclic="true"
+                            app:wheel_data="@array/Month"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                            app:wheel_indicator_size="1dp"
+                            app:wheel_item_text_size="17sp"
+                            app:wheel_selected_item_text_color="@color/black"
+                            app:wheel_visible_item_count="4" />
+
+                        <com.aigestudio.wheelpicker.WheelPicker
+                            android:id="@+id/activity_edit_profile_wheelpicker_dob_days"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:wheel_atmospheric="true"
+                            app:wheel_curtain="true"
+                            app:wheel_curved="true"
+                            app:wheel_cyclic="true"
+                            app:wheel_data="@array/Day_31"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                            app:wheel_indicator_size="1dp"
+                            app:wheel_item_text_size="17sp"
+                            app:wheel_selected_item_text_color="@color/black"
+                            app:wheel_visible_item_count="4" />
+
+                        <com.aigestudio.wheelpicker.widgets.WheelYearPicker
+                            android:id="@+id/activity_edit_profile_wheelpicker_dob_years"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:wheel_atmospheric="true"
+                            app:wheel_curtain="true"
+                            app:wheel_curved="true"
+                            app:wheel_cyclic="true"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                            app:wheel_indicator_size="1dp"
+                            app:wheel_item_text_size="17sp"
+                            app:wheel_selected_item_text_color="@color/black"
+                            app:wheel_visible_item_count="4" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--More information-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <!--Label-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
+                    android:text="DETAIL INFORMATION"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+                <!--Edit Characters-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_personality_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <MultiAutoCompleteTextView
+                            android:id="@+id/activity_edit_profile_mactv_characters"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tranparent"
+                            android:hint="Characters"
+                            android:inputType="textAutoComplete"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Edit Styles-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_style_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <MultiAutoCompleteTextView
+                            android:id="@+id/activity_edit_profile_mactv_styles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tranparent"
+                            android:hint="Styles"
+                            android:inputType="textAutoComplete"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Edit Foods and drinks-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_food_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <MultiAutoCompleteTextView
+                            android:id="@+id/activity_edit_profile_mactv_foods"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tranparent"
+                            android:hint="Foods and drinks"
+                            android:inputType="textAutoComplete"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Detail information-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <!--Label-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
+                    android:text="TARGET'S INFORMATION"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+                <!--Edit Target's Characters-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_target_personality_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <MultiAutoCompleteTextView
+                            android:id="@+id/activity_edit_profile_mactv_target_characters"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tranparent"
+                            android:hint="Characters"
+                            android:inputType="textAutoComplete"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Edit Styles-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_target_style_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <MultiAutoCompleteTextView
+                            android:id="@+id/activity_edit_profile_mactv_target_styles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tranparent"
+                            android:hint="Styles"
+                            android:inputType="textAutoComplete"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

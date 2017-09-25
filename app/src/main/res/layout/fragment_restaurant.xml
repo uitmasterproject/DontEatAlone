@@ -56,7 +56,7 @@
                 android:hint="Input district"
                 android:inputType="textVisiblePassword"
                 android:lineSpacingMultiplier="1"
-                android:textColorHint="@color/gray"
+                android:textColorHint="@color/grey"
                 android:textColor="@color/black"
                 android:textStyle="italic"
                 android:completionThreshold="1" />
@@ -79,7 +79,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@color/blue_gray_1" />
+                android:background="@color/blue_grey_1" />
 
             <LinearLayout
                 android:id="@+id/custom_adapter_recyclerview_restaurant_container"
@@ -91,7 +91,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="fill_parent"
-                    android:background="@color/blue_gray_1" />
+                    android:background="@color/blue_grey_1" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -103,7 +103,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="fill_parent"
-                    android:background="@color/blue_gray_1" />
+                    android:background="@color/blue_grey_1" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -115,7 +115,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="fill_parent"
-                    android:background="@color/blue_gray_1" />
+                    android:background="@color/blue_grey_1" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -127,13 +127,13 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="fill_parent"
-                    android:background="@color/blue_gray_1" />
+                    android:background="@color/blue_grey_1" />
             </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@color/blue_gray_1" />
+                android:background="@color/blue_grey_1" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

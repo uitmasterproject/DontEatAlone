@@ -74,13 +74,13 @@
                         android:maxLines="1"
                         android:padding="15dp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/gray"
+                        android:textColorHint="@color/grey"
                         app:fontPath="fonts/Montserrat-Light" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray" />
+                        android:background="@color/grey" />
 
                     <EditText
                         android:id="@+id/activity_login_edt_password"
@@ -92,7 +92,7 @@
                         android:maxLines="1"
                         android:padding="15dp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/gray"
+                        android:textColorHint="@color/grey"
                         app:fontPath="fonts/Montserrat-Light" />
 
                 </LinearLayout>

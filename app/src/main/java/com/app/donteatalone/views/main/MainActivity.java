@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.main.blog.BlogFragment;
 import com.app.donteatalone.views.main.notification.NotificationFragment;
-import com.app.donteatalone.views.main.profile.ProfileFragment;
+import com.app.donteatalone.views.main.profile.MyProfileFragment;
 import com.app.donteatalone.views.main.require.RequireFragment;
 import com.app.donteatalone.views.main.restaurant.RestaurantFragment;
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         mFragmentAdapter.mFragmentList.add(BlogFragment.newInstance(viewPager));
         mFragmentAdapter.mFragmentList.add(NotificationFragment.newInstance(viewPager,view));
-        mFragmentAdapter.mFragmentList.add(ProfileFragment.newInstance());
+        mFragmentAdapter.mFragmentList.add(MyProfileFragment.newInstance());
         mFragmentAdapter.mFragmentList.add(RestaurantFragment.newInstance());
         mFragmentAdapter.mFragmentList.add(RequireFragment.newInstance(viewPager));
 

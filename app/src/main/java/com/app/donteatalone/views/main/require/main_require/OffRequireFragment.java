@@ -117,7 +117,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 txtGenderFemale.setTextColor(Color.GRAY);
                 txtGenderMale.setTextColor(Color.GRAY);
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_selector,
-                        R.color.gray_1,
+                        R.color.grey_1,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
                 infoRequireSharePreference.setValue("genderRequire", "all");
             }
@@ -143,7 +143,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 txtGenderFemale.setTextColor(Color.GRAY);
                 txtGenderMale.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
-                        R.color.gray_1,
+                        R.color.grey_1,
                         R.drawable.design_require_off_txt_gender_rightsight_selector);
                 infoRequireSharePreference.setValue("genderRequire", "male");
             }

@@ -55,7 +55,7 @@
             android:background="@android:color/transparent"
             android:hint="Full Name"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/grey"
             android:textSize="18sp"
             app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
 

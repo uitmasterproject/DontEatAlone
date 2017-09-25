@@ -99,7 +99,7 @@
                     app:wheel_curved="true"
                     app:wheel_cyclic="true"
                     app:wheel_indicator="true"
-                    app:wheel_indicator_color="@color/gray"
+                    app:wheel_indicator_color="@color/grey"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
                     app:wheel_item_space="10dp"
@@ -116,7 +116,7 @@
                     app:wheel_curved="true"
                     app:wheel_cyclic="true"
                     app:wheel_indicator="true"
-                    app:wheel_indicator_color="@color/gray"
+                    app:wheel_indicator_color="@color/grey"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
                     app:wheel_item_space="10dp"
@@ -133,7 +133,7 @@
                     app:wheel_curved="true"
                     app:wheel_cyclic="true"
                     app:wheel_indicator="true"
-                    app:wheel_indicator_color="@color/gray"
+                    app:wheel_indicator_color="@color/grey"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
                     app:wheel_item_space="10dp"
@@ -150,7 +150,7 @@
                     app:wheel_curved="true"
                     app:wheel_cyclic="true"
                     app:wheel_indicator="true"
-                    app:wheel_indicator_color="@color/gray"
+                    app:wheel_indicator_color="@color/grey"
                     app:wheel_indicator_size="2dp"
                     app:wheel_item_align="center"
                     app:wheel_item_space="10dp"
@@ -250,7 +250,7 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
-                            android:background="@color/blue_gray_1" />
+                            android:background="@color/blue_grey_1" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -263,7 +263,7 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
-                            android:background="@color/blue_gray_1" />
+                            android:background="@color/blue_grey_1" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -276,7 +276,7 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
-                            android:background="@color/blue_gray_1" />
+                            android:background="@color/blue_grey_1" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -289,13 +289,13 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
-                            android:background="@color/blue_gray_1" />
+                            android:background="@color/blue_grey_1" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="2dp"
-                        android:background="@color/blue_gray_1" />
+                        android:background="@color/blue_grey_1" />
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView

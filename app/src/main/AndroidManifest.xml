@@ -45,6 +45,9 @@
         <activity android:name=".views.main.require.main_require.on_require.ProfileAccordantUser">
         </activity>
         <activity android:name=".views.main.blog.DetailBlogActivity"/>
+        <activity android:name=".views.main.profile.EditProfileActivity">
+
+        </activity>
 
         // for activity facebook
         <!--<activity android:name="com.facebook.FacebookActivity"-->
