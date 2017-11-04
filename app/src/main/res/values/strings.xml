@@ -31,16 +31,17 @@
     <string name="hide">HIDE</string>
     <string name="show">SHOW</string>
     <string name="invalid_network">Invalid network</string>
+
     <string-array name="Day_31">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
         <item>10</item>
         <item>11</item>
         <item>12</item>
@@ -65,15 +66,15 @@
         <item>31</item>
     </string-array>
     <string-array name="Day_30">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
         <item>10</item>
         <item>11</item>
         <item>12</item>
@@ -97,15 +98,15 @@
         <item>30</item>
     </string-array>
     <string-array name="Day_28">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
         <item>10</item>
         <item>11</item>
         <item>12</item>
@@ -127,15 +128,15 @@
         <item>28</item>
     </string-array>
     <string-array name="Day_29">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
         <item>10</item>
         <item>11</item>
         <item>12</item>
@@ -344,7 +345,7 @@
     </string-array>
 
     <string-array name="limit">
-        <item>private</item>
         <item>public</item>
+        <item>private</item>
     </string-array>
 </resources>

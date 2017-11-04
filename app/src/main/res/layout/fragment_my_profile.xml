@@ -24,7 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_back_arrow_white" />
+                android:src="@drawable/ic_exit"
+                android:background="@color/transparent" />
 
         </RelativeLayout>
 
@@ -93,32 +94,6 @@
                             android:layout_height="100dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/avatar_man" />
-
-                        <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBottom="@id/fragment_my_profile_iv_avatar"
-                            android:layout_alignEnd="@id/fragment_my_profile_iv_avatar"
-                            android:background="@color/white_anpha_40"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/camera" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="5dp"
-                                android:text="Edit"
-                                android:textColor="@color/black_anpha_40"
-                                android:textSize="16sp"
-                                app:fontPath="fonts/Montserrat-Medium.ttf" />
-
-                        </LinearLayout>
-
                     </RelativeLayout>
 
                     <!--Set your name below here-->
@@ -137,7 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:singleLine="true"
+                            android:maxLines="1"
                             android:text="Display name"
                             android:textColor="@color/bg_text_color_orange_orange2"
                             android:textSize="20sp"
@@ -361,7 +336,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:text="Live in "
-                                android:textColor="@color/grey"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -411,31 +386,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:text="Styles are "
-                                android:textColor="@color/grey"
-                                android:textSize="15sp"
-                                app:fontPath="fonts/Montserrat-Medium.ttf" />
-
-                        </LinearLayout>
-
-                        <!--Food-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="3dp">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginRight="10dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_food_color" />
-
-                            <TextView
-                                android:id="@+id/fragment_my_profile_tv_foods"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Like "
                                 android:textColor="@color/grey"
                                 android:textSize="15sp"
                                 app:fontPath="fonts/Montserrat-Medium.ttf" />
@@ -513,13 +463,38 @@
                     android:layout_height="1dp"
                     android:background="@color/grey_1" />
 
-                <!--Target's character and target's style-->
+                <!--Target's targetCharacter and target's style-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
+
+                    <!--Target's Food-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_food_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_my_profile_tv_target_foods"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Like "
+                            android:textColor="@color/grey"
+                            android:textSize="15sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
 
                     <!--Targert's Character-->
                     <LinearLayout
@@ -619,10 +594,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/fragment_my_profile_rv_history"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                </android.support.v7.widget.RecyclerView>
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 

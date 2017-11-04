@@ -2,6 +2,7 @@ package com.app.donteatalone.views.main.profile.event_history;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -21,12 +22,15 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.ProfileHistoryModel;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
+import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
 
 /**
  * Created by Le Hoang Han on 6/28/2017
@@ -61,7 +65,9 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
         holder.txtAccordantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Link to him/her profile", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context, ProfileAccordantUser.class);
+                intent.putExtra(ARG_PHONE_NUMBER,listProfileHistory.get(position).getAccordantPhone());
+                context.startActivity(intent);
             }
         });
 

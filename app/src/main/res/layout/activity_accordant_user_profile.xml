@@ -11,27 +11,31 @@
     <!--Tool bar-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange">
+        android:layout_height="40dp"
+        android:background="@color/color_deep_orange"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <RelativeLayout
             android:id="@+id/fragment_accordant_user_profile_rl_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_back_arrow_white" />
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_exit"
+                android:background="@color/transparent" />
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingLeft="5dp">
 
             <TextView
                 android:id="@+id/fragment_accordant_user_profile_tv_target_name_1"
@@ -45,7 +49,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 's profile"
+                android:text=" 's Profile"
                 android:textColor="@color/white"
                 android:textSize="19sp"
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
@@ -55,7 +59,7 @@
 
     </LinearLayout>
 
-    <!--Content-->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -329,7 +333,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Live in "
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -379,31 +383,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Styles are "
-                            android:textColor="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
-
-                    </LinearLayout>
-
-                    <!--Food-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="3dp">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_food_color" />
-
-                        <TextView
-                            android:id="@+id/fragment_accordant_user_profile_tv_foods"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Like "
                             android:textColor="@color/grey"
                             android:textSize="16sp"
                             app:fontPath="fonts/Montserrat-Medium.ttf" />
@@ -490,13 +469,38 @@
                     android:layout_height="1dp"
                     android:background="@color/grey_1" />
 
-                <!--Target's character and target's style-->
+                <!--Target's targetCharacter and target's style-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
+
+                    <!--Food-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_food_color" />
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_target_foods"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Like "
+                            android:textColor="@color/grey"
+                            android:textSize="16sp"
+                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+                    </LinearLayout>
 
                     <!--Targert's Character-->
                     <LinearLayout
@@ -555,31 +559,23 @@
             <!--Blog View and History view-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/fragment_accordant_user_profile_tl_tabs"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@color/grey_1">
+                    android:layout_height="wrap_content"
+                    app:tabBackground="@color/color_deep_orange"
+                    app:tabTextColor="@color/black" />
 
-                </android.support.design.widget.TabLayout>
-
-                <com.app.donteatalone.views.register.CustomViewPager
+                <android.support.v4.view.ViewPager
                     android:id="@+id/fragment_accordant_user_profile_cvp_blog_history"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
-
-                </com.app.donteatalone.views.register.CustomViewPager>
-
-
+                    android:layout_height="300dp" />
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>

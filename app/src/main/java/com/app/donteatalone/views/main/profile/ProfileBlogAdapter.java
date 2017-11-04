@@ -16,6 +16,9 @@ import com.app.donteatalone.views.main.blog.DetailBlogActivity;
 
 import java.util.ArrayList;
 
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_ITEM_BLOG;
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_OWN_BLOG;
+
 /**
  * Created by ChomChom on 05-Jul-17
  */
@@ -47,8 +50,8 @@ public class ProfileBlogAdapter extends RecyclerView.Adapter<ProfileBlogAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailBlogActivity.class);
-                intent.putExtra("infoBlog", listBlog.get(position));
-                intent.putExtra("own", phoneBlog);
+                intent.putExtra(ARG_ITEM_BLOG, listBlog.get(position));
+                intent.putExtra(ARG_OWN_BLOG, phoneBlog);
                 context.startActivity(intent);
 
             }

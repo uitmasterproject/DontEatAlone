@@ -76,10 +76,12 @@ public class AppUtils {
 
     public static String convertBitmaptoString(Bitmap bitmap) {
         String tempConvert = "";
-        ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, arrayOutputStream);
-        byte[] b = arrayOutputStream.toByteArray();
-        tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
+        if(bitmap!=null) {
+            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, arrayOutputStream);
+            byte[] b = arrayOutputStream.toByteArray();
+            tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
+        }
         return tempConvert;
     }
 

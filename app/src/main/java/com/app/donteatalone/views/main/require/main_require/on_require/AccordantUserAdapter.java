@@ -3,6 +3,7 @@ package com.app.donteatalone.views.main.require.main_require.on_require;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
@@ -20,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.app.donteatalone.R;
@@ -43,8 +43,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
+
 /**
- * Created by ChomChom on 30-May-17.
+ * Created by ChomChom on 30-May-17
  */
 
 public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdapter.CustomViewHolder> {
@@ -95,7 +97,9 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         holder.llContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"profile",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context, ProfileAccordantUser.class);
+                intent.putExtra(ARG_PHONE_NUMBER,listAccordantUser.get(position).getAccordantUser());
+                context.startActivity(intent);
             }
         });
 
@@ -239,9 +243,9 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
 
         MySharePreference requireInfoSharePreference=new MySharePreference((Activity)context,new MySharePreference((Activity)context).getValue("phoneLogin"));
 
-        String latlng=Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngaddressRequire").split(",")[0].trim())-
+        String latlng=Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngAddressRequire").split(",")[0].trim())-
                 Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[0].trim()))/2)+","+
-                Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngaddressRequire").split(",")[1].trim())-
+                Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngAddressRequire").split(",")[1].trim())-
                         Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[1].trim()))/2);
 
         Call<ArrayList<Restaurant>>getListRestaurant = Connect.getRetrofit().getRestaurant(latlng);

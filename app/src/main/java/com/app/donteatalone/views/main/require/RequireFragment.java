@@ -17,7 +17,7 @@ import com.app.donteatalone.views.main.require.main_require.OffRequireFragment;
 import com.app.donteatalone.views.main.require.main_require.OnRequireFragment;
 
 /**
- * Created by ChomChom on 5/7/2017.
+ * Created by ChomChom on 5/7/2017
  */
 
 public class RequireFragment extends Fragment {
@@ -41,7 +41,7 @@ public class RequireFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_require, null);
+        viewGroup = inflater.inflate(R.layout.fragment_require, container, false);
         init();
         clickSwitchCompatControl();
         clickButtonExit();
@@ -57,7 +57,7 @@ public class RequireFragment extends Fragment {
         scControl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(scControl.isChecked()==false){
+                if(!scControl.isChecked()){
                     OffRequireFragment fragment= OffRequireFragment.newInstance();
                     getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
                 }
@@ -82,7 +82,7 @@ public class RequireFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(scControl.isChecked()==false){
+        if(!scControl.isChecked()){
             OffRequireFragment fragment= new OffRequireFragment();
             getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
         }

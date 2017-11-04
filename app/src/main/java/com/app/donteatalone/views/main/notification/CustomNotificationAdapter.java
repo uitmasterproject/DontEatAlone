@@ -19,7 +19,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
- * Created by ChomChom on 09-Jun-17.
+ * Created by ChomChom on 09-Jun-17
  */
 
 public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotificationAdapter.CustomViewHolder> {

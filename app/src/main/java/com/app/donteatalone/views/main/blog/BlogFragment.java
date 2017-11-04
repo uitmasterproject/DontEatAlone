@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
 
 /**
- * Created by ChomChom on 4/13/2017.
+ * Created by ChomChom on 4/13/2017
  */
 
 public class BlogFragment extends Fragment {
@@ -28,25 +27,19 @@ public class BlogFragment extends Fragment {
     private ImageView imgAvatar;
     private ImageButton ibtnExit;
     private MySharePreference mySharePreference;
-    private ViewPager viewPager;
 
-    public static BlogFragment newInstance(ViewPager viewPager) {
-        BlogFragment fragment=new BlogFragment();
-        fragment.setViewPager(viewPager);
-        return fragment;
-    }
 
-    public void setViewPager(ViewPager viewPager) {
-        this.viewPager = viewPager;
+    public static BlogFragment newInstance() {
+        return new BlogFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_blog, null);
+        viewGroup = inflater.inflate(R.layout.fragment_blog, container,false);
         init();
         setimgAvatar();
-        GetDatafromDB getDatafromDB = new GetDatafromDB(getActivity(), viewGroup);
+        GetDatafromDB getDatafromDB = new GetDatafromDB(getActivity(), viewGroup, imgAvatar);
         getDatafromDB.execute(mySharePreference.getValue("phoneLogin"));
         clickButtonbtnStatus();
         clickButtonExit();

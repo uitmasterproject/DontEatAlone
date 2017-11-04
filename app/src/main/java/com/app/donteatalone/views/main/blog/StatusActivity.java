@@ -1,41 +1,39 @@
 package com.app.donteatalone.views.main.blog;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.widget.SearchView;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.base.BaseProgress;
-import com.app.donteatalone.connectmongo.Connect;
-import com.app.donteatalone.model.Felling;
 import com.app.donteatalone.model.InfoBlog;
-import com.app.donteatalone.model.Status;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.ExifUtil;
-import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
 
 import java.io.File;
@@ -46,89 +44,102 @@ import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import static com.app.donteatalone.utils.AppUtils.decodeBitmap;
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_ITEM_BLOG;
 
 /**
- * Created by ChomChom on 4/14/2017.
+ * Created by ChomChom on 4/14/2017
  */
 
 public class StatusActivity extends Activity {
 
-    private ImageView imgAvatar, imgAddFeelingIcon;
-    private LinearLayout llcontainerFeeling, llContainer;
-    private TextView txtNameUser, txtAddFeeling, txtTitle;
-    private ImageButton imgbtnCamera, imgbtnPhoto, imgbtnFelling, imgbtnAction;
+    private LinearLayout llContainer;
+    private TextView txtTitle;
+    private ImageButton iBtnCamera, iBtnPhoto, iBtnFelling;
     private Bitmap bitmap;
-    private EditText edtStatus, edtTitle;
-    private TextView txtCancel, txtPost;
+    private EditText edtStatus;
+    private TextView txtCancel, txtSave;
     private Spinner snLimit;
     private InfoBlog infoBlog;
-    private MySharePreference mySharePreference;
-    private BaseProgress dialog;
+    private int resourceIcon;
+
+    private PopupWindow popupMenu;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_write_status);
         init();
-        setAvatarforimgAvatar();
         setDataEdit();
-        clickimgbtnCamera();
-        clickimgbtnPhoto();
-        clickimgbtnFelling();
-        clickbtnCancel();
-        clickbtnPost();
+        clickIBtnCamera();
+        clickIBtnPhoto();
+        clickIBtnFelling();
+        clickCancel();
+        clickPost();
     }
 
 
     private void init() {
-        mySharePreference = new MySharePreference(StatusActivity.this);
         txtCancel = (TextView) findViewById(R.id.activity_blog_write_status_btn_cancel);
-        txtPost = (TextView) findViewById(R.id.activity_blog_write_status_btn_post);
-        txtTitle = (TextView) findViewById(R.id.activity_blog_write_status_txt_title);
+        txtTitle = (TextView) findViewById(R.id.activity_blog_write_status_btn_title);
+        txtSave = (TextView) findViewById(R.id.activity_blog_write_status_btn_save);
         edtStatus = (EditText) findViewById(R.id.activity_blog_write_status_edt_status);
         edtStatus.requestFocus();
-        edtTitle = (EditText) findViewById(R.id.activity_blog_write_staus_edt_title);
-        imgAvatar = (ImageView) findViewById(R.id.activity_blog_write_status_img_avatar);
-        imgAddFeelingIcon = (ImageView) findViewById(R.id.activity_blog_write_status_img_add_icon_feeling);
-        txtNameUser = (TextView) findViewById(R.id.activity_blog_write_status_txt_nameuser);
-        txtAddFeeling = (TextView) findViewById(R.id.activity_blog_write_status_txt_add_feeling);
-        imgbtnCamera = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_camera);
-        imgbtnPhoto = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_photo);
-        imgbtnFelling = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_felling);
-        imgbtnAction = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_action);
-        llcontainerFeeling = (LinearLayout) findViewById(R.id.activity_blog_write_status_ll_container_feeling);
-        llcontainerFeeling.setVisibility(View.GONE);
+        iBtnCamera = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_camera);
+        iBtnPhoto = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_photo);
+        iBtnFelling = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_felling);
         llContainer = (LinearLayout) findViewById(R.id.activity_blog_write_status_ll_container);
         snLimit = (Spinner) findViewById(R.id.activity_blog_write_status_sn_limit);
-        CustomAdapterSpinnerLimit adapter = new CustomAdapterSpinnerLimit(this, android.R.layout.simple_spinner_dropdown_item,
-                new ArrayList(Arrays.asList(getResources().getStringArray(R.array.limit))));
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.limit));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         snLimit.setAdapter(adapter);
 
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(R.layout.popup_menu_icon, null);
+
+        RecyclerView listMenuIcon = (RecyclerView) view.findViewById(R.id.list_menu_icon);
+        listMenuIcon.setLayoutManager(new LinearLayoutManager(StatusActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
+        PopupIconAdapter iconAdapter = new PopupIconAdapter(StatusActivity.this);
+
+        listMenuIcon.setAdapter(iconAdapter);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point point = new Point();
+        display.getSize(point);
+
+        popupMenu = new PopupWindow(view, point.x, 70);
+        popupMenu.setFocusable(true);
+        popupMenu.setOutsideTouchable(true);
+        popupMenu.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(StatusActivity.this, R.color.black_anpha_40)));
+
+        iconAdapter.setOnRecyclerItemClickListener(new OnRecyclerItemClickListener() {
+            @Override
+            public void onItemClick(View view, int resource) {
+                resourceIcon = resource;
+                iBtnFelling.setImageResource(resource);
+                popupMenu.dismiss();
+            }
+        });
     }
 
     private void setDataEdit() {
-        if (getIntent().getParcelableExtra("infoBlog") != null) {
-            infoBlog = getIntent().getParcelableExtra("infoBlog");
-            txtTitle.setText("EDIT BLOG");
-            txtPost.setText("EDIT");
-            imgAddFeelingIcon.setImageResource(defineIconforFeeling(infoBlog.getFeeling()));
-            txtAddFeeling.setText(infoBlog.getFeeling());
-            if (infoBlog.getLimit().equals("private")) {
-                snLimit.setSelection(0);
-            } else {
+        if (getIntent().getParcelableExtra(ARG_ITEM_BLOG) != null) {
+            infoBlog = getIntent().getParcelableExtra(ARG_ITEM_BLOG);
+            txtTitle.setText("Edit Blog");
+            txtSave.setText("Edit");
+            if (infoBlog.getLimit().equals(getResources().getStringArray(R.array.limit)[1])) {
                 snLimit.setSelection(1);
+            } else {
+                snLimit.setSelection(0);
             }
-            edtTitle.setText(infoBlog.getTitle());
+            if (infoBlog.getFeeling() != 0) {
+                iBtnFelling.setImageResource(infoBlog.getFeeling());
+            }
             llContainer.removeAllViews();
             setValueContent();
         }
@@ -144,7 +155,7 @@ public class StatusActivity extends Activity {
                 int index = str.indexOf("</text>");
                 editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
-                editText.setTextColor(getResources().getColor(R.color.black));
+                editText.setTextColor(ContextCompat.getColor(StatusActivity.this, R.color.black));
                 editText.setText(str.substring(6, index));
                 llContainer.addView(editText);
                 str = str.substring(index + 7);
@@ -171,7 +182,7 @@ public class StatusActivity extends Activity {
         }
     }
 
-    private void clickbtnCancel() {
+    private void clickCancel() {
         txtCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,55 +192,32 @@ public class StatusActivity extends Activity {
         });
     }
 
-    private void clickbtnPost() {
+    private void clickPost() {
 
-        txtPost.setOnClickListener(new View.OnClickListener() {
+        txtSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog=new BaseProgress();
-                dialog.showProgressLoading(StatusActivity.this);
+                SaveAsDialog saveAsDialog;
+                if (infoBlog != null) {
+                    saveAsDialog = new SaveAsDialog(StatusActivity.this, setInfoStatus(), true);
 
-                Call<Status> modifiedInfoBlog;
-                if (infoBlog == null) {
-                    modifiedInfoBlog = Connect.getRetrofit().addStatusBlog(setInfoStatus(), mySharePreference.getValue("phoneLogin"));
                 } else {
-                    modifiedInfoBlog = Connect.getRetrofit().editStatusBlog(setInfoStatus(), mySharePreference.getValue("phoneLogin"));
+                    saveAsDialog = new SaveAsDialog(StatusActivity.this, setInfoStatus(), false);
                 }
-
-                modifiedInfoBlog.enqueue(new Callback<Status>() {
-                    @Override
-                    public void onResponse(Call<Status> call, Response<Status> response) {
-                        dialog.hideProgressLoading();
-                        if (response.body() != null) {
-                            if (response.body().getStatus().equals("Insert success")) {
-                                Intent intent = new Intent(StatusActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(StatusActivity.this, "check internet again", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Status> call, Throwable t) {
-
-                    }
-                });
+                saveAsDialog.showDialog();
             }
         });
     }
 
     private InfoBlog setInfoStatus() {
-        String thisDate = "";
+        String thisDate;
         if (infoBlog == null) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy HH:mm:ss", Locale.ENGLISH);
             Date date = new Date();
             thisDate = dateFormat.format(date);
         } else {
             thisDate = infoBlog.getDate();
         }
-
-        String feeling = txtAddFeeling.getText().toString();
         ArrayList<String> image = new ArrayList<>();
 
         String content = "";
@@ -239,16 +227,17 @@ public class StatusActivity extends Activity {
                 content += "<text>" + editText.getText().toString() + "</text>";
             } else if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
                 ImageView imageView = (ImageView) llContainer.getChildAt(count);
-                content += "<image>" + AppUtils.convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()) + "</image>";
-                image.add(AppUtils.convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
+                if (((BitmapDrawable) imageView.getDrawable()).getBitmap() != null) {
+                    content += "<image>" + AppUtils.convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()) + "</image>";
+                    image.add(AppUtils.convertBitmaptoString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
+                }
             }
         }
-
-        return new InfoBlog(edtTitle.getText().toString(), thisDate, content, feeling, image, snLimit.getSelectedItem().toString());
+        return new InfoBlog(thisDate, content, resourceIcon, image, snLimit.getSelectedItem().toString());
     }
 
-    private void clickimgbtnCamera() {
-        imgbtnCamera.setOnClickListener(new View.OnClickListener() {
+    private void clickIBtnCamera() {
+        iBtnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -259,8 +248,8 @@ public class StatusActivity extends Activity {
         });
     }
 
-    private void clickimgbtnPhoto() {
-        imgbtnPhoto.setOnClickListener(new View.OnClickListener() {
+    private void clickIBtnPhoto() {
+        iBtnPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -270,80 +259,13 @@ public class StatusActivity extends Activity {
         });
     }
 
-    private void clickimgbtnFelling() {
-        imgbtnFelling.setOnClickListener(new View.OnClickListener() {
+    private void clickIBtnFelling() {
+        iBtnFelling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(StatusActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.custom_dialog_show_felling);
-                initElementDialogShowFelling(dialog);
-                dialog.show();
+                popupMenu.showAsDropDown(v);
             }
         });
-    }
-
-    private void initElementDialogShowFelling(final Dialog dialog) {
-        SearchView searchView = (SearchView) dialog.findViewById(R.id.custom_dialog_show_felling_srch_felling);
-
-        GridView gridView = (GridView) dialog.findViewById(R.id.custom_dialog_show_felling_grv_felling);
-
-        final CustomAdapterGridViewShowFelling adapter = new CustomAdapterGridViewShowFelling(dialog.getContext(), cloneDataFelling());
-        gridView.setAdapter(adapter);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                setFellingwhenClickFellingICon(position);
-                dialog.cancel();
-            }
-        });
-    }
-
-    private void setFellingwhenClickFellingICon(int position) {
-        llcontainerFeeling.setVisibility(View.VISIBLE);
-        txtAddFeeling.setText("feeling " + cloneDataFelling().get(position).getFelling());
-        imgAddFeelingIcon.setImageResource(cloneDataFelling().get(position).getResourceIcon());
-    }
-
-    private ArrayList<Felling> cloneDataFelling() {
-        ArrayList<Felling> fellings = new ArrayList<>();
-        fellings.add(new Felling(R.drawable.ic_felling_cute, "đáng yêu"));
-        fellings.add(new Felling(R.drawable.ic_felling_exciting, "thú vị"));
-        fellings.add(new Felling(R.drawable.ic_felling_smile, "vui vẻ"));
-        fellings.add(new Felling(R.drawable.ic_felling_sad, "buồn"));
-        return fellings;
-    }
-
-    private int defineIconforFeeling(String feeling) {
-        int icon = 0;
-        if (feeling.equals("feeling đáng yêu")) {
-            icon = R.drawable.ic_felling_cute;
-            return icon;
-        } else if (feeling.equals("feeling thú vị")) {
-            icon = R.drawable.ic_felling_exciting;
-            return icon;
-        } else if (feeling.equals("feeling vui vẻ")) {
-            icon = R.drawable.ic_felling_smile;
-            return icon;
-        } else if (feeling.equals("feeling buồn")) {
-            icon = R.drawable.ic_felling_sad;
-            return icon;
-        }
-        return icon;
     }
 
     @Override
@@ -365,7 +287,7 @@ public class StatusActivity extends Activity {
                     bitmap = ExifUtil.definiteRotate(imagePath, loadedBitmap);
                     bitmap = ExifUtil.scaleBitmap(bitmap, StatusActivity.this);
                     if (bitmap != null) {
-                        setElementImageforLinearLayout(bitmap, 1);
+                        setElementImageForLinearLayout(bitmap, 1);
                     }
                     String path = android.os.Environment.getExternalStorageDirectory().toString();
                     f.delete();
@@ -391,10 +313,8 @@ public class StatusActivity extends Activity {
 
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
-                if(cursor!=null) {
+                if (cursor != null) {
                     cursor.moveToFirst();
-
-
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                     String picturePath = cursor.getString(columnIndex);
                     cursor.close();
@@ -405,14 +325,14 @@ public class StatusActivity extends Activity {
                 }
                 bitmap = ExifUtil.scaleBitmap(bitmap, StatusActivity.this);
                 if (bitmap != null) {
-                    setElementImageforLinearLayout(bitmap, 1);
+                    setElementImageForLinearLayout(bitmap, 1);
                 }
             } else {
                 final Uri imageUri = data.getData();
 
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
-                if(cursor!=null) {
+                if (cursor != null) {
                     cursor.moveToFirst();
 
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -425,7 +345,7 @@ public class StatusActivity extends Activity {
                 }
                 bitmap = ExifUtil.scaleBitmap(bitmap, StatusActivity.this);
                 if (bitmap != null) {
-                    setElementImageforLinearLayout(bitmap, requestCode);
+                    setElementImageForLinearLayout(bitmap, requestCode);
                 }
             }
 
@@ -439,7 +359,7 @@ public class StatusActivity extends Activity {
     //1. get element in linear.
     //2. give this view.
     //3. thisview.set action.
-    private void setElementImageforLinearLayout(Bitmap bitmap, int check) {
+    private void setElementImageForLinearLayout(Bitmap bitmap, int check) {
         if (check == 1) {
             if (llContainer.getChildAt(llContainer.getChildCount() - 1).getClass().getName().equals("android.widget.EditText") &&
                     ((EditText) llContainer.getChildAt(llContainer.getChildCount() - 1)).getText().toString().trim().length() <= 0) {
@@ -482,18 +402,11 @@ public class StatusActivity extends Activity {
                 dynamicImage.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        new CustomDialogSelectOption(StatusActivity.this).showDialog(dynamicImage, finalCount, llContainer);
+                        new SelectOptionDialog(StatusActivity.this).showDialog(dynamicImage, finalCount, llContainer);
                         return false;
                     }
                 });
             }
-        }
-    }
-
-    private void setAvatarforimgAvatar() {
-        Bitmap avatarBitmap = AppUtils.decodeBitmap(mySharePreference.getValue("avatarLogin"));
-        if (avatarBitmap != null) {
-            imgAvatar.setImageBitmap(avatarBitmap);
         }
     }
 

@@ -1,8 +1,8 @@
 package com.app.donteatalone.views.main.profile.event_history;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.ProfileHistoryModel;
-import com.app.donteatalone.utils.MySharePreference;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Le Hoang Han on 5/19/2017.
+ * Created by Le Hoang Han on 5/19/2017
  */
 
 public class ProfileHistoryFragment extends Fragment {
@@ -68,7 +67,7 @@ public class ProfileHistoryFragment extends Fragment {
     }
 
     private void getEventHistory(){
-        Call<ArrayList<ProfileHistoryModel>> getEventHistory= Connect.getRetrofit().getEventHistory(new MySharePreference(getActivity()).getValue("phoneLogin"));
+        Call<ArrayList<ProfileHistoryModel>> getEventHistory= Connect.getRetrofit().getEventHistory(phoneHistory);
         getEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
             @Override
             public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {

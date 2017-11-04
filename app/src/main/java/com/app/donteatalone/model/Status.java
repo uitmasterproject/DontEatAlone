@@ -3,10 +3,10 @@ package com.app.donteatalone.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by ChomChom on 4/10/2017.
+ * Created by ChomChom on 4/10/2017
  */
 
-public class Status {
+public class Status extends Imei{
     @SerializedName("status")
     private String status;
 

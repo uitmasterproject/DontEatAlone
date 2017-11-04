@@ -9,8 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.views.main.blog.BlogFragment;
@@ -23,18 +21,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * -> Created by LeHoangHan on 4/22/2017.
+ * -> Created by LeHoangHan on 4/22/2017
  */
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String BROADCASTNAME = "DONTEATALONE.BROADCASTNAME";
+    public static final String SENDBROADCASTDATA = "DONTEATALONE.BROADCASTDATA";
+    public static final String SENDBROADCASTTITLE = "DONTEATALONE.BROADCASTTITLE";
+
+    public static final String ARG_FROM_VIEW="ARG_FROM_VIEW";
+    public static final String ARG_DETAIL_BLOG_ACTIVITY="ARG_DETAIL_BLOG_ACTIVITY";
+    public static final String ARG_PROFILE_ACCORDANT_USER_ACTIVITY ="ARG_PROFILE_ACCORDANT_USER_ACTIVITY";
+
+    public ViewPager viewPager;
+    public View view;
     private TabLayout tabLayout;
     private FragmentAdapter mFragmentAdapter;
-    public  ViewPager viewPager;
-    public TextView txtNotification;
-    public View view;
-    public LinearLayout llContainer;
-
     private int srcIcon[] = new int[]{R.drawable.ic_blog, R.drawable.ic_notification, R.drawable.ic_profile, R.drawable.ic_restaurant, R.drawable.ic_require};
 
     @Override
@@ -51,20 +54,20 @@ public class MainActivity extends AppCompatActivity {
 
         setupTabIcons();
 
-        if (getIntent().getStringExtra("viewProfile") != null) {
-            if (getIntent().getStringExtra("viewProfile").equals("notification"))
+        if (getIntent().getStringExtra(ARG_FROM_VIEW) != null) {
+            if (getIntent().getStringExtra(ARG_FROM_VIEW).equals(ARG_PROFILE_ACCORDANT_USER_ACTIVITY))
                 viewPager.setCurrentItem(1);
-            else if (getIntent().getStringExtra("viewProfile").equals("viewProfile"))
+            else if (getIntent().getStringExtra(ARG_FROM_VIEW).equals("viewProfile"))
                 viewPager.setCurrentItem(2);
-            else if(getIntent().getStringExtra("viewProfile").equals("blogFragmment"))
+            else if (getIntent().getStringExtra(ARG_FROM_VIEW).equals(ARG_DETAIL_BLOG_ACTIVITY))
                 viewPager.setCurrentItem(0);
         }
     }
 
     private void setViewPager() {
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
-        mFragmentAdapter.mFragmentList.add(BlogFragment.newInstance(viewPager));
-        mFragmentAdapter.mFragmentList.add(NotificationFragment.newInstance(viewPager,view));
+        mFragmentAdapter.mFragmentList.add(BlogFragment.newInstance());
+        mFragmentAdapter.mFragmentList.add(NotificationFragment.newInstance(viewPager, view));
         mFragmentAdapter.mFragmentList.add(MyProfileFragment.newInstance());
         mFragmentAdapter.mFragmentList.add(RestaurantFragment.newInstance());
         mFragmentAdapter.mFragmentList.add(RequireFragment.newInstance(viewPager));

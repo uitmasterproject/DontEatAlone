@@ -28,7 +28,7 @@ import static android.app.Activity.RESULT_OK;
 import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
- * Created by ChomChom on 4/7/2017.
+ * Created by ChomChom on 4/7/2017
  */
 
 public class RegisterStep5Fragment extends Fragment implements PlaceSelectionListener {
@@ -103,7 +103,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     @Override
     public void onPlaceSelected(Place place) {
         edtAddress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
-        location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);;
+        location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);
     }
 
     //kiem tra loi cho noi duoc chon
@@ -132,7 +132,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             @Override
             public void onClick(View v) {
                 userName.setAddress(edtAddress.getText().toString());
-                userName.setLatLngAdress(location);
+                userName.setLatlngAdress(location);
                 _mViewPager.setCurrentItem(5, true);
             }
         });

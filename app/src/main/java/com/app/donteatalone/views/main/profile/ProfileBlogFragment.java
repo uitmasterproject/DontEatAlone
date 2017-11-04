@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
-import com.app.donteatalone.utils.MySharePreference;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,7 +58,7 @@ public class ProfileBlogFragment extends Fragment {
     }
 
     private void setValueRecyclerView(){
-        Call<ArrayList<InfoBlog>> getPublicBlog=Connect.getRetrofit().getPublicBlog(new MySharePreference(getActivity()).getValue("phoneLogin"),limit);
+        Call<ArrayList<InfoBlog>> getPublicBlog=Connect.getRetrofit().getPublicBlog(phoneBlog,limit);
         getPublicBlog.enqueue(new Callback<ArrayList<InfoBlog>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {

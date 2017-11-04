@@ -13,7 +13,7 @@ import com.app.donteatalone.model.Restaurant;
 import java.util.ArrayList;
 
 /**
- * Created by ChomChom on 27-Jun-17.
+ * Created by ChomChom on 27-Jun-17
  */
 
 public class CustomInvitedRestaurantAdapter extends RecyclerView.Adapter<CustomInvitedRestaurantAdapter.MyViewHolder>{

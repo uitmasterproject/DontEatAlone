@@ -18,7 +18,7 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.utils.MySharePreference;
-import com.app.donteatalone.views.main.notification.CustomNotificationAdapter;
+import com.app.donteatalone.views.main.MainActivity;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
@@ -31,10 +31,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.app.donteatalone.views.main.notification.NotificationFragment.rcvInfoNotification;
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
 
 /**
- * Created by ChomChom on 05-Jun-17.
+ * Created by ChomChom on 05-Jun-17
  */
 
 public class CustomDialogInfoAccordantUser {
@@ -149,7 +149,7 @@ public class CustomDialogInfoAccordantUser {
                 dialog.dismiss();
                 Intent intent=new Intent(context, ProfileAccordantUser.class);
                 try {
-                    intent.putExtra("PhoneAccordantUser",data.getJSONObject("invitation").getString("phoneInviter"));
+                    intent.putExtra(ARG_PHONE_NUMBER,data.getJSONObject("invitation").getString("phoneInviter"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -214,8 +214,7 @@ public class CustomDialogInfoAccordantUser {
     }
 
     public void setNotification() {
-        final ArrayList<InfoNotification> listInfoNotification = new ArrayList();
-        final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, context);
+        final ArrayList<InfoNotification> listInfoNotification = new ArrayList<>();
         Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(mySharePreference.getValue("phoneLogin"));
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
@@ -226,7 +225,11 @@ public class CustomDialogInfoAccordantUser {
                     listInfoNotification.add(info);
                 }
                 Collections.reverse(listInfoNotification);
-                rcvInfoNotification.setAdapter(adapter);
+
+                Intent intent=new Intent(MainActivity.BROADCASTNAME);
+                intent.putExtra(MainActivity.SENDBROADCASTDATA,listInfoNotification);
+                context.sendBroadcast(intent);
+
             }
 
             @Override

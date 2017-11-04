@@ -28,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by ChomChom on 16-Jun-17.
+ * Created by ChomChom on 16-Jun-17
  */
 
 public class RestaurantFragment extends Fragment {
@@ -43,8 +43,7 @@ public class RestaurantFragment extends Fragment {
 
     public static RestaurantFragment newInstance() {
 
-        RestaurantFragment fragment = new RestaurantFragment();
-        return fragment;
+        return new RestaurantFragment();
     }
 
     @Nullable
@@ -62,7 +61,7 @@ public class RestaurantFragment extends Fragment {
         dialog = new BaseProgress();
         atctInputSearch = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_restaurant_atct_inputSearch);
         ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_exit);
-        ArrayAdapter adapterView = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, getContext().getResources().getStringArray(R.array.District));
+        ArrayAdapter adapterView = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getContext().getResources().getStringArray(R.array.District));
         atctInputSearch.setAdapter(adapterView);
         ibtnSearch = (ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_search);
         rcvListRestaurant = (RecyclerView) viewGroup.findViewById(R.id.fragment_restaurant_rcv_lst_place);

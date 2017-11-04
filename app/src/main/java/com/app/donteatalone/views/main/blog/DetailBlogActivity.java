@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
@@ -20,29 +19,36 @@ import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 
+import static com.app.donteatalone.views.main.MainActivity.ARG_DETAIL_BLOG_ACTIVITY;
+import static com.app.donteatalone.views.main.MainActivity.ARG_FROM_VIEW;
+
 /**
  * Created by ChomChom on 19-Aug-17
  */
 
 public class DetailBlogActivity extends AppCompatActivity {
+    public static final String ARG_ITEM_BLOG = "ARG_ITEM_BLOG";
+    public static final String ARG_OWN_BLOG = "ARG_OWN_BLOG";
+    public static final String ARG_BLOG_FRAGMENT = "ARG_BLOG_FRAGMENT";
+    public static final String ARG_PHONE_NUMBER="ARG_PHONE_NUMBER";
+
     private InfoBlog infoBlog;
     private String own;
     private TextView txtTitle;
-    private TextView txtFeel;
     private ImageView imgFeel;
     private TextView txtLimit;
     private TextView txtDate;
-    private RelativeLayout rlCancel;
-    private RelativeLayout rlEdit;
+    private TextView txtCancel;
+    private TextView txtEdit;
     private LinearLayout llContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getIntent().getParcelableExtra("infoBlog") != null) {
-            infoBlog = getIntent().getParcelableExtra("infoBlog");
+        if (getIntent().getParcelableExtra(ARG_ITEM_BLOG) != null) {
+            infoBlog = getIntent().getParcelableExtra(ARG_ITEM_BLOG);
         }
-        own = getIntent().getStringExtra("own");
+        own = getIntent().getStringExtra(ARG_OWN_BLOG);
         setContentView(R.layout.activity_detail_blog);
         init();
         setData();
@@ -52,24 +58,21 @@ public class DetailBlogActivity extends AppCompatActivity {
 
     private void init() {
         txtTitle = (TextView) findViewById(R.id.activity_detail_blog_txt_title);
-        txtFeel = (TextView) findViewById(R.id.activity_detail_blog_txt_feel);
         imgFeel = (ImageView) findViewById(R.id.activity_detail_blog_img_feel);
         txtLimit = (TextView) findViewById(R.id.activity_detail_blog_txt_limit);
         txtDate = (TextView) findViewById(R.id.activity_detail_blog_txt_date);
-        rlCancel = (RelativeLayout) findViewById(R.id.activity_detail_blog_btn_cancel);
-        rlEdit = (RelativeLayout) findViewById(R.id.activity_detail_blog_btn_edit);
+        txtCancel = (TextView) findViewById(R.id.activity_detail_blog_btn_cancel);
+        txtEdit = (TextView) findViewById(R.id.activity_detail_blog_btn_edit);
         llContainer = (LinearLayout) findViewById(R.id.activity_detail_blog_ll_container);
         llContainer.removeAllViews();
-        if (own.equals("ownBlogFragmment") || own.equals("ownViewProfile")) {
-        } else {
-            rlEdit.setVisibility(View.INVISIBLE);
+        if (!own.equals(ARG_BLOG_FRAGMENT)) {
+            txtEdit.setVisibility(View.INVISIBLE);
         }
     }
 
     private void setData() {
         txtTitle.setText(infoBlog.getTitle());
-        imgFeel.setImageResource(defineIconforFeeling(infoBlog.getFeeling()));
-        txtFeel.setText(infoBlog.getFeeling());
+        imgFeel.setImageResource(infoBlog.getFeeling());
         txtLimit.setText(infoBlog.getLimit());
         txtDate.setText(infoBlog.getDate());
         setValueContent();
@@ -77,19 +80,16 @@ public class DetailBlogActivity extends AppCompatActivity {
     }
 
     private void clickBtnCancel() {
-        rlCancel.setOnClickListener(new View.OnClickListener() {
+        txtCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                if (own.equals("ownBlogFragmment") || own.equals("ownViewProfile")) {
+                if (own.equals(ARG_BLOG_FRAGMENT)) {
                     intent = new Intent(DetailBlogActivity.this, MainActivity.class);
-                    if (own.equals("ownViewProfile"))
-                        intent.putExtra("viewProfile", "viewProfile");
-                    if (own.equals("ownBlogFragmment"))
-                        intent.putExtra("viewProfile", "blogFragmment");
+                    intent.putExtra(ARG_FROM_VIEW, ARG_DETAIL_BLOG_ACTIVITY);
                 } else {
                     intent = new Intent(DetailBlogActivity.this, ProfileAccordantUser.class);
-                    intent.putExtra("PhoneAccordantUser", own);
+                    intent.putExtra(ARG_PHONE_NUMBER, own);
                 }
                 startActivity(intent);
             }
@@ -97,11 +97,11 @@ public class DetailBlogActivity extends AppCompatActivity {
     }
 
     private void clickBtnEdit() {
-        rlEdit.setOnClickListener(new View.OnClickListener() {
+        txtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailBlogActivity.this, StatusActivity.class);
-                intent.putExtra("infoBlog", infoBlog);
+                intent.putExtra(ARG_ITEM_BLOG, infoBlog);
                 startActivity(intent);
             }
         });
@@ -139,22 +139,5 @@ public class DetailBlogActivity extends AppCompatActivity {
         }
     }
 
-    private int defineIconforFeeling(String feeling) {
-        int icon = 0;
-        if (feeling.equals("feeling đáng yêu")) {
-            icon = R.drawable.ic_felling_cute;
-            return icon;
-        } else if (feeling.equals("feeling thú vị") ) {
-            icon = R.drawable.ic_felling_exciting;
-            return icon;
-        } else if (feeling.equals("feeling vui vẻ")) {
-            icon = R.drawable.ic_felling_smile;
-            return icon;
-        } else if (feeling.equals("feeling buồn")) {
-            icon = R.drawable.ic_felling_sad;
-            return icon;
-        }
-        return icon;
-    }
 
 }

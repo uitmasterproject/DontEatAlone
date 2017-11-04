@@ -67,7 +67,7 @@ public class RegisterStep1Fragment extends Fragment {
         edtCode = (EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_code);
         rlVerifyCode = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
         rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_close);
-        userName = new UserName();
+        userName = new UserName(getContext());
         progressDialog=new BaseProgress();
     }
 

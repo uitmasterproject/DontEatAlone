@@ -1,8 +1,6 @@
 package com.app.donteatalone.views.main.require.main_require.on_require;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -11,9 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
+import android.text.Html;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,8 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.model.Achievement;
+import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.profile.ProfileBlogFragment;
 import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryFragment;
@@ -35,6 +36,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.app.donteatalone.views.main.MainActivity.ARG_FROM_VIEW;
+import static com.app.donteatalone.views.main.MainActivity.ARG_PROFILE_ACCORDANT_USER_ACTIVITY;
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
+
 /**
  * Created by ChomChom on 01-Aug-17
  */
@@ -43,20 +48,29 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
     private ImageView ivAvatar, ivLike;
     private TextView tvName1, tvName2, tvName, tvAge, tvGender, tvPhone, tvAddress;
-    private TextView tvTargetCharacters, tvTargetStyles, tvCharacters, tvStyles, tvFoods;
+    private TextView tvTargetCharacters, tvTargetStyles, tvCharacters, tvStyles, tvTargetFoods;
     private RelativeLayout rlBack;
     private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
     private LinearLayout llButtonLike;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private BaseProgress dialog;
+
+    private String phoneNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_accordant_user_profile);
+        setContentView(R.layout.activity_accordant_user_profile);
+
+        if (getIntent().getStringExtra(ARG_PHONE_NUMBER) != null) {
+            phoneNumber = getIntent().getStringExtra(ARG_PHONE_NUMBER);
+        }
+
         init();
         getValueProfilefromDatabase();
         setClickButtonExit();
+        setClickButtonLike();
         setValueViewPager();
         setValueTabLayout();
     }
@@ -82,48 +96,68 @@ public class ProfileAccordantUser extends AppCompatActivity {
         tvAddress = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_address);
         tvCharacters = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_character);
         tvStyles = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_styles);
-        tvFoods = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_foods);
+        tvTargetFoods = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_foods);
         tvPhone = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_phone);
         /*Target's Information*/
         tvTargetCharacters = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_characters);
         tvTargetStyles = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_styles);
         /*Show Blog and History*/
-        tabLayout = (TabLayout) findViewById(R.id.fragment_accordant_user_profile_tl_tabs);
         viewPager = (ViewPager) findViewById(R.id.fragment_accordant_user_profile_cvp_blog_history);
+        tabLayout = (TabLayout) findViewById(R.id.fragment_accordant_user_profile_tl_tabs);
 
     }
 
     private void setValueViewPager() {
         ArrayList<Fragment> listFragment = new ArrayList<>();
-        if (getIntent().getStringExtra("PhoneAccordantUser") != null) {
-            listFragment.add(new ProfileBlogFragment(getIntent().getStringExtra("PhoneAccordantUser")));
-            listFragment.add(new ProfileHistoryFragment(getIntent().getStringExtra("PhoneAccordantUser")));
+        if (phoneNumber != null) {
+            listFragment.add(new ProfileBlogFragment(phoneNumber));
+            listFragment.add(new ProfileHistoryFragment(phoneNumber));
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
 
         viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void setValueTabLayout() {
-        tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setText("BLOG");
         tabLayout.getTabAt(1).setText("HISTORY");
     }
 
     private void getValueProfilefromDatabase() {
-        Connect connect = new Connect();
-        if (getIntent().getStringExtra("PhoneAccordantUser") != null) {
-            Call<UserName> getProFile = connect.getRetrofit().getProfileUser(getIntent().getStringExtra("PhoneAccordantUser"));
+        dialog = new BaseProgress();
+        dialog.showProgressLoading(ProfileAccordantUser.this);
+        if (phoneNumber != null) {
+            Call<UserName> getProFile = Connect.getRetrofit().getProfileUser(phoneNumber);
             getProFile.enqueue(new Callback<UserName>() {
                 @Override
                 public void onResponse(Call<UserName> call, Response<UserName> response) {
                     if (response.body() != null) {
-                        UserName userName = new UserName(response.body().getPhone(), response.body().getFullname(),
-                                response.body().getPassword(), response.body().getAvatar(), response.body().getBirthday(),
-                                response.body().getGender(), response.body().getAddress(), response.body().getHobby(),
-                                response.body().getCharacter());
+                        UserName userName = new UserName(ProfileAccordantUser.this, response.body().getPhone(), response.body().getFullName(),
+                                response.body().getPassword(),response.body().getGender(), response.body().getAvatar(), response.body().getBirthday(),
+                                 response.body().getAddress(), response.body().getLatlngAdress(), response.body().getMyCharacter(),
+                                response.body().getMyStyle(), response.body().getTargetCharacter(), response.body().getTargetStyle(), response.body().getTargetFood());
                         setValueDefaultProfile(userName);
+
+                        Call<Achievement> getAchievement = Connect.getRetrofit().getAchievement(phoneNumber);
+                        getAchievement.enqueue(new Callback<Achievement>() {
+                            @Override
+                            public void onResponse(Call<Achievement> call, Response<Achievement> response) {
+                                dialog.hideProgressLoading();
+                                if (response.body() != null) {
+                                    Achievement achievement = response.body();
+                                    tvCountsLike.setText(achievement.getLike() + "");
+                                    tvCountsAppointment.setText(achievement.getAppointment() + "");
+                                    tvCountsStar.setText(achievement.getRate() + "");
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Achievement> call, Throwable t) {
+
+                            }
+                        });
                     }
                 }
 
@@ -140,7 +174,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileAccordantUser.this, MainActivity.class);
-                intent.putExtra("viewProfile", "notification");
+                intent.putExtra(ARG_FROM_VIEW, ARG_PROFILE_ACCORDANT_USER_ACTIVITY);
                 startActivity(intent);
             }
         });
@@ -148,91 +182,76 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
     private void setValueDefaultProfile(UserName userName) {
         LocalDate date = new LocalDate();
-        ivAvatar.setImageBitmap(decodeBitmap(userName.getAvatar()));
-        tvName.setText(userName.getFullname());
-        if (userName.getBirthday().equals("") == true)
+        ivAvatar.setImageBitmap(AppUtils.decodeBitmap(userName.getAvatar()));
+        tvName.setText(userName.getFullName());
+        tvName1.setText(userName.getFullName());
+        tvName2.setText(userName.getFullName());
+        if (userName.getBirthday().equals(""))
             tvAge.setText("");
         else
             tvAge.setText((date.getYear() - Integer.parseInt(userName.getBirthday().split("/")[2])) + "");
-        if (userName.getGender().equals("Female") == true) {
+        if (userName.getGender().equals("Female")) {
             tvGender.setText("F");
         } else {
             tvGender.setText("M");
         }
         tvPhone.setText(userName.getPhone());
-        if (userName.getAddress().equals("") == true) {
+        if (userName.getAddress().equals("")) {
             tvAddress.setText("Ho Chi Minh");
         } else {
             tvAddress.setText(userName.getAddress());
         }
 
-        putDataHobbyintoReference(userName.getHobby());
-
-        tvCharacters.setText(userName.getCharacter());
+        putDataHobbyIntoReference(userName);
+        putDataPersonalIntoReference(userName);
     }
 
-    private void putDataHobbyintoReference(String strHobby) {
-        String str = "";
-        String[] temp = strHobby.trim().split(",");
-        String[] temhobby = getResources().getStringArray(R.array.food);
-        for (int j = 0; j < temhobby.length; j++) {
-            for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i]) == true) {
-                    str += temp[i] + ",";
-                }
-            }
-        }
-        if (str.length() > 0) {
-            str = str.substring(0, str.length() - 1);
-        }
-        tvFoods.setText(str);
 
-        str = "";
-        temhobby = getResources().getStringArray(R.array.character);
-        for (int j = 0; j < temhobby.length; j++) {
-            for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i]) == true) {
-                    str += temp[i] + ",";
-                }
-            }
-        }
-        if (str.length() > 0) {
-            str = str.substring(0, str.length() - 1);
-        }
-        tvTargetCharacters.setText(str);
+    private void putDataHobbyIntoReference(UserName userName) {
 
-        str = "";
-        temhobby = getResources().getStringArray(R.array.style);
-        for (int j = 0; j < temhobby.length; j++) {
-            for (int i = 0; i < temp.length; i++) {
-                if (temhobby[j].equals(temp[i]) == true) {
-                    str += temp[i] + ",";
-                }
-            }
-        }
-        if (str.length() > 0) {
-            str = str.substring(0, str.length() - 1);
-        }
-        tvTargetStyles.setText(str);
+        tvTargetFoods.setText(Html.fromHtml("Food's Target are <font color='#000'>" + userName.getTargetFood() + "</font>"));
+
+        tvTargetCharacters.setText(Html.fromHtml("Character's Target are <font color='#000'>" + userName.getTargetCharacter() + "</font>"));
+
+        tvTargetStyles.setText(Html.fromHtml("Style's Target are <font color='#000'>" + userName.getTargetStyle() + "</font>"));
     }
 
-    private Bitmap decodeBitmap(String str) {
-        Bitmap bitmap = null;
-        if (str.equals("") != true) {
-            try {
-                byte[] encodeByte = Base64.decode(str, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
+    private void putDataPersonalIntoReference(UserName userName) {
+        tvCharacters.setText(Html.fromHtml("Characters are <font color='#000'>" + userName.getMyCharacter() + "</font>"));
+
+        tvStyles.setText(Html.fromHtml("Styles are <font color='#000'>" + userName.getMyStyle() + "</font>"));
     }
 
-    public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+    private void setClickButtonLike() {
+        if (phoneNumber != null) {
+            llButtonLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Call<Status> addLike = Connect.getRetrofit().addLike(phoneNumber, 0);
+                    addLike.enqueue(new Callback<Status>() {
+                        @Override
+                        public void onResponse(Call<Status> call, Response<Status> response) {
+                            if (response.body() != null) {
+                                if (response.body().getStatus().equals("1")) {
+                                    tvCountsLike.setText((Integer.parseInt(tvCountsLike.getText().toString()) + 1) + "");
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Status> call, Throwable t) {
+
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private ArrayList<Fragment> listFragment;
 
-        public ViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> listFragment) {
+        private ViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> listFragment) {
             super(fm);
             this.listFragment = listFragment;
         }

@@ -88,7 +88,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Mobile Number"
                 android:inputType="phone"
-                android:singleLine="true"
+                android:maxLines="1"
+                android:imeOptions="actionDone"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />

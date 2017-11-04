@@ -34,6 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
 import static com.app.donteatalone.views.main.require.main_require.OnRequireFragment.socketIO;
 import static com.google.android.gms.internal.zzir.runOnUiThread;
 
@@ -99,7 +100,7 @@ public class CustomDialogItemNotification {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileAccordantUser.class);
-                intent.putExtra("PhoneAccordantUser", data.getUserSend());
+                intent.putExtra(ARG_PHONE_NUMBER, data.getUserSend());
                 context.startActivity(intent);
             }
         });

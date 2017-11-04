@@ -82,25 +82,22 @@ public class LoginActivity extends AppCompatActivity {
             getPass.enqueue(new Callback<Status>() {
                 @Override
                 public void onResponse(Call<Status> call, Response<Status> response) {
-
+                    dialog.hideProgressLoading();
                     if (response.body() == null) {
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
-                        dialog.hideProgressLoading();
                     } else {
                         if (response.body().getStatus().equals("0")) {
-                            if (mySharePreference.getValue("phoneLogin").equals(edtPhone.getText().toString())) {
-                                dialog.hideProgressLoading();
+                            if(!response.body().getImei().equals(mySharePreference.getValue("imeiLogin"))) {
+                                saveInfoUser();
+                            }
+                            else {
                                 checkRemember();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
-                            } else {
-                                saveInfoUser();
                             }
                         } else if (response.body().getStatus().equals("1")) {
-                            dialog.hideProgressLoading();
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_incorecct), Toast.LENGTH_LONG).show();
                         } else {
-                            dialog.hideProgressLoading();
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
                         }
                     }
@@ -173,7 +170,11 @@ public class LoginActivity extends AppCompatActivity {
                     edtPassword.setError("Invalid Password");
                 }
                 if (!TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())) {
-                    checkAccount();
+                    if(AppUtils.isNetworkAvailable(LoginActivity.this)) {
+                        checkAccount();
+                    }else {
+                        Toast.makeText(LoginActivity.this,getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

@@ -3,6 +3,8 @@ package com.app.donteatalone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -10,24 +12,23 @@ import java.util.ArrayList;
  */
 
 public class InfoBlog implements Parcelable {
-    @SuppressWarnings("title")
+    @SerializedName("title")
     private String title;
-    @SuppressWarnings("date")
+    @SerializedName("date")
     private String date;
-    @SuppressWarnings("infoStatus")
+    @SerializedName("infoStatus")
     private String infoStatus;
-    @SuppressWarnings("feeling")
-    private String feeling;
-    @SuppressWarnings("image")
+    @SerializedName("feeling")
+    private int feeling;
+    @SerializedName("image")
     private ArrayList<String> image;
-    @SuppressWarnings("limit")
+    @SerializedName("limit")
     private String limit;
 
     public InfoBlog() {
     }
 
-    public InfoBlog(String title, String date, String infoStatus, String feeling, ArrayList<String> image, String limit) {
-        this.title = title;
+    public InfoBlog(String date, String infoStatus, int feeling, ArrayList<String> image, String limit) {
         this.date = date;
         this.infoStatus = infoStatus;
         this.feeling = feeling;
@@ -39,7 +40,7 @@ public class InfoBlog implements Parcelable {
         title = in.readString();
         date = in.readString();
         infoStatus = in.readString();
-        feeling = in.readString();
+        feeling = in.readInt();
         image = in.createStringArrayList();
         limit = in.readString();
     }
@@ -88,11 +89,11 @@ public class InfoBlog implements Parcelable {
         this.infoStatus = infoStatus;
     }
 
-    public String getFeeling() {
+    public int getFeeling() {
         return feeling;
     }
 
-    public void setFeeling(String feeling) {
+    public void setFeeling(int feeling) {
         this.feeling = feeling;
     }
 
@@ -114,7 +115,7 @@ public class InfoBlog implements Parcelable {
         dest.writeString(title);
         dest.writeString(date);
         dest.writeString(infoStatus);
-        dest.writeString(feeling);
+        dest.writeInt(feeling);
         dest.writeStringList(image);
         dest.writeString(limit);
     }

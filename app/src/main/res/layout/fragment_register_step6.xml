@@ -77,20 +77,25 @@
             android:layout_height="0dp"
             android:layout_weight="0.15" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/grey">
 
             <MultiAutoCompleteTextView
-                android:id="@+id/fragment_register_step6_actv_food"
+                android:id="@+id/fragment_register_step6_mactv_my_character"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
-                android:singleLine="true"
+                android:hint="Character"
+                android:maxLines="1"
                 android:textColor="@color/black"
-                app:fontPath="fonts/Montserrat-Medium.ttf"
-                android:hint="Food" />
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -105,36 +110,14 @@
             android:textColorHint="@color/grey">
 
             <MultiAutoCompleteTextView
-                android:id="@+id/fragment_register_step6_actv_character"
+                android:id="@+id/fragment_register_step6_mactv_my_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
-                android:singleLine="true"
+                android:hint="Style"
+                android:maxLines="1"
                 android:textColor="@color/black"
-                app:fontPath="fonts/Montserrat-Medium.ttf"
-                android:hint="Character" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/grey">
-
-            <MultiAutoCompleteTextView
-                android:id="@+id/fragment_register_step6_actv_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:completionThreshold="1"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                app:fontPath="fonts/Montserrat-Medium.ttf"
-                android:hint="Style" />
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
 

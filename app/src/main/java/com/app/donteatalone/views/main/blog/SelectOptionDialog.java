@@ -20,10 +20,10 @@ import com.app.donteatalone.R;
  * Created by ChomChom on 17-Aug-17
  */
 
-public class CustomDialogSelectOption {
+public class SelectOptionDialog {
     private Activity activity;
 
-    public CustomDialogSelectOption(Activity activity) {
+    public SelectOptionDialog(Activity activity) {
         this.activity = activity;
     }
 
@@ -74,7 +74,7 @@ public class CustomDialogSelectOption {
                         dynamicImage.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
                             public boolean onLongClick(View v) {
-                                new CustomDialogSelectOption(activity).showDialog(dynamicImage, finalCount,linearLayout);
+                                new SelectOptionDialog(activity).showDialog(dynamicImage, finalCount,linearLayout);
                                 return false;
                             }
                         });

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -32,7 +33,7 @@ import static android.app.Activity.RESULT_OK;
 import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
- * Created by ChomChom on 4/7/2017.
+ * Created by ChomChom on 4/7/2017
  */
 
 public class RegisterStep3Fragment extends Fragment {
@@ -136,7 +137,6 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 SelectImage();
-                intChosen = 1;
             }
         });
     }
@@ -162,19 +162,21 @@ public class RegisterStep3Fragment extends Fragment {
         });
         AlertDialog dialog = builder.create();
         Window window = dialog.getWindow();
-        WindowManager.LayoutParams layoutParams = dialog.getWindow().getAttributes();
-        window.setGravity(Gravity.BOTTOM | Gravity.CENTER);
-        layoutParams.x = 0;
-        layoutParams.y = 0;
-        layoutParams.alpha = 0.7f;
-        window.setAttributes(layoutParams);
+        if (dialog.getWindow() != null && window != null) {
+            WindowManager.LayoutParams layoutParams = dialog.getWindow().getAttributes();
+            window.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+            layoutParams.x = 0;
+            layoutParams.y = 0;
+            layoutParams.alpha = 0.7f;
+            window.setAttributes(layoutParams);
+        }
         dialog.show();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data!=null) {
+        if (data != null) {
             if (resultCode == RESULT_OK) {
                 if (requestCode == 1) {
                     performCrop(data.getData());
@@ -209,16 +211,13 @@ public class RegisterStep3Fragment extends Fragment {
         rlNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (intChosen == 1) {
-                    userName.setAvatar(AppUtils.convertBitmaptoString(((BitmapDrawable)imgAvatar.getDrawable()).getBitmap()));
+                if (intChosen == -1) {
+                    tvTutorial.setText("You have to choose your gender");
+                    tvTutorial.setTextColor(ContextCompat.getColor(getContext(), R.color.color_orange_pressed));
+                } else {
+                    userName.setAvatar(AppUtils.convertBitmaptoString(((BitmapDrawable) imgAvatar.getDrawable()).getBitmap()));
                     userName.setGender(gender);
                     _mViewPager.setCurrentItem(3, true);
-                } else if (intChosen == -1) {
-                    tvTutorial.setText("You have to choose your gender");
-                    tvTutorial.setTextColor(getResources().getColor(R.color.color_orange_pressed));
-                } else {
-                    tvTutorial.setText("You have to update your avatar");
-                    tvTutorial.setTextColor(getResources().getColor(R.color.color_orange_pressed));
                 }
             }
         });

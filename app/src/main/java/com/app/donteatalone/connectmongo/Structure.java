@@ -1,9 +1,12 @@
 package com.app.donteatalone.connectmongo;
 
+import com.app.donteatalone.model.Achievement;
+import com.app.donteatalone.model.Auth;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.InfoProfileUpdate;
 import com.app.donteatalone.model.ProfileHistoryModel;
+import com.app.donteatalone.model.Request;
 import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
@@ -20,15 +23,13 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
- * Created by ChomChom on 3/13/2017.
+ * Created by ChomChom on 3/13/2017
  */
 
 public interface Structure {
-        @GET("/user")
-        Call<List<UserName>> getUser();
 
-
-
+        @POST("/token")
+        Call<Request> getToken(@Body Auth data);
 
         @POST("/user/{phone}")
         Call<UserName> getProfileUser(@Path("phone") String phone);
@@ -75,6 +76,8 @@ public interface Structure {
         Call<ArrayList<String>> getAllImage(@Path("phone") String phone);
         @GET("/profile/publicBlog/{phone}/{limit}")
         Call<ArrayList<InfoBlog>> getPublicBlog(@Path("phone") String phone, @Path("limit") String limit);
+        @POST("/profile/edit")
+        Call<Status> editProfile(@Body UserName userName);
 
 
         @GET("/restaurant/{latlng}")
@@ -90,4 +93,11 @@ public interface Structure {
         Call<ArrayList<ProfileHistoryModel>> getEventHistory(@Path("phone") String phone);
         @POST("/eventhistory/edit/{phone}")
         Call<ArrayList<ProfileHistoryModel>> editEventHistory(@Path("phone") String phone, @Body ProfileHistoryModel profileHistoryModel);
+
+
+        @GET("/accordant/{phone}/{type}")
+        Call<Status> addLike(@Path("phone") String phone, @Path("type") int type);
+
+        @GET("/accordant/{phone}")
+        Call<Achievement> getAchievement(@Path("phone") String phone);
 }

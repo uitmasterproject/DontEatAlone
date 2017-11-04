@@ -1,7 +1,7 @@
 package com.app.donteatalone.model;
 
 /**
- * Created by ChomChom on 4/18/2017.
+ * Created by ChomChom on 4/18/2017
  */
 
 public class Felling {

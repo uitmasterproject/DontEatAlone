@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
@@ -25,17 +26,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_BLOG_FRAGMENT;
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_ITEM_BLOG;
+import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_OWN_BLOG;
+
 /**
  * Created by ChomChom on 19-Aug-17
  */
 
-public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomInnerRecyclerViewAdapter.InnerVH> {
+public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerVH> {
     private ArrayList<InfoBlog> listInnerBlog;
     private Context context;
+    private BaseProgress baseProgress;
 
-    public CustomInnerRecyclerViewAdapter(ArrayList<InfoBlog> listInnerBlog, Context context) {
+    public BlogItemAdapter(ArrayList<InfoBlog> listInnerBlog, Context context) {
         this.listInnerBlog = listInnerBlog;
         this.context = context;
+        baseProgress=new BaseProgress();
     }
 
     @Override
@@ -47,13 +54,13 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
     @Override
     public void onBindViewHolder(InnerVH holder, int position) {
         holder.txtTitle.setText(listInnerBlog.get(position).getTitle());
-        holder.imgIcon.setImageResource(defineIconforFeeling(listInnerBlog.get(position).getFeeling()));
-        holder.txtFeel.setText(listInnerBlog.get(position).getFeeling());
+        holder.imgIcon.setImageResource(listInnerBlog.get(position).getFeeling());
         if(listInnerBlog.get(position).getImage().size()>0) {
             holder.imgImage.setImageBitmap(AppUtils.decodeBitmap(listInnerBlog.get(position).getImage().get(0)));
         }else {
             holder.imgImage.setImageBitmap(null);
         }
+
         holder.txtDate.setText(listInnerBlog.get(position).getDate());
 
         holder.rlContent.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +85,8 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailBlogActivity.class);
-                intent.putExtra("infoBlog", listInnerBlog.get(position));
-                intent.putExtra("own", "ownBlogFragmment");
+                intent.putExtra(ARG_ITEM_BLOG, listInnerBlog.get(position));
+                intent.putExtra(ARG_OWN_BLOG, ARG_BLOG_FRAGMENT);
                 context.startActivity(intent);
             }
         });
@@ -88,7 +95,7 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, StatusActivity.class);
-                intent.putExtra("infoBlog", listInnerBlog.get(position));
+                intent.putExtra(ARG_ITEM_BLOG, listInnerBlog.get(position));
                 context.startActivity(intent);
             }
         });
@@ -96,12 +103,14 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                baseProgress.showProgressLoading(context);
                 Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(new MySharePreference((Activity)context).getValue("phoneLogin"), holder.txtDate.getText().toString());
                 deleteStatus.enqueue(new Callback<Status>() {
                     @Override
                     public void onResponse(Call<Status> call, Response<Status> response) {
+                        baseProgress.hideProgressLoading();
                         if(response.body()!=null) {
-                            if (response.body().getStatus().equals("Delete success")) {
+                            if (response.body().getStatus().equals("0")) {
                                 listInnerBlog.remove(position);
                                 notifyDataSetChanged();
                             }
@@ -110,7 +119,7 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
 
                     @Override
                     public void onFailure(Call<Status> call, Throwable t) {
-
+                        baseProgress.hideProgressLoading();
                     }
                 });
             }
@@ -122,30 +131,12 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
         return listInnerBlog.size();
     }
 
-    private int defineIconforFeeling(String feeling) {
-        int icon = 0;
-        if (feeling.equals("feeling đáng yêu") == true) {
-            icon = R.drawable.ic_felling_cute;
-            return icon;
-        } else if (feeling.equals("feeling thú vị") == true) {
-            icon = R.drawable.ic_felling_exciting;
-            return icon;
-        } else if (feeling.equals("feeling vui vẻ") == true) {
-            icon = R.drawable.ic_felling_smile;
-            return icon;
-        } else if (feeling.equals("feeling buồn") == true) {
-            icon = R.drawable.ic_felling_sad;
-            return icon;
-        }
-        return icon;
-    }
 
     public class InnerVH extends RecyclerView.ViewHolder {
 
         private RelativeLayout rlContent;
         private TextView txtTitle;
         private ImageView imgIcon;
-        private TextView txtFeel;
         private ImageView imgImage;
         private TextView txtDate;
         private RelativeLayout rlControl;
@@ -158,7 +149,6 @@ public class CustomInnerRecyclerViewAdapter extends RecyclerView.Adapter<CustomI
             rlContent = (RelativeLayout) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_rl_content);
             txtTitle = (TextView) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_txt_title);
             imgIcon = (ImageView) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_img_icon);
-            txtFeel = (TextView) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_txt_feel);
             imgImage = (ImageView) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_img_image);
             txtDate = (TextView) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_txt_date);
             rlControl = (RelativeLayout) itemView.findViewById(R.id.custom_adapter_inner_recyclerview_my_status_blog_rl_control);

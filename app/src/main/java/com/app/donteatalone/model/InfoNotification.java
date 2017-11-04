@@ -1,10 +1,13 @@
 package com.app.donteatalone.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ChomChom on 09-Jun-17.
  */
 
-public class InfoNotification {
+public class InfoNotification implements Parcelable {
     private String userSend;
     private String nameSend;
     private String timeSend;
@@ -14,6 +17,30 @@ public class InfoNotification {
     private String status;
     private String read;
     private String seen;
+
+    protected InfoNotification(Parcel in) {
+        userSend = in.readString();
+        nameSend = in.readString();
+        timeSend = in.readString();
+        date = in.readString();
+        time = in.readString();
+        place = in.readString();
+        status = in.readString();
+        read = in.readString();
+        seen = in.readString();
+    }
+
+    public static final Creator<InfoNotification> CREATOR = new Creator<InfoNotification>() {
+        @Override
+        public InfoNotification createFromParcel(Parcel in) {
+            return new InfoNotification(in);
+        }
+
+        @Override
+        public InfoNotification[] newArray(int size) {
+            return new InfoNotification[size];
+        }
+    };
 
     public String getRead() {
         return read;
@@ -100,5 +127,23 @@ public class InfoNotification {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userSend);
+        dest.writeString(nameSend);
+        dest.writeString(timeSend);
+        dest.writeString(date);
+        dest.writeString(time);
+        dest.writeString(place);
+        dest.writeString(status);
+        dest.writeString(read);
+        dest.writeString(seen);
     }
 }

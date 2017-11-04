@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:text="How are your Character?"
+                android:text="How are your Target?"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Providing your character makes it easy to find someone to eat with you."
+                android:text="Providing your targetCharacter makes it easy to find someone to eat with you."
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="14sp"
                 app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
                 android:hint="Character"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />
 
@@ -111,10 +111,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 app:fontPath="fonts/Montserrat-Medium.ttf"
                 android:hint="Style" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/grey">
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/fragment_register_step7_actv_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                app:fontPath="fonts/Montserrat-Medium.ttf"
+                android:hint="Food" />
 
         </android.support.design.widget.TextInputLayout>
 
