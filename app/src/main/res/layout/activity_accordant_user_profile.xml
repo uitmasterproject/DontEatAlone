@@ -325,7 +325,7 @@
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_home_color" />
+                            android:src="@drawable/ic_home" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_address"
@@ -350,7 +350,7 @@
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_personality_color" />
+                            android:src="@drawable/ic_character" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_character"
@@ -375,7 +375,7 @@
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_style_color" />
+                            android:src="@drawable/ic_style" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_styles"
@@ -400,7 +400,7 @@
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_phone_color" />
+                            android:src="@drawable/ic_phone" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_phone"
@@ -487,8 +487,8 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_food_color" />
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_food" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_target_foods"
@@ -512,8 +512,8 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_target_personality_color" />
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_target_character" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_target_characters"
@@ -534,11 +534,12 @@
                         android:padding="3dp">
 
                         <ImageView
+                            android:id="@+id/imageView3"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_target_style_color" />
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_target_style" />
 
                         <TextView
                             android:id="@+id/fragment_accordant_user_profile_tv_target_styles"

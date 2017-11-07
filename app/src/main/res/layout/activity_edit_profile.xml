@@ -469,8 +469,8 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_personality_color" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_character" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -511,8 +511,8 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_style_color" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_style" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -573,8 +573,8 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_food_color" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_food" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -615,8 +615,8 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_target_personality_color" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_target_character" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -655,10 +655,11 @@
                     android:padding="5dp">
 
                     <ImageView
+                        android:id="@+id/imageView2"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_target_style_color" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_target_style" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
