@@ -23,7 +23,7 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Achievement;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
-import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.profile.ProfileBlogFragment;
 import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryFragment;
@@ -135,9 +135,10 @@ public class ProfileAccordantUser extends AppCompatActivity {
                 public void onResponse(Call<UserName> call, Response<UserName> response) {
                     if (response.body() != null) {
                         UserName userName = new UserName(ProfileAccordantUser.this, response.body().getPhone(), response.body().getFullName(),
-                                response.body().getPassword(),response.body().getGender(), response.body().getAvatar(), response.body().getBirthday(),
-                                 response.body().getAddress(), response.body().getLatlngAdress(), response.body().getMyCharacter(),
-                                response.body().getMyStyle(), response.body().getTargetCharacter(), response.body().getTargetStyle(), response.body().getTargetFood());
+                                response.body().getPassword(),response.body().getAvatar(),response.body().getBirthday(),
+                                response.body().getGender(), response.body().getAddress(), response.body().getLatlngAdress(),
+                                response.body().getMyCharacter(), response.body().getMyStyle(), response.body().getTargetCharacter(),
+                                response.body().getTargetStyle(), response.body().getTargetFood());
                         setValueDefaultProfile(userName);
 
                         Call<Achievement> getAchievement = Connect.getRetrofit().getAchievement(phoneNumber);
@@ -182,7 +183,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
     private void setValueDefaultProfile(UserName userName) {
         LocalDate date = new LocalDate();
-        ivAvatar.setImageBitmap(AppUtils.decodeBitmap(userName.getAvatar()));
+        ivAvatar.setImageBitmap(ImageProcessor.decodeBitmap(userName.getAvatar()));
         tvName.setText(userName.getFullName());
         tvName1.setText(userName.getFullName());
         tvName2.setText(userName.getFullName());

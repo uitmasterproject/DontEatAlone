@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.utils.MySharePreference;
-import com.app.donteatalone.views.login.LoginActivity;
 
 /**
  * Created by ChomChom on 4/13/2017
@@ -25,7 +23,6 @@ public class BlogFragment extends Fragment {
     private View viewGroup;
     private Button btnStatus;
     private ImageView imgAvatar;
-    private ImageButton ibtnExit;
     private MySharePreference mySharePreference;
 
 
@@ -40,16 +37,14 @@ public class BlogFragment extends Fragment {
         init();
         setimgAvatar();
         GetDatafromDB getDatafromDB = new GetDatafromDB(getActivity(), viewGroup, imgAvatar);
-        getDatafromDB.execute(mySharePreference.getValue("phoneLogin"));
+        getDatafromDB.execute(mySharePreference.getPhoneLogin());
         clickButtonbtnStatus();
-        clickButtonExit();
         return viewGroup;
     }
 
     private void init() {
         btnStatus = (Button) viewGroup.findViewById(R.id.fragment_blog_edt_status);
         imgAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_blog_avatar);
-        ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_blog_ibtn_exit);
         mySharePreference = new MySharePreference(getActivity());
     }
 
@@ -64,17 +59,7 @@ public class BlogFragment extends Fragment {
         });
     }
 
-    private void clickButtonExit() {
-        ibtnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     private void setimgAvatar() {
-        imgAvatar.setImageBitmap(AppUtils.decodeBitmap(mySharePreference.getValue("avatarLogin")));
+        imgAvatar.setImageBitmap(ImageProcessor.decodeBitmap(mySharePreference.getAvatarLogin()));
     }
 }

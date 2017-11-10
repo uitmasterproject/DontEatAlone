@@ -1,11 +1,11 @@
 package com.app.donteatalone.views.main.restaurant;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +18,6 @@ import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.utils.MySharePreference;
-import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.CustomInvitedRestaurantAdapter;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class RestaurantFragment extends Fragment {
     private RecyclerView rcvListRestaurant;
     private CustomInvitedRestaurantAdapter adapter;
     private ArrayList<Restaurant> listRestaurant;
-    private ImageButton ibtnExit;
     private BaseProgress dialog;
 
     public static RestaurantFragment newInstance() {
@@ -53,14 +51,12 @@ public class RestaurantFragment extends Fragment {
         init();
         showListRestaurant();
         setClickSearch();
-        clickButtonExit();
         return viewGroup;
     }
 
     private void init() {
         dialog = new BaseProgress();
         atctInputSearch = (AutoCompleteTextView) viewGroup.findViewById(R.id.fragment_restaurant_atct_inputSearch);
-        ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_exit);
         ArrayAdapter adapterView = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getContext().getResources().getStringArray(R.array.District));
         atctInputSearch.setAdapter(adapterView);
         ibtnSearch = (ImageButton) viewGroup.findViewById(R.id.fragment_restaurant_ibtn_search);
@@ -73,10 +69,10 @@ public class RestaurantFragment extends Fragment {
 
     private void showListRestaurant() {
         String latlng;
-        if (new MySharePreference(getActivity()).getValue("latlngaddressLogin").equals("")) {
+        if (TextUtils.isEmpty(new MySharePreference(getActivity()).getLatLngAddressLogin())) {
             latlng = "10.8231,106.6297";
         } else {
-            latlng = new MySharePreference(getActivity()).getValue("latlngaddressLogin");
+            latlng = new MySharePreference(getActivity()).getLatLngAddressLogin();
         }
         dialog.showProgressLoading(getContext());
         Call<ArrayList<Restaurant>> methodlistRestaurant = Connect.getRetrofit().getRestaurantFollowLatlng(latlng);
@@ -145,16 +141,6 @@ public class RestaurantFragment extends Fragment {
                         }
                     });
                 }
-            }
-        });
-    }
-
-    private void clickButtonExit() {
-        ibtnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
             }
         });
     }

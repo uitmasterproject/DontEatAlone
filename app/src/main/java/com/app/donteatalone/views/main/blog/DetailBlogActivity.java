@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.InfoBlog;
-import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 
@@ -122,7 +122,7 @@ public class DetailBlogActivity extends AppCompatActivity {
             } else if (str.startsWith("<image>")) {
                 ImageView imgImage = new ImageView(this);
                 int index = str.indexOf("</image>");
-                Bitmap bitmap = AppUtils.decodeBitmap(str.substring(7, index));
+                Bitmap bitmap = ImageProcessor.decodeBitmap(str.substring(7, index));
                 imgImage.setLayoutParams(new LinearLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight()));
                 imgImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imgImage.setImageBitmap(bitmap);

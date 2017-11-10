@@ -10,7 +10,7 @@ import com.app.donteatalone.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
 /**
- * -> Created by LeHoangHan on 4/4/2017.
+ * -> Created by LeHoangHan on 4/4/2017
  */
 
 public class BaseProgress {

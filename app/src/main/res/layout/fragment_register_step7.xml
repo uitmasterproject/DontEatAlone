@@ -8,35 +8,6 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix,contentDescription">
 
-    <!--Set Toolbar below here-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange">
-
-        <RelativeLayout
-            android:id="@+id/fragment_register_step7_close"
-            style="@style/Toolbar.ItemWrapper">
-
-            <ImageView
-                style="@style/Toolbar.ItemIcon"
-                android:src="@drawable/ic_back_arrow_white" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/fragment_register_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Character"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            app:fontPath="fonts/Montserrat-Bold.ttf" />
-
-    </LinearLayout>
-
     <!--Set content below here-->
     <LinearLayout
         android:id="@+id/fragment_register_step7_ll_root"
@@ -80,18 +51,22 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:textColorHint="@color/grey">
+            app:hintEnabled="false">
 
             <MultiAutoCompleteTextView
                 android:id="@+id/fragment_register_step7_actv_character"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
                 android:hint="Character"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:maxLines="1"
+                android:padding="7dp"
                 android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
@@ -104,39 +79,51 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/grey">
+            app:hintEnabled="false">
 
             <MultiAutoCompleteTextView
                 android:id="@+id/fragment_register_step7_actv_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
+                android:hint="Style"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:maxLines="1"
+                android:padding="7dp"
                 android:textColor="@color/black"
-                app:fontPath="fonts/Montserrat-Medium.ttf"
-                android:hint="Style" />
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.1" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/grey">
+            app:hintEnabled="false">
 
             <MultiAutoCompleteTextView
                 android:id="@+id/fragment_register_step7_actv_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
+                android:hint="Food"
+                android:imeOptions="actionDone"
+                android:inputType="text"
                 android:maxLines="1"
+                android:padding="7dp"
                 android:textColor="@color/black"
-                app:fontPath="fonts/Montserrat-Medium.ttf"
-                android:hint="Food" />
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -145,23 +132,16 @@
             android:layout_height="0dp"
             android:layout_weight="0.2" />
 
-        <!--Set Button Next-->
-        <RelativeLayout
-            android:id="@+id/fragment_register_step7_rl_register"
+        <Button
+            android:id="@+id/fragment_register_step7_btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Register"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </RelativeLayout>
+            android:text="Register"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"

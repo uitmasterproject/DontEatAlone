@@ -2,15 +2,17 @@ package com.app.donteatalone.views.register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
@@ -35,13 +37,17 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
-    private static final String LOG_TAG = "PlaceSelectionListener";
-    private EditText edtAddress;
-    private View viewGroup;
-    private RelativeLayout rlNext, rlClose;
+
+
+    private View view;
+
+    private TextView txtAddress;
+    private Button btnNext;
     private ViewPager _mViewPager;
     private LinearLayout llRoot;
-    private String location="";
+    private TextInputLayout tilErrorAddress;
+
+    private String location = "";
 
     public static Fragment newInstance() {
         return new RegisterStep5Fragment();
@@ -51,22 +57,20 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        viewGroup = inflater.inflate(R.layout.fragment_register_step5, null);
+        view = inflater.inflate(R.layout.fragment_register_step5, container, false);
         init();
         llRootTouch();
-        setEdtAdress();
+        setClickTxtAddress();
         clickButtonNextStep();
-        rlCloseClick();
-        return viewGroup;
+        return view;
     }
 
     private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        edtAddress = (EditText) viewGroup.findViewById(R.id.fragment_register_step5_edt_address);
-        edtAddress.requestFocus();
-        rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step5_btn_next);
-        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step5_close);
-        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step5_ll_root);
+        txtAddress = (TextView) view.findViewById(R.id.fragment_register_step5_txt_address);
+        btnNext = (Button) view.findViewById(R.id.fragment_register_step5_btn_next);
+        llRoot = (LinearLayout) view.findViewById(R.id.fragment_register_step5_ll_root);
+        tilErrorAddress = (TextInputLayout) view.findViewById(R.id.til_error_address);
     }
 
     /*Hide softkeyboard when touch outsite edittext*/
@@ -79,31 +83,36 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             }
         });
     }
-    
+
     //khoi tao gia tri cho address
-    private void setEdtAdress() {
-        edtAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent intent = new PlaceAutocomplete.IntentBuilder
-                            (PlaceAutocomplete.MODE_OVERLAY)
-                            .setBoundsBias(BOUNDS_MOUNTAIN_VIEW)
-                            .build(getActivity());
-                    startActivityForResult(intent, REQUEST_SELECT_PLACE);
-                } catch (GooglePlayServicesRepairableException |
-                        GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
+    private void setClickTxtAddress() {
+        if (AppUtils.isNetworkAvailable(getActivity())) {
+            txtAddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tilErrorAddress.setErrorEnabled(false);
+                    try {
+                        Intent intent = new PlaceAutocomplete.IntentBuilder
+                                (PlaceAutocomplete.MODE_OVERLAY)
+                                .setBoundsBias(BOUNDS_MOUNTAIN_VIEW)
+                                .build(getActivity());
+                        startActivityForResult(intent, REQUEST_SELECT_PLACE);
+                    } catch (GooglePlayServicesRepairableException |
+                            GooglePlayServicesNotAvailableException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+        }
     }
 
     //luu lai noi duoc chon
     @Override
     public void onPlaceSelected(Place place) {
-        edtAddress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
-        location=place.getLatLng().toString().substring(10,place.getLatLng().toString().length()-1);
+        txtAddress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
+        location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
     }
 
     //kiem tra loi cho noi duoc chon
@@ -128,21 +137,16 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     }
 
     private void clickButtonNextStep() {
-        rlNext.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userName.setAddress(edtAddress.getText().toString());
-                userName.setLatlngAdress(location);
-                _mViewPager.setCurrentItem(5, true);
-            }
-        });
-    }
-
-    private void rlCloseClick(){
-        rlClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
+                if (TextUtils.isEmpty(txtAddress.getText().toString())) {
+                    tilErrorAddress.setError("address field is not empty");
+                } else {
+                    userName.setAddress(txtAddress.getText().toString());
+                    userName.setLatlngAdress(location);
+                    _mViewPager.setCurrentItem(5, true);
+                }
             }
         });
     }

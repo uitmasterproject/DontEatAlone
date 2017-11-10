@@ -50,6 +50,9 @@ public class SaveAsDialog implements View.OnClickListener {
         View view = ((LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_dialog_save_as, null);
 
         edtNameBlog = (EditText) view.findViewById(R.id.edt_name_blog);
+        if(isEdit){
+            edtNameBlog.setText(infoBlog.getTitle());
+        }
 
         view.findViewById(R.id.btn_post).setOnClickListener(this);
 
@@ -76,9 +79,9 @@ public class SaveAsDialog implements View.OnClickListener {
                     Call<Status> modifiedInfoBlog;
 
                     if (!isEdit) {
-                        modifiedInfoBlog = Connect.getRetrofit().addStatusBlog(infoBlog, mySharePreference.getValue("phoneLogin"));
+                        modifiedInfoBlog = Connect.getRetrofit().addStatusBlog(infoBlog, mySharePreference.getPhoneLogin());
                     } else {
-                        modifiedInfoBlog = Connect.getRetrofit().editStatusBlog(infoBlog, mySharePreference.getValue("phoneLogin"));
+                        modifiedInfoBlog = Connect.getRetrofit().editStatusBlog(infoBlog, mySharePreference.getPhoneLogin());
                     }
                     modifiedInfoBlog.enqueue(new Callback<Status>() {
                         @Override

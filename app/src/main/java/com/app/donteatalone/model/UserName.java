@@ -1,19 +1,33 @@
 package com.app.donteatalone.model;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.TextUtils;
 
+import com.app.donteatalone.utils.MySharePreference;
 import com.google.gson.annotations.SerializedName;
 
-import org.joda.time.LocalDate;
+import java.util.Calendar;
+import java.util.UUID;
 
 /**
  * Created by ChomChom on 3/13/2017
  */
 
-public class UserName extends Imei implements Parcelable {
+public class UserName implements Parcelable {
+    public static final Creator<UserName> CREATOR = new Creator<UserName>() {
+        @Override
+        public UserName createFromParcel(Parcel in) {
+            return new UserName(in);
+        }
+
+        @Override
+        public UserName[] newArray(int size) {
+            return new UserName[size];
+        }
+    };
+    @SerializedName("uuid")
+    private String uuid;
     @SerializedName("phone")
     private String phone;
     @SerializedName("fullName")
@@ -41,14 +55,20 @@ public class UserName extends Imei implements Parcelable {
     @SerializedName("targetFood")
     private String targetFood;
 
-    public UserName(Context context) {
-        super(context);
+    public UserName(Activity activity) {
+        uuid = UUID.randomUUID().toString();
+        new MySharePreference(activity).setUUIDLogin(uuid);
     }
 
-    public UserName(Context context, String phone, String fullName, String password, String avatar, String birthday, String gender, String address,
-                     String latlngAdress, String myCharacter, String myStyle, String targetCharacter, String targetStyle,
-                     String targetFood) {
-        super(context);
+    public UserName(String phone, String password) {
+        this.phone = phone;
+        this.password = password;
+    }
+
+    public UserName(Activity activity, String phone, String fullName, String password, String avatar, String birthday,
+                    String gender, String address, String latlngAdress, String myCharacter, String myStyle,
+                    String targetCharacter, String targetStyle, String targetFood) {
+        this.uuid = new MySharePreference(activity).getUUIDLogin();
         this.phone = phone;
         this.fullName = fullName;
         this.password = password;
@@ -64,14 +84,12 @@ public class UserName extends Imei implements Parcelable {
         this.targetFood = targetFood;
     }
 
-    public UserName(Context context, String phone, String imei, String fullName, String password, String gender, String avatar, String birthday,
-                    String address, String latlngAdress, String myCharacter, String myStyle, String targetCharacter, String targetStyle,
+    public UserName(Activity activity, String phone, String fullName, String avatar, String birthday, String gender, String address,
+                    String latlngAdress, String myCharacter, String myStyle, String targetCharacter, String targetStyle,
                     String targetFood) {
-        super(context);
+        this.uuid = new MySharePreference(activity).getUUIDLogin();
         this.phone = phone;
-        this.setImei(imei);
         this.fullName = fullName;
-        this.password = password;
         this.avatar = avatar;
         this.birthday = birthday;
         this.gender = gender;
@@ -84,8 +102,8 @@ public class UserName extends Imei implements Parcelable {
         this.targetFood = targetFood;
     }
 
-    public UserName(Parcel in) {
-        super(in);
+    protected UserName(Parcel in) {
+        uuid = in.readString();
         phone = in.readString();
         fullName = in.readString();
         password = in.readString();
@@ -101,38 +119,16 @@ public class UserName extends Imei implements Parcelable {
         targetFood = in.readString();
     }
 
-    public static final Creator<UserName> CREATOR = new Creator<UserName>() {
-        @Override
-        public UserName createFromParcel(Parcel in) {
-            return new UserName(in);
-        }
-
-        @Override
-        public UserName[] newArray(int size) {
-            return new UserName[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public static Creator<UserName> getCREATOR() {
+        return CREATOR;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(phone);
-        dest.writeString(fullName);
-        dest.writeString(password);
-        dest.writeString(avatar);
-        dest.writeString(birthday);
-        dest.writeString(gender);
-        dest.writeString(address);
-        dest.writeString(latlngAdress);
-        dest.writeString(myCharacter);
-        dest.writeString(myStyle);
-        dest.writeString(targetCharacter);
-        dest.writeString(targetStyle);
-        dest.writeString(targetFood);
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getPhone() {
@@ -171,36 +167,28 @@ public class UserName extends Imei implements Parcelable {
         return birthday;
     }
 
-    public int getAge(){
-        LocalDate date = new LocalDate();
-        if(!TextUtils.isEmpty(birthday)){
-            try {
-                return date.getYear() - Integer.parseInt(birthday.split("/")[2]);
-            }catch (Exception e){
-                return 0;
-            }
-
-        }
-        return 0;
-    }
-
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public int getAge() {
+        return Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(this.birthday.trim().split("/")[2]);
     }
 
     public String getGender() {
         return gender;
     }
 
-    public String getFormatGender(){
-        if(gender.equals("Female")){
-            return "F";
-        }
-        return "M";
-    }
-
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getFormatGender() {
+        if (this.gender.equals("Female")) {
+            return "F";
+        } else {
+            return "M";
+        }
     }
 
     public String getAddress() {
@@ -257,5 +245,28 @@ public class UserName extends Imei implements Parcelable {
 
     public void setTargetFood(String targetFood) {
         this.targetFood = targetFood;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(uuid);
+        dest.writeString(phone);
+        dest.writeString(fullName);
+        dest.writeString(password);
+        dest.writeString(avatar);
+        dest.writeString(birthday);
+        dest.writeString(gender);
+        dest.writeString(address);
+        dest.writeString(latlngAdress);
+        dest.writeString(myCharacter);
+        dest.writeString(myStyle);
+        dest.writeString(targetCharacter);
+        dest.writeString(targetStyle);
+        dest.writeString(targetFood);
     }
 }

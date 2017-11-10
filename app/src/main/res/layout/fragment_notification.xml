@@ -6,33 +6,6 @@
     android:background="@color/grey"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange"
-        android:padding="10dp">
-
-        <ImageButton
-            android:id="@+id/fragment_notification_ibtn_exit"
-            android:layout_width="35dp"
-            android:layout_height="match_parent"
-            android:background="@color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_exit"
-            android:contentDescription="@null" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="35dp"
-            android:text="Notification"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:gravity="center"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-    </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_notification_rcv_notification"
         android:layout_width="match_parent"

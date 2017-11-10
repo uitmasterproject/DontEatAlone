@@ -5,11 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +26,7 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.AccordantUser;
 import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.utils.MySharePreference;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -68,15 +67,18 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, final int position) {
-        Bitmap bmp=decodeBitmap(listAccordantUser.get(position).getAvatar());
-        if(bmp.getHeight()<=bmp.getWidth()){
-            holder.imgAvatar.setLayoutParams(new LinearLayout.LayoutParams(100,100*bmp.getHeight()/bmp.getWidth()));
+        Bitmap bmp= ImageProcessor.decodeBitmap(listAccordantUser.get(position).getAvatar());
+        if(bmp!=null) {
+            if (bmp.getHeight() <= bmp.getWidth()) {
+                holder.imgAvatar.setLayoutParams(new LinearLayout.LayoutParams(100, 100 * bmp.getHeight() / bmp.getWidth()));
+            } else {
+                holder.imgAvatar.setLayoutParams(new LinearLayout.LayoutParams(100 * bmp.getWidth() / bmp.getHeight(), 100));
+            }
+            holder.imgAvatar.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            holder.imgAvatar.setImageBitmap(bmp);
+        }else {
+            holder.imgAvatar.setImageResource(R.drawable.avatar);
         }
-        else {
-            holder.imgAvatar.setLayoutParams(new LinearLayout.LayoutParams(100*bmp.getWidth()/bmp.getHeight(),100));
-        }
-        holder.imgAvatar.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        holder.imgAvatar.setImageBitmap(bmp);
 
         holder.txtName.setText(listAccordantUser.get(position).getFullName());
 
@@ -143,7 +145,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
                 SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
                 String formattedDate = df.format(c.getTime());
 
-                socketIO.emit("invite",new MySharePreference((Activity)context).getValue("phoneLogin")+"|"+listAccordantUser.get(position).getAccordantUser()+"|"+
+                socketIO.emit("invite",new MySharePreference((Activity)context).getPhoneLogin()+"|"+listAccordantUser.get(position).getAccordantUser()+"|"+
                 txtDate.getText().toString()+"|"+txtTimer.getText().toString()+"|"+ AppUtils.convertStringToNFD(txtAddress.getText().toString())+"|"+formattedDate);
                 for(AccordantUser temp:listAccordantUser){
                     temp.setControl(false);
@@ -157,7 +159,6 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         rlContainerTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("visibility",llContainerTime.getVisibility()+"");
                 if(llContainerTime.getVisibility()==View.VISIBLE)
                     llContainerTime.setVisibility(View.GONE);
                 else {
@@ -218,19 +219,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         }
     }
 
-    private Bitmap decodeBitmap(String avatar){
-        Bitmap bitmap=BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
-        if(avatar.equals("")!=true) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                return bitmap;
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
-    }
+
 
     private void setValueTime(TextView txtTime, TextView txtDate){
         Calendar calendar=Calendar.getInstance();
@@ -241,11 +230,11 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
 
     private void setValuePlace(TextView txtPlace,int position, ArrayList<Restaurant>listRestaurant){
 
-        MySharePreference requireInfoSharePreference=new MySharePreference((Activity)context,new MySharePreference((Activity)context).getValue("phoneLogin"));
+        MySharePreference requireInfoSharePreference=new MySharePreference((Activity)context,new MySharePreference((Activity)context).getPhoneLogin());
 
-        String latlng=Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngAddressRequire").split(",")[0].trim())-
+        String latlng=Math.abs((Float.parseFloat(requireInfoSharePreference.getLatLngAddressRequire().split(",")[0].trim())-
                 Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[0].trim()))/2)+","+
-                Math.abs((Float.parseFloat(requireInfoSharePreference.getValue("latlngAddressRequire").split(",")[1].trim())-
+                Math.abs((Float.parseFloat(requireInfoSharePreference.getLatLngAddressRequire().split(",")[1].trim())-
                         Float.parseFloat(listAccordantUser.get(position).getLatlng().split(",")[1].trim()))/2);
 
         Call<ArrayList<Restaurant>>getListRestaurant = Connect.getRetrofit().getRestaurant(latlng);

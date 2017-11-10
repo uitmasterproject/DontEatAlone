@@ -127,7 +127,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
                                 BaseProgress dialog = new BaseProgress();
                                 dialog.showProgressLoading(context);
                                 listProfileHistory.get(position).setMyAppraise(AppUtils.convertStringToNFD(holder.edtWriteAppraise.getText().toString()));
-                                Call<ArrayList<ProfileHistoryModel>> editEventHistory = Connect.getRetrofit().editEventHistory(new MySharePreference((Activity) context).getValue("phoneLogin"),
+                                Call<ArrayList<ProfileHistoryModel>> editEventHistory = Connect.getRetrofit().editEventHistory(new MySharePreference((Activity) context).getPhoneLogin(),
                                         listProfileHistory.get(position));
                                 editEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
                                     @Override
@@ -167,12 +167,12 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 holder.txtMyAppraise.setText(
                         Html.fromHtml(
-                                "<b>" + new MySharePreference((Activity) context).getValue("fullnameLogin") + ": </b>", Html.FROM_HTML_MODE_COMPACT) +
+                                "<b>" + new MySharePreference((Activity) context).getFullNameLogin() + ": </b>", Html.FROM_HTML_MODE_COMPACT) +
                                 myAppraise);
             } else {
                 holder.txtMyAppraise.setText(
                         Html.fromHtml(
-                                "<b>" + new MySharePreference((Activity) context).getValue("fullnameLogin") + ": </b>") +
+                                "<b>" + new MySharePreference((Activity) context).getFullNameLogin() + ": </b>") +
                                 myAppraise);
             }
         }

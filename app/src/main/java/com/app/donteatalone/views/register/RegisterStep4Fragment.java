@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aigestudio.wheelpicker.WheelPicker;
@@ -33,10 +33,10 @@ import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName
 
 public class RegisterStep4Fragment extends Fragment {
 
-    private View viewGroup;
+    private View view;
     private WheelPicker dayWheelPicker, monthWhellPicker;
     private WheelYearPicker yearWheelPicker;
-    private RelativeLayout rlNext, rlClose;
+    private Button btnNext;
     private ViewPager _mViewPager;
     private LinearLayout llRoot;
     private TextView txtTutorial;
@@ -49,24 +49,22 @@ public class RegisterStep4Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_register_step4, null);
+        view = inflater.inflate(R.layout.fragment_register_step4, container, false);
         init();
         llRootTouch();
         ChangeDate();
         clickButtonNextStep();
-        rlCloseClick();
-        return viewGroup;
+        return view;
     }
 
     private void init() {
-        dayWheelPicker = (WheelPicker) viewGroup.findViewById(R.id.fragment_register_step4_wheelpicker_day);
-        monthWhellPicker = (WheelPicker) viewGroup.findViewById(R.id.fragment_register_step4_wheelpicker_month);
-        yearWheelPicker = (WheelYearPicker) viewGroup.findViewById(R.id.fragment_register_step4_wheelpicker_year);
-        rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step4_rl_next);
+        dayWheelPicker = (WheelPicker) view.findViewById(R.id.fragment_register_step4_wheelpicker_day);
+        monthWhellPicker = (WheelPicker) view.findViewById(R.id.fragment_register_step4_wheelpicker_month);
+        yearWheelPicker = (WheelYearPicker) view.findViewById(R.id.fragment_register_step4_wheelpicker_year);
+        btnNext = (Button) view.findViewById(R.id.fragment_register_step4_btn_next);
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step4_close);
-        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step4_ll_root);
-        txtTutorial = (TextView) viewGroup.findViewById(R.id.fragment_register_step4_txt_tutorial);
+        llRoot = (LinearLayout) view.findViewById(R.id.fragment_register_step4_ll_root);
+        txtTutorial = (TextView) view.findViewById(R.id.fragment_register_step4_txt_tutorial);
 
         LocalDate localDate = new LocalDate();
         dayWheelPicker.setSelectedItemPosition(localDate.getDayOfMonth() - 1);
@@ -115,7 +113,7 @@ public class RegisterStep4Fragment extends Fragment {
     }
 
     private void clickButtonNextStep() {
-        rlNext.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
@@ -126,15 +124,6 @@ public class RegisterStep4Fragment extends Fragment {
                     txtTutorial.setText(getResources().getString(R.string.tutorial_step_4));
                     txtTutorial.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_orange_pressed));
                 }
-            }
-        });
-    }
-
-    private void rlCloseClick() {
-        rlClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
             }
         });
     }

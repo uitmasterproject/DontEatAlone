@@ -36,6 +36,7 @@ import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -177,7 +178,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
             public void onClick(View v) {
                 BaseProgress baseProgress=new BaseProgress();
 
-                userName.setAvatar(AppUtils.convertBitmaptoString(((BitmapDrawable)ivAvatar.getDrawable()).getBitmap()));
+                userName.setAvatar(ImageProcessor.convertBitmapToString(((BitmapDrawable)ivAvatar.getDrawable()).getBitmap()));
                 userName.setFullName(AppUtils.convertStringToNFD(etName.getText().toString()));
                 userName.setGender(tvGender.getText().toString());
                 userName.setBirthday(tvAge.getText().toString());
@@ -336,8 +337,8 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
     }
 
     private void setDefaultValue() {
-        userName = new MySharePreference(EditProfileActivity.this).createObject();
-        ivAvatar.setImageBitmap(AppUtils.decodeBitmap(userName.getAvatar()));
+        userName = new MySharePreference(EditProfileActivity.this).createObjectLogin();
+        ivAvatar.setImageBitmap(ImageProcessor.decodeBitmap(userName.getAvatar()));
         etName.setText(userName.getFullName());
         tvAge.setText(userName.getBirthday());
         tvGender.setText(userName.getGender());

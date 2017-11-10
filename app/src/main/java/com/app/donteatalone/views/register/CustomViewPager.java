@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * Created by ChomChom on 4/5/2017.
+ * Created by ChomChom on 4/5/2017
  */
 
 public class CustomViewPager extends ViewPager {

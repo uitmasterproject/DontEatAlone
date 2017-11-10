@@ -8,10 +8,21 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
- * Created by ChomChom on 4/21/2017.
+ * Created by ChomChom on 4/21/2017
  */
 
 public class InfoBlog implements Parcelable {
+    public static final Creator<InfoBlog> CREATOR = new Creator<InfoBlog>() {
+        @Override
+        public InfoBlog createFromParcel(Parcel in) {
+            return new InfoBlog(in);
+        }
+
+        @Override
+        public InfoBlog[] newArray(int size) {
+            return new InfoBlog[size];
+        }
+    };
     @SerializedName("title")
     private String title;
     @SerializedName("date")
@@ -28,7 +39,8 @@ public class InfoBlog implements Parcelable {
     public InfoBlog() {
     }
 
-    public InfoBlog(String date, String infoStatus, int feeling, ArrayList<String> image, String limit) {
+    public InfoBlog(String title, String date, String infoStatus, int feeling, ArrayList<String> image, String limit) {
+        this.title = title;
         this.date = date;
         this.infoStatus = infoStatus;
         this.feeling = feeling;
@@ -44,18 +56,6 @@ public class InfoBlog implements Parcelable {
         image = in.createStringArrayList();
         limit = in.readString();
     }
-
-    public static final Creator<InfoBlog> CREATOR = new Creator<InfoBlog>() {
-        @Override
-        public InfoBlog createFromParcel(Parcel in) {
-            return new InfoBlog(in);
-        }
-
-        @Override
-        public InfoBlog[] newArray(int size) {
-            return new InfoBlog[size];
-        }
-    };
 
     public String getTitle() {
         return title;

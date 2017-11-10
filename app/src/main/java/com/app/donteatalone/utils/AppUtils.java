@@ -2,8 +2,8 @@ package com.app.donteatalone.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,8 +19,13 @@ import android.widget.AdapterView;
 import android.widget.MultiAutoCompleteTextView;
 
 import java.io.ByteArrayOutputStream;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
 import java.text.Normalizer;
 import java.util.regex.Pattern;
+
+import javax.crypto.Cipher;
 
 /**
  * -> Created by LeHoangHan on 4/4/2017.
@@ -85,30 +90,31 @@ public class AppUtils {
         return tempConvert;
     }
 
-    public static Bitmap decodeBitmap(String str) {
-        Bitmap bitmap = null;
-        try {
-            byte[] encodeByte = Base64.decode(str, Base64.DEFAULT);
-            bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return bitmap;
-    }
-
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnectedOrConnecting());
     }
 
-    public static String isNull(String str){
-        if(str==null){
-            return "";
+    public static String encrypt(String publicKey, String clrData){
+
+        publicKey = publicKey.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", "");
+        byte[] keyBytes = Base64.decode(publicKey, Base64.DEFAULT);
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+
+        byte[] encryptedData = null;
+        try {
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            PublicKey pk = kf.generatePublic(spec);
+
+            Cipher cipher = Cipher.getInstance("RSA");
+            cipher.init(Cipher.ENCRYPT_MODE, pk);
+            encryptedData = cipher.doFinal(clrData.getBytes());
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        else {
-            return str;
-        }
+
+        return new String(Base64.encode(encryptedData, Base64.NO_WRAP));
     }
 
     public static String convertStringToNFD(String str) {
@@ -139,5 +145,13 @@ public class AppUtils {
 
             }
         });
+    }
+
+    public static int convertPxToDp(int px){
+        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static int convertDpToPx(int dp){
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }

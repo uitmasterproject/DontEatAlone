@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.utils.MySharePreference;
-import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.main.MainActivity;
 
 import java.util.ArrayList;
@@ -40,7 +38,6 @@ public class NotificationFragment extends Fragment {
 
     private View viewGroup;
     private RecyclerView rcvInfoNotification;
-    private ImageButton ibtnExit;
     private TextView txtNotification;
     private ViewPager viewPager;
     private View view;
@@ -87,13 +84,11 @@ public class NotificationFragment extends Fragment {
         init();
         initNotification();
         setNotification();
-        clickButtonExit();
     }
 
     public void init() {
         rcvInfoNotification = (RecyclerView) viewGroup.findViewById(R.id.fragment_notification_rcv_notification);
         rcvInfoNotification.setLayoutManager(new LinearLayoutManager(getContext()));
-        ibtnExit = (ImageButton) viewGroup.findViewById(R.id.fragment_notification_ibtn_exit);
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -108,16 +103,6 @@ public class NotificationFragment extends Fragment {
 
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(MainActivity.BROADCASTNAME));
 
-    }
-
-    private void clickButtonExit() {
-        ibtnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initNotification() {
@@ -136,7 +121,7 @@ public class NotificationFragment extends Fragment {
     public void setNotification() {
         final ArrayList<InfoNotification> listInfoNotification = new ArrayList<InfoNotification>();
         final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, getContext());
-        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(new MySharePreference(getActivity()).getValue("phoneLogin"));
+        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(new MySharePreference(getActivity()).getPhoneLogin());
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {

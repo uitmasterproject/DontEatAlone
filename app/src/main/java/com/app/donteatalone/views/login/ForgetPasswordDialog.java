@@ -17,7 +17,6 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Status;
-import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 
 import retrofit2.Call;
@@ -64,7 +63,7 @@ public class ForgetPasswordDialog {
 
         changeEditText(edtPhone);
 
-        edtPhone.setText(new MySharePreference(activity).getValue("phoneLogin"));
+        edtPhone.setText(new MySharePreference(activity).getPhoneLogin());
         btnReceiveCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +78,7 @@ public class ForgetPasswordDialog {
                         public void onResponse(Call<Status> call, Response<Status> response) {
                             if(response.body()!=null){
                                 baseProgress.hideProgressLoading();
-                                if(AppUtils.isNull(response.body().getStatus()).equals("1")){
+                                if(response.body().getStatus().equals("1")){
                                     //Send code
                                     llContainerPhone.setVisibility(View.GONE);
                                     llContainerCode.setVisibility(View.VISIBLE);
@@ -145,14 +144,13 @@ public class ForgetPasswordDialog {
                 if(edtNewPassword.getText().toString().length()<6){
                     edtNewPassword.setError("Password field must longer than 6 character");
                 }else {
-                    Call<Status> changePassword=Connect.getRetrofit().changePass(new MySharePreference(activity).getValue("phoneLogin"),edtNewPassword.getText().toString());
+                    Call<Status> changePassword=Connect.getRetrofit().changePass(new MySharePreference(activity).getPhoneLogin(),edtNewPassword.getText().toString());
                     changePassword.enqueue(new Callback<Status>() {
                         @Override
                         public void onResponse(Call<Status> call, Response<Status> response) {
                             if(response.body()!=null){
-                                if(AppUtils.isNull(response.body().getStatus()).equals("1")){
+                                if(response.body().getStatus().equals("1")){
                                     edtPass.setText(edtNewPassword.getText().toString());
-                                    new MySharePreference(activity).setValue("phoneLogin",edtNewPassword.getText().toString());
                                     dialog.dismiss();
                                 }else {
                                     Toast.makeText(activity,activity.getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();

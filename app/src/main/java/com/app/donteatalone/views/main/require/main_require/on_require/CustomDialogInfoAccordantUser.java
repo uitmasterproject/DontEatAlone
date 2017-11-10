@@ -215,7 +215,7 @@ public class CustomDialogInfoAccordantUser {
 
     public void setNotification() {
         final ArrayList<InfoNotification> listInfoNotification = new ArrayList<>();
-        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(mySharePreference.getValue("phoneLogin"));
+        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(mySharePreference.getPhoneLogin());
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {

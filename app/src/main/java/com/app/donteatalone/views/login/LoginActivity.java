@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.model.InitParam;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.utils.AppUtils;
@@ -41,9 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         AppUtils.changeStatusBarColor(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        if (!AppUtils.isNetworkAvailable(LoginActivity.this)) {
-            Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
-        }
 
         init();
         clickLogin();
@@ -56,59 +54,72 @@ public class LoginActivity extends AppCompatActivity {
         mySharePreference = new MySharePreference(LoginActivity.this);
         edtPhone = (EditText) findViewById(R.id.activity_login_edt_phone);
         edtPassword = (EditText) findViewById(R.id.activity_login_edt_password);
-        edtPhone.setText(mySharePreference.getValue("phoneLogin"));
-        edtPassword.setText(mySharePreference.getValue("passwordLogin"));
+        edtPhone.setText(mySharePreference.getPhoneLogin());
         ckbRemember = (CheckBox) findViewById(R.id.activity_login_ckb_remember);
         rlRegister = (RelativeLayout) findViewById(R.id.activity_login_rl_register);
         rlForgetPass = (RelativeLayout) findViewById(R.id.activity_login_rl_forgot_password);
         btnLogin = (Button) findViewById(R.id.activity_login_btn_login);
-        llRoot=(LinearLayout) findViewById(R.id.activity_login_ll_root);
-        dialog=new BaseProgress();
+        llRoot = (LinearLayout) findViewById(R.id.activity_login_ll_root);
+        dialog = new BaseProgress();
     }
 
     public void checkRemember() {
         if (ckbRemember.isChecked()) {
-            mySharePreference.setValue("phoneLogin", edtPhone.getText().toString());
-            mySharePreference.setValue("passwordLogin", edtPassword.getText().toString());
+            mySharePreference.setPhoneLogin(edtPhone.getText().toString());
         } else {
-            mySharePreference.setValue("phoneLogin", "");
-            mySharePreference.setValue("passwordLogin", "");
+            mySharePreference.setPhoneLogin("");
         }
     }
 
     public void checkAccount() {
         dialog.showProgressLoading(LoginActivity.this);
-            Call<Status> getPass = Connect.getRetrofit().checkAccount(edtPhone.getText().toString(), edtPassword.getText().toString());
-            getPass.enqueue(new Callback<Status>() {
-                @Override
-                public void onResponse(Call<Status> call, Response<Status> response) {
-                    dialog.hideProgressLoading();
-                    if (response.body() == null) {
-                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
-                    } else {
-                        if (response.body().getStatus().equals("0")) {
-                            if(!response.body().getImei().equals(mySharePreference.getValue("imeiLogin"))) {
-                                saveInfoUser();
-                            }
-                            else {
-                                checkRemember();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        } else if (response.body().getStatus().equals("1")) {
-                            Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_incorecct), Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<Status> call, Throwable t) {
-                    dialog.hideProgressLoading();
-                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+        Call<InitParam> init = Connect.getRetrofit().getInitParam(edtPhone.getText().toString());
+        init.enqueue(new Callback<InitParam>() {
+            @Override
+            public void onResponse(Call<InitParam> call, Response<InitParam> response) {
+                if (response != null) {
+                    String password = AppUtils.encrypt(response.body().getInitParam(), edtPassword.getText().toString());
+
+                    Call<Status> getPass = Connect.getRetrofit().checkAccount(edtPhone.getText().toString(), password);
+                    getPass.enqueue(new Callback<Status>() {
+                        @Override
+                        public void onResponse(Call<Status> call, Response<Status> response) {
+                            dialog.hideProgressLoading();
+                            if (response.body() == null) {
+                                Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+                            } else {
+                                if (response.body().getStatus().equals("0")) {
+                                    if (!response.body().getUuid().equals(mySharePreference.getUUIDLogin())) {
+                                        saveInfoUser();
+                                    } else {
+                                        checkRemember();
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                } else if (response.body().getStatus().equals("1")) {
+                                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_incorecct), Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Status> call, Throwable t) {
+                            dialog.hideProgressLoading();
+                            Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<InitParam> call, Throwable t) {
+                dialog.hideProgressLoading();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void saveInfoUser() {
@@ -117,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserName> call, Response<UserName> response) {
                 dialog.hideProgressLoading();
-                if(response.body()!=null){
+                if (response.body() != null) {
                     UserName userName = response.body();
                     mySharePreference.saveAccountInfo(userName);
                     checkRemember();
@@ -170,10 +181,10 @@ public class LoginActivity extends AppCompatActivity {
                     edtPassword.setError("Invalid Password");
                 }
                 if (!TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())) {
-                    if(AppUtils.isNetworkAvailable(LoginActivity.this)) {
+                    if (AppUtils.isNetworkAvailable(LoginActivity.this)) {
                         checkAccount();
-                    }else {
-                        Toast.makeText(LoginActivity.this,getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

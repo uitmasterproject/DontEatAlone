@@ -2,7 +2,7 @@ package com.app.donteatalone.views.main.blog;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -76,8 +76,7 @@ public class GetDatafromDB extends AsyncTask<String, ArrayList<InfoBlog>, ArrayL
             }else {
                 imgAvatar.setImageResource(R.drawable.ic_happy);
             }
-            GridLayoutManager glm = new GridLayoutManager(context, 2);
-            recyclerView.setLayoutManager(glm);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
             BlogItemAdapter adapter = new BlogItemAdapter(infoBlog[0], context);
             recyclerView.setAdapter(adapter);
         }

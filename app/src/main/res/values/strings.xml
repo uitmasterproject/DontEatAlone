@@ -32,6 +32,12 @@
     <string name="show">SHOW</string>
     <string name="invalid_network">Invalid network</string>
 
+
+    <string name="deny_camera">Camera permission denied.</string>
+    <string name="deny_read_storage">Read External Storage permission denied</string>
+    <string name="dont_find_image">Can not find image crop app.</string>
+    <string name="not_support_crop">This device doesn\'t support the crop action!</string>
+
     <string-array name="Day_31">
         <item>01</item>
         <item>02</item>
@@ -347,5 +353,11 @@
     <string-array name="limit">
         <item>public</item>
         <item>private</item>
+    </string-array>
+
+    <string-array name="option">
+        <item>Take a photo</item>
+        <item>Choose from gallery</item>
+        <item>Cancel</item>
     </string-array>
 </resources>

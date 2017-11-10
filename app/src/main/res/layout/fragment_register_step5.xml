@@ -8,35 +8,6 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix,contentDescription">
 
-    <!--Set Toolbar below here-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange">
-
-        <RelativeLayout
-            android:id="@+id/fragment_register_step5_close"
-            style="@style/Toolbar.ItemWrapper">
-
-            <ImageView
-                style="@style/Toolbar.ItemIcon"
-                android:src="@drawable/ic_back_arrow_white" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/fragment_register_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Address"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            app:fontPath="fonts/Montserrat-Bold.ttf" />
-
-    </LinearLayout>
-
     <!--Set content below here-->
     <LinearLayout
         android:id="@+id/fragment_register_step5_ll_root"
@@ -78,20 +49,23 @@
             android:layout_weight="0.15" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_error_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
-            android:theme="@style/TextAppearance.Design.Hint">
+            app:hintEnabled="false">
 
-            <EditText
-                android:id="@+id/fragment_register_step5_edt_address"
+            <TextView
+                android:id="@+id/fragment_register_step5_txt_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Address"
                 android:focusable="true"
-                android:singleLine="true"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:background="@drawable/bg_solid_white"
+                android:textColorHint="@color/grey"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />
         </android.support.design.widget.TextInputLayout>
 
@@ -101,22 +75,16 @@
             android:layout_weight="0.2" />
 
         <!--Set Button Next-->
-        <RelativeLayout
+        <Button
             android:id="@+id/fragment_register_step5_btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </RelativeLayout>
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
 
         <View
             android:layout_width="match_parent"

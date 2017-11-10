@@ -4,31 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange"
-        android:padding="10dp">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_exit"
-            android:background="@color/transparent"
-            android:id="@+id/fragment_restaurant_ibtn_exit"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Restaurant"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                app:fontPath="fonts/RobotoCondensed-Bold.ttf"
-                android:paddingRight="35dp"/>
-        </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

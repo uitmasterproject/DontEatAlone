@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
@@ -21,9 +20,8 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Achievement;
 import com.app.donteatalone.model.ProfileHistoryModel;
 import com.app.donteatalone.model.UserName;
-import com.app.donteatalone.utils.AppUtils;
+import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.utils.MySharePreference;
-import com.app.donteatalone.views.login.LoginActivity;
 import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryAdapter;
 
 import java.util.ArrayList;
@@ -40,10 +38,9 @@ public class MyProfileFragment extends Fragment {
     private View viewGroup;
 
     private ImageView ivAvatar;
-    private TextView tvNames, tvName, tvAge, tvGender;
+    private TextView tvAge, tvGender;
     private TextView tvPhone, tvAddress, tvCharacters, tvStyles;
     private TextView tvTargetCharacters, tvTagetFoods, tvTargetStyles;
-    private RelativeLayout rlBack;
     private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
     private LinearLayout llEditProfile;
     private RecyclerView rvHistory;
@@ -63,7 +60,6 @@ public class MyProfileFragment extends Fragment {
         viewGroup = inflater.inflate(R.layout.fragment_my_profile, null);
         init();
         itemClick();
-        clickButtonExit();
         return viewGroup;
     }
 
@@ -74,14 +70,10 @@ public class MyProfileFragment extends Fragment {
     }
 
     private void init() {
-        userName = new MySharePreference(getActivity()).createObject();
-
-        rlBack = (RelativeLayout) viewGroup.findViewById(R.id.fragment_my_profile_rl_back);
-        tvNames = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name_s);
+        userName = new MySharePreference(getActivity()).createObjectLogin();
 
         /*Personal information*/
         ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_my_profile_iv_avatar);
-        tvName = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name);
         tvAge = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_age);
         tvGender = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_gender);
 
@@ -143,7 +135,7 @@ public class MyProfileFragment extends Fragment {
     }
 
     private void getEventHistory() {
-        Call<ArrayList<ProfileHistoryModel>> getEventHistory = Connect.getRetrofit().getEventHistory(new MySharePreference(getActivity()).getValue("phoneLogin"));
+        Call<ArrayList<ProfileHistoryModel>> getEventHistory = Connect.getRetrofit().getEventHistory(new MySharePreference(getActivity()).getPhoneLogin());
         getEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
             @Override
             public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
@@ -163,9 +155,7 @@ public class MyProfileFragment extends Fragment {
 
     private void setDefaultValue() {
 
-        ivAvatar.setImageBitmap(AppUtils.decodeBitmap(userName.getAvatar()));
-        tvName.setText(userName.getFullName());
-        tvNames.setText(userName.getFullName());
+        ivAvatar.setImageBitmap(ImageProcessor.decodeBitmap(userName.getAvatar()));
         tvAge.setText(userName.getAge() + "");
         tvGender.setText(userName.getFormatGender());
         tvPhone.setText(userName.getPhone());
@@ -212,16 +202,5 @@ public class MyProfileFragment extends Fragment {
             tvStyles.setText(Html.fromHtml("Styles are <font color='#000'>" + userName.getMyStyle() + "</font>"));
         }
     }
-
-    private void clickButtonExit() {
-        rlBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
 
 }

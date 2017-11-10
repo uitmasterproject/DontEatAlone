@@ -66,7 +66,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_off, container, false);
         accountSharePreference = new MySharePreference(getActivity());
-        phone = accountSharePreference.getValue("phoneLogin");
+        phone = accountSharePreference.getPhoneLogin();
         putInforRequireintoShareReference();
 
         init();
@@ -90,33 +90,33 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         llContainerAge = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_range);
         txtAge = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_age);
 
-        txtAge.setText(setDefaultValue("ageMinRequire", "20") + " - " + setDefaultValue("ageMaxRequire", "25"));
+        txtAge.setText(setDefaultValue(infoRequireSharePreference.getAgeMinRequire(), "20") + " - " + setDefaultValue(infoRequireSharePreference.getAgeMaxRequire(), "25"));
 
         llContainerAddress = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_address);
 
         txtAdress = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_address);
-        txtAdress.setText(setDefaultValue("addressRequire", "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam"));
-        location = setDefaultValue("latlngAddressRequire", "10.771423,106.698471");
+        txtAdress.setText(setDefaultValue(infoRequireSharePreference.getAddressRequire(), "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam"));
+        location = setDefaultValue(infoRequireSharePreference.getLatLngAddressRequire(), "10.771423,106.698471");
 
         llContainerHobbyFood = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_food);
         llContainerHobbyCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_character);
         llContainerHobbyStyle = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_style);
         txtHobbyFood = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_food);
 
-        txtHobbyFood.setText(setDefaultValue("targetFoodRequire", ""));
+        txtHobbyFood.setText(infoRequireSharePreference.getTargetFoodRequire());
         txtHobbyCharacter = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_character);
 
-        txtHobbyCharacter.setText(setDefaultValue("targetCharacterRequire", ""));
+        txtHobbyCharacter.setText(infoRequireSharePreference.getTargetCharacterRequire());
         txtHobbyStyle = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_style);
 
-        txtHobbyStyle.setText(setDefaultValue("targetStyleRequire", ""));
+        txtHobbyStyle.setText(infoRequireSharePreference.getTargetStyleRequire());
     }
 
-    private String setDefaultValue(String key, String defaul) {
-        if (TextUtils.isEmpty(infoRequireSharePreference.getValue(key).trim()))
-            return defaul;
+    private String setDefaultValue(String value, String defaultValue) {
+        if (TextUtils.isEmpty(value))
+            return defaultValue;
         else
-            return infoRequireSharePreference.getValue(key).trim();
+            return value;
     }
 
     //Select Gender, Choose gender for require
@@ -130,7 +130,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_selector,
                         R.color.grey_1,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
-                infoRequireSharePreference.setValue("genderRequire", "all");
+                infoRequireSharePreference.setGenderRequire("all");
             }
         });
 
@@ -143,7 +143,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.require_off_txt_gender_selected,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
-                infoRequireSharePreference.setValue("genderRequire", "female");
+                infoRequireSharePreference.setGenderRequire("Female");
             }
         });
 
@@ -156,7 +156,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.grey_1,
                         R.drawable.design_require_off_txt_gender_rightsight_selector);
-                infoRequireSharePreference.setValue("genderRequire", "male");
+                infoRequireSharePreference.setGenderRequire("Male");
             }
         });
     }
@@ -217,8 +217,8 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     public void onPlaceSelected(Place place) {
         txtAdress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
         location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
-        infoRequireSharePreference.setValue("addressRequire", txtAdress.getText().toString());
-        infoRequireSharePreference.setValue("latlngaddressRequire", location);
+        infoRequireSharePreference.setAddressRequire(txtAdress.getText().toString());
+        infoRequireSharePreference.setLatLngAddressRequire(location);
     }
 
     @Override
@@ -290,7 +290,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().length() - 1));
-                infoRequireSharePreference.setValue("hobbyStyleRequire", valuetemp);
+                infoRequireSharePreference.setTargetStyleRequire(valuetemp);
             }
         })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -307,19 +307,19 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         File f = new File("/data/data/" + getContext().getPackageName() + "/shared_prefs/" + "DONTEATALONE.INFORREQUIRE" + "_" + phone + ".xml");
         if (!f.exists()) {
             infoRequireSharePreference = new MySharePreference(getActivity(), phone);
-            infoRequireSharePreference.setValue("genderRequire", "all");
+            infoRequireSharePreference.setGenderRequire("all");
 
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            int age = currentYear - Integer.parseInt(accountSharePreference.getValue("birthdayLogin").trim().split("/")[2]);
-            infoRequireSharePreference.setValue("ageMinRequire", (age - 4) + "");
-            infoRequireSharePreference.setValue("ageMaxRequire", (age + 4) + "");
+            int age = currentYear - Integer.parseInt(accountSharePreference.getBirthdayLogin().trim().split("/")[2]);
+            infoRequireSharePreference.setAgeMinRequire((age - 4) + "");
+            infoRequireSharePreference.setAgeMaxRequire((age + 4) + "");
 
-            infoRequireSharePreference.setValue("addressRequire", accountSharePreference.getValue("addressLogin"));
-            infoRequireSharePreference.setValue("latlngAddressRequire", accountSharePreference.getValue("latlngAddressLogin"));
+            infoRequireSharePreference.setAddressRequire(accountSharePreference.getAddressLogin());
+            infoRequireSharePreference.setLatLngAddressRequire(accountSharePreference.getLatLngAddressLogin());
 
-            infoRequireSharePreference.setValue("targetFoodRequire", accountSharePreference.getValue("targetFoodLogin"));
-            infoRequireSharePreference.setValue("targetCharacterRequire", accountSharePreference.getValue("targetCharacterLogin"));
-            infoRequireSharePreference.setValue("targetStyleRequire", accountSharePreference.getValue("targetStyleLogin"));
+            infoRequireSharePreference.setTargetFoodRequire(accountSharePreference.getTargetFoodLogin());
+            infoRequireSharePreference.setTargetCharacterRequire(accountSharePreference.getTargetCharacterLogin());
+            infoRequireSharePreference.setTargetStyleRequire(accountSharePreference.getTargetStyleLogin());
         } else {
             infoRequireSharePreference = new MySharePreference(getActivity(), phone);
         }

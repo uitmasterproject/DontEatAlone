@@ -1,14 +1,17 @@
 package com.app.donteatalone.views.register;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,13 +30,19 @@ import retrofit2.Response;
 
 public class RegisterStep1Fragment extends Fragment {
 
-    private ViewPager _mViewPager;
-    private ViewGroup viewGroup;
-    private RelativeLayout rlNext, rlSendCode, rlVerifyCode;
-    private EditText edtCode, edtPhone;
-    private RelativeLayout rlClose;
-    private LinearLayout llRoot;
     public static UserName userName;
+
+    private View view;
+
+    private ViewPager _mViewPager;
+
+    private Button btnSendCode, btnNext;
+    private RelativeLayout rlVerifyCode;
+    private EditText edtCode, edtPhone;
+    private TextInputLayout tilErrorCode, tilErrorPhone;
+
+    private LinearLayout llRoot;
+
     private BaseProgress progressDialog;
 
     public static Fragment newInstance() {
@@ -48,33 +57,48 @@ public class RegisterStep1Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_register_step1, null);
+        view = inflater.inflate(R.layout.fragment_register_step1, container, false);
+
         init();
+
         llRootTouch();
+
         changeDataEdtPhone();
+
         rlSendCodeClick();
+
         rlNextClick();
-        rlCloseClick();
-        return viewGroup;
+
+        return view;
     }
 
     public void init() {
-        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step1_ll_root);
+        llRoot = (LinearLayout) view.findViewById(R.id.fragment_register_step1_ll_root);
+
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        rlSendCode = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_rl_send_code);
-        edtPhone = (EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_phone);
-        rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_rl_next);
-        edtCode = (EditText) viewGroup.findViewById(R.id.fragment_register_step1_edt_code);
-        rlVerifyCode = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
-        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step1_close);
-        userName = new UserName(getContext());
-        progressDialog=new BaseProgress();
+
+        btnSendCode = (Button) view.findViewById(R.id.fragment_register_step1_btn_send_code);
+        btnNext = (Button) view.findViewById(R.id.fragment_register_step1_btn_next);
+
+        edtPhone = (EditText) view.findViewById(R.id.fragment_register_step1_edt_phone);
+        edtCode = (EditText) view.findViewById(R.id.fragment_register_step1_edt_code);
+
+        tilErrorPhone = (TextInputLayout) view.findViewById(R.id.til_error_phone);
+        tilErrorCode = (TextInputLayout) view.findViewById(R.id.til_error_code);
+
+        rlVerifyCode = (RelativeLayout) view.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
+
+        userName = new UserName(getActivity());
+
+        progressDialog = new BaseProgress();
     }
 
     public void changeDataEdtPhone() {
         edtPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                tilErrorPhone.setError(null);
+                tilErrorPhone.setErrorEnabled(false);
             }
 
             @Override
@@ -86,60 +110,66 @@ public class RegisterStep1Fragment extends Fragment {
             public void afterTextChanged(Editable s) {
                 rlVerifyCode.setVisibility(View.INVISIBLE);
                 edtCode.setVisibility(View.INVISIBLE);
-                rlNext.setVisibility(View.INVISIBLE);
+                tilErrorCode.setErrorEnabled(false);
+                btnNext.setVisibility(View.INVISIBLE);
             }
         });
     }
 
     private void checkExitsPhone() {
-        progressDialog.showProgressLoading(getActivity());
-        Call<Status> checkPhone = Connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
-        checkPhone.enqueue(new Callback<Status>() {
-            @Override
-            public void onResponse(Call<Status> call, Response<Status> response) {
-                if(response.body()!=null) {
-                    progressDialog.hideProgressLoading();
-                    if (response.body().getStatus().equals("0")) {
-                        rlVerifyCode.setVisibility(View.VISIBLE);
-                        edtCode.setVisibility(View.VISIBLE);
-                        rlNext.setVisibility(View.VISIBLE);
-                        edtCode.requestFocus();
-                    } else {
-                        edtPhone.setError("This phone was exit");
-                        edtPhone.setText("");
+        if (AppUtils.isNetworkAvailable(getActivity())) {
+            progressDialog.showProgressLoading(getActivity());
+            Call<Status> checkPhone = Connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
+            checkPhone.enqueue(new Callback<Status>() {
+                @Override
+                public void onResponse(Call<Status> call, Response<Status> response) {
+                    if (response.body() != null) {
+                        progressDialog.hideProgressLoading();
+                        if (response.body().getStatus().equals("0")) {
+                            rlVerifyCode.setVisibility(View.VISIBLE);
+                            edtCode.setVisibility(View.VISIBLE);
+                            btnNext.setVisibility(View.VISIBLE);
+                        } else {
+                            tilErrorPhone.setErrorEnabled(true);
+                            tilErrorPhone.setError("This phone was exit");
+                            edtPhone.setText("");
+                        }
                     }
                 }
-                else {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
-                }
-            }
 
+                @Override
+                public void onFailure(Call<Status> call, Throwable t) {
+                    progressDialog.hideProgressLoading();
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            progressDialog.hideProgressLoading();
+            Toast.makeText(getActivity(), getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /* hide soft keyboard when touch outsite edittext*/
+    private void llRootTouch() {
+        llRoot.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onFailure(Call<Status> call, Throwable t) {
-                progressDialog.hideProgressLoading();
-                Toast.makeText(getActivity(), getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+            public boolean onTouch(View v, MotionEvent event) {
+                AppUtils.hideSoftKeyboard(getActivity());
+                return true;
             }
         });
     }
 
-   /* hide soft keyboard when touch outsite edittext*/
-   private void llRootTouch() {
-       llRoot.setOnTouchListener(new View.OnTouchListener() {
-           @Override
-           public boolean onTouch(View v, MotionEvent event) {
-               AppUtils.hideSoftKeyboard(getActivity());
-               return true;
-           }
-       });
-   }
-
     private void rlSendCodeClick() {
-        rlSendCode.setOnClickListener(new View.OnClickListener() {
+        btnSendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppUtils.hideSoftKeyboard(getActivity());
-                if (edtPhone.getText().toString().equals("")) {
-                    edtPhone.setError("Mobile Number field not entry");
+                if (TextUtils.isEmpty(edtPhone.getText().toString())) {
+                    tilErrorPhone.setError("Mobile Number field is not entry");
+                } else if (edtPhone.getText().toString().length() < 10 ||
+                        edtPhone.getText().toString().length() > 11) {
+                    tilErrorPhone.setError("Mobile Number field is invalid");
                 } else {
                     checkExitsPhone();
                 }
@@ -149,24 +179,15 @@ public class RegisterStep1Fragment extends Fragment {
 
     //IN HERE, HAVEN'T METHOD CHECK CODE
     private void rlNextClick() {
-        rlNext.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edtCode.getText().toString().equals("")) {
-                    edtCode.setError("Verify code field not entry");
+                if (TextUtils.isEmpty(edtCode.getText().toString())) {
+                    tilErrorCode.setError("Verify code field not entry");
                 } else {
                     userName.setPhone(edtPhone.getText().toString());
                     _mViewPager.setCurrentItem(1, true);
                 }
-            }
-        });
-    }
-
-    private void rlCloseClick() {
-        rlClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               getActivity().onBackPressed();
             }
         });
     }

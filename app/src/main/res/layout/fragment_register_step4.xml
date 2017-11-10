@@ -8,35 +8,6 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix,contentDescription">
 
-    <!--Set Toolbar below here-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange">
-
-        <RelativeLayout
-            android:id="@+id/fragment_register_step4_close"
-            style="@style/Toolbar.ItemWrapper">
-
-            <ImageView
-                style="@style/Toolbar.ItemIcon"
-                android:src="@drawable/ic_back_arrow_white" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/fragment_register_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Date of birth"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            app:fontPath="fonts/Montserrat-Bold.ttf" />
-
-    </LinearLayout>
-
     <!--Set content below here-->
     <LinearLayout
         android:id="@+id/fragment_register_step4_ll_root"
@@ -62,14 +33,14 @@
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
 
             <TextView
+                android:id="@+id/fragment_register_step4_txt_tutorial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Providing your birthday creates the best DEA experience for you"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="14sp"
-                app:fontPath="fonts/RobotoCondensed-Mudium.ttf"
-                android:id="@+id/fragment_register_step4_txt_tutorial"/>
+                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
 
         </LinearLayout>
 
@@ -132,70 +103,23 @@
 
         </LinearLayout>
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:weightSum="4">-->
-
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_weight="1"-->
-        <!--android:hint="Birthday"-->
-        <!--android:textColorHint="@color/black" />-->
-
-        <!--<Spinner-->
-        <!--android:id="@+id/fragment_register_step4_spn_day"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_weight="1"-->
-        <!--android:hint="Day" />-->
-
-        <!--<Spinner-->
-        <!--android:id="@+id/fragment_register_step4_spn_month"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_weight="1"-->
-        <!--android:hint="Month" />-->
-
-        <!--<Spinner-->
-        <!--android:id="@+id/fragment_register_step4_spn_year"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_weight="1"-->
-        <!--android:hint="Year" />-->
-
-        <!--</LinearLayout>-->
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2" />
 
         <!--Set Button Next-->
-        <RelativeLayout
-            android:id="@+id/fragment_register_step4_rl_next"
+
+        <Button
+            android:id="@+id/fragment_register_step4_btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </RelativeLayout>
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +64,8 @@ public class OnRequireFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_require_on, null);
-        phone = new MySharePreference(getActivity()).getValue("phoneLogin");
+        viewGroup = inflater.inflate(R.layout.fragment_require_on, container,false);
+        phone = new MySharePreference(getActivity()).getPhoneLogin();
         return viewGroup;
     }
 
@@ -167,7 +168,8 @@ public class OnRequireFragment extends Fragment {
                                     Dialog dialog = new Dialog(getActivity(), R.style.MyDialogTheme);
                                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                                     dialog.setContentView(R.layout.custom_dialog_require_on_info_accordant_user);
-                                    CustomDialogInfoAccordantUser customDialog = new CustomDialogInfoAccordantUser(dialog, getContext(), data, socketIO, new MySharePreference(getActivity()).getValue("fullNameLogin"), viewPager);
+                                    CustomDialogInfoAccordantUser customDialog = new CustomDialogInfoAccordantUser(dialog, getContext(), data, socketIO,
+                                            new MySharePreference(getActivity()).getFullNameLogin(), viewPager);
                                     customDialog.setDefaultValue();
                                     dialog.show();
                                 }
@@ -207,10 +209,14 @@ public class OnRequireFragment extends Fragment {
 
     private String getInforRequire() {
         String require;
-        require = phone + "|" + setDefaultValue("genderRequire", "all") + "|" + setDefaultValue("ageMinRequire", "18") + "|" +
-                setDefaultValue("ageMaxRequire", "25") + "|" + setDefaultValue("addressRequire", "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam") + "|" +
-                setDefaultValue("latlngAddressRequire", "10.771423,106.698471") + "|" + setDefaultValue("targetFoodRequire", "") + "|" +
-                setDefaultValue("targetCharacterRequire", "") + "|" + setDefaultValue("targetStyleRequire", "") ;
+        require = phone + "|" + setDefaultValue(infoRequireSharePreference.getGenderRequire(), "all") + "|" +
+                setDefaultValue(infoRequireSharePreference.getAgeMinRequire(), "18") + "|" +
+                setDefaultValue(infoRequireSharePreference.getAgeMaxRequire(), "25") + "|" +
+                setDefaultValue(infoRequireSharePreference.getAddressRequire(), "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam") + "|" +
+                setDefaultValue(infoRequireSharePreference.getLatLngAddressRequire(), "10.771423,106.698471") + "|" +
+                setDefaultValue(infoRequireSharePreference.getTargetFoodRequire(), "") + "|" +
+                setDefaultValue(infoRequireSharePreference.getTargetCharacterRequire(), "") + "|" +
+                setDefaultValue(infoRequireSharePreference.getTargetStyleRequire(), "") ;
 
 
 
@@ -225,10 +231,10 @@ public class OnRequireFragment extends Fragment {
         socketIO = null;
     }
 
-    private String setDefaultValue(String key, String defaul) {
-        if (infoRequireSharePreference.getValue(key).isEmpty())
-            return defaul;
+    private String setDefaultValue(String value, String defaultValue) {
+        if (TextUtils.isEmpty(value))
+            return defaultValue;
         else
-            return infoRequireSharePreference.getValue(key).trim();
+            return value;
     }
 }

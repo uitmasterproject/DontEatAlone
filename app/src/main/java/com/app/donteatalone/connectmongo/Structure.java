@@ -5,6 +5,7 @@ import com.app.donteatalone.model.Auth;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.InfoProfileUpdate;
+import com.app.donteatalone.model.InitParam;
 import com.app.donteatalone.model.ProfileHistoryModel;
 import com.app.donteatalone.model.Request;
 import com.app.donteatalone.model.Restaurant;
@@ -30,6 +31,9 @@ public interface Structure {
 
         @POST("/token")
         Call<Request> getToken(@Body Auth data);
+
+        @GET("/init/{phone}")
+        Call<InitParam> getInitParam(@Path("phone") String phone);
 
         @POST("/user/{phone}")
         Call<UserName> getProfileUser(@Path("phone") String phone);

@@ -43,7 +43,7 @@ public class ProfileDialogCustom {
     public ProfileDialogCustom(Context _context, int _intLayout, TextView _textView) {
         this.context = _context;
         this.accoutSharePreference = new MySharePreference((Activity) context);
-        this.infoRequireSharePreference = new MySharePreference((Activity) context, accoutSharePreference.getValue("phoneLogin"));
+        this.infoRequireSharePreference = new MySharePreference((Activity) context, accoutSharePreference.getPhoneLogin());
         this.intLayout = _intLayout;
         this.textView = _textView;
     }
@@ -96,7 +96,7 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setOnclickDoneinHobby(actvHobbyAboutFood, textView, "targetFoodRequire");
+                        setClickDoneInHobby(actvHobbyAboutFood, textView, 2);
                         dialog.dismiss();
                     }
                 });
@@ -139,7 +139,7 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setOnclickDoneinHobby(actvHobbyAboutCharacter, textView, "targetCharacterRequire");
+                        setClickDoneInHobby(actvHobbyAboutCharacter, textView, 0);
                         dialog.dismiss();
                     }
                 });
@@ -182,7 +182,7 @@ public class ProfileDialogCustom {
                 rlDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setOnclickDoneinHobby(actvHobbyAboutStyle, textView, "targetStyleRequire");
+                        setClickDoneInHobby(actvHobbyAboutStyle, textView, 1);
                         dialog.dismiss();
                     }
                 });
@@ -203,7 +203,7 @@ public class ProfileDialogCustom {
                 }
                 //get value in resource
                 String[] list = context.getResources().getStringArray(R.array.age_limit);
-                final ArrayList<String> ageLimit = new ArrayList(Arrays.asList(list));
+                final ArrayList<String> ageLimit = new ArrayList<String>(Arrays.asList(list));
 
                 //set data for age min and age max
                 wpkAgeMin.setData(ageLimit);
@@ -221,8 +221,8 @@ public class ProfileDialogCustom {
                         textView.setText(Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) + " - " +
                                 Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString()));
 
-                        infoRequireSharePreference.setValue("ageMinRequire", wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString());
-                        infoRequireSharePreference.setValue("ageMaxRequire", wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString());
+                        infoRequireSharePreference.setAgeMinRequire(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString());
+                        infoRequireSharePreference.setAgeMaxRequire(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString());
                         dialog.cancel();
                     }
                 });
@@ -233,7 +233,7 @@ public class ProfileDialogCustom {
 
 
     //set for event click btnDone in hobby
-    private void setOnclickDoneinHobby(MultiAutoCompleteTextView actvHobby, TextView text, String key) {
+    private void setClickDoneInHobby(MultiAutoCompleteTextView actvHobby, TextView text, int key) {
         String tempHobby = "";
         if (TextUtils.isEmpty(actvHobby.getText().toString().trim())) {
             tempHobby = actvHobby.getText().toString().trim();
@@ -244,8 +244,18 @@ public class ProfileDialogCustom {
                 tempHobby = actvHobby.getText().toString().trim();
             }
         }
-        infoRequireSharePreference.setValue(key, tempHobby);
-        textView.setText(tempHobby);
+        switch (key) {
+            case 0:
+                infoRequireSharePreference.setMyCharacterRequire(tempHobby);
+                break;
+            case 1:
+                infoRequireSharePreference.setMyStyleRequire(tempHobby);
+                break;
+            case 2:
+                infoRequireSharePreference.setTargetFoodRequire(tempHobby);
+                break;
+        }
+        text.setText(tempHobby);
     }
 
     //method set event when choose limit age for require off

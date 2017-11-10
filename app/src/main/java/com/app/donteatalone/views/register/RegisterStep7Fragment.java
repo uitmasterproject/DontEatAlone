@@ -3,20 +3,22 @@ package com.app.donteatalone.views.register;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
+import com.app.donteatalone.model.InitParam;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
@@ -31,15 +33,16 @@ import static com.app.donteatalone.R.string.invalid_network;
 
 
 /**
- * Created by ChomChom on 4/10/2017.
+ * Created by ChomChom on 4/10/2017
  */
 
 public class RegisterStep7Fragment extends Fragment {
-    private View viewGroup;
+    private View view;
+    private ViewPager _mViewPager;
     private MultiAutoCompleteTextView mactvCharacter;
     private MultiAutoCompleteTextView mactvStyle;
     private MultiAutoCompleteTextView mactvFood;
-    private RelativeLayout rlNextStep, rlClose;
+    private Button btnNextStep;
     private LinearLayout llRoot;
     private BaseProgress dialog;
 
@@ -50,25 +53,24 @@ public class RegisterStep7Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_register_step7, null);
+        view = inflater.inflate(R.layout.fragment_register_step7, container, false);
         init();
         llRootTouch();
         setActvHobby();
         clickButtonNextStep();
-        rlCloseClick();
-        return viewGroup;
+        return view;
     }
 
     private void init() {
-        mactvCharacter = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_character);
+        _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
+        mactvCharacter = (MultiAutoCompleteTextView) view.findViewById(R.id.fragment_register_step7_actv_character);
         mactvCharacter.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        mactvStyle = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_style);
+        mactvStyle = (MultiAutoCompleteTextView) view.findViewById(R.id.fragment_register_step7_actv_style);
         mactvStyle.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        mactvFood = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step7_actv_food);
+        mactvFood = (MultiAutoCompleteTextView) view.findViewById(R.id.fragment_register_step7_actv_food);
         mactvFood.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        rlNextStep = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_rl_register);
-        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step7_close);
-        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step7_ll_root);
+        btnNextStep = (Button) view.findViewById(R.id.fragment_register_step7_btn_register);
+        llRoot = (LinearLayout) view.findViewById(R.id.fragment_register_step7_ll_root);
         dialog = new BaseProgress();
     }
 
@@ -123,7 +125,7 @@ public class RegisterStep7Fragment extends Fragment {
     }
 
     private void clickButtonNextStep() {
-        rlNextStep.setOnClickListener(new View.OnClickListener() {
+        btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mactvCharacter.getText().toString().trim().endsWith(",")) {
@@ -140,47 +142,58 @@ public class RegisterStep7Fragment extends Fragment {
                 RegisterStep1Fragment.userName.setTargetCharacter(mactvCharacter.getText().toString());
                 RegisterStep1Fragment.userName.setTargetStyle(mactvStyle.getText().toString());
                 RegisterStep1Fragment.userName.setTargetFood(mactvFood.getText().toString());
-                new MySharePreference(getActivity()).saveAccountInfo(RegisterStep1Fragment.userName);
-                InsertUserintoDB();
+                InsertUserIntoDB();
             }
         });
     }
 
-    private void rlCloseClick() {
-        rlClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
-    }
-
-    private void InsertUserintoDB() {
+    private void InsertUserIntoDB() {
         if (!AppUtils.isNetworkAvailable(getContext())) {
             Toast.makeText(getContext(), getResources().getString(invalid_network), Toast.LENGTH_SHORT).show();
         } else {
             dialog.showProgressLoading(getActivity());
-            Call<Status> insertUser = Connect.getRetrofit().insertUser(RegisterStep1Fragment.userName);
-            insertUser.enqueue(new Callback<Status>() {
+
+            Call<InitParam> init = Connect.getRetrofit().getInitParam(RegisterStep1Fragment.userName.getPhone());
+            init.enqueue(new Callback<InitParam>() {
                 @Override
-                public void onResponse(Call<Status> call, Response<Status> response) {
-                    dialog.hideProgressLoading();
-                    if (response.body() != null) {
-                        if (response.body().getStatus().equals("0")) {
-                            Intent intent = new Intent(getContext(), LoginActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(getActivity(), getResources().getString(R.string.register_fail), Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getActivity(), getResources().getString(invalid_network), Toast.LENGTH_SHORT).show();
+                public void onResponse(Call<InitParam> call, Response<InitParam> response) {
+                    if (response != null) {
+                        String password = AppUtils.encrypt(response.body().getInitParam(), RegisterStep1Fragment.userName.getPassword());
+
+                        RegisterStep1Fragment.userName.setPassword(password);
+
+                        Call<Status> insertUser = Connect.getRetrofit().insertUser(RegisterStep1Fragment.userName);
+                        insertUser.enqueue(new Callback<Status>() {
+                            @Override
+                            public void onResponse(Call<Status> call, Response<Status> response) {
+                                dialog.hideProgressLoading();
+                                if (response.body() != null) {
+                                    if (response.body().getStatus().equals("0")) {
+                                        new MySharePreference(getActivity()).saveAccountInfo(RegisterStep1Fragment.userName);
+                                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(getActivity(), getResources().getString(R.string.register_fail), Toast.LENGTH_SHORT).show();
+                                        _mViewPager.setCurrentItem(0);
+                                    }
+                                } else {
+                                    Toast.makeText(getActivity(), getResources().getString(invalid_network), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Status> call, Throwable t) {
+                                dialog.hideProgressLoading();
+                                Toast.makeText(getActivity(), getResources().getString(invalid_network), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Status> call, Throwable t) {
+                public void onFailure(Call<InitParam> call, Throwable t) {
                     dialog.hideProgressLoading();
-                    Toast.makeText(getActivity(), getResources().getString(invalid_network), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 

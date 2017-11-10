@@ -3,41 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange"
-        android:padding="10dp">
-
-        <ImageButton
-            android:id="@+id/fragment_blog_ibtn_exit"
-            android:layout_width="35dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:background="@color/transparent"
-            android:contentDescription="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_exit" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingRight="35dp"
-            android:text="Blog"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -63,40 +35,54 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/grey"/>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/grey"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/fragment_blog_ll_entry"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:gravity="center">
             <ImageView
-                android:layout_width="180dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_add"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="205dp"
-                android:contentDescription="@null"
-                android:scaleType="fitCenter"
-                android:paddingEnd="3dp"
-                android:src="@drawable/ic_bookshelfs" />
+                android:paddingTop="30dp"
+                android:text="Blog"
+                android:textSize="35dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:paddingTop="20dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:text="Add blog to share your current feeling, it help somebody know about yourself"/>
 
-            <ImageView
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="205dp"
-                android:contentDescription="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_bookshelfs" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_blog_rcv_my_blog"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 

@@ -8,35 +8,6 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix,contentDescription">
 
-    <!--Set Toolbar below here-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange">
-
-        <RelativeLayout
-            android:id="@+id/fragment_register_step1_close"
-            style="@style/Toolbar.ItemWrapper">
-
-            <ImageView
-                style="@style/Toolbar.ItemIcon"
-                android:src="@drawable/ic_back_arrow_white" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/fragment_register_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Mobile Number"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            app:fontPath="fonts/Montserrat-Bold.ttf" />
-
-    </LinearLayout>
-
     <!--Set content below here-->
     <LinearLayout
         android:id="@+id/fragment_register_step1_ll_root"
@@ -77,46 +48,45 @@
             android:layout_height="0dp"
             android:layout_weight="0.15" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.app.donteatalone.utils.CustomTextInputLayout
+            android:id="@+id/til_error_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp">
+            android:paddingTop="5dp"
+            app:hintEnabled="false">
 
             <EditText
                 android:id="@+id/fragment_register_step1_edt_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
                 android:hint="Mobile Number"
+                android:imeOptions="actionDone"
                 android:inputType="phone"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
+                android:padding="7dp"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.app.donteatalone.utils.CustomTextInputLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2" />
 
-        <RelativeLayout
-            android:id="@+id/fragment_register_step1_rl_send_code"
+        <Button
+            android:id="@+id/fragment_register_step1_btn_send_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Send Verify Code To My Phone"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </RelativeLayout>
+            android:text="Send Verify Code To My Phone"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:id="@+id/fragment_register_step1_tutorial_verify_code"
@@ -135,45 +105,46 @@
 
         </RelativeLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.app.donteatalone.utils.CustomTextInputLayout
+            android:id="@+id/til_error_code"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
 
             <EditText
                 android:id="@+id/fragment_register_step1_edt_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
                 android:hint="Verify Code"
-                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="7dp"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
                 android:visibility="invisible"
                 app:fontPath="fonts/Montserrat-Medium.ttf" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.app.donteatalone.utils.CustomTextInputLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2" />
 
-        <RelativeLayout
-            android:id="@+id/fragment_register_step1_rl_next"
+        <Button
+            android:id="@+id/fragment_register_step1_btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:padding="10dp"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </RelativeLayout>
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
         <View
             android:layout_width="match_parent"

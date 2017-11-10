@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.RelativeLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
@@ -24,8 +24,8 @@ import com.app.donteatalone.utils.AppUtils;
 public class RegisterStep6Fragment extends Fragment {
     private MultiAutoCompleteTextView mactvCharacter;
     private MultiAutoCompleteTextView mactvStyle;
-    private RelativeLayout rlNext, rlClose;
-    private View viewGroup;
+    private Button btnNext;
+    private View view;
     private ViewPager _mViewPager;
     private LinearLayout llRoot;
 
@@ -37,24 +37,22 @@ public class RegisterStep6Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_register_step6, null);
+        view = inflater.inflate(R.layout.fragment_register_step6, container, false);
         init();
         llRootTouch();
         setActvHobby();
         rlNextClick();
-        rlCloseClick();
-        return viewGroup;
+        return view;
     }
 
     private void init() {
         _mViewPager = (ViewPager) getActivity().findViewById(R.id.activity_register_viewPager);
-        mactvCharacter = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_mactv_my_character);
+        mactvCharacter = (MultiAutoCompleteTextView) view.findViewById(R.id.fragment_register_step6_mactv_my_character);
         mactvCharacter.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        mactvStyle = (MultiAutoCompleteTextView) viewGroup.findViewById(R.id.fragment_register_step6_mactv_my_style);
+        mactvStyle = (MultiAutoCompleteTextView) view.findViewById(R.id.fragment_register_step6_mactv_my_style);
         mactvStyle.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        rlNext = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_btn_next);
-        rlClose = (RelativeLayout) viewGroup.findViewById(R.id.fragment_register_step6_close);
-        llRoot = (LinearLayout) viewGroup.findViewById(R.id.fragment_register_step6_ll_root);
+        btnNext = (Button) view.findViewById(R.id.fragment_register_step6_btn_next);
+        llRoot = (LinearLayout) view.findViewById(R.id.fragment_register_step6_ll_root);
     }
 
     private void setActvHobby() {
@@ -91,7 +89,7 @@ public class RegisterStep6Fragment extends Fragment {
     }
 
     private void rlNextClick() {
-        rlNext.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mactvCharacter.getText().toString().trim().endsWith(",")) {
@@ -104,15 +102,6 @@ public class RegisterStep6Fragment extends Fragment {
                 RegisterStep1Fragment.userName.setMyCharacter(mactvCharacter.getText().toString());
                 RegisterStep1Fragment.userName.setMyStyle(mactvStyle.getText().toString());
                 _mViewPager.setCurrentItem(6, true);
-            }
-        });
-    }
-
-    private void rlCloseClick() {
-        rlClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
             }
         });
     }

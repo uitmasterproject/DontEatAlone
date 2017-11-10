@@ -39,7 +39,7 @@ import static com.app.donteatalone.views.main.require.main_require.OnRequireFrag
 import static com.google.android.gms.internal.zzir.runOnUiThread;
 
 /**
- * Created by ChomChom on 13-Jun-17.
+ * Created by ChomChom on 13-Jun-17
  */
 
 public class CustomDialogItemNotification {
@@ -225,8 +225,8 @@ public class CustomDialogItemNotification {
     private String sendData(String result) throws JSONException {
         return data.getUserSend() + "|" +
                 data.getNameSend() + "|" +
-                new MySharePreference((Activity) context).getValue("phoneLogin") + "|" +
-                new MySharePreference((Activity) context).getValue("fullNameLogin") + "|" +
+                new MySharePreference((Activity) context).getPhoneLogin() + "|" +
+                new MySharePreference((Activity) context).getFullNameLogin() + "|" +
                 data.getTimeSend() + "|" +
                 data.getDate() + "|" +
                 data.getTime() + "|" +
@@ -246,7 +246,7 @@ public class CustomDialogItemNotification {
     }
 
     private void updateData() {
-        Call<Status> updateReadNotification = Connect.getRetrofit().updateReadNotification(new MySharePreference((Activity) context).getValue("phoneLogin"),
+        Call<Status> updateReadNotification = Connect.getRetrofit().updateReadNotification(new MySharePreference((Activity) context).getPhoneLogin(),
                 data.getUserSend(), data.getStatus(), data.getTimeSend());
         updateReadNotification.enqueue(new Callback<Status>() {
             @Override
