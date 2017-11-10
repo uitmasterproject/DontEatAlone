@@ -38,7 +38,7 @@ public class MyProfileFragment extends Fragment {
     private View viewGroup;
 
     private ImageView ivAvatar;
-    private TextView tvAge, tvGender;
+    private TextView tvAge, tvGender, tvName;
     private TextView tvPhone, tvAddress, tvCharacters, tvStyles;
     private TextView tvTargetCharacters, tvTagetFoods, tvTargetStyles;
     private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
@@ -74,6 +74,7 @@ public class MyProfileFragment extends Fragment {
 
         /*Personal information*/
         ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_my_profile_iv_avatar);
+        tvName=(TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name);
         tvAge = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_age);
         tvGender = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_gender);
 
@@ -156,6 +157,7 @@ public class MyProfileFragment extends Fragment {
     private void setDefaultValue() {
 
         ivAvatar.setImageBitmap(ImageProcessor.decodeBitmap(userName.getAvatar()));
+        tvName.setText(userName.getFullName());
         tvAge.setText(userName.getAge() + "");
         tvGender.setText(userName.getFormatGender());
         tvPhone.setText(userName.getPhone());

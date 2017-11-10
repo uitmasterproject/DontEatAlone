@@ -143,122 +143,122 @@ public class MySharePreference {
     }
 
     public String getAddressLogin() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_ADDRESS + PRE_TYPE_LOGIN, "");
     }
 
     public void setAddressLogin(String addressLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, addressLogin);
+        editor.putString(PRE_ADDRESS + PRE_TYPE_LOGIN, addressLogin);
         editor.apply();
     }
 
     public String getAddressRequire() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, "");
+        return sharedPreferences.getString(PRE_ADDRESS + PRE_TYPE_REQUIRE, "");
     }
 
     public void setAddressRequire(String addressLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, addressLogin);
+        editor.putString(PRE_ADDRESS + PRE_TYPE_REQUIRE, addressLogin);
         editor.apply();
     }
 
     public String getMyCharacterLogin() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_MY_CHARACTER + PRE_TYPE_LOGIN, "");
     }
 
     public void setMyCharacterLogin(String myCharacterLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, myCharacterLogin);
+        editor.putString(PRE_MY_CHARACTER + PRE_TYPE_LOGIN, myCharacterLogin);
         editor.apply();
     }
 
     public String getMyCharacterRequire() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, "");
+        return sharedPreferences.getString(PRE_MY_CHARACTER + PRE_TYPE_REQUIRE, "");
     }
 
     public void setMyCharacterRequire(String myCharacterLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, myCharacterLogin);
+        editor.putString(PRE_MY_CHARACTER + PRE_TYPE_REQUIRE, myCharacterLogin);
         editor.apply();
     }
 
     public String getMyStyleLogin() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_MY_STYLE + PRE_TYPE_LOGIN, "");
     }
 
     public void setMyStyleLogin(String myStyleLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, myStyleLogin);
+        editor.putString(PRE_MY_STYLE + PRE_TYPE_LOGIN, myStyleLogin);
         editor.apply();
     }
 
     public String getMyStyleRequire() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, "");
+        return sharedPreferences.getString(PRE_MY_STYLE + PRE_TYPE_REQUIRE, "");
     }
 
     public void setMyStyleRequire(String myStyleLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, myStyleLogin);
+        editor.putString(PRE_MY_STYLE + PRE_TYPE_REQUIRE, myStyleLogin);
         editor.apply();
     }
 
     public String getTargetCharacterLogin() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_TARGET_CHARACTER + PRE_TYPE_LOGIN, "");
     }
 
     public void setTargetCharacterLogin(String targetCharacterLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, targetCharacterLogin);
+        editor.putString(PRE_TARGET_CHARACTER + PRE_TYPE_LOGIN, targetCharacterLogin);
         editor.apply();
     }
 
     public String getTargetCharacterRequire() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, "");
+        return sharedPreferences.getString(PRE_TARGET_CHARACTER + PRE_TYPE_REQUIRE, "");
     }
 
     public void setTargetCharacterRequire(String targetCharacterLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, targetCharacterLogin);
+        editor.putString(PRE_TARGET_CHARACTER + PRE_TYPE_REQUIRE, targetCharacterLogin);
         editor.apply();
     }
 
     public String getTargetStyleLogin() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_TARGET_STYLE + PRE_TYPE_LOGIN, "");
     }
 
     public void setTargetStyleLogin(String targetStyleLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, targetStyleLogin);
+        editor.putString(PRE_TARGET_STYLE + PRE_TYPE_LOGIN, targetStyleLogin);
         editor.apply();
     }
 
     public String getTargetStyleRequire() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, "");
+        return sharedPreferences.getString(PRE_TARGET_STYLE + PRE_TYPE_REQUIRE, "");
     }
 
     public void setTargetStyleRequire(String targetStyleLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, targetStyleLogin);
+        editor.putString(PRE_TARGET_STYLE + PRE_TYPE_REQUIRE, targetStyleLogin);
         editor.apply();
     }
 
     public String getTargetFoodLogin() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_TARGET_FOOD + PRE_TYPE_LOGIN, "");
     }
 
     public void setTargetFoodLogin(String targetFoodLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, targetFoodLogin);
+        editor.putString(PRE_TARGET_FOOD + PRE_TYPE_LOGIN, targetFoodLogin);
         editor.apply();
     }
 
     public String getTargetFoodRequire() {
-        return sharedPreferences.getString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, "");
+        return sharedPreferences.getString(PRE_TARGET_FOOD + PRE_TYPE_REQUIRE, "");
     }
 
     public void setTargetFoodRequire(String targetFoodLogin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_BIRTHDAY + PRE_TYPE_REQUIRE, targetFoodLogin);
+        editor.putString(PRE_TARGET_FOOD + PRE_TYPE_REQUIRE, targetFoodLogin);
         editor.apply();
     }
 
