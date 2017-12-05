@@ -9,6 +9,16 @@
          %1$s, %2$s
     </string>
 
+    <string name="food_target">Target\'s Food are \b </string>
+    <string name="character_target">Target\'s Character are \b </string>
+    <string name="style_target">Target\'s Style are \b </string>
+
+    <string name="my_character">Characters are \b </string>
+    <string name="my_style">Styles are \b </string>
+
+    <string name="live_in">Live in \b</string>
+    <string name="phone_is">Phone is \b</string>
+
     <string name="suggestInvite"><u>You need wait for 5 minute to they respond</u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
@@ -37,6 +47,15 @@
     <string name="deny_read_storage">Read External Storage permission denied</string>
     <string name="dont_find_image">Can not find image crop app.</string>
     <string name="not_support_crop">This device doesn\'t support the crop action!</string>
+
+    <string name="not_save">Failure for save blog</string>
+
+    <string name="not_update">Failure for update profile</string>
+
+    <string name="not_choose_gender">You have to choose your gender</string>
+
+    <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
+    <string name="default_lat_lng">10.771423,106.698471</string>
 
     <string-array name="Day_31">
         <item>01</item>

@@ -24,6 +24,8 @@ import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,9 +83,8 @@ public class RegisterStep7Fragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mactvCharacter.getText().toString().endsWith(",")) {
-                    mactvCharacter.setText(mactvCharacter.getText().toString().trim() + ", ");
+                    mactvCharacter.setText(mactvCharacter.getText().toString().trim() + ",");
                 }
-                mactvCharacter.setText(AppUtils.convertStringToNFD(mactvCharacter.getText().toString()));
                 mactvCharacter.setSelection(mactvCharacter.getText().toString().length());
             }
         });
@@ -93,9 +94,8 @@ public class RegisterStep7Fragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mactvStyle.getText().toString().endsWith(",")) {
-                    mactvStyle.setText(mactvStyle.getText().toString().trim() + ", ");
+                    mactvStyle.setText(mactvStyle.getText().toString().trim() + ",");
                 }
-                mactvStyle.setText(AppUtils.convertStringToNFD(mactvStyle.getText().toString()));
                 mactvStyle.setSelection(mactvStyle.getText().toString().length());
             }
         });
@@ -105,9 +105,8 @@ public class RegisterStep7Fragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mactvFood.getText().toString().endsWith(",")) {
-                    mactvFood.setText(mactvFood.getText().toString().trim() + ", ");
+                    mactvFood.setText(mactvFood.getText().toString().trim() + ",");
                 }
-                mactvFood.setText(AppUtils.convertStringToNFD(mactvFood.getText().toString()));
                 mactvFood.setSelection(mactvFood.getText().toString().length());
             }
         });
@@ -128,20 +127,23 @@ public class RegisterStep7Fragment extends Fragment {
         btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mactvCharacter.getText().toString().trim().endsWith(",")) {
-                    mactvCharacter.setText(mactvCharacter.getText().toString().trim().substring(0, mactvCharacter.getText().toString().lastIndexOf(",")));
+                String stringCharacter = AppUtils.notRepeatElementInString(mactvCharacter.getText().toString().trim());
+                String stringStyle = AppUtils.notRepeatElementInString(mactvStyle.getText().toString().trim());
+                String stringFood = AppUtils.notRepeatElementInString(mactvFood.getText().toString().trim());
+                if (stringCharacter.trim().endsWith(",")) {
+                    mactvCharacter.setText(stringCharacter.trim().substring(0, stringCharacter.lastIndexOf(",")));
                 }
 
-                if (mactvStyle.getText().toString().trim().endsWith(",")) {
-                    mactvStyle.setText(mactvStyle.getText().toString().substring(0, mactvStyle.getText().toString().trim().lastIndexOf(",")));
+                if (stringStyle.trim().endsWith(",")) {
+                    mactvStyle.setText(stringStyle.substring(0, stringStyle.trim().lastIndexOf(",")));
                 }
 
-                if (mactvFood.getText().toString().trim().endsWith(",")) {
-                    mactvFood.setText(mactvFood.getText().toString().substring(0, mactvFood.getText().toString().trim().lastIndexOf(",")));
+                if (stringFood.trim().endsWith(",")) {
+                    mactvFood.setText(stringFood.substring(0, stringFood.trim().lastIndexOf(",")));
                 }
-                RegisterStep1Fragment.userName.setTargetCharacter(mactvCharacter.getText().toString());
-                RegisterStep1Fragment.userName.setTargetStyle(mactvStyle.getText().toString());
-                RegisterStep1Fragment.userName.setTargetFood(mactvFood.getText().toString());
+                RegisterStep1Fragment.userName.setTargetCharacter(StringEscapeUtils.escapeJava(mactvCharacter.getText().toString()));
+                RegisterStep1Fragment.userName.setTargetStyle(StringEscapeUtils.escapeJava(mactvStyle.getText().toString()));
+                RegisterStep1Fragment.userName.setTargetFood(StringEscapeUtils.escapeJava(mactvFood.getText().toString()));
                 InsertUserIntoDB();
             }
         });

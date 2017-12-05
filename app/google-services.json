@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "185459693338",
+    "firebase_url": "https://dont-eat-alone-storage.firebaseio.com",
+    "project_id": "dont-eat-alone-storage",
+    "storage_bucket": "dont-eat-alone-storage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185459693338:android:02dfa6d586d7435d",
+        "android_client_info": {
+          "package_name": "com.app.donteatalone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185459693338-khpf1vcuhpqikm3c4pqe8dbr7vt0rnoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVDpC3Bec7te-FA4eXERvvoWVFEE9oL5I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
 <resources>
     <dimen name="image_size">150dp</dimen>
-    <dimen name="pop_up_size">70dp</dimen>
+    <dimen name="pop_up_size">60dp</dimen>
 </resources>

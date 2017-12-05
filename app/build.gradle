@@ -23,7 +23,6 @@ android {
         release {
             keyAlias 'DontEatAlone'
             keyPassword 'com.app.donteatalone'
-//            storeFile file('E:/DontEatAlone/app/keystores/release-keystore.jks')
             storePassword 'com.app.donteatalone'
         }
         debug {
@@ -73,21 +72,16 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
 
-    //Multidex
-    compile 'com.android.support:multidex:1.0.1'
-
     //Annotations
     compile 'org.androidannotations:androidannotations-api:4.0.0'
     apt 'org.androidannotations:androidannotations:4.0.0'
-
-    //Validator saripaar
-    compile 'com.mobsandgeeks:android-saripaar:2.0.2'
 
     //Joda time
     compile 'net.danlew:android.joda:2.9.9'
 
     //Calligraphy
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    compile 'com.android.support:multidex:1.0.0'
 
     //progress loading
     compile 'com.wang.avi:library:2.1.3'
@@ -97,11 +91,11 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 
-    //Google Service
-    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.firebase:firebase-storage:10.0.1'
+    compile 'com.google.firebase:firebase-auth:10.0.1'
 
-    //Circle indicator
-    compile 'me.relex:circleindicator:1.2.2@aar'
+    //Google Service
+    compile 'com.google.android.gms:play-services:10.0.1'
 
     //Hawk
     compile 'com.orhanobut:hawk:2.0.1'
@@ -110,19 +104,23 @@ dependencies {
     compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
 
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
-    compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
 
     //RecyclerView
-    compile 'com.android.support:recyclerview-v7:25.2.0'
-    compile 'com.android.support:cardview-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
 
     //socket
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
 
+    compile 'org.apache.commons:commons-lang3:3.6'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
     androidTestCompile 'org.testng:testng:6.9.6'
 
     testCompile 'junit:junit:4.12'
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.victor:lib:1.0.4'
 
 }
+
+apply plugin: 'com.google.gms.google-services'

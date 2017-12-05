@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_notification.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_profile_selected.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_profile_selected.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_profile.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_profile.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_edit.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_edit.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_restaurant_selected.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_restaurant_selected.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_require.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_require.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_blog.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_blog.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_restaurant.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_restaurant.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_notification_selected.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_notification_selected.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_cancel.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_cancel.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_require_selected.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_require_selected.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_save.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_save.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_refresh.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_refresh.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-ldpi-v4\\ic_blog_selected.png",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-ldpi\\ic_blog_selected.png"
+    }
+]

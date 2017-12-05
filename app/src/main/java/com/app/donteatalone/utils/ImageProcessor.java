@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -49,6 +50,16 @@ public class ImageProcessor {
             tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
         }
         return tempConvert;
+    }
+
+    public static byte[] convertBitmapToByte(Bitmap bitmap) {
+
+        if (bitmap != null) {
+            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrayOutputStream);
+            return arrayOutputStream.toByteArray();
+        }
+        return null;
     }
 
     public static Bitmap decodeBitmap(String str) {
@@ -105,16 +116,14 @@ public class ImageProcessor {
         }
     }
 
-    public static Bitmap scaleBitmap(Bitmap bitmap, Activity activity){
-        int width=activity.getWindowManager().getDefaultDisplay().getWidth();
-        int height=activity.getWindowManager().getDefaultDisplay().getHeight();
-        if(bitmap.getWidth()<width/2){
-            return bitmap;
-        }
-        else {
-            bitmap=Bitmap.createScaledBitmap(bitmap,width/2,bitmap.getHeight()*width/(2*bitmap.getWidth()),true);
-            return bitmap;
-        }
+    public static Bitmap scaleBitmap(Bitmap bitmap, Activity activity) {
+        DisplayMetrics screen = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(screen);
+        int width = screen.widthPixels;
+
+        bitmap = Bitmap.createScaledBitmap(bitmap, width, bitmap.getHeight() * width / bitmap.getWidth(), true);
+        return bitmap;
+
     }
 
 
@@ -159,36 +168,50 @@ public class ImageProcessor {
         }
     }
 
-    public static void requestPermissionsResult(int requestCode, int grantResults, Fragment fragment) {
+    public static void requestPermissionsResult(int requestCode, int grantResults, Fragment fragment, Activity activity) {
         if (requestCode == PERMISSION_READ_REQUEST_CODE) {
 
             if (grantResults == PackageManager.PERMISSION_GRANTED) {
 
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
-                fragment.startActivityForResult(intent, RESULT_CHOOSE_IMAGE);
+                if (activity!=null){
+                    activity.startActivityForResult(intent, RESULT_CHOOSE_IMAGE);
+                }else {
+                    fragment.startActivityForResult(intent, RESULT_CHOOSE_IMAGE);
+                }
 
             } else {
-
-                Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.deny_read_storage), Toast.LENGTH_SHORT).show();
-
+                if (activity!=null){
+                    Toast.makeText(activity, activity.getResources().getString(R.string.deny_read_storage), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.deny_read_storage), Toast.LENGTH_SHORT).show();
+                }
             }
 
         } else if (requestCode == PERMISSION_CAMERA_REQUEST_CODE) {
             if (grantResults == PackageManager.PERMISSION_GRANTED) {
 
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                fragment.startActivityForResult(intent, RESULT_TAKE_PHOTO);
+
+                if (activity!=null){
+                    activity.startActivityForResult(intent, RESULT_TAKE_PHOTO);
+                }else {
+                    fragment.startActivityForResult(intent, RESULT_TAKE_PHOTO);
+                }
 
             } else {
-
-                Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.deny_camera), Toast.LENGTH_SHORT).show();
+                if (activity!=null){
+                    Toast.makeText(activity, activity.getResources().getString(R.string.deny_camera), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.deny_camera), Toast.LENGTH_SHORT).show();
+                }
 
             }
         }
     }
 
-    public static void activityImageResult(int resultCode, int requestCode, Intent data, Fragment fragment, ImageView imgAvatar) {
+    public static void activityImageResult(int resultCode, int requestCode, Intent data, Fragment fragment, Activity activity, ImageView imgAvatar) {
         Bitmap bitmap = null;
 
         if (data != null) {
@@ -200,15 +223,27 @@ public class ImageProcessor {
 
                         bitmap = ImageProcessor.definiteRotate(data.getData().getPath(), bitmap);
 
-                        ImageProcessor.performCrop(data.getData(), fragment, null);
+                        if (activity!=null){
+                            ImageProcessor.performCrop(data.getData(), null, activity);
+                        }else {
+                            ImageProcessor.performCrop(data.getData(), fragment, null);
+                        }
 
                     }
                 } else if (requestCode == RESULT_CHOOSE_IMAGE) {
                     if (data.getData() != null) {
                         try {
-                            bitmap = MediaStore.Images.Media.getBitmap(fragment.getActivity().getApplicationContext().getContentResolver(), data.getData());
+                            Cursor cursor;
+                            if(activity!=null){
+                                bitmap = MediaStore.Images.Media.getBitmap(activity.getApplicationContext().getContentResolver(), data.getData());
 
-                            Cursor cursor = fragment.getActivity().getContentResolver().query(data.getData(), null, null, null, null);
+                                cursor=activity.getContentResolver().query(data.getData(), null, null, null, null);
+                            }else {
+                                bitmap = MediaStore.Images.Media.getBitmap(fragment.getActivity().getApplicationContext().getContentResolver(), data.getData());
+
+                                cursor=fragment.getActivity().getContentResolver().query(data.getData(), null, null, null, null);
+                            }
+
                             if (cursor == null) {
                                 bitmap = ImageProcessor.definiteRotate(data.getData().getPath(), bitmap);
                             } else {
@@ -218,7 +253,11 @@ public class ImageProcessor {
                                 cursor.close();
                             }
 
-                            ImageProcessor.performCrop(data.getData(), fragment, null);
+                            if (activity!=null){
+                                ImageProcessor.performCrop(data.getData(), null, activity);
+                            }else {
+                                ImageProcessor.performCrop(data.getData(), fragment, null);
+                            }
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -233,7 +272,12 @@ public class ImageProcessor {
                 }
 
                 if (bitmap != null) {
-                    bitmap = ImageProcessor.resizeBitmap(bitmap, fragment.getActivity());
+                    if (activity!=null){
+                        bitmap = ImageProcessor.resizeBitmap(bitmap, activity);
+                    }else {
+                        bitmap = ImageProcessor.resizeBitmap(bitmap, fragment.getActivity());
+                    }
+
                     imgAvatar.setImageBitmap(bitmap);
                 }
             }

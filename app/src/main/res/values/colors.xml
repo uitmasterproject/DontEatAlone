@@ -9,6 +9,8 @@
 
     <color name="grey">#d1cccc</color>
     <color name="grey_1">#30CCCCCC</color>
+
+
     <color name="white">#FFFFFF</color>
     <color name="white_anpha_40">#30FFFFFF</color>
     <color name="black">#000000</color>
@@ -19,7 +21,7 @@
     <color name="blue_grey_1">#B0BEC5</color>
 
     <color name="dot_tutorial_active">#1890c7</color>
-    <color name="dot_tutorial_inactive">#9b9b9b</color>
+    <color name="dot_tutorial_inactive">#797979</color>
 
     <!--orange color-->
     <color name="color_deep_orange">#FF5722</color>
@@ -27,7 +29,7 @@
     <color name="color_orange_pressed">#E64A19</color>
     <color name="color_orange_1">#FFF3E0</color>
 
-    <color name="color_book">#5b5b5b</color>
+    <color name="color_grey_2">#6f6f6f</color>
 
 
     <color name="require_off_txt_gender_selected">#2ee1e0e0</color>
@@ -35,7 +37,8 @@
     <color name="font_color_for_require">#000</color>
     <color name="color_background_for_hobby">#7dd1cccc</color>
 
-    <color name="comformat">#a848ff06</color>
+    <color name="color_tab_selected">#48ff06</color>
+    <color name="color_tab">#9b9b9b</color>
 
     <color name="footer_for_list_accordant_user">#bddcdcdc</color>
 

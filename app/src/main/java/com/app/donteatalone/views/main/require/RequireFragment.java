@@ -59,11 +59,11 @@ public class RequireFragment extends Fragment {
             public void onClick(View v) {
                 if(!scControl.isChecked()){
                     OffRequireFragment fragment= OffRequireFragment.newInstance();
-                    getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
+                    getChildFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
                 }
                 else {
                     OnRequireFragment fragmentOn= OnRequireFragment.newInstance(viewPager);
-                    getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragmentOn).commit();
+                    getChildFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragmentOn).commit();
                 }
             }
         });
@@ -84,11 +84,11 @@ public class RequireFragment extends Fragment {
         super.onStart();
         if(!scControl.isChecked()){
             OffRequireFragment fragment= new OffRequireFragment();
-            getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
+            getChildFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragment).commit();
         }
         else {
             OnRequireFragment fragmentOn= new OnRequireFragment();
-            getFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragmentOn).commit();
+            getChildFragmentManager().beginTransaction().replace(R.id.fragment_require_fl_container, fragmentOn).commit();
         }
     }
 

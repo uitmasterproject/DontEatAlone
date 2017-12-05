@@ -1,11 +1,11 @@
 package com.app.donteatalone.views.main.blog;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +15,10 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.InfoBlog;
-import com.app.donteatalone.utils.ImageProcessor;
-import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
+import com.squareup.picasso.Picasso;
 
-import static com.app.donteatalone.views.main.MainActivity.ARG_DETAIL_BLOG_ACTIVITY;
-import static com.app.donteatalone.views.main.MainActivity.ARG_FROM_VIEW;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by ChomChom on 19-Aug-17
@@ -30,7 +28,7 @@ public class DetailBlogActivity extends AppCompatActivity {
     public static final String ARG_ITEM_BLOG = "ARG_ITEM_BLOG";
     public static final String ARG_OWN_BLOG = "ARG_OWN_BLOG";
     public static final String ARG_BLOG_FRAGMENT = "ARG_BLOG_FRAGMENT";
-    public static final String ARG_PHONE_NUMBER="ARG_PHONE_NUMBER";
+    public static final String ARG_PHONE_NUMBER = "ARG_PHONE_NUMBER";
 
     private InfoBlog infoBlog;
     private String own;
@@ -38,8 +36,8 @@ public class DetailBlogActivity extends AppCompatActivity {
     private ImageView imgFeel;
     private TextView txtLimit;
     private TextView txtDate;
-    private TextView txtCancel;
-    private TextView txtEdit;
+    private ImageView imgCancel;
+    private ImageView imgEdit;
     private LinearLayout llContainer;
 
     @Override
@@ -61,43 +59,49 @@ public class DetailBlogActivity extends AppCompatActivity {
         imgFeel = (ImageView) findViewById(R.id.activity_detail_blog_img_feel);
         txtLimit = (TextView) findViewById(R.id.activity_detail_blog_txt_limit);
         txtDate = (TextView) findViewById(R.id.activity_detail_blog_txt_date);
-        txtCancel = (TextView) findViewById(R.id.activity_detail_blog_btn_cancel);
-        txtEdit = (TextView) findViewById(R.id.activity_detail_blog_btn_edit);
+        imgCancel = (ImageView) findViewById(R.id.activity_detail_blog_btn_cancel);
+        imgEdit = (ImageView) findViewById(R.id.activity_detail_blog_btn_edit);
         llContainer = (LinearLayout) findViewById(R.id.activity_detail_blog_ll_container);
         llContainer.removeAllViews();
         if (!own.equals(ARG_BLOG_FRAGMENT)) {
-            txtEdit.setVisibility(View.INVISIBLE);
+            imgEdit.setVisibility(View.INVISIBLE);
         }
     }
 
     private void setData() {
-        txtTitle.setText(infoBlog.getTitle());
-        imgFeel.setImageResource(infoBlog.getFeeling());
+        txtTitle.setText(StringUtils.capitalize(infoBlog.getTitle()));
+        if (infoBlog.getFeeling() == 0) {
+            imgFeel.setImageResource(R.drawable.ic_happy);
+        } else {
+            imgFeel.setImageResource(infoBlog.getFeeling());
+        }
         txtLimit.setText(infoBlog.getLimit());
-        txtDate.setText(infoBlog.getDate());
+        txtDate.setText("| "+infoBlog.getDate());
         setValueContent();
 
     }
 
     private void clickBtnCancel() {
-        txtCancel.setOnClickListener(new View.OnClickListener() {
+        imgCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 if (own.equals(ARG_BLOG_FRAGMENT)) {
-                    intent = new Intent(DetailBlogActivity.this, MainActivity.class);
-                    intent.putExtra(ARG_FROM_VIEW, ARG_DETAIL_BLOG_ACTIVITY);
+//                    intent = new Intent(DetailBlogActivity.this, MainActivity.class);
+//                    intent.putExtra(ARG_FROM_VIEW, ARG_DETAIL_BLOG_ACTIVITY);
+
+                    onBackPressed();
                 } else {
                     intent = new Intent(DetailBlogActivity.this, ProfileAccordantUser.class);
                     intent.putExtra(ARG_PHONE_NUMBER, own);
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
         });
     }
 
     private void clickBtnEdit() {
-        txtEdit.setOnClickListener(new View.OnClickListener() {
+        imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailBlogActivity.this, StatusActivity.class);
@@ -109,6 +113,8 @@ public class DetailBlogActivity extends AppCompatActivity {
 
     private void setValueContent() {
         String str = infoBlog.getInfoStatus();
+        int count = 0;
+
         while (str.length() != 0) {
             if (str.startsWith("<text>")) {
                 TextView txtText = new TextView(this);
@@ -116,25 +122,33 @@ public class DetailBlogActivity extends AppCompatActivity {
                 txtText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
                 txtText.setTextColor(ContextCompat.getColor(DetailBlogActivity.this, R.color.black));
-                txtText.setText(str.substring(6, index));
+                txtText.setText(StringUtils.capitalize(str.substring(6, index)));
+                txtText.setTextSize(17f);
                 llContainer.addView(txtText);
                 str = str.substring(index + 7);
             } else if (str.startsWith("<image>")) {
                 ImageView imgImage = new ImageView(this);
                 int index = str.indexOf("</image>");
-                Bitmap bitmap = ImageProcessor.decodeBitmap(str.substring(7, index));
-                imgImage.setLayoutParams(new LinearLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight()));
+
+                DisplayMetrics screen = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(screen);
+                imgImage.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 imgImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imgImage.setImageBitmap(bitmap);
+
+                Picasso.with(DetailBlogActivity.this)
+                        .load(infoBlog.getImage().get(count))
+                        .into(imgImage);
 
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgImage.getLayoutParams();
-                layoutParams.setMargins(10, 10, 20, 10);
+                layoutParams.setMargins(0, 10, 0, 10);
                 layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
                 imgImage.setLayoutParams(layoutParams);
 
                 llContainer.addView(imgImage);
 
                 str = str.substring(index + 8);
+
+                count += 1;
             }
         }
     }

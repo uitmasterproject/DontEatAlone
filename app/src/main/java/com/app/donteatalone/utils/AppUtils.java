@@ -74,14 +74,12 @@ public class AppUtils {
     //Hide keyboard when touch outside
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if(activity.getCurrentFocus()!=null) {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-        }
+        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
     public static String convertBitmaptoString(Bitmap bitmap) {
         String tempConvert = "";
-        if(bitmap!=null) {
+        if (bitmap != null) {
             ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, arrayOutputStream);
             byte[] b = arrayOutputStream.toByteArray();
@@ -96,7 +94,7 @@ public class AppUtils {
         return (networkInfo != null && networkInfo.isConnectedOrConnecting());
     }
 
-    public static String encrypt(String publicKey, String clrData){
+    public static String encrypt(String publicKey, String clrData) {
 
         publicKey = publicKey.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", "");
         byte[] keyBytes = Base64.decode(publicKey, Base64.DEFAULT);
@@ -110,7 +108,7 @@ public class AppUtils {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, pk);
             encryptedData = cipher.doFinal(clrData.getBytes());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -128,15 +126,14 @@ public class AppUtils {
         return "";
     }
 
-    public static void setOnSelectedItemInMACT(MultiAutoCompleteTextView actvHobby){
+    public static void setOnSelectedItemInMACT(MultiAutoCompleteTextView actvHobby) {
         actvHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(actvHobby.getText().toString().length()>0) {
+                if (actvHobby.getText().toString().length() > 0) {
                     actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(",")) + convertStringToNFD((String) parent.getItemAtPosition(position)));
-                }
-                else {
-                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(","))+"," + convertStringToNFD((String) parent.getItemAtPosition(position)));
+                } else {
+                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(",")) + "," + convertStringToNFD((String) parent.getItemAtPosition(position)));
                 }
             }
 
@@ -147,11 +144,24 @@ public class AppUtils {
         });
     }
 
-    public static int convertPxToDp(int px){
+    public static int convertPxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
-    public static int convertDpToPx(int dp){
+    public static int convertDpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static String notRepeatElementInString(String str) {
+        if (str.contains(",")) {
+            String[] temp = str.split(",");
+            for (int i = 0; i < temp.length; i++) {
+                if (str.indexOf(temp[i].trim(), str.indexOf(temp[i].trim()) + 1) > -1) {
+                    str = str.replace(temp[i].trim() + ",", "");
+                }
+            }
+            return str;
+        }
+        return str;
     }
 }

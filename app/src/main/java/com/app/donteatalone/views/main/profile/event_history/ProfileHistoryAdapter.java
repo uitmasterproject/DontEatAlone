@@ -55,7 +55,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
-        if(listProfileHistory.get(position).getTimer()!=null) {
+        if (listProfileHistory.get(position).getTimer() != null) {
             holder.txtDate.setText(listProfileHistory.get(position).getDate() + " " + listProfileHistory.get(position).getTimer());
         }
         holder.txtAccordantName.setText(listProfileHistory.get(position).getAccordantFullName());
@@ -65,8 +65,8 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
         holder.txtAccordantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, ProfileAccordantUser.class);
-                intent.putExtra(ARG_PHONE_NUMBER,listProfileHistory.get(position).getAccordantPhone());
+                Intent intent = new Intent(context, ProfileAccordantUser.class);
+                intent.putExtra(ARG_PHONE_NUMBER, listProfileHistory.get(position).getAccordantPhone());
                 context.startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
                         if (listProfileHistory.get(position).getAccordantAppraise() != null) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 holder.txtAccordantAppraise.setText(
-                                        Html.fromHtml("<b>" + listProfileHistory.get(position).getAccordantFullName() + ": </b>", Html.FROM_HTML_MODE_COMPACT) +
+                                        Html.fromHtml("<b>" + listProfileHistory.get(position).getAccordantFullName() + ": </b>", Html.FROM_HTML_MODE_LEGACY) +
                                                 listProfileHistory.get(position).getAccordantAppraise());
                             } else {
                                 holder.txtAccordantAppraise.setText(
@@ -149,7 +149,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
                         });
 
                     } else {
-                        setMyAppraise(holder,listProfileHistory.get(position).getMyAppraise(), listProfileHistory.get(position).getMyRate());
+                        setMyAppraise(holder, listProfileHistory.get(position).getMyAppraise(), listProfileHistory.get(position).getMyRate());
                     }
 
                 }
@@ -157,7 +157,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
         });
     }
 
-    private void setMyAppraise(CustomViewHolder holder, String myAppraise, boolean myRate){
+    private void setMyAppraise(CustomViewHolder holder, String myAppraise, boolean myRate) {
         holder.txtMyAppraise.setVisibility(View.VISIBLE);
         holder.llWriteAppraise.setVisibility(View.GONE);
         if (myRate) {

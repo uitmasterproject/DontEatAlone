@@ -32,7 +32,6 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import static com.google.android.gms.internal.zzir.runOnUiThread;
 
 /**
  * Created by ChomChom on 5/8/2017
@@ -126,7 +125,7 @@ public class OnRequireFragment extends Fragment {
         socketIO.on("userLike", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
-                runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         JSONObject data = (JSONObject) args[0];
@@ -158,7 +157,7 @@ public class OnRequireFragment extends Fragment {
         socketIO.on("sendInvite", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
-                runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -187,15 +186,15 @@ public class OnRequireFragment extends Fragment {
         socketIO.on("resultInvitation", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
-                runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             if (((JSONObject) args[0]).getString("phoneReceiver").equals(phone)) {
                                 //update title + 1 in notification
 
-                                Intent intent = new Intent(MainActivity.BROADCASTNAME);
-                                intent.putExtra(MainActivity.SENDBROADCASTTITLE, 1);
+                                Intent intent = new Intent(MainActivity.BROADCAST_NAME);
+                                intent.putExtra(MainActivity.SEND_BROADCAST_TITLE, 1);
                                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
                             }
                         } catch (JSONException e) {
@@ -217,9 +216,6 @@ public class OnRequireFragment extends Fragment {
                 setDefaultValue(infoRequireSharePreference.getTargetFoodRequire(), "") + "|" +
                 setDefaultValue(infoRequireSharePreference.getTargetCharacterRequire(), "") + "|" +
                 setDefaultValue(infoRequireSharePreference.getTargetStyleRequire(), "") ;
-
-
-
 
         return require;
     }

@@ -8,7 +8,6 @@ import com.app.donteatalone.utils.MySharePreference;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
-import java.util.UUID;
 
 /**
  * Created by ChomChom on 3/13/2017
@@ -56,8 +55,7 @@ public class UserName implements Parcelable {
     private String targetFood;
 
     public UserName(Activity activity) {
-        uuid = UUID.randomUUID().toString();
-        new MySharePreference(activity).setUUIDLogin(uuid);
+        uuid = new MySharePreference(activity).getUUIDLogin();
     }
 
     public UserName(String phone, String password) {

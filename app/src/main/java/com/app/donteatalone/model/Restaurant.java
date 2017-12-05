@@ -1,7 +1,7 @@
 package com.app.donteatalone.model;
 
 /**
- * Created by ChomChom on 26-Jun-17.
+ * Created by ChomChom on 26-Jun-17
  */
 
 public class Restaurant {

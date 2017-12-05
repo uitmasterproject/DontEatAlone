@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by ChomChom on 09-Jun-17.
+ * Created by ChomChom on 09-Jun-17
  */
 
 public class InfoNotification implements Parcelable {

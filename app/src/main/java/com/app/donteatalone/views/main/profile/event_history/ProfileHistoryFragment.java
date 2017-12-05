@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
@@ -32,6 +33,8 @@ public class ProfileHistoryFragment extends Fragment {
     private SwipeRefreshLayout srlRefresh;
     private String phoneHistory;
 
+    private LinearLayout llEmptyHistory;
+
     public ProfileHistoryFragment(String phoneHistory) {
         this.phoneHistory=phoneHistory;
     }
@@ -39,7 +42,7 @@ public class ProfileHistoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_profile_history, null);
+        viewGroup = inflater.inflate(R.layout.fragment_profile_history, container, false);
         init();
         getEventHistory();
         return viewGroup;
@@ -48,6 +51,8 @@ public class ProfileHistoryFragment extends Fragment {
 
 
     private void init(){
+        llEmptyHistory=(LinearLayout) viewGroup.findViewById(R.id.fragment_history_ll_entry);
+
         rclvHistory = (RecyclerView) viewGroup.findViewById(R.id.fragment_profile_history_rclv_history);
         srlRefresh=(SwipeRefreshLayout) viewGroup.findViewById(R.id.fragment_profile_history_srl_refresh);
 
@@ -72,11 +77,19 @@ public class ProfileHistoryFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
                 srlRefresh.setRefreshing(false);
-                if(response.body()!=null){
+                if(response.body()!=null && response.body().size()>0){
+                    llEmptyHistory.setVisibility(View.GONE);
+
+                    rclvHistory.setVisibility(View.VISIBLE);
+
                     listProfileHistory.clear();
                     listProfileHistory.addAll(response.body());
 
                     profileHistoryAdapter.notifyDataSetChanged();
+                }else {
+                    rclvHistory.setVisibility(View.GONE);
+
+                    llEmptyHistory.setVisibility(View.VISIBLE);
                 }
             }
 

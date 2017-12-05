@@ -75,8 +75,8 @@ public class RestaurantFragment extends Fragment {
             latlng = new MySharePreference(getActivity()).getLatLngAddressLogin();
         }
         dialog.showProgressLoading(getContext());
-        Call<ArrayList<Restaurant>> methodlistRestaurant = Connect.getRetrofit().getRestaurantFollowLatlng(latlng);
-        methodlistRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
+        Call<ArrayList<Restaurant>> methodListRestaurant = Connect.getRetrofit().getRestaurantFollowLatlng(latlng);
+        methodListRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
             @Override
             public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
                 dialog.hideProgressLoading();

@@ -9,13 +9,15 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,13 +30,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.utils.ImageProcessor;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -56,17 +65,28 @@ import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_ITEM_B
 public class StatusActivity extends Activity {
 
     private LinearLayout llContainer;
-    private TextView txtTitle;
+    private ImageView imgEmotion;
     private ImageButton iBtnCamera, iBtnPhoto, iBtnFelling;
     private Bitmap bitmap;
     private EditText edtStatus;
-    private TextView txtCancel, txtSave;
+    private ImageView imgCancel, imgSave;
     private Spinner snLimit;
     private InfoBlog infoBlog;
     private int resourceIcon;
 
     private PopupWindow popupMenu;
     private View view;
+
+    private String content;
+    private int countResult;
+    private int countImage;
+    private String thisDate, title;
+
+    private SaveAsDialog saveAsDialog;
+
+    private StorageReference storageRefImage;
+
+    private BaseProgress baseProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +99,14 @@ public class StatusActivity extends Activity {
         clickIBtnFelling();
         clickCancel();
         clickPost();
+
     }
 
 
     private void init() {
-        txtCancel = (TextView) findViewById(R.id.activity_blog_write_status_btn_cancel);
-        txtTitle = (TextView) findViewById(R.id.activity_blog_write_status_btn_title);
-        txtSave = (TextView) findViewById(R.id.activity_blog_write_status_btn_save);
+        imgCancel = (ImageView) findViewById(R.id.activity_blog_write_status_btn_cancel);
+        imgEmotion = (ImageView) findViewById(R.id.activity_blog_write_status_txt_emotion);
+        imgSave = (ImageView) findViewById(R.id.activity_blog_write_status_btn_save);
         edtStatus = (EditText) findViewById(R.id.activity_blog_write_status_edt_status);
         edtStatus.requestFocus();
         iBtnCamera = (ImageButton) findViewById(R.id.activity_blog_write_status_imgbtn_camera);
@@ -96,6 +117,8 @@ public class StatusActivity extends Activity {
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.limit));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         snLimit.setAdapter(adapter);
+
+        imgEmotion.setImageResource(R.drawable.ic_happy);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.popup_menu_icon, null);
@@ -114,13 +137,13 @@ public class StatusActivity extends Activity {
         popupMenu = new PopupWindow(view, point.x, (int) getResources().getDimension(R.dimen.pop_up_size));
         popupMenu.setFocusable(true);
         popupMenu.setOutsideTouchable(true);
-        popupMenu.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(StatusActivity.this, R.color.black_anpha_40)));
 
         iconAdapter.setOnRecyclerItemClickListener(new OnRecyclerItemClickListener() {
             @Override
             public void onItemClick(View view, int resource) {
                 resourceIcon = resource;
                 iBtnFelling.setImageResource(resource);
+                imgEmotion.setImageResource(resource);
                 popupMenu.dismiss();
             }
         });
@@ -129,8 +152,12 @@ public class StatusActivity extends Activity {
     private void setDataEdit() {
         if (getIntent().getParcelableExtra(ARG_ITEM_BLOG) != null) {
             infoBlog = getIntent().getParcelableExtra(ARG_ITEM_BLOG);
-            txtTitle.setText("Edit Blog");
-            txtSave.setText("Edit");
+            if (infoBlog.getFeeling() == 0) {
+                imgEmotion.setImageResource(R.drawable.ic_happy);
+            } else {
+                imgEmotion.setImageResource(infoBlog.getFeeling());
+            }
+            imgSave.setImageResource(R.drawable.ic_edit);
             if (infoBlog.getLimit().equals(getResources().getStringArray(R.array.limit)[1])) {
                 snLimit.setSelection(1);
             } else {
@@ -146,6 +173,7 @@ public class StatusActivity extends Activity {
 
     private void setValueContent() {
         String str = infoBlog.getInfoStatus();
+        int count = 0;
         while (str.length() != 0) {
 
             if (str.startsWith("<text>")) {
@@ -163,77 +191,153 @@ public class StatusActivity extends Activity {
 
                 ImageView imgImage = new ImageView(this);
                 int index = str.indexOf("</image>");
-                Bitmap bitmap = ImageProcessor.decodeBitmap(str.substring(7, index));
-                imgImage.setLayoutParams(new LinearLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight()));
+
+                DisplayMetrics screen = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(screen);
+                imgImage.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 imgImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imgImage.setImageBitmap(bitmap);
+
+                Picasso.with(StatusActivity.this)
+                        .load(infoBlog.getImage().get(count))
+                        .into(imgImage);
 
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgImage.getLayoutParams();
-                layoutParams.setMargins(10, 10, 20, 10);
+                layoutParams.setMargins(0, 10, 0, 10);
                 layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
                 imgImage.setLayoutParams(layoutParams);
 
                 llContainer.addView(imgImage);
 
                 str = str.substring(index + 8);
+
+                count += 1;
             }
             setClickImageContent();
         }
     }
 
     private void clickCancel() {
-        txtCancel.setOnClickListener(new View.OnClickListener() {
+        imgCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StatusActivity.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }
 
     private void clickPost() {
 
-        txtSave.setOnClickListener(new View.OnClickListener() {
+        imgSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveAsDialog saveAsDialog;
-                if (infoBlog != null) {
-                    saveAsDialog = new SaveAsDialog(StatusActivity.this, setInfoStatus(), true);
+                baseProgress = new BaseProgress();
+                baseProgress.showProgressLoading(StatusActivity.this);
+                content = "";
 
+                if (infoBlog == null) {
+                    DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.ENGLISH);
+                    Date date = new Date();
+                    thisDate = dateFormat.format(date);
                 } else {
-                    saveAsDialog = new SaveAsDialog(StatusActivity.this, setInfoStatus(), false);
+                    title = infoBlog.getTitle();
+                    thisDate = infoBlog.getDate();
                 }
-                saveAsDialog.showDialog();
+                ArrayList<String> image = new ArrayList<>();
+
+                countImage = 0;
+                countResult = 0;
+
+                while (countImage < llContainer.getChildCount()) {
+                    if (llContainer.getChildAt(countImage).getClass().getName().equals("android.widget.ImageView")) {
+                        countResult += 1;
+                        break;
+                    }
+                    countImage += 1;
+                }
+
+                if (countResult != 0) {
+
+                    countImage = 0;
+                    countResult = 0;
+
+                    for (int count = 0; count < llContainer.getChildCount(); count++) {
+                        if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.EditText")) {
+                            EditText editText = (EditText) llContainer.getChildAt(count);
+                            content += "<text>" + editText.getText().toString() + "</text>";
+                        } else if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
+                            ImageView imageView = (ImageView) llContainer.getChildAt(count);
+                            if (((BitmapDrawable) imageView.getDrawable()).getBitmap() != null) {
+
+                                content += "<image>" + countImage + "</image>";
+
+                                countImage += 1;
+
+                                storageRefImage = FirebaseStorage.getInstance().getReferenceFromUrl(MainActivity.URL_STORAGE_FIRE_BASE).
+                                        child(MainActivity.BLOG_PATH_STORAGE_FIRE_BASE + new MySharePreference(StatusActivity.this).getPhoneLogin()
+                                                + "/"
+                                                + thisDate
+                                                + "/"
+                                                + countImage);
+
+                                storageRefImage.putBytes(ImageProcessor.convertBitmapToByte(((BitmapDrawable) imageView.getDrawable()).getBitmap()))
+                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                countResult += 1;
+                                                @SuppressWarnings("VisibleForTests")
+                                                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                                if (downloadUrl != null) {
+                                                    image.add(downloadUrl.toString());
+                                                }
+
+                                                if (countResult == countImage) {
+                                                    if (infoBlog != null) {
+                                                        saveAsDialog = new SaveAsDialog(StatusActivity.this,
+                                                                new InfoBlog(title, thisDate, content, resourceIcon, image, snLimit.getSelectedItem().toString()),
+                                                                true);
+
+                                                    } else {
+                                                        saveAsDialog = new SaveAsDialog(StatusActivity.this,
+                                                                new InfoBlog(title, thisDate, content, resourceIcon, image, snLimit.getSelectedItem().toString()),
+                                                                false);
+                                                    }
+                                                    baseProgress.hideProgressLoading();
+                                                    saveAsDialog.showDialog();
+                                                }
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(StatusActivity.this, getString(R.string.not_save), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        }
+                    }
+                } else {
+                    for (int count = 0; count < llContainer.getChildCount(); count++) {
+                        if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.EditText")) {
+                            EditText editText = (EditText) llContainer.getChildAt(count);
+                            content += "<text>" + editText.getText().toString() + "</text>";
+                        }
+                    }
+
+                    if (infoBlog != null) {
+                        saveAsDialog = new SaveAsDialog(StatusActivity.this,
+                                new InfoBlog(title, thisDate, content, resourceIcon, image, snLimit.getSelectedItem().toString()),
+                                true);
+
+                    } else {
+                        saveAsDialog = new SaveAsDialog(StatusActivity.this,
+                                new InfoBlog(title, thisDate, content, resourceIcon, image, snLimit.getSelectedItem().toString()),
+                                false);
+                    }
+                    baseProgress.hideProgressLoading();
+                    saveAsDialog.showDialog();
+                }
             }
         });
-    }
-
-    private InfoBlog setInfoStatus() {
-        String thisDate, title = null;
-        if (infoBlog == null) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy HH:mm:ss", Locale.ENGLISH);
-            Date date = new Date();
-            thisDate = dateFormat.format(date);
-        } else {
-            title = infoBlog.getTitle();
-            thisDate = infoBlog.getDate();
-        }
-        ArrayList<String> image = new ArrayList<>();
-
-        String content = "";
-        for (int count = 0; count < llContainer.getChildCount(); count++) {
-            if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.EditText")) {
-                EditText editText = (EditText) llContainer.getChildAt(count);
-                content += "<text>" + editText.getText().toString() + "</text>";
-            } else if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
-                ImageView imageView = (ImageView) llContainer.getChildAt(count);
-                if (((BitmapDrawable) imageView.getDrawable()).getBitmap() != null) {
-                    content += "<image>" + ImageProcessor.convertBitmapToString(((BitmapDrawable) imageView.getDrawable()).getBitmap()) + "</image>";
-                    image.add(ImageProcessor.convertBitmapToString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
-                }
-            }
-        }
-        return new InfoBlog(title, thisDate, content, resourceIcon, image, snLimit.getSelectedItem().toString());
     }
 
     private void clickIBtnCamera() {
@@ -392,12 +496,14 @@ public class StatusActivity extends Activity {
         }
 
         ImageView imgAddPhotoContent = new ImageView(this);
-        imgAddPhotoContent.setLayoutParams(new LinearLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight()));
+        DisplayMetrics screen = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(screen);
+        imgAddPhotoContent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         imgAddPhotoContent.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imgAddPhotoContent.setImageBitmap(bitmap);
 
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgAddPhotoContent.getLayoutParams();
-        layoutParams.setMargins(10, 10, 20, 10);
+        layoutParams.setMargins(0, 10, 0, 10);
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
         imgAddPhotoContent.setLayoutParams(layoutParams);
 

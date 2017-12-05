@@ -63,7 +63,7 @@ public class MySharePreference {
     }
 
     public String getUUIDLogin() {
-        return sharedPreferences.getString(PRE_FULL_NAME + PRE_TYPE_LOGIN, "");
+        return sharedPreferences.getString(PRE_UUID + PRE_TYPE_LOGIN, "");
     }
 
     public void setUUIDLogin(String UUIDLogin) {
@@ -304,7 +304,6 @@ public class MySharePreference {
 
     public void saveAccountInfo(UserName userName) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PRE_UUID + PRE_TYPE_LOGIN, userName.getUuid());
         editor.putString(PRE_PHONE + PRE_TYPE_LOGIN, userName.getPhone());
         editor.putString(PRE_FULL_NAME + PRE_TYPE_LOGIN, userName.getFullName());
         editor.putString(PRE_GENDER + PRE_TYPE_LOGIN, userName.getGender());
@@ -312,6 +311,16 @@ public class MySharePreference {
         editor.putString(PRE_BIRTHDAY + PRE_TYPE_LOGIN, userName.getBirthday());
         editor.putString(PRE_ADDRESS + PRE_TYPE_LOGIN, userName.getAddress());
         editor.putString(PRE_LAT_LNG_ADDRESS + PRE_TYPE_LOGIN, userName.getLatlngAdress());
+        editor.putString(PRE_MY_CHARACTER + PRE_TYPE_LOGIN, userName.getMyCharacter());
+        editor.putString(PRE_MY_STYLE + PRE_TYPE_LOGIN, userName.getMyStyle());
+        editor.putString(PRE_TARGET_CHARACTER + PRE_TYPE_LOGIN, userName.getTargetCharacter());
+        editor.putString(PRE_TARGET_STYLE + PRE_TYPE_LOGIN, userName.getTargetStyle());
+        editor.putString(PRE_TARGET_FOOD + PRE_TYPE_LOGIN, userName.getTargetFood());
+        editor.apply();
+    }
+
+    public void saveProfileUpdate(UserName userName){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(PRE_MY_CHARACTER + PRE_TYPE_LOGIN, userName.getMyCharacter());
         editor.putString(PRE_MY_STYLE + PRE_TYPE_LOGIN, userName.getMyStyle());
         editor.putString(PRE_TARGET_CHARACTER + PRE_TYPE_LOGIN, userName.getTargetCharacter());

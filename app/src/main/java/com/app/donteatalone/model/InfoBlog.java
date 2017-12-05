@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 
 public class InfoBlog implements Parcelable {
+
     public static final Creator<InfoBlog> CREATOR = new Creator<InfoBlog>() {
         @Override
         public InfoBlog createFromParcel(Parcel in) {
@@ -39,6 +40,7 @@ public class InfoBlog implements Parcelable {
     public InfoBlog() {
     }
 
+
     public InfoBlog(String title, String date, String infoStatus, int feeling, ArrayList<String> image, String limit) {
         this.title = title;
         this.date = date;
@@ -46,6 +48,7 @@ public class InfoBlog implements Parcelable {
         this.feeling = feeling;
         this.image = image;
         this.limit = limit;
+
     }
 
     protected InfoBlog(Parcel in) {

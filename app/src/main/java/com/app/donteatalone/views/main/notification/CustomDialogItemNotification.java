@@ -36,7 +36,6 @@ import retrofit2.Response;
 
 import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
 import static com.app.donteatalone.views.main.require.main_require.OnRequireFragment.socketIO;
-import static com.google.android.gms.internal.zzir.runOnUiThread;
 
 /**
  * Created by ChomChom on 13-Jun-17
@@ -166,7 +165,7 @@ public class CustomDialogItemNotification {
         socketIO.on("userInviteOff", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                runOnUiThread(new Runnable() {
+                ((Activity)context).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         JSONObject data = (JSONObject) args[0];

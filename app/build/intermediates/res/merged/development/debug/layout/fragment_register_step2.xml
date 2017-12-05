@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix,contentDescription">
+
+    <!--Set content below here-->
+    <LinearLayout
+        android:id="@+id/fragment_register_step2_ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!--Name tutorial text-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="What's Your Name?"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Using your real name makes it easier for everybody to recognize you."
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="14sp"
+                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15" />
+
+        <!--content name-->
+        <com.app.donteatalone.utils.CustomTextInputLayout
+            android:id="@+id/til_error_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            app:hintEnabled="false">
+
+            <EditText
+                android:id="@+id/fragment_register_step2_edt_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
+                android:hint="Full Name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+        </com.app.donteatalone.utils.CustomTextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4" />
+
+        <!--Password tutorial text-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="Choose a Password"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Remember this password. A password helps prevent strangers from using your account"
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="14sp"
+                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15" />
+
+        <com.app.donteatalone.utils.CustomTextInputLayout
+            android:id="@+id/til_error_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            app:hintEnabled="false">
+
+            <EditText
+                android:id="@+id/fragment_register_step2_edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white"
+                android:hint="Password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="16sp"
+                app:fontPath="fonts/Montserrat-Medium.ttf" />
+
+        </com.app.donteatalone.utils.CustomTextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2" />
+
+        <!--Set Button Next-->
+
+        <Button
+            android:id="@+id/fragment_register_step2_btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login"
+            android:gravity="center"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</LinearLayout>

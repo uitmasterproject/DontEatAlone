@@ -1,28 +1,45 @@
 package com.app.donteatalone.views.main.profile;
 
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Achievement;
+import com.app.donteatalone.model.InfoProfileUpdate;
 import com.app.donteatalone.model.ProfileHistoryModel;
 import com.app.donteatalone.model.UserName;
-import com.app.donteatalone.utils.ImageProcessor;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryAdapter;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
@@ -34,16 +51,34 @@ import retrofit2.Response;
  * Created by ChomChom on 4/13/2017
  */
 
-public class MyProfileFragment extends Fragment {
+public class MyProfileFragment extends Fragment implements View.OnClickListener {
     private View viewGroup;
 
     private ImageView ivAvatar;
     private TextView tvAge, tvGender, tvName;
     private TextView tvPhone, tvAddress, tvCharacters, tvStyles;
-    private TextView tvTargetCharacters, tvTagetFoods, tvTargetStyles;
+    private TextView tvTargetCharacters, tvTargetFoods, tvTargetStyles;
     private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
     private LinearLayout llEditProfile;
     private RecyclerView rvHistory;
+
+    private LinearLayout llEmptyHistory;
+
+    private LinearLayout llDisplayCharacter;
+    private LinearLayout llDisplayStyle;
+    private LinearLayout llDisplayTargetCharacter;
+    private LinearLayout llDisplayTargetStyle;
+    private LinearLayout llDisplayTargetFood;
+    private RelativeLayout rlEdit;
+
+    private MultiAutoCompleteTextView mactvEdit;
+    private ImageView imgSave;
+    private ImageView imgRefresh;
+    private String contentBeforeEdit;
+
+    private ProgressBar progressBar;
+
+    private Target target;
 
     private UserName userName;
 
@@ -57,11 +92,18 @@ public class MyProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_my_profile, null);
+        viewGroup = inflater.inflate(R.layout.fragment_my_profile, container, false);
+
         init();
+
+        getEventHistory();
+
+        getAchievement();
+
         itemClick();
         return viewGroup;
     }
+
 
     @Override
     public void onStart() {
@@ -74,7 +116,7 @@ public class MyProfileFragment extends Fragment {
 
         /*Personal information*/
         ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_my_profile_iv_avatar);
-        tvName=(TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name);
+        tvName = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_name);
         tvAge = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_age);
         tvGender = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_gender);
 
@@ -90,7 +132,7 @@ public class MyProfileFragment extends Fragment {
         tvAddress = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_address);
         tvCharacters = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_character);
         tvStyles = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_styles);
-        tvTagetFoods = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_target_foods);
+        tvTargetFoods = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_target_foods);
         tvPhone = (TextView) viewGroup.findViewById(R.id.fragment_my_profile_tv_phone);
 
         /*Target Information*/
@@ -107,13 +149,28 @@ public class MyProfileFragment extends Fragment {
 
         rvHistory.setAdapter(profileHistoryAdapter);
 
-        getEventHistory();
+        llEmptyHistory = (LinearLayout) viewGroup.findViewById(R.id.fragment_history_ll_entry);
 
-        getAchievement();
+        llDisplayCharacter = (LinearLayout) viewGroup.findViewById(R.id.ll_display_character);
+        llDisplayCharacter.setOnClickListener(this);
 
+        llDisplayStyle = (LinearLayout) viewGroup.findViewById(R.id.ll_display_style);
+        llDisplayStyle.setOnClickListener(this);
+
+        llDisplayTargetFood = (LinearLayout) viewGroup.findViewById(R.id.ll_display_target_food);
+        llDisplayTargetFood.setOnClickListener(this);
+
+        llDisplayTargetCharacter = (LinearLayout) viewGroup.findViewById(R.id.ll_display_target_character);
+        llDisplayTargetCharacter.setOnClickListener(this);
+
+        llDisplayTargetStyle = (LinearLayout) viewGroup.findViewById(R.id.ll_display_target_style);
+        llDisplayTargetStyle.setOnClickListener(this);
+
+        progressBar = (ProgressBar) viewGroup.findViewById(R.id.progress);
     }
 
     private void getAchievement() {
+
         if (userName.getPhone() != null) {
             Call<Achievement> getAchievement = Connect.getRetrofit().getAchievement(userName.getPhone());
             getAchievement.enqueue(new Callback<Achievement>() {
@@ -140,11 +197,19 @@ public class MyProfileFragment extends Fragment {
         getEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
             @Override
             public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
-                if (response.body() != null) {
+                if (response.body() != null && response.body().size() > 0) {
+                    llEmptyHistory.setVisibility(View.GONE);
+
+                    rvHistory.setVisibility(View.VISIBLE);
+
                     listProfileHistory.clear();
                     listProfileHistory.addAll(response.body());
 
                     profileHistoryAdapter.notifyDataSetChanged();
+                } else {
+                    llEmptyHistory.setVisibility(View.VISIBLE);
+
+                    rvHistory.setVisibility(View.GONE);
                 }
             }
 
@@ -155,19 +220,51 @@ public class MyProfileFragment extends Fragment {
     }
 
     private void setDefaultValue() {
+        progressBar.setVisibility(View.VISIBLE);
 
-        ivAvatar.setImageBitmap(ImageProcessor.decodeBitmap(userName.getAvatar()));
-        tvName.setText(userName.getFullName());
+        target = new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                ivAvatar.setImageBitmap(bitmap);
+
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        };
+
+        if (!TextUtils.isEmpty(userName.getAvatar())) {
+            Picasso.with(getActivity())
+                    .load(userName.getAvatar())
+                    .into(target);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            if (userName.getFormatGender().equals("F")) {
+                ivAvatar.setImageResource(R.drawable.avatar_woman);
+            } else {
+                ivAvatar.setImageResource(R.drawable.avatar_man);
+            }
+        }
+        tvName.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
         tvAge.setText(userName.getAge() + "");
         tvGender.setText(userName.getFormatGender());
-        tvPhone.setText(userName.getPhone());
-        tvAddress.setText(userName.getAddress());
+        tvPhone.setText(setMultiColorText(getResources().getString(R.string.phone_is), userName.getPhone()));
+        tvAddress.setText(setMultiColorText(getResources().getString(R.string.live_in), userName.getAddress()));
 
 
         putDataHobbyIntoReference();
 
         putDataPersonalIntoReference();
     }
+
 
     private void itemClick() {
 
@@ -182,26 +279,219 @@ public class MyProfileFragment extends Fragment {
 
 
     private void putDataHobbyIntoReference() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            tvTagetFoods.setText(Html.fromHtml("Food's Target are <font color='#000'>" + userName.getTargetFood() + "</font>", Html.FROM_HTML_MODE_COMPACT));
-            tvTargetCharacters.setText(Html.fromHtml("Character's Target are <font color='#000'>" + userName.getTargetCharacter() + "</font>", Html.FROM_HTML_MODE_COMPACT));
-            tvTargetStyles.setText(Html.fromHtml("Style's Target are <font color='#000'>" + userName.getTargetStyle() + "</font>", Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            tvTagetFoods.setText(Html.fromHtml("Food's Target are <font color='#000'>" + userName.getTargetFood() + "</font>"));
-            tvTargetCharacters.setText(Html.fromHtml("Character's Target are <font color='#000'>" + userName.getTargetCharacter() + "</font>"));
-            tvTargetStyles.setText(Html.fromHtml("Style's Target are <font color='#000'>" + userName.getTargetStyle() + "</font>"));
-        }
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target), userName.getTargetFood()));
+        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target), userName.getTargetCharacter()));
+        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target), userName.getTargetStyle()));
     }
 
     private void putDataPersonalIntoReference() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            tvCharacters.setText(Html.fromHtml("Characters are <font color='#000'>" + userName.getMyCharacter() + "</font>", Html.FROM_HTML_MODE_COMPACT));
-            tvStyles.setText(Html.fromHtml("Styles are <font color='#000'>" + userName.getMyStyle() + "</font>", Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            tvCharacters.setText(Html.fromHtml("Characters are <font color='#000'>" + userName.getMyCharacter() + "</font>"));
-            tvStyles.setText(Html.fromHtml("Styles are <font color='#000'>" + userName.getMyStyle() + "</font>"));
+        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character), userName.getMyCharacter()));
+        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style), userName.getMyStyle()));
+
+    }
+
+    private Spannable setMultiColorText(String defaultString, String text) {
+        Spannable spannable = new SpannableString(defaultString + StringUtils.capitalize(StringEscapeUtils.unescapeJava(text)));
+
+        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), defaultString.length(), defaultString.length() + StringEscapeUtils.unescapeJava(text).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        return spannable;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_display_character:
+                editInfo(R.id.rl_edit_character, R.id.mactv_my_character, R.array.character, R.string.my_character,
+                        R.id.img_save_character, R.id.refresh_character, llDisplayCharacter, tvCharacters);
+                break;
+            case R.id.mactv_my_character:
+            case R.id.mactv_my_style:
+            case R.id.mactv_target_food:
+            case R.id.mactv_target_character:
+            case R.id.mactv_target_style:
+                if (!TextUtils.isEmpty(mactvEdit.getText().toString()) && !mactvEdit.getText().toString().trim().endsWith(",")) {
+                    mactvEdit.setText(mactvEdit.getText().toString() + ", ");
+                }
+                mactvEdit.setSelection(mactvEdit.getText().toString().length());
+                break;
+            case R.id.img_save_character:
+                saveInfo(llDisplayCharacter, tvCharacters, R.string.my_character);
+                break;
+            case R.id.refresh_character:
+            case R.id.refresh_style:
+            case R.id.refresh_target_food:
+            case R.id.refresh_target_character:
+            case R.id.refresh_target_style:
+                mactvEdit.setText(contentBeforeEdit);
+                if (!TextUtils.isEmpty(mactvEdit.getText().toString()) && !mactvEdit.getText().toString().trim().endsWith(",")) {
+                    mactvEdit.setText(mactvEdit.getText().toString() + ", ");
+                }
+                mactvEdit.setSelection(mactvEdit.getText().toString().length());
+                break;
+            case R.id.ll_display_style:
+                editInfo(R.id.rl_edit_style, R.id.mactv_my_style, R.array.style, R.string.my_style,
+                        R.id.img_save_style, R.id.refresh_style, llDisplayStyle, tvStyles);
+                break;
+            case R.id.img_save_style:
+                saveInfo(llDisplayStyle, tvStyles, R.string.my_style);
+                break;
+            case R.id.ll_display_target_food:
+                editInfo(R.id.rl_edit_target_food, R.id.mactv_target_food, R.array.food, R.string.food_target,
+                        R.id.img_save_target_food, R.id.refresh_target_food, llDisplayTargetFood, tvTargetFoods);
+                break;
+            case R.id.img_save_target_food:
+                saveInfo(llDisplayTargetFood, tvTargetFoods, R.string.food_target);
+                break;
+            case R.id.ll_display_target_character:
+                editInfo(R.id.rl_edit_target_character, R.id.mactv_target_character, R.array.character,
+                        R.string.character_target, R.id.img_save_target_character, R.id.refresh_target_character,
+                        llDisplayTargetCharacter, tvTargetCharacters);
+                break;
+            case R.id.img_save_target_character:
+                saveInfo(llDisplayTargetCharacter, tvTargetCharacters, R.string.character_target);
+                break;
+            case R.id.ll_display_target_style:
+                editInfo(R.id.rl_edit_target_style, R.id.mactv_target_style, R.array.style, R.string.style_target,
+                        R.id.img_save_target_style, R.id.refresh_target_style, llDisplayTargetStyle, tvTargetStyles);
+                break;
+            case R.id.img_save_target_style:
+                saveInfo(llDisplayTargetStyle, tvTargetStyles, R.string.style_target);
+                break;
+        }
+    }
+
+    private void editInfo(int rlEditSource, int macTvEditSource, int listDataSource, int titleDefaultSource,
+                          int imgSaveSource, int imgRefreshSource, LinearLayout llDisplay, TextView tvContent) {
+
+        AppUtils.hideSoftKeyboard(getActivity());
+
+        int [] listEdit =new int[]{R.id.rl_edit_character, R.id.rl_edit_style, R.id.rl_edit_target_food,
+        R.id.rl_edit_target_character, R.id.rl_edit_target_style};
+        LinearLayout [] listDisplay=new LinearLayout[]{llDisplayCharacter, llDisplayStyle, llDisplayTargetFood,
+        llDisplayTargetCharacter, llDisplayTargetStyle};
+
+        for(int i = 0; i< listEdit.length; i++){
+            if(listEdit[i]!=rlEditSource){
+                RelativeLayout rl=(RelativeLayout) viewGroup.findViewById(listEdit[i]);
+                if(rl.getVisibility()==View.VISIBLE){
+                    rl.setVisibility(View.GONE);
+                    listDisplay[i].setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+        rlEdit = (RelativeLayout) viewGroup.findViewById(rlEditSource);
+
+        rlEdit.setOnClickListener(this);
+        rlEdit.setVisibility(View.VISIBLE);
+
+        mactvEdit = (MultiAutoCompleteTextView) viewGroup.findViewById(macTvEditSource);
+        mactvEdit.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        ArrayAdapter hobbyAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(listDataSource));
+        mactvEdit.setAdapter(hobbyAdapter);
+
+        contentBeforeEdit = tvContent.getText().toString().substring(getResources().getString(titleDefaultSource).length());
+        mactvEdit.setText(contentBeforeEdit);
+
+        mactvEdit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mactvEdit.setSelection(mactvEdit.getText().toString().length());
+            }
+        });
+
+        mactvEdit.setOnClickListener(this);
+
+        imgSave = (ImageView) viewGroup.findViewById(imgSaveSource);
+        imgSave.setOnClickListener(this);
+
+        imgRefresh = (ImageView) viewGroup.findViewById(imgRefreshSource);
+        imgRefresh.setOnClickListener(this);
+
+        llDisplay.setVisibility(View.GONE);
+    }
+
+    private void saveInfo(LinearLayout llDisplay, TextView tvContent, int titleDefaultResource) {
+        MySharePreference mySharePreference=new MySharePreference(getActivity());
+        if(AppUtils.isNetworkAvailable(getActivity())) {
+            InfoProfileUpdate infoUpdate = new InfoProfileUpdate(getActivity());
+            infoUpdate.setPhone(userName.getPhone());
+
+            if (mactvEdit.getText().toString().trim().endsWith(",")) {
+                infoUpdate.setContent(StringEscapeUtils.escapeJava(mactvEdit.getText().toString().trim().substring(0, mactvEdit.getText().toString().trim().lastIndexOf(","))));
+            } else {
+                infoUpdate.setContent(StringEscapeUtils.escapeJava(mactvEdit.getText().toString()));
+            }
+
+            switch (titleDefaultResource) {
+                case R.string.my_character:
+                    infoUpdate.setType("myCharacter");
+                    break;
+                case R.string.my_style:
+                    infoUpdate.setType("myStyle");
+                    break;
+                case R.string.food_target:
+                    infoUpdate.setType("targetFood");
+                    break;
+                case R.string.character_target:
+                    infoUpdate.setType("targetCharacter");
+                    break;
+                case R.string.style_target:
+                    infoUpdate.setType("targetStyle");
+                    break;
+            }
+
+            Call<UserName> updateInfo = Connect.getRetrofit().updateProfile(infoUpdate);
+            updateInfo.enqueue(new Callback<UserName>() {
+                @Override
+                public void onResponse(Call<UserName> call, Response<UserName> response) {
+                    if(response.body()!=null){
+                        if(response.body().getUuid().equals(mySharePreference.getUUIDLogin())){
+                            switch (titleDefaultResource) {
+                                case R.string.my_character:
+                                    mySharePreference.setMyCharacterLogin(infoUpdate.getContent());
+                                    break;
+                                case R.string.my_style:
+                                    mySharePreference.setMyStyleLogin(infoUpdate.getContent());
+                                    break;
+                                case R.string.food_target:
+                                    mySharePreference.setTargetFoodLogin(infoUpdate.getContent());
+                                    break;
+                                case R.string.character_target:
+                                    mySharePreference.setTargetCharacterLogin(infoUpdate.getContent());
+                                    break;
+                                case R.string.style_target:
+                                    mySharePreference.setTargetStyleLogin(infoUpdate.getContent());
+                                    break;
+                            }
+
+                        }else {
+                            UserName userName =response.body();
+                            mySharePreference.saveProfileUpdate(userName);
+                        }
+
+                        llDisplay.setVisibility(View.VISIBLE);
+
+                        tvContent.setText(setMultiColorText(getResources().getString(titleDefaultResource), infoUpdate.getContent()));
+
+                        rlEdit.setVisibility(View.GONE);
+
+                        AppUtils.hideSoftKeyboard(getActivity());
+                    }else {
+                        Toast.makeText(getActivity(), getString(R.string.not_update),Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UserName> call, Throwable t) {
+
+                }
+            });
+
+        }else {
+            Toast.makeText(getActivity(),getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
         }
     }
 

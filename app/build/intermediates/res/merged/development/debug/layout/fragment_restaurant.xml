@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <AutoCompleteTextView
+                android:id="@+id/fragment_restaurant_atct_inputSearch"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:background="@color/white"
+                android:hint="Input district"
+                android:inputType="textVisiblePassword"
+                android:lineSpacingMultiplier="1"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:completionThreshold="1" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="23dp"
+                android:layout_marginLeft="5dp"
+                android:background="@color/transparent"
+                android:src="@android:drawable/ic_menu_search"
+                android:id="@+id/fragment_restaurant_ibtn_search"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/blue_grey_1" />
+
+            <LinearLayout
+                android:id="@+id/custom_adapter_recyclerview_restaurant_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="9">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/blue_grey_1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Name"
+                    android:textColor="@color/black"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/blue_grey_1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Address"
+                    android:textColor="@color/black"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/blue_grey_1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Open Day"
+                    android:textColor="@color/black"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/blue_grey_1" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/blue_grey_1" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_restaurant_rcv_lst_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

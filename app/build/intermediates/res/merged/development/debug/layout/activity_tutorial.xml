@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingPrefix">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_tutorial_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.Space
+            android:id="@+id/activity_tutorial_v_space"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+
+            <com.app.donteatalone.widgets.CircleIndicator
+                android:id="@+id/activity_tutorial_circle_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical" />
+
+            <RelativeLayout
+                android:id="@+id/activity_tutorial_rl_next"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/activity_tutorial_tv_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEXT"
+                    android:textColor="@color/bg_text_color_orange_white"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/Montserrat_Bold" />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -40,6 +40,8 @@ public class NotificationFragment extends Fragment {
     private RecyclerView rcvInfoNotification;
     private TextView txtNotification;
     private ViewPager viewPager;
+
+    private LinearLayout llEmptyNotification;
     private View view;
 
     private boolean visible = false;
@@ -74,7 +76,7 @@ public class NotificationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewGroup = inflater.inflate(R.layout.fragment_notification, null);
+        viewGroup = inflater.inflate(R.layout.fragment_notification, container, false);
         return viewGroup;
     }
 
@@ -87,21 +89,23 @@ public class NotificationFragment extends Fragment {
     }
 
     public void init() {
+        llEmptyNotification= (LinearLayout) viewGroup.findViewById(R.id.fragment_notification_ll_entry);
+
         rcvInfoNotification = (RecyclerView) viewGroup.findViewById(R.id.fragment_notification_rcv_notification);
         rcvInfoNotification.setLayoutManager(new LinearLayoutManager(getContext()));
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (intent.getParcelableExtra(MainActivity.SENDBROADCASTDATA) != null) {
+                if (intent.getParcelableExtra(MainActivity.SEND_BROADCAST_DATA) != null) {
                     setNotification();
-                } else if (intent.getIntExtra(MainActivity.SENDBROADCASTTITLE, 0) == 1) {
+                } else if (intent.getIntExtra(MainActivity.SEND_BROADCAST_TITLE, 0) == 1) {
                     txtNotification.setText(Integer.parseInt(txtNotification.getText().toString().trim()) + 1 + "");
                 }
             }
         };
 
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(MainActivity.BROADCASTNAME));
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(MainActivity.BROADCAST_NAME));
 
     }
 
@@ -121,19 +125,28 @@ public class NotificationFragment extends Fragment {
     public void setNotification() {
         final ArrayList<InfoNotification> listInfoNotification = new ArrayList<InfoNotification>();
         final CustomNotificationAdapter adapter = new CustomNotificationAdapter(listInfoNotification, getContext());
+        rcvInfoNotification.setAdapter(adapter);
         Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(new MySharePreference(getActivity()).getPhoneLogin());
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
-                if (response.body() != null) {
+                if (response.body() != null && response.body().size()>0) {
+                    llEmptyNotification.setVisibility(View.GONE);
+
+                    rcvInfoNotification.setVisibility(View.VISIBLE);
+
                     for (InfoNotification element : response.body()) {
                         InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
                                 element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
                         listInfoNotification.add(info);
                     }
                     Collections.reverse(listInfoNotification);
+                    adapter.notifyDataSetChanged();
+                }else {
+                    llEmptyNotification.setVisibility(View.VISIBLE);
+
+                    rcvInfoNotification.setVisibility(View.GONE);
                 }
-                rcvInfoNotification.setAdapter(adapter);
             }
 
             @Override

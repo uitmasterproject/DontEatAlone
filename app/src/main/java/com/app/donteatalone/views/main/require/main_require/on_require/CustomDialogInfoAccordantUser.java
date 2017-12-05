@@ -226,8 +226,8 @@ public class CustomDialogInfoAccordantUser {
                 }
                 Collections.reverse(listInfoNotification);
 
-                Intent intent=new Intent(MainActivity.BROADCASTNAME);
-                intent.putExtra(MainActivity.SENDBROADCASTDATA,listInfoNotification);
+                Intent intent=new Intent(MainActivity.BROADCAST_NAME);
+                intent.putExtra(MainActivity.SEND_BROADCAST_DATA,listInfoNotification);
                 context.sendBroadcast(intent);
 
             }

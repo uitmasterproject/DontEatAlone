@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -13,8 +14,9 @@ import android.widget.TextView;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.app.donteatalone.R;
-import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,23 +70,31 @@ public class ProfileDialogCustom {
                 actvHobbyAboutFood = (MultiAutoCompleteTextView)
                         dialog.findViewById(R.id.custom_dialog_profile_hobby_about_food_actv);
 
-                if (!TextUtils.isEmpty(textView.getText().toString().trim())) {
-                    if (!textView.getText().toString().endsWith(",")) {
-                        actvHobbyAboutFood.setText(textView.getText().toString() + ", ");
-                    } else {
-                        actvHobbyAboutFood.setText(textView.getText().toString());
-                    }
-                } else {
-                    actvHobbyAboutFood.setText(textView.getText().toString());
-                }
+                actvHobbyAboutFood.setText(textView.getText().toString());
 
-                actvHobbyAboutFood.setSelection(actvHobbyAboutFood.getText().toString().length());
+                actvHobbyAboutFood.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (!TextUtils.isEmpty(textView.getText().toString().trim())) {
+                            if (!textView.getText().toString().endsWith(",")) {
+                                actvHobbyAboutFood.setText(textView.getText().toString() + ", ");
+                            } else {
+                                actvHobbyAboutFood.setText(textView.getText().toString());
+                            }
+                        } else {
+                            actvHobbyAboutFood.setText(textView.getText().toString());
+                        }
+
+                        actvHobbyAboutFood.setSelection(actvHobbyAboutFood.getText().toString().length());
+                        return false;
+                    }
+                });
 
                 adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, context.getResources().getStringArray(R.array.food));
                 actvHobbyAboutFood.setAdapter(adapter);
                 actvHobbyAboutFood.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-                AppUtils.setOnSelectedItemInMACT(actvHobbyAboutFood);
+                //AppUtils.setOnSelectedItemInMACT(actvHobbyAboutFood);
 
                 rlClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -111,23 +121,32 @@ public class ProfileDialogCustom {
                 actvHobbyAboutCharacter = (MultiAutoCompleteTextView)
                         dialog.findViewById(R.id.custom_dialog_profile_hobby_about_character_actv);
 
-                if (!TextUtils.isEmpty(textView.getText().toString().trim())) {
-                    if (!textView.getText().toString().endsWith(",")) {
-                        actvHobbyAboutCharacter.setText(textView.getText().toString() + ", ");
-                    } else {
-                        actvHobbyAboutCharacter.setText(textView.getText().toString());
-                    }
-                } else {
-                    actvHobbyAboutCharacter.setText(textView.getText().toString());
-                }
+                actvHobbyAboutCharacter.setText(textView.getText().toString());
 
-                actvHobbyAboutCharacter.setSelection(actvHobbyAboutCharacter.getText().toString().length());
+                actvHobbyAboutCharacter.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+
+                        if (!TextUtils.isEmpty(textView.getText().toString().trim())) {
+                            if (!textView.getText().toString().endsWith(",")) {
+                                actvHobbyAboutCharacter.setText(textView.getText().toString() + ", ");
+                            } else {
+                                actvHobbyAboutCharacter.setText(textView.getText().toString());
+                            }
+                        } else {
+                            actvHobbyAboutCharacter.setText(textView.getText().toString());
+                        }
+
+                        actvHobbyAboutCharacter.setSelection(actvHobbyAboutCharacter.getText().toString().length());
+                        return false;
+                    }
+                });
 
                 adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, context.getResources().getStringArray(R.array.character));
                 actvHobbyAboutCharacter.setAdapter(adapter);
                 actvHobbyAboutCharacter.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-                AppUtils.setOnSelectedItemInMACT(actvHobbyAboutCharacter);
+                //AppUtils.setOnSelectedItemInMACT(actvHobbyAboutCharacter);
 
                 rlClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -154,23 +173,33 @@ public class ProfileDialogCustom {
                 actvHobbyAboutStyle = (MultiAutoCompleteTextView)
                         dialog.findViewById(R.id.custom_dialog_profile_hobby_about_style_actv);
 
-                if (!TextUtils.isEmpty(textView.getText().toString().trim())) {
-                    if (!textView.getText().toString().endsWith(",")) {
-                        actvHobbyAboutStyle.setText(textView.getText().toString() + ", ");
-                    } else {
-                        actvHobbyAboutStyle.setText(textView.getText().toString());
-                    }
-                } else {
-                    actvHobbyAboutStyle.setText(textView.getText().toString());
-                }
+                actvHobbyAboutStyle.setText(textView.getText().toString());
 
-                actvHobbyAboutStyle.setSelection(actvHobbyAboutStyle.getText().toString().length());
+                actvHobbyAboutStyle.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+
+                        if (!TextUtils.isEmpty(textView.getText().toString().trim())) {
+                            if (!textView.getText().toString().endsWith(",")) {
+                                actvHobbyAboutStyle.setText(textView.getText().toString() + ", ");
+                            } else {
+                                actvHobbyAboutStyle.setText(textView.getText().toString());
+                            }
+                        } else {
+                            actvHobbyAboutStyle.setText(textView.getText().toString());
+                        }
+
+                        actvHobbyAboutStyle.setSelection(actvHobbyAboutStyle.getText().toString().length());
+
+                        return false;
+                    }
+                });
 
                 adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, context.getResources().getStringArray(R.array.style));
                 actvHobbyAboutStyle.setAdapter(adapter);
                 actvHobbyAboutStyle.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-                AppUtils.setOnSelectedItemInMACT(actvHobbyAboutStyle);
+                //AppUtils.setOnSelectedItemInMACT(actvHobbyAboutStyle);
 
                 rlClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -246,13 +275,13 @@ public class ProfileDialogCustom {
         }
         switch (key) {
             case 0:
-                infoRequireSharePreference.setMyCharacterRequire(tempHobby);
+                infoRequireSharePreference.setTargetCharacterRequire(StringEscapeUtils.escapeJava(tempHobby));
                 break;
             case 1:
-                infoRequireSharePreference.setMyStyleRequire(tempHobby);
+                infoRequireSharePreference.setTargetStyleRequire(StringEscapeUtils.escapeJava(tempHobby));
                 break;
             case 2:
-                infoRequireSharePreference.setTargetFoodRequire(tempHobby);
+                infoRequireSharePreference.setTargetFoodRequire(StringEscapeUtils.escapeJava(tempHobby));
                 break;
         }
         text.setText(tempHobby);

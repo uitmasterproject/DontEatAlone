@@ -17,6 +17,8 @@ import android.widget.MultiAutoCompleteTextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 /**
  * Created by ChomChom on 4/7/2017
  */
@@ -61,7 +63,6 @@ public class RegisterStep6Fragment extends Fragment {
         mactvCharacter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mactvCharacter.setText(AppUtils.convertStringToNFD(mactvCharacter.getText().toString()));
                 mactvCharacter.setSelection(mactvCharacter.getText().toString().length());
             }
         });
@@ -70,7 +71,6 @@ public class RegisterStep6Fragment extends Fragment {
         mactvStyle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mactvStyle.setText(AppUtils.convertStringToNFD(mactvStyle.getText().toString()));
                 mactvStyle.setSelection(mactvStyle.getText().toString().length());
             }
         });
@@ -92,15 +92,18 @@ public class RegisterStep6Fragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mactvCharacter.getText().toString().trim().endsWith(",")) {
-                    mactvCharacter.setText(mactvCharacter.getText().toString().substring(0, mactvCharacter.getText().toString().lastIndexOf(",")));
+                String stringCharacter = AppUtils.notRepeatElementInString(mactvCharacter.getText().toString().trim());
+                String stringStyle = AppUtils.notRepeatElementInString(mactvStyle.getText().toString().trim());
+
+                if (stringCharacter.trim().endsWith(",")) {
+                    mactvCharacter.setText(stringCharacter.substring(0, stringCharacter.lastIndexOf(",")));
                 }
 
-                if (mactvStyle.getText().toString().trim().endsWith(",")) {
-                    mactvStyle.setText(mactvStyle.getText().toString().substring(0, mactvStyle.getText().toString().lastIndexOf(",")));
+                if (stringStyle.trim().endsWith(",")) {
+                    mactvStyle.setText(stringStyle.substring(0, stringStyle.lastIndexOf(",")));
                 }
-                RegisterStep1Fragment.userName.setMyCharacter(mactvCharacter.getText().toString());
-                RegisterStep1Fragment.userName.setMyStyle(mactvStyle.getText().toString());
+                RegisterStep1Fragment.userName.setMyCharacter(StringEscapeUtils.escapeJava(mactvCharacter.getText().toString()));
+                RegisterStep1Fragment.userName.setMyStyle(StringEscapeUtils.escapeJava(mactvStyle.getText().toString()));
                 _mViewPager.setCurrentItem(6, true);
             }
         });

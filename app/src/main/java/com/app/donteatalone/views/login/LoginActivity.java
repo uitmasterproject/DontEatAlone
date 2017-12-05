@@ -23,6 +23,8 @@ import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
 import com.app.donteatalone.views.register.RegisterActivity;
 
+import java.util.UUID;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,6 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         AppUtils.changeStatusBarColor(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if(TextUtils.isEmpty(new MySharePreference(LoginActivity.this).getUUIDLogin())){
+            String uuid = UUID.randomUUID().toString();
+            new MySharePreference(LoginActivity.this).setUUIDLogin(uuid);
+        }
 
         init();
         clickLogin();
@@ -81,12 +88,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (response != null) {
                     String password = AppUtils.encrypt(response.body().getInitParam(), edtPassword.getText().toString());
 
-                    Call<Status> getPass = Connect.getRetrofit().checkAccount(edtPhone.getText().toString(), password);
+                    UserName userName=new UserName(edtPhone.getText().toString(), password);
+
+                    Call<Status> getPass = Connect.getRetrofit().checkAccount(userName);
                     getPass.enqueue(new Callback<Status>() {
                         @Override
                         public void onResponse(Call<Status> call, Response<Status> response) {
-                            dialog.hideProgressLoading();
                             if (response.body() == null) {
+                                dialog.hideProgressLoading();
                                 Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                             } else {
                                 if (response.body().getStatus().equals("0")) {
@@ -96,10 +105,13 @@ public class LoginActivity extends AppCompatActivity {
                                         checkRemember();
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(intent);
+                                        dialog.hideProgressLoading();
                                     }
                                 } else if (response.body().getStatus().equals("1")) {
+                                    dialog.hideProgressLoading();
                                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_incorecct), Toast.LENGTH_LONG).show();
                                 } else {
+                                    dialog.hideProgressLoading();
                                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
                                 }
                             }

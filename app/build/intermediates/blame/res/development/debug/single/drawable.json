@@ -1,0 +1,578 @@
+[
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\background_splash.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\background_splash.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_forward.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_forward.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_mute.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_mute.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_rewind10.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_rewind10.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_rightsight_selector.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_rightsight_selector.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_expanded_controller_seekbar_track.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_expanded_controller_seekbar_track.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_vector_test.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_vector_test.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_rightsight_default.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_rightsight_default.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_dialog_material_background_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_dialog_material_background_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_search_api_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_skip_prev.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_skip_prev.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_dialog_material_background_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_blog_edt_write_status.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_blog_edt_write_status.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_solid_white.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_solid_white.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_pause_large.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_pause_large.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_login_no_pressed.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_login_no_pressed.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_disconnect.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_disconnect.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_normal.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_normal.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_pause_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_pause_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_media_route_mono_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_media_route_mono_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_avatar.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_avatar.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_rewind.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_rewind.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_seekbar_track_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_media_route_connecting_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_media_route_connecting_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_login_pressed.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_login_pressed.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ratingbar_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_password_eye.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\drawable\\design_password_eye.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_cast_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_cast_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\ic_collapse.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\ic_collapse.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_mini_controller_gradient_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_mini_controller_gradient_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_rewind30.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_rewind30.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_stop_large.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_stop_large.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_round_orange_edit_profile_pressed.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_round_orange_edit_profile_pressed.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_play_large.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_play_large.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_circle_unselected.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_circle_unselected.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_circle_selected.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_circle_selected.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_done_pressed.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_done_pressed.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_pause.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_pause.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_clear_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bt_rectangle_ripple_5_radius.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bt_rectangle_ripple_5_radius.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_forward30.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_forward30.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_expanded_controller_seekbar_thumb.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_expanded_controller_seekbar_thumb.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_done_no_pressed.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_done_no_pressed.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_pause_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_pause_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_round_orange_edit_profile_no_pressed.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_round_orange_edit_profile_no_pressed.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_go_search_api_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_cast_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_cast_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_login.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_login.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_icon_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_done.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_done.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\navigation_empty_icon.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\drawable\\navigation_empty_icon.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_play_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_play_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_close_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_close_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_pause.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_pause.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_audiotrack_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_audiotrack_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_play_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_play_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_skip_ad_label_border.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_skip_ad_label_border.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_leftsight_default.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_leftsight_default.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_forward30.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_forward30.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\ic_expand.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\ic_expand.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\ripple_selector.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\ripple_selector.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_pause.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_pause.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\ripple_selector_rectangle.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\ripple_selector_rectangle.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_ab_back_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_mini_controller_progress_drawable.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_mini_controller_progress_drawable.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\background_tab.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\ccafb8a203613c5ce341e51e1b1863788cef2a4b\\output\\res\\drawable\\background_tab.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_skip_next.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_skip_next.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_layout_loading.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_layout_loading.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\drawable\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_mute.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_mute.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_media_route_mono_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_media_route_mono_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_skip_previous.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_skip_previous.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_fab_background.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\drawable\\design_fab_background.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_closed_caption.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_closed_caption.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_connecting.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\50ea3467e438ee8e2664562a857fd31d4a7caf6b\\output\\res\\drawable\\cast_ic_notification_connecting.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_play.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_play.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_round_orange_edit_profile.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\btn_round_orange_edit_profile.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_skip_next.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_skip_next.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_expanded_controller_bg_gradient_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_expanded_controller_bg_gradient_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_small_icon.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_small_icon.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_oval_round_orange.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_oval_round_orange.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_stop_live_stream.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_media_route_connecting_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_media_route_connecting_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_snackbar_background.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\drawable\\design_snackbar_background.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_forward30.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_forward30.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_underline.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_underline.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_forward10.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_forward10.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_closed_caption.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_closed_caption.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_media_route_on_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_media_route_on_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_rewind30.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_rewind30.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_rewind30.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_rewind30.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bt_circle_ripple.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bt_circle_ripple.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_close_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_close_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_media_route_on_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_media_route_on_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_expanded_controller_actionbar_bg_gradient_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_expanded_controller_actionbar_bg_gradient_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_leftsight_selector.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_leftsight_selector.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_play.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_play.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_txt_edit_avatar_defautl.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_txt_edit_avatar_defautl.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\6158613ebe47017e84a6415673295a22dc4e2040\\output\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_skip_prev.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_skip_prev.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_stop.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_stop.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_play.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_play.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_mini_controller_stop.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_mini_controller_stop.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_expanded_controller_skip_next.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_expanded_controller_skip_next.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\custom_bg_pop_up.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\custom_bg_pop_up.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_btn_blog_item.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_btn_blog_item.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bt_rectangle_ripple.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bt_rectangle_ripple.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_item_background_holo_light.xml"
+    }
+]

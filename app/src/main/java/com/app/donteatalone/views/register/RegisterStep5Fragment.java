@@ -26,6 +26,8 @@ import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import static android.app.Activity.RESULT_OK;
 import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
@@ -111,7 +113,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
     //luu lai noi duoc chon
     @Override
     public void onPlaceSelected(Place place) {
-        txtAddress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
+        txtAddress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
         location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
     }
 
@@ -143,7 +145,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
                 if (TextUtils.isEmpty(txtAddress.getText().toString())) {
                     tilErrorAddress.setError("address field is not empty");
                 } else {
-                    userName.setAddress(txtAddress.getText().toString());
+                    userName.setAddress(StringEscapeUtils.escapeJava(txtAddress.getText().toString()));
                     userName.setLatlngAdress(location);
                     _mViewPager.setCurrentItem(5, true);
                 }

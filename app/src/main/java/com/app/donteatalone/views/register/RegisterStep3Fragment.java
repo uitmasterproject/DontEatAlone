@@ -6,9 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -26,10 +28,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.ImageProcessor;
+import com.app.donteatalone.views.main.MainActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import static com.app.donteatalone.utils.ImageProcessor.PERMISSION_CAMERA_REQUEST_CODE;
 import static com.app.donteatalone.utils.ImageProcessor.PERMISSION_READ_REQUEST_CODE;
@@ -44,6 +53,7 @@ import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName
 public class RegisterStep3Fragment extends Fragment {
 
     private View view;
+    private StorageReference storageRefImage;
     private ImageView imgWomanAvatar, imgManAvatar, imgAvatar;
     private RelativeLayout rltWomanAvatar, rltManAvatar, rltAvatar;
     private Button btnNext;
@@ -51,7 +61,7 @@ public class RegisterStep3Fragment extends Fragment {
     private ViewPager _mViewPager;
     private TextView tvTutorial;
     private LinearLayout llRoot;
-    private int intChosen = -1;
+    private boolean isChosen = false;
 
     public static Fragment newInstance() {
         return new RegisterStep3Fragment();
@@ -101,7 +111,10 @@ public class RegisterStep3Fragment extends Fragment {
             public void onClick(View v) {
                 animationImageAvatar(rltManAvatar, R.drawable.avatar_man);
                 gender = "Male";
-                intChosen = 0;
+
+                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.not_choose_gender))){
+                    tvTutorial.setText("");
+                }
             }
         });
         imgWomanAvatar.setOnClickListener(new View.OnClickListener() {
@@ -109,16 +122,19 @@ public class RegisterStep3Fragment extends Fragment {
             public void onClick(View v) {
                 animationImageAvatar(rltWomanAvatar, R.drawable.avatar_woman);
                 gender = "Female";
-                intChosen = 0;
+
+                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.not_choose_gender))){
+                    tvTutorial.setText("");
+                }
             }
         });
     }
 
-    private void animationImageAvatar(RelativeLayout re, int sourceimg) {
+    private void animationImageAvatar(RelativeLayout re, int sourceImg) {
         rltManAvatar.setVisibility(View.GONE);
         rltWomanAvatar.setVisibility(View.GONE);
         rltAvatar.setVisibility(View.VISIBLE);
-        imgAvatar.setImageResource(sourceimg);
+        imgAvatar.setImageResource(sourceImg);
         TranslateAnimation animation = new TranslateAnimation(imgManAvatar.getX(), imgAvatar.getX(), re.getY(), re.getY());
         animation.setDuration(100000);
         animation.setFillAfter(false);
@@ -189,8 +205,8 @@ public class RegisterStep3Fragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        ImageProcessor.activityImageResult(resultCode, requestCode, data, RegisterStep3Fragment.this, imgAvatar);
+        isChosen = true;
+        ImageProcessor.activityImageResult(resultCode, requestCode, data, RegisterStep3Fragment.this, null, imgAvatar);
 
     }
 
@@ -198,7 +214,7 @@ public class RegisterStep3Fragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, @android.support.annotation.NonNull String[] permissions, @android.support.annotation.NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        ImageProcessor.requestPermissionsResult(requestCode, grantResults[0], RegisterStep3Fragment.this);
+        ImageProcessor.requestPermissionsResult(requestCode, grantResults[0], RegisterStep3Fragment.this, null);
 
     }
 
@@ -206,11 +222,38 @@ public class RegisterStep3Fragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (intChosen == -1) {
-                    tvTutorial.setText("You have to choose your gender");
+                if (gender == null) {
+                    tvTutorial.setText(getResources().getString(R.string.not_choose_gender));
                     tvTutorial.setTextColor(ContextCompat.getColor(getContext(), R.color.color_orange_pressed));
                 } else {
-                    userName.setAvatar(ImageProcessor.convertBitmapToString(((BitmapDrawable) imgAvatar.getDrawable()).getBitmap()));
+                    if (isChosen) {
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            storageRefImage = FirebaseStorage.getInstance().getReferenceFromUrl(MainActivity.URL_STORAGE_FIRE_BASE).
+                                    child(MainActivity.REGISTER_PATH_STORAGE_FIRE_BASE + userName.getPhone());
+                            UploadTask uploadTask = storageRefImage.putBytes(ImageProcessor.convertBitmapToByte(((BitmapDrawable) imgAvatar.getDrawable()).getBitmap()));
+                            uploadTask.addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    @SuppressWarnings("VisibleForTests")
+                                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                    if (downloadUrl != null) {
+                                        userName.setAvatar(downloadUrl.toString());
+                                    } else {
+                                        userName.setAvatar(null);
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getActivity(), getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        userName.setAvatar(null);
+                    }
                     userName.setGender(gender);
                     _mViewPager.setCurrentItem(3, true);
                 }

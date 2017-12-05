@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Name's Blog"
+            android:textColor="@color/color_deep_orange"
+            android:textSize="20sp"
+            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+
+        <ImageButton
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:background="@drawable/ripple_selector"
+            android:padding="7dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close_grey600_36dp"
+            android:contentDescription="@null" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_solid_white"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_name_blog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/grey"
+                app:fontPath="fonts/Montserrat-Light" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login"
+            android:text="Post Blog"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

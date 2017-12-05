@@ -1,7 +1,7 @@
 package com.app.donteatalone.model;
 
 /**
- * Created by ChomChom on 12-Oct-17.
+ * Created by ChomChom on 12-Oct-17
  */
 
 public class Request {

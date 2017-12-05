@@ -1,0 +1,533 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-74:12
+	package
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:3:5-35
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:5:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:19:5-66
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\9fa23ce9eefe3770240a7f2b2961c4675e50c01b\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:18:5-66
+MERGED from [com.google.firebase:firebase-crash:10.0.1] C:\Users\ChomChom\.android\build-cache\0ea7c409bfaf51daca693702a7ea3f24f50fdc3f\output\AndroidManifest.xml:18:5-66
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] C:\Users\ChomChom\.android\build-cache\90f22d5269172b908ce8d45de27248421bfb6703\output\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\73381399bfa53b63a0cafdd8d99067f468ee59d1\output\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8971faab1abe2f4375f899cfb5445956a29e711b\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.CAMERA
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:6:5-65
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:6:22-62
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:7:5-75
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:7:22-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:8:22-78
+uses-feature#android.hardware.camera
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:10:5-12:35
+	android:required
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:12:9-32
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:11:9-47
+uses-feature#android.hardware.camera.autofocus
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:13:5-15:35
+	android:required
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:15:9-32
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:14:9-57
+uses-feature#android.hardware.camera.flash
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:16:5-18:35
+	android:required
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:18:9-32
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:17:9-53
+application
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:20:5-72:19
+MERGED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build-cache\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:transition:25.3.1] C:\Users\ChomChom\.android\build-cache\be382eabeba2fa9a6ad9813b44207d4a76742f17\output\AndroidManifest.xml:26:5-20
+MERGED from [uk.co.chrisjenx:calligraphy:2.2.0] C:\Users\ChomChom\.android\build-cache\d02d2d9d47379cecc166bd21f5158668d0849c44\output\AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.gms:play-services:10.0.1] C:\Users\ChomChom\.android\build-cache\226a165f8f1bc2cc7b334c1f5b601759cc4bf809\output\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:23:5-27:19
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\9fa23ce9eefe3770240a7f2b2961c4675e50c01b\output\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:19:5-26:19
+MERGED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:19:5-25:19
+MERGED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:4:5-8:19
+MERGED from [com.google.android.gms:play-services-cast:10.0.1] C:\Users\ChomChom\.android\build-cache\50ea3467e438ee8e2664562a857fd31d4a7caf6b\output\AndroidManifest.xml:18:5-19
+MERGED from [com.android.support:mediarouter-v7:24.0.0] C:\Users\ChomChom\.android\build-cache\985c0b0ab840fb5cf10248287704b100e3c4d209\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:palette-v7:24.0.0] C:\Users\ChomChom\.android\build-cache\e9ce8f3eab11d30fa8ec420ce6325db8702ff90c\output\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\853671dea378f8b0913bd1a615997c425a4a1af6\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\ChomChom\.android\build-cache\d5030e9601edb9419ca3cb3f991a139190fc3f13\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\ChomChom\.android\build-cache\f564604eb2ccba43e2d15f024f1da6add6794f46\output\AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-clearcut:10.0.1] C:\Users\ChomChom\.android\build-cache\4fe50d0b6f2eef376ea672d7614b3f7b01b7ad05\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.firebase:firebase-config:10.0.1] C:\Users\ChomChom\.android\build-cache\0b29ae17689d346ab2b4b25d8b1d06b631c45cea\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-awareness:10.0.1] C:\Users\ChomChom\.android\build-cache\7cad4215d504ba2ce8dea7b2288149df77d05db2\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.firebase:firebase-crash:10.0.1] C:\Users\ChomChom\.android\build-cache\0ea7c409bfaf51daca693702a7ea3f24f50fdc3f\output\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\8389e0a237f827f3e1420e86d8a6994d7a1cf945\output\AndroidManifest.xml:19:5-20:19
+MERGED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:19:5-29:19
+MERGED from [com.google.android.gms:play-services-fitness:10.0.1] C:\Users\ChomChom\.android\build-cache\e01d513ecdf84bf43a20f5d39bd3f97ab1df0e5f\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-games:10.0.1] C:\Users\ChomChom\.android\build-cache\f81b986bab3f99f42255fdc69ad9718accc549ab\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-drive:10.0.1] C:\Users\ChomChom\.android\build-cache\bfc9f23204061d7fedc59756db33f75b50a874a1\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-gass:10.0.1] C:\Users\ChomChom\.android\build-cache\1987cbd754c769f7d978e341477d3b8c45e804ed\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] C:\Users\ChomChom\.android\build-cache\90f22d5269172b908ce8d45de27248421bfb6703\output\AndroidManifest.xml:23:5-19
+MERGED from [com.google.firebase:firebase-appindexing:10.0.1] C:\Users\ChomChom\.android\build-cache\b0e00a661d64ef6ce7da6ec1cf5fc6b69d0ad42b\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\73381399bfa53b63a0cafdd8d99067f468ee59d1\output\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-location:10.0.1] C:\Users\ChomChom\.android\build-cache\eb5cc518b3e0561ae872531746e3e7399d9a0370\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-nearby:10.0.1] C:\Users\ChomChom\.android\build-cache\09a5fc6d10a046386095cbc23d707fa19b52dc1d\output\AndroidManifest.xml:5:5-19
+MERGED from [com.google.android.gms:play-services-panorama:10.0.1] C:\Users\ChomChom\.android\build-cache\74ad14ee4ceaa71ac34a728a2fea0bb82eab9b80\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-places:10.0.1] C:\Users\ChomChom\.android\build-cache\49889d13ab5ac089a2a1285ac37a0568b8faf773\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-plus:10.0.1] C:\Users\ChomChom\.android\build-cache\7475848ae54c80e274cd49a421adbd804a605b9a\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-safetynet:10.0.1] C:\Users\ChomChom\.android\build-cache\da1604b8450622bbecd7e3ed39eb217fb8e89074\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:23:5-33:19
+MERGED from [com.google.android.gms:play-services-tagmanager-v4-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\cfe53727a2f456bd729b7da05af05edefa4fce8d\output\AndroidManifest.xml:19:5-19
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8971faab1abe2f4375f899cfb5445956a29e711b\output\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-vision:10.0.1] C:\Users\ChomChom\.android\build-cache\db5185ef3ba0688b87cf7e9c2e4401b9a856d688\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-identity:10.0.1] C:\Users\ChomChom\.android\build-cache\672e6576e9d94b40aac77f56640a0c357a0e624b\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-wearable:10.0.1] C:\Users\ChomChom\.android\build-cache\ffcf8fdee956d3b5f328f62214174b6350aa97bf\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\ChomChom\.android\build-cache\6158613ebe47017e84a6415673295a22dc4e2040\output\AndroidManifest.xml:18:5-20:19
+MERGED from [com.astuetz:pagerslidingtabstrip:1.0.1] C:\Users\ChomChom\.android\build-cache\ccafb8a203613c5ce341e51e1b1863788cef2a4b\output\AndroidManifest.xml:4:5-19
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\e158282ad99cc83c78c1a2096a7b93c2b5801d7a\output\AndroidManifest.xml:26:5-20
+MERGED from [com.victor:lib:1.0.4] C:\Users\ChomChom\.android\build-cache\a3d52f63706189065e84d6d7a956b90f3699e3a0\output\AndroidManifest.xml:11:5-14:19
+MERGED from [com.google.firebase:firebase-core:10.0.1] C:\Users\ChomChom\.android\build-cache\4869ab79d11fae2d1e90a0e1388e03df316e67ed\output\AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:24:5-33:19
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:28:5-50:19
+MERGED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] C:\Users\ChomChom\.android\build-cache\4ab301987be5e344049cab055dfee7b593f71a8c\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\ChomChom\.android\build-cache\57a4b9d529321a98d62e20363187339148fc0a5e\output\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\ChomChom\.android\build-cache\fb022e8b83d1a60a6923484d4d38334851e390e0\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\ChomChom\.android\build-cache\af9a10634af415c7ac30c068290983601f1d5513\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\ChomChom\.android\build-cache\72e4be015f50bcfe5e1662657157da836312844d\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\ChomChom\.android\build-cache\45aca0941b3a9bec83d07475da90c4cf219993d3\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\ChomChom\.android\build-cache\d9f8a585352c9547eaead27f24b9e7fa7bb60073\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\ChomChom\.android\build-cache\101bf7f4605b9cc505949f54fb072979c28e861b\output\AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:26:9-41
+	android:supportsRtl
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:28:9-35
+	android:hardwareAccelerated
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:23:9-44
+	android:roundIcon
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:27:9-54
+	android:allowBackup
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:22:9-35
+	android:icon
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:25:9-36
+	android:largeHeap
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:24:9-33
+	android:theme
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:29:9-44
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:21:9-61
+activity#com.app.donteatalone.views.tutorial.TutorialActivity_
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:31:9-32:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:31:19-67
+activity#com.app.donteatalone.views.login.LoginActivity
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:33:9-38:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:33:19-60
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:34:13-37:29
+action#android.intent.action.MAIN
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:35:17-69
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:35:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:36:17-77
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:36:27-74
+activity#com.app.donteatalone.views.register.RegisterActivity
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:39:9-40:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:39:19-66
+activity#com.app.donteatalone.views.main.MainActivity
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:41:9-42:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:41:19-58
+activity#com.app.donteatalone.views.main.blog.StatusActivity
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:43:9-44:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:43:19-65
+activity#com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:45:9-46:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:45:19-98
+activity#com.app.donteatalone.views.main.blog.DetailBlogActivity
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:47:9-71
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:47:19-69
+activity#com.app.donteatalone.views.main.profile.EditProfileActivity
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:48:9-50:20
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:48:19-73
+meta-data#com.google.android.geo.API_KEY
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:69:9-71:71
+	android:value
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:71:13-68
+	android:name
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:70:13-58
+uses-sdk
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build-cache\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:transition:25.3.1] C:\Users\ChomChom\.android\build-cache\be382eabeba2fa9a6ad9813b44207d4a76742f17\output\AndroidManifest.xml:20:5-44
+MERGED from [net.danlew:android.joda:2.9.9] C:\Users\ChomChom\.android\build-cache\c5160f6710707fcce9971119ee84fe265ade53f6\output\AndroidManifest.xml:6:5-43
+MERGED from [uk.co.chrisjenx:calligraphy:2.2.0] C:\Users\ChomChom\.android\build-cache\d02d2d9d47379cecc166bd21f5158668d0849c44\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:multidex:1.0.0] C:\Users\ChomChom\.android\build-cache\afea842dcf99589b652c2bfc5ce072c76f715781\output\AndroidManifest.xml:18:5-42
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\ChomChom\.android\build-cache\5708f9e76579775f72830979cbed2b0c44a47aa5\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services:10.0.1] C:\Users\ChomChom\.android\build-cache\226a165f8f1bc2cc7b334c1f5b601759cc4bf809\output\AndroidManifest.xml:4:5-42
+MERGED from [com.google.android.gms:play-services-ads:10.0.1] C:\Users\ChomChom\.android\build-cache\35f66c2a94407c931871850fc369dd1e9987f899\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:22:5-42
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\9fa23ce9eefe3770240a7f2b2961c4675e50c01b\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-auth-base:10.0.1] C:\Users\ChomChom\.android\build-cache\c2046640fe2800ac227ec2603be1de622a8ce71f\output\AndroidManifest.xml:4:5-42
+MERGED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-cast:10.0.1] C:\Users\ChomChom\.android\build-cache\50ea3467e438ee8e2664562a857fd31d4a7caf6b\output\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:mediarouter-v7:24.0.0] C:\Users\ChomChom\.android\build-cache\985c0b0ab840fb5cf10248287704b100e3c4d209\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:palette-v7:24.0.0] C:\Users\ChomChom\.android\build-cache\e9ce8f3eab11d30fa8ec420ce6325db8702ff90c\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\853671dea378f8b0913bd1a615997c425a4a1af6\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\ChomChom\.android\build-cache\d5030e9601edb9419ca3cb3f991a139190fc3f13\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\ChomChom\.android\build-cache\f564604eb2ccba43e2d15f024f1da6add6794f46\output\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-clearcut:10.0.1] C:\Users\ChomChom\.android\build-cache\4fe50d0b6f2eef376ea672d7614b3f7b01b7ad05\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-config:10.0.1] C:\Users\ChomChom\.android\build-cache\0b29ae17689d346ab2b4b25d8b1d06b631c45cea\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-awareness:10.0.1] C:\Users\ChomChom\.android\build-cache\7cad4215d504ba2ce8dea7b2288149df77d05db2\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-crash:10.0.1] C:\Users\ChomChom\.android\build-cache\0ea7c409bfaf51daca693702a7ea3f24f50fdc3f\output\AndroidManifest.xml:20:5-42
+MERGED from [com.google.firebase:firebase-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\8389e0a237f827f3e1420e86d8a6994d7a1cf945\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-database:10.0.1] C:\Users\ChomChom\.android\build-cache\c4bfadc18f092f728be450abf4b023b209f5bb1a\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.firebase:firebase-database-connection:10.0.1] C:\Users\ChomChom\.android\build-cache\ffc2de019361b02f8d6f973a8c6f00efbf199a52\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-storage:10.0.1] C:\Users\ChomChom\.android\build-cache\78e8bbc947e1edafc95e9a0901816e193c96de0c\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.firebase:firebase-storage-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b2758bcb819633b5f64efd8b7ce0ed3f8f752b18\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-fitness:10.0.1] C:\Users\ChomChom\.android\build-cache\e01d513ecdf84bf43a20f5d39bd3f97ab1df0e5f\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-games:10.0.1] C:\Users\ChomChom\.android\build-cache\f81b986bab3f99f42255fdc69ad9718accc549ab\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-drive:10.0.1] C:\Users\ChomChom\.android\build-cache\bfc9f23204061d7fedc59756db33f75b50a874a1\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-gass:10.0.1] C:\Users\ChomChom\.android\build-cache\1987cbd754c769f7d978e341477d3b8c45e804ed\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] C:\Users\ChomChom\.android\build-cache\90f22d5269172b908ce8d45de27248421bfb6703\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-appindexing:10.0.1] C:\Users\ChomChom\.android\build-cache\b0e00a661d64ef6ce7da6ec1cf5fc6b69d0ad42b\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\73381399bfa53b63a0cafdd8d99067f468ee59d1\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-instantapps:10.0.1] C:\Users\ChomChom\.android\build-cache\96e186499cba35c97fc30ee2c2c353ff48b76fed\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-location:10.0.1] C:\Users\ChomChom\.android\build-cache\eb5cc518b3e0561ae872531746e3e7399d9a0370\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-nearby:10.0.1] C:\Users\ChomChom\.android\build-cache\09a5fc6d10a046386095cbc23d707fa19b52dc1d\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-panorama:10.0.1] C:\Users\ChomChom\.android\build-cache\74ad14ee4ceaa71ac34a728a2fea0bb82eab9b80\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-places:10.0.1] C:\Users\ChomChom\.android\build-cache\49889d13ab5ac089a2a1285ac37a0568b8faf773\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-plus:10.0.1] C:\Users\ChomChom\.android\build-cache\7475848ae54c80e274cd49a421adbd804a605b9a\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-safetynet:10.0.1] C:\Users\ChomChom\.android\build-cache\da1604b8450622bbecd7e3ed39eb217fb8e89074\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-tagmanager:10.0.1] C:\Users\ChomChom\.android\build-cache\e232bbc72afc576ff8b80d6583c1d59801189720\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-tagmanager-v4-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\cfe53727a2f456bd729b7da05af05edefa4fce8d\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8971faab1abe2f4375f899cfb5445956a29e711b\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-vision:10.0.1] C:\Users\ChomChom\.android\build-cache\db5185ef3ba0688b87cf7e9c2e4401b9a856d688\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-wallet:10.0.1] C:\Users\ChomChom\.android\build-cache\853a9e30a00f2896552efd968b76f76c057cd301\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-identity:10.0.1] C:\Users\ChomChom\.android\build-cache\672e6576e9d94b40aac77f56640a0c357a0e624b\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:23:5-42
+MERGED from [com.google.android.gms:play-services-wearable:10.0.1] C:\Users\ChomChom\.android\build-cache\ffcf8fdee956d3b5f328f62214174b6350aa97bf\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\ChomChom\.android\build-cache\6158613ebe47017e84a6415673295a22dc4e2040\output\AndroidManifest.xml:17:5-42
+MERGED from [com.orhanobut:hawk:2.0.1] C:\Users\ChomChom\.android\build-cache\41f2b1edd3ae25148d46622a4f0753ea0a10ffd9\output\AndroidManifest.xml:6:5-44
+MERGED from [com.facebook.conceal:conceal:1.1.3] C:\Users\ChomChom\.android\build-cache\967c979cf08b8a2e5b1a994cfac46f9ebea8a68d\output\AndroidManifest.xml:12:5-14:41
+MERGED from [cn.aigestudio.wheelpicker:WheelPicker:1.1.2] C:\Users\ChomChom\.android\build-cache\5b940040639b9d497693a31f21e46b1d52c8f5a7\output\AndroidManifest.xml:8:5-10:41
+MERGED from [com.astuetz:pagerslidingtabstrip:1.0.1] C:\Users\ChomChom\.android\build-cache\ccafb8a203613c5ce341e51e1b1863788cef2a4b\output\AndroidManifest.xml:2:5-72
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\29ab7e8d7175abef95f838047c1e6dc40de688a4\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\e158282ad99cc83c78c1a2096a7b93c2b5801d7a\output\AndroidManifest.xml:20:5-43
+MERGED from [com.victor:lib:1.0.4] C:\Users\ChomChom\.android\build-cache\a3d52f63706189065e84d6d7a956b90f3699e3a0\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-core:10.0.1] C:\Users\ChomChom\.android\build-cache\4869ab79d11fae2d1e90a0e1388e03df316e67ed\output\AndroidManifest.xml:4:5-42
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] C:\Users\ChomChom\.android\build-cache\4ab301987be5e344049cab055dfee7b593f71a8c\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\ChomChom\.android\build-cache\57a4b9d529321a98d62e20363187339148fc0a5e\output\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\ChomChom\.android\build-cache\fb022e8b83d1a60a6923484d4d38334851e390e0\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\ChomChom\.android\build-cache\af9a10634af415c7ac30c068290983601f1d5513\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\ChomChom\.android\build-cache\72e4be015f50bcfe5e1662657157da836312844d\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\ChomChom\.android\build-cache\45aca0941b3a9bec83d07475da90c4cf219993d3\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\ChomChom\.android\build-cache\d9f8a585352c9547eaead27f24b9e7fa7bb60073\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\ChomChom\.android\build-cache\101bf7f4605b9cc505949f54fb072979c28e861b\output\AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build-cache\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\output\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build-cache\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:transition:25.3.1] C:\Users\ChomChom\.android\build-cache\be382eabeba2fa9a6ad9813b44207d4a76742f17\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\853671dea378f8b0913bd1a615997c425a4a1af6\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\ChomChom\.android\build-cache\d5030e9601edb9419ca3cb3f991a139190fc3f13\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\ChomChom\.android\build-cache\f564604eb2ccba43e2d15f024f1da6add6794f46\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\29ab7e8d7175abef95f838047c1e6dc40de688a4\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\ChomChom\.android\build-cache\e158282ad99cc83c78c1a2096a7b93c2b5801d7a\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\ChomChom\.android\build-cache\fb022e8b83d1a60a6923484d4d38334851e390e0\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\ChomChom\.android\build-cache\af9a10634af415c7ac30c068290983601f1d5513\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\ChomChom\.android\build-cache\72e4be015f50bcfe5e1662657157da836312844d\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\ChomChom\.android\build-cache\45aca0941b3a9bec83d07475da90c4cf219993d3\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\ChomChom\.android\build-cache\d9f8a585352c9547eaead27f24b9e7fa7bb60073\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\ChomChom\.android\build-cache\101bf7f4605b9cc505949f54fb072979c28e861b\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build-cache\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\output\AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build-cache\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\output\AndroidManifest.xml:26:9-47
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:20:5-78
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\9fa23ce9eefe3770240a7f2b2961c4675e50c01b\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-nearby:10.0.1] C:\Users\ChomChom\.android\build-cache\09a5fc6d10a046386095cbc23d707fa19b52dc1d\output\AndroidManifest.xml:4:5-78
+MERGED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8971faab1abe2f4375f899cfb5445956a29e711b\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:19:5-78
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:20:22-76
+activity#com.google.android.gms.ads.AdActivity
+ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:25:9-232
+	android:configChanges
+		ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:25:72-181
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:25:182-230
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:25:19-71
+activity#com.google.android.gms.ads.purchase.InAppPurchaseActivity
+ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:26:9-131
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:26:92-129
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:10.0.1] C:\Users\ChomChom\.android\build-cache\869d54b32e1aaa0b666bee0ad70dc5b7e0ba85b4\output\AndroidManifest.xml:26:19-91
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.android.gms:play-services-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\9fa23ce9eefe3770240a7f2b2961c4675e50c01b\output\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8971faab1abe2f4375f899cfb5445956a29e711b\output\AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:21:5-67
+	android:name
+		ADDED from [com.google.android.gms:play-services-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\9fa23ce9eefe3770240a7f2b2961c4675e50c01b\output\AndroidManifest.xml:24:22-65
+activity#com.google.android.gms.appinvite.PreviewActivity
+ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:20:9-25:20
+	android:exported
+		ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:20:51-74
+	android:theme
+		ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:20:75-121
+	android:name
+		ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:20:19-50
+intent-filter#android.intent.category.DEFAULT+com.google.android.gms.appinvite.ACTION_PREVIEW
+ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:21:13-24:29
+action#com.google.android.gms.appinvite.ACTION_PREVIEW
+ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:22:17-89
+	android:name
+		ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:22:25-87
+category#android.intent.category.DEFAULT
+ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:23:17-75
+	android:name
+		ADDED from [com.google.android.gms:play-services-appinvite:10.0.1] C:\Users\ChomChom\.android\build-cache\a7e4913b4d2032867346f2b71a40cb58d9cbb123\output\AndroidManifest.xml:23:27-73
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:20:9-189
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:20:129-162
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:20:163-187
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:20:69-128
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:20:19-68
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:24:9-184
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:24:64-87
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:24:88-182
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:10.0.1] C:\Users\ChomChom\.android\build-cache\e99f2ff9ed045c6c74a57b903423e431addb6a35\output\AndroidManifest.xml:24:18-63
+receiver#com.google.android.gms.cast.framework.media.MediaIntentReceiver
+ADDED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:5:9-99
+	android:name
+		ADDED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:5:19-97
+service#com.google.android.gms.cast.framework.media.MediaNotificationService
+ADDED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:6:9-103
+	android:name
+		ADDED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:6:18-101
+service#com.google.android.gms.cast.framework.ReconnectionService
+ADDED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:7:9-92
+	android:name
+		ADDED from [com.google.android.gms:play-services-cast-framework:10.0.1] C:\Users\ChomChom\.android\build-cache\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\output\AndroidManifest.xml:7:18-90
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:23:9-27:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:23:88-111
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:23:18-87
+intent-filter#com.google.firebase.MESSAGING_EVENT
+ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:24:13-26:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:24:28-51
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:10.0.1] C:\Users\ChomChom\.android\build-cache\2275fa512d5c6f2ec36383cb3604b7fbf9fa3c62\output\AndroidManifest.xml:25:25-75
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.android.gms:play-services-gcm:10.0.1] C:\Users\ChomChom\.android\build-cache\90f22d5269172b908ce8d45de27248421bfb6703\output\AndroidManifest.xml:20:5-81
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\73381399bfa53b63a0cafdd8d99067f468ee59d1\output\AndroidManifest.xml:20:5-81
+MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.google.android.gms:play-services-gcm:10.0.1] C:\Users\ChomChom\.android\build-cache\90f22d5269172b908ce8d45de27248421bfb6703\output\AndroidManifest.xml:20:22-79
+service#com.google.android.gms.tagmanager.TagManagerService
+ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:24:9-134
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:24:110-132
+	android:exported
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:24:85-109
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:24:18-84
+activity#com.google.android.gms.tagmanager.TagManagerPreviewActivity
+ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:25:9-32:20
+	android:noHistory
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:25:94-118
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:25:19-93
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:26:13-31:29
+data
+ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:27:17-71
+	android:scheme
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:27:23-69
+action#android.intent.action.VIEW
+ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:28:17-68
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:28:25-66
+category#android.intent.category.BROWSABLE
+ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:30:17-77
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:10.0.1] C:\Users\ChomChom\.android\build-cache\eb0273552e714a268e9919c448e80c527dec5463\output\AndroidManifest.xml:30:27-75
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:21:5-77
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:21:19-51
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:10.0.1] C:\Users\ChomChom\.android\build-cache\463032c9ce19aa93a26ca53d3ce142eaec3a4fd1\output\AndroidManifest.xml:21:52-75
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\ChomChom\.android\build-cache\6158613ebe47017e84a6415673295a22dc4e2040\output\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\ChomChom\.android\build-cache\6158613ebe47017e84a6415673295a22dc4e2040\output\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\ChomChom\.android\build-cache\6158613ebe47017e84a6415673295a22dc4e2040\output\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\ChomChom\.android\build-cache\6158613ebe47017e84a6415673295a22dc4e2040\output\AndroidManifest.xml:19:19-85
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:25:7-26:18
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:25:7-26:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:25:90-112
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:25:113-137
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:25:17-89
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:27:7-31:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:27:162-184
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:27:105-161
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:27:17-104
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:28:11-30:27
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:29:15-76
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:29:23-74
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:32:7-137
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\ChomChom\.android\build-cache\8017c7b945784e498d7ceeaaa53cf04fecbac880\output\AndroidManifest.xml:27:7-137
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:32:88-110
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:32:111-135
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\ChomChom\.android\build-cache\6ca738b8d0be8e460045bb71ea2bb7292c59ca23\output\AndroidManifest.xml:32:16-87
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:24:5-109
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:24:72-107
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:24:17-71
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:26:5-78
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:26:22-76
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:30:9-36:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:30:85-108
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:30:109-169
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:30:19-84
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:31:13-35:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:32:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:32:25-78
+action#com.google.android.c2dm.intent.REGISTRATION
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:33:17-85
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:33:25-83
+category#${applicationId}
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:34:17-60
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:34:27-58
+receiver#com.google.firebase.iid.FirebaseInstanceIdInternalReceiver
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:40:9-119
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:40:93-117
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:40:19-92
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:44:9-48:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:44:83-106
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:44:18-82
+intent-filter#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:45:13-47:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:45:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:46:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\ChomChom\.android\build-cache\54585bdd90bc10f40a450f89c241970d59d55048\output\AndroidManifest.xml:46:25-77
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:6:9-194
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:6:19-78
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:6:144-168
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:6:169-192
+	android:name
+		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\ChomChom\.android\build-cache\b73600fa0ef00cfc25d3bcfe2e95629df6f4bf6d\output\AndroidManifest.xml:6:79-143
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\ChomChom\.android\build-cache\57a4b9d529321a98d62e20363187339148fc0a5e\output\AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\ChomChom\.android\build-cache\57a4b9d529321a98d62e20363187339148fc0a5e\output\AndroidManifest.xml:20:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\ChomChom\.android\build-cache\57a4b9d529321a98d62e20363187339148fc0a5e\output\AndroidManifest.xml:20:20-65

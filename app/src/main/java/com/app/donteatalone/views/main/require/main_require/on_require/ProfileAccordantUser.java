@@ -1,6 +1,7 @@
 package com.app.donteatalone.views.main.require.main_require.on_require;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -9,7 +10,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -135,7 +138,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
                 public void onResponse(Call<UserName> call, Response<UserName> response) {
                     if (response.body() != null) {
                         UserName userName = new UserName(ProfileAccordantUser.this, response.body().getPhone(), response.body().getFullName(),
-                                response.body().getPassword(),response.body().getAvatar(),response.body().getBirthday(),
+                                response.body().getPassword(), response.body().getAvatar(), response.body().getBirthday(),
                                 response.body().getGender(), response.body().getAddress(), response.body().getLatlngAdress(),
                                 response.body().getMyCharacter(), response.body().getMyStyle(), response.body().getTargetCharacter(),
                                 response.body().getTargetStyle(), response.body().getTargetFood());
@@ -209,18 +212,24 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
 
     private void putDataHobbyIntoReference(UserName userName) {
-
-        tvTargetFoods.setText(Html.fromHtml("Food's Target are <font color='#000'>" + userName.getTargetFood() + "</font>"));
-
-        tvTargetCharacters.setText(Html.fromHtml("Character's Target are <font color='#000'>" + userName.getTargetCharacter() + "</font>"));
-
-        tvTargetStyles.setText(Html.fromHtml("Style's Target are <font color='#000'>" + userName.getTargetStyle() + "</font>"));
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target) + userName.getTargetFood(),
+                getResources().getString(R.string.food_target).length(),
+                getResources().getString(R.string.food_target).length() + userName.getTargetFood().length()));
+        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target) + userName.getTargetCharacter(),
+                getResources().getString(R.string.character_target).length(),
+                getResources().getString(R.string.character_target).length() + userName.getTargetCharacter().length()));
+        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target) + userName.getTargetStyle(),
+                getResources().getString(R.string.style_target).length(),
+                getResources().getString(R.string.style_target).length() + userName.getTargetStyle().length()));
     }
 
     private void putDataPersonalIntoReference(UserName userName) {
-        tvCharacters.setText(Html.fromHtml("Characters are <font color='#000'>" + userName.getMyCharacter() + "</font>"));
-
-        tvStyles.setText(Html.fromHtml("Styles are <font color='#000'>" + userName.getMyStyle() + "</font>"));
+        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character) + userName.getMyCharacter(),
+                getResources().getString(R.string.my_character).length(),
+                getResources().getString(R.string.my_character).length() + userName.getMyCharacter().length()));
+        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style) + userName.getMyStyle(),
+                getResources().getString(R.string.my_style).length(),
+                getResources().getString(R.string.my_style).length() + userName.getMyStyle().length()));
     }
 
     private void setClickButtonLike() {
@@ -247,6 +256,14 @@ public class ProfileAccordantUser extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private Spannable setMultiColorText(String text, int start, int end) {
+        Spannable spannable = new SpannableString(text);
+
+        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        return spannable;
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {

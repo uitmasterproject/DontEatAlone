@@ -1,12 +1,15 @@
 package com.app.donteatalone.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Le Hoang Han on 6/28/2017
  */
 
-public class ProfileHistoryModel {
+public class ProfileHistoryModel implements Parcelable {
     @SerializedName("AccordantPhone")
     private String accordantPhone;
 
@@ -56,6 +59,31 @@ public class ProfileHistoryModel {
         this.myAppraise = myAppraise;
         this.accordantAppraise = accordantAppraise;
     }
+
+    protected ProfileHistoryModel(Parcel in) {
+        accordantPhone = in.readString();
+        accordantFullName = in.readString();
+        timeSend = in.readString();
+        timer = in.readString();
+        date = in.readString();
+        place = in.readString();
+        myRate = in.readByte() != 0;
+        accordantRate = in.readByte() != 0;
+        myAppraise = in.readString();
+        accordantAppraise = in.readString();
+    }
+
+    public static final Creator<ProfileHistoryModel> CREATOR = new Creator<ProfileHistoryModel>() {
+        @Override
+        public ProfileHistoryModel createFromParcel(Parcel in) {
+            return new ProfileHistoryModel(in);
+        }
+
+        @Override
+        public ProfileHistoryModel[] newArray(int size) {
+            return new ProfileHistoryModel[size];
+        }
+    };
 
     public String getTimer() {
         return timer;
@@ -135,5 +163,24 @@ public class ProfileHistoryModel {
 
     public void setAccordantAppraise(String accordantAppraise) {
         this.accordantAppraise = accordantAppraise;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(accordantPhone);
+        dest.writeString(accordantFullName);
+        dest.writeString(timeSend);
+        dest.writeString(timer);
+        dest.writeString(date);
+        dest.writeString(place);
+        dest.writeByte((byte) (myRate ? 1 : 0));
+        dest.writeByte((byte) (accordantRate ? 1 : 0));
+        dest.writeString(myAppraise);
+        dest.writeString(accordantAppraise);
     }
 }

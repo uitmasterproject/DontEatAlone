@@ -27,14 +27,14 @@ public class SelectOptionDialog {
         this.activity = activity;
     }
 
-    public void showDialog(ImageView imageView, final int count, LinearLayout linearLayout){
-        Dialog dialog=new Dialog(activity);
+    public void showDialog(ImageView imageView, final int count, LinearLayout linearLayout) {
+        Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view= ((LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_dialog_activity_blog_write_status_option,null,false);
+        View view = ((LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_dialog_activity_blog_write_status_option, null, false);
 
-        TextView txtDeleteImage=(TextView) view.findViewById(R.id.custom_dialog_activity_blog_write_status_option_txt_delete_image);
-        TextView txtInsertImage=(TextView) view.findViewById(R.id.custom_dialog_activity_blog_write_status_option_txt_insert_image);
-        TextView txtInsertContent=(TextView) view.findViewById(R.id.custom_dialog_activity_blog_write_status_option_txt_insert_content);
+        TextView txtDeleteImage = (TextView) view.findViewById(R.id.custom_dialog_activity_blog_write_status_option_txt_delete_image);
+        TextView txtInsertImage = (TextView) view.findViewById(R.id.custom_dialog_activity_blog_write_status_option_txt_insert_image);
+        TextView txtInsertContent = (TextView) view.findViewById(R.id.custom_dialog_activity_blog_write_status_option_txt_insert_content);
 
         txtDeleteImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +51,7 @@ public class SelectOptionDialog {
                 dialog.dismiss();
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
-                activity.startActivityForResult(intent, count+3);
+                activity.startActivityForResult(intent, count + 3);
             }
         });
 
@@ -65,16 +65,16 @@ public class SelectOptionDialog {
                 edtAddContentBlog.requestFocus();
                 edtAddContentBlog.setTextColor(Color.BLACK);
 
-                linearLayout.addView(edtAddContentBlog,count+1);
+                linearLayout.addView(edtAddContentBlog, count + 1);
 
-                for(int count=0;count<linearLayout.getChildCount();count++) {
+                for (int count = 0; count < linearLayout.getChildCount(); count++) {
                     if (linearLayout.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
                         final ImageView dynamicImage = (ImageView) linearLayout.getChildAt(count);
                         int finalCount = count;
                         dynamicImage.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
                             public boolean onLongClick(View v) {
-                                new SelectOptionDialog(activity).showDialog(dynamicImage, finalCount,linearLayout);
+                                new SelectOptionDialog(activity).showDialog(dynamicImage, finalCount, linearLayout);
                                 return false;
                             }
                         });

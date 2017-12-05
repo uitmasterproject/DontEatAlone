@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import static com.app.donteatalone.views.register.RegisterStep1Fragment.userName;
 
 /**
@@ -129,7 +131,7 @@ public class RegisterStep2Fragment extends Fragment {
                     if (edtPassword.getText().toString().length() < 6) {
                         tilErrorPassword.setError("Length password is longer 6 character");
                     } else {
-                        userName.setFullName(AppUtils.convertStringToNFD(edtFullName.getText().toString()));
+                        userName.setFullName(StringEscapeUtils.escapeJava(edtFullName.getText().toString()));
                         userName.setPassword(edtPassword.getText().toString());
                         _mViewPager.setCurrentItem(2, true);
                     }

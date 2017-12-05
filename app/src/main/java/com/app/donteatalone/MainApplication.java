@@ -1,8 +1,8 @@
 package com.app.donteatalone;
 
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
-
-import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.androidannotations.annotations.EApplication;
 
@@ -13,6 +13,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  */
 @EApplication
 public class MainApplication extends MultiDexApplication {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {

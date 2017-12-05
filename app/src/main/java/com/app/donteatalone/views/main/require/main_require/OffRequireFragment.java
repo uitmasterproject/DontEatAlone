@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.profile.ProfileDialogCustom;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -32,6 +31,8 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
 import java.util.Calendar;
@@ -67,7 +68,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         viewGroup = inflater.inflate(R.layout.fragment_require_off, container, false);
         accountSharePreference = new MySharePreference(getActivity());
         phone = accountSharePreference.getPhoneLogin();
-        putInforRequireintoShareReference();
+        putInfoRequireIntoShareReference();
 
         init();
 
@@ -83,11 +84,15 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         rlGenderAll = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_all);
         rlGenderFemale = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_female);
         rlGenderMale = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_male);
+
         txtGenderAll = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_all);
         txtGenderMale = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_male);
         txtGenderFemale = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_female);
+
         txtGenderAll.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
+
         llContainerAge = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_range);
+
         txtAge = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_age);
 
         txtAge.setText(setDefaultValue(infoRequireSharePreference.getAgeMinRequire(), "20") + " - " + setDefaultValue(infoRequireSharePreference.getAgeMaxRequire(), "25"));
@@ -95,21 +100,21 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         llContainerAddress = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_address);
 
         txtAdress = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_address);
-        txtAdress.setText(setDefaultValue(infoRequireSharePreference.getAddressRequire(), "Cho Ben Thanh, Quan 1, Ho Chi Minh, Vietnam"));
-        location = setDefaultValue(infoRequireSharePreference.getLatLngAddressRequire(), "10.771423,106.698471");
+        txtAdress.setText(setDefaultValue(StringEscapeUtils.unescapeJava(infoRequireSharePreference.getAddressRequire()), getString(R.string.default_address)));
+        location = setDefaultValue(infoRequireSharePreference.getLatLngAddressRequire(), getString(R.string.default_lat_lng));
 
         llContainerHobbyFood = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_food);
         llContainerHobbyCharacter = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_character);
         llContainerHobbyStyle = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_ll_container_hobby_style);
+
         txtHobbyFood = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_food);
+        txtHobbyFood.setText(StringEscapeUtils.unescapeJava(infoRequireSharePreference.getTargetFoodRequire()));
 
-        txtHobbyFood.setText(infoRequireSharePreference.getTargetFoodRequire());
         txtHobbyCharacter = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_character);
+        txtHobbyCharacter.setText(StringEscapeUtils.unescapeJava(infoRequireSharePreference.getTargetCharacterRequire()));
 
-        txtHobbyCharacter.setText(infoRequireSharePreference.getTargetCharacterRequire());
         txtHobbyStyle = (TextView) viewGroup.findViewById(R.id.fragment_required_off_txt_hobby_style);
-
-        txtHobbyStyle.setText(infoRequireSharePreference.getTargetStyleRequire());
+        txtHobbyStyle.setText(StringEscapeUtils.unescapeJava(infoRequireSharePreference.getTargetStyleRequire()));
     }
 
     private String setDefaultValue(String value, String defaultValue) {
@@ -215,9 +220,9 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
 
     @Override
     public void onPlaceSelected(Place place) {
-        txtAdress.setText(AppUtils.convertStringToNFD(getString(R.string.formatted_place_data, place.getName(), place.getAddress())));
+        txtAdress.setText(getString(R.string.formatted_place_data, place.getName(), place.getAddress()));
         location = place.getLatLng().toString().substring(10, place.getLatLng().toString().length() - 1);
-        infoRequireSharePreference.setAddressRequire(txtAdress.getText().toString());
+        infoRequireSharePreference.setAddressRequire(StringEscapeUtils.escapeJava(txtAdress.getText().toString()));
         infoRequireSharePreference.setLatLngAddressRequire(location);
     }
 
@@ -302,7 +307,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         alertDialog.show();
     }
 
-    private void putInforRequireintoShareReference() {
+    private void putInfoRequireIntoShareReference() {
 
         File f = new File("/data/data/" + getContext().getPackageName() + "/shared_prefs/" + "DONTEATALONE.INFORREQUIRE" + "_" + phone + ".xml");
         if (!f.exists()) {
