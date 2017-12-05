@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="contentDescription, MissingPrefix">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey" />
+
+    <LinearLayout
+        android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_not_reservation_ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@color/app_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_not_reservation_iv_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/blue_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp">
+
+            <!--Restaurant's name-->
+            <TextView
+                android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_not_reservation_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Display restaurant's name"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+            <!--Restaurant's address-->
+            <TextView
+                android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_not_reservation_tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="display restaurant's address"
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="14sp"
+                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+            <!--Restaurant's time-->
+            <!--Only show ->> all day, breakfast, lunch, dinner-->
+            <TextView
+                android:id="@+id/custom_adapter_recycerview_fragment_restaurant_not_reservation_tv_open_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:drawableStart="@drawable/ic_time"
+                android:text="display restaurant's open time"
+                android:textColor="@color/color_deep_orange_1"
+                android:textSize="14sp"
+                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
