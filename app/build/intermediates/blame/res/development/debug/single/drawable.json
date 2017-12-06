@@ -48,6 +48,10 @@
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_rectangle_radius10_orange_search.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_rectangle_radius10_orange_search.xml"
+    },
+    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_rightsight_default.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_rightsight_default.xml"
     },

@@ -12,6 +12,10 @@
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\layout\\design_layout_snackbar.xml"
     },
     {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_adapter_recyclerview_fragment_restaurant_reservation.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_adapter_recyclerview_fragment_restaurant_reservation.xml"
+    },
+    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\49889d13ab5ac089a2a1285ac37a0568b8faf773\\output\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
     },
@@ -120,6 +124,14 @@
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_notification.xml"
     },
     {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_restaurant_not_reservation.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_restaurant_not_reservation.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_restaurant_new.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_restaurant_new.xml"
+    },
+    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\tutorial_screen_step_2.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\tutorial_screen_step_2.xml"
     },
@@ -150,6 +162,10 @@
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_action_mode_bar.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_restaurant_reservation.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_restaurant_reservation.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_adapter_gridview_dialog_show_felling.xml",
@@ -398,6 +414,10 @@
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_adapter_recyclerview_fragment_restaurant_not_reservation.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_adapter_recyclerview_fragment_restaurant_not_reservation.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_select_dialog_material.xml",

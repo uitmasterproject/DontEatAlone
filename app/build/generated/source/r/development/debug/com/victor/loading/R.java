@@ -25,15 +25,15 @@ public final class R {
         public static final int page_border = 0x7f0b00b8;
     }
     public static final class id {
-        public static final int ball_five = 0x7f110273;
-        public static final int ball_four = 0x7f110272;
-        public static final int ball_one = 0x7f11026f;
-        public static final int ball_three = 0x7f110271;
-        public static final int ball_two = 0x7f110270;
+        public static final int ball_five = 0x7f110281;
+        public static final int ball_four = 0x7f110280;
+        public static final int ball_one = 0x7f11027d;
+        public static final int ball_three = 0x7f11027f;
+        public static final int ball_two = 0x7f11027e;
     }
     public static final class layout {
         public static final int book_loading = 0x7f040023;
-        public static final int newton_cradle_loading = 0x7f04006e;
+        public static final int newton_cradle_loading = 0x7f040073;
     }
     public static final class string {
         public static final int app_name = 0x7f0a007d;
