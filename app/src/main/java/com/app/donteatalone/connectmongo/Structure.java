@@ -22,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by ChomChom on 3/13/2017
@@ -104,4 +105,7 @@ public interface Structure {
 
         @GET("/accordant/{phone}")
         Call<Achievement> getAchievement(@Path("phone") String phone);
+
+        @GET("api/v1/posts?province={province}&district={district}")
+        Call<ArrayList<Restaurant>> getDetailListRestaurant(@Query("province") String province, @Query("district") String district);
 }

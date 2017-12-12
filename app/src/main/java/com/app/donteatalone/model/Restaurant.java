@@ -1,16 +1,21 @@
 package com.app.donteatalone.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ChomChom on 26-Jun-17
  */
 
 public class Restaurant {
+    private int id;
+    @SerializedName("title")
     private String name;
     private String address;
     private String latlng;
     private String openDay;
 
-    public Restaurant(String name, String address, String latlng, String openDay) {
+    public Restaurant(int id, String name, String address, String latlng, String openDay) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.latlng = latlng;
@@ -18,6 +23,14 @@ public class Restaurant {
     }
 
     public Restaurant() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

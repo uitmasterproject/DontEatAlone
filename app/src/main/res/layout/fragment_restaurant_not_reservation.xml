@@ -2,26 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/app_background"
     android:orientation="vertical">
-
-    <AutoCompleteTextView
-        android:id="@+id/fragment_restaurant_not_reservation_actv_search"
+    <LinearLayout
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:padding="3dp"
-        android:drawableStart="@drawable/search"
-        android:drawablePadding="5dp"
-        android:text=""
-        android:textColor="@color/black"
-        android:background="@drawable/bg_rectangle_radius10_orange_search"
-        />
+        android:weightSum="2">
+        <Spinner
+            android:id="@+id/choose_city"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:textColor="@color/black"
+            android:background="@drawable/bg_rectangle_radius10_orange_search"/>
+        <View
+            android:layout_width="20dp"
+            android:layout_height="30dp"/>
+        <Spinner
+            android:id="@+id/choose_district"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:textColor="@color/black"
+            android:background="@drawable/bg_rectangle_radius10_orange_search"/>
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_restaurant_not_reservation_rv_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

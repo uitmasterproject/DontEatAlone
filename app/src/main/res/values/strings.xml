@@ -369,6 +369,38 @@
         <item>Huyện Cần Giờ</item>
     </string-array>
 
+    <string-array name="ID_District">
+        <item>760</item>
+        <item>761</item>
+        <item>762</item>
+        <item>763</item>
+        <item>764</item>
+        <item>765</item>
+        <item>766</item>
+        <item>767</item>
+        <item>768</item>
+        <item>769</item>
+        <item>770</item>
+        <item>771</item>
+        <item>772</item>
+        <item>773</item>
+        <item>774</item>
+        <item>775</item>
+        <item>776</item>
+        <item>777</item>
+        <item>778</item>
+        <item>783</item>
+        <item>784</item>
+        <item>785</item>
+        <item>786</item>
+        <item>787</item>
+    </string-array>
+
+
+    <string-array name="City">
+        <item>Tp.Hồ Chí Minh</item>
+    </string-array>
+
     <string-array name="limit">
         <item>public</item>
         <item>private</item>

@@ -56,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         clickForgetPassword();
         llRootTouch();
     }
-
     public void init() {
         mySharePreference = new MySharePreference(LoginActivity.this);
         edtPhone = (EditText) findViewById(R.id.activity_login_edt_phone);

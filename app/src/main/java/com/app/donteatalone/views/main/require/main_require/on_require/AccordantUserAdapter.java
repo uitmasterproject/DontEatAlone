@@ -244,7 +244,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
                 if(response.body().size()>0){
                     txtPlace.setText(response.body().get(0).getName());
                     for (Restaurant res:response.body()) {
-                        listRestaurant.add(new Restaurant(res.getName(),res.getAddress(),res.getLatlng(),res.getOpenDay()));
+                        listRestaurant.add(new Restaurant(res.getId(),res.getName(),res.getAddress(),res.getLatlng(),res.getOpenDay()));
                     }
                 }
             }

@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/app_background"
-    android:orientation="vertical"
-    tools:ignore="contentDescription, MissingPrefix">
+    android:orientation="vertical">
 
-
-    <android.support.v4.view.PagerTabStrip
+    <android.support.design.widget.TabLayout
         android:id="@+id/fragment_restaurant_tabs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:background="@color/white"
+        app:tabTextColor="@color/grey"
+        app:tabSelectedTextColor="@color/color_deep_orange"
         android:foregroundGravity="center"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp">
+        android:layout_gravity="top"
+        android:paddingBottom="4dp"/>
 
-    </android.support.v4.view.PagerTabStrip>
-
-    <android.support.v4.view.ViewPager
+    <com.app.donteatalone.views.register.CustomViewPager
         android:id="@+id/fragment_restaurant_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    </android.support.v4.view.ViewPager>
-
-
+        android:layout_height="match_parent"/>
 </LinearLayout>
