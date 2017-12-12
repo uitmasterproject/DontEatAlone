@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\SOLUTION\DontEatAlone\app\build\intermediates\incremental-runtime-classes\development\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\SOLUTION\DontEatAlone\app\build\intermediates\transforms\dex\development\debug\folders\1000\10000\instant-run_8d92f2abfc7075c18affddc19a4daecc9d2ddefb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\SOLUTION\DontEatAlone\app\build\intermediates\incremental-classes\development\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3accf0519e08cd3283a90b6558d5950aeca6ed81">
+        <dex dex="D:\SOLUTION\DontEatAlone\app\build\intermediates\transforms\dex\development\debug\folders\1000\10000\instant-run-bootstrap_8c03d3a7bc4816cfab6face00410e1f84982c53c\classes.dex" />
+    </item>
+
+</items>

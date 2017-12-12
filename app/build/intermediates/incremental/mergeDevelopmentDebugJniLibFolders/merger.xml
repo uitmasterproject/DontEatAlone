@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\SOLUTION\DontEatAlone\app\src\main\jniLibs"/></dataSet><dataSet config="development"><source path="D:\SOLUTION\DontEatAlone\app\src\development\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\SOLUTION\DontEatAlone\app\src\debug\jniLibs"/></dataSet><dataSet config="developmentDebug"><source path="D:\SOLUTION\DontEatAlone\app\src\developmentDebug\jniLibs"/></dataSet></merger>
