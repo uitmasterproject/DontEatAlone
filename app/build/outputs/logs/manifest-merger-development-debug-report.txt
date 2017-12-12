@@ -191,7 +191,7 @@ MERGED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.android\build
 MERGED from [com.android.support:transition:25.3.1] C:\Users\ChomChom\.android\build-cache\be382eabeba2fa9a6ad9813b44207d4a76742f17\output\AndroidManifest.xml:20:5-44
 MERGED from [net.danlew:android.joda:2.9.9] C:\Users\ChomChom\.android\build-cache\c5160f6710707fcce9971119ee84fe265ade53f6\output\AndroidManifest.xml:6:5-43
 MERGED from [uk.co.chrisjenx:calligraphy:2.2.0] C:\Users\ChomChom\.android\build-cache\d02d2d9d47379cecc166bd21f5158668d0849c44\output\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:multidex:1.0.0] C:\Users\ChomChom\.android\build-cache\afea842dcf99589b652c2bfc5ce072c76f715781\output\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:multidex:1.0.1] C:\Users\ChomChom\.android\build-cache\24d1b87b8716bbcc9bbe6da68d5cfbb2300b3d13\output\AndroidManifest.xml:18:5-42
 MERGED from [com.wang.avi:library:2.1.3] C:\Users\ChomChom\.android\build-cache\5708f9e76579775f72830979cbed2b0c44a47aa5\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.gms:play-services:10.0.1] C:\Users\ChomChom\.android\build-cache\226a165f8f1bc2cc7b334c1f5b601759cc4bf809\output\AndroidManifest.xml:4:5-42
 MERGED from [com.google.android.gms:play-services-ads:10.0.1] C:\Users\ChomChom\.android\build-cache\35f66c2a94407c931871850fc369dd1e9987f899\output\AndroidManifest.xml:17:5-42
