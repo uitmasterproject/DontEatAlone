@@ -31,7 +31,7 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
 
     @Override
     public void onBindViewHolder(NoReservationAdapter.MyViewHolder holder, int position) {
-        holder.txtName.setText(listRestaurant.get(position).getName());
+        //holder.txtName.setText(listRestaurant.get(position).getName());
         holder.txtAddress.setText(listRestaurant.get(position).getAddress());
     }
 

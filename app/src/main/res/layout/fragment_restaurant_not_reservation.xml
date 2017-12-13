@@ -2,31 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/app_background"
     android:orientation="vertical">
+
     <LinearLayout
-        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2">
-        <Spinner
-            android:id="@+id/choose_city"
+        android:background="@color/app_background"
+        android:padding="10dp">
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="30dp"
-            android:textColor="@color/black"
-            android:background="@drawable/bg_rectangle_radius10_orange_search"/>
+            android:layout_weight="1"
+            android:background="@color/grey">
+
+            <Spinner
+                android:id="@+id/choose_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+
         <View
-            android:layout_width="20dp"
-            android:layout_height="30dp"/>
-        <Spinner
-            android:id="@+id/choose_district"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_weight="0.05" />
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:textColor="@color/black"
-            android:background="@drawable/bg_rectangle_radius10_orange_search"/>
+            android:layout_weight="1"
+            android:background="@color/grey">
+
+            <Spinner
+                android:id="@+id/choose_district"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

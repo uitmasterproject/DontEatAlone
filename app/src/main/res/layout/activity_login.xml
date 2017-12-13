@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:appt="http://schemas.android.com/tools"
     android:background="@drawable/background"
     android:fitsSystemWindows="false"
     android:orientation="vertical">
@@ -41,7 +41,7 @@
                     android:text="@string/login_text"
                     android:textColor="@color/color_deep_orange"
                     android:textSize="30sp"
-                    app:fontPath="fonts/Roboto-Bold" />
+                    appt:fontPath="fonts/RobotoCondensed-Bold.ttf"/>
             </RelativeLayout>
 
             <View
@@ -72,8 +72,7 @@
                         android:maxLines="1"
                         android:padding="15dp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
-                        app:fontPath="fonts/Roboto-Regular" />
+                        android:textColorHint="@color/grey" />
 
                     <View
                         android:layout_width="match_parent"
@@ -90,8 +89,7 @@
                         android:maxLines="1"
                         android:padding="15dp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
-                        app:fontPath="fonts/Roboto-Regular" />
+                        android:textColorHint="@color/grey" />
 
                 </LinearLayout>
 
@@ -113,8 +111,7 @@
                         android:gravity="center"
                         android:text="@string/remember_me"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        app:fontPath="fonts/Roboto-Regular">
+                        android:textSize="16sp">
 
                     </CheckBox>
 
@@ -139,8 +136,7 @@
                             android:gravity="center"
                             android:text="@string/forgot_password"
                             android:textColor="@color/bg_text_color_orange_white"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -156,8 +152,7 @@
                     android:padding="13dp"
                     android:text="@string/login_text"
                     android:textColor="@color/bg_text_color_orange_white"
-                    android:textSize="20sp"
-                    app:fontPath="fonts/Roboto-Bold.ttf">
+                    android:textSize="20sp">
 
                 </Button>
 
@@ -177,8 +172,7 @@
                         android:layout_alignParentTop="true"
                         android:text="@string/new_here_create_an_account"
                         android:textColor="@color/bg_text_color_orange_white"
-                        android:textSize="16sp"
-                        app:fontPath="fonts/Roboto-Regular" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 

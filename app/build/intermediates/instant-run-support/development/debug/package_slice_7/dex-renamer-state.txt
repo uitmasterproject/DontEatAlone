@@ -1,4 +1,4 @@
-#Wed Dec 13 03:11:24 ICT 2017
+#Wed Dec 13 13:57:58 ICT 2017
 base.0=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\transforms\\dex\\development\\debug\\folders\\1000\\5\\slice_7
 renamed.0=classes.dex
 file.0=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\transforms\\dex\\development\\debug\\folders\\1000\\5\\slice_7\\classes.dex

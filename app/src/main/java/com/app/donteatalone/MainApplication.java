@@ -7,16 +7,17 @@ import android.support.multidex.MultiDexApplication;
 import org.androidannotations.annotations.EApplication;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
- * -> Created by LeHoangHan on 4/4/2017.
+ * -> Created by LeHoangHan on 4/4/2017
  */
 @EApplication
 public class MainApplication extends MultiDexApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
         MultiDex.install(this);
     }
 
@@ -24,7 +25,7 @@ public class MainApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Montserrat-Regular.ttf")
+                .setDefaultFontPath("fonts/Roboto-Bold.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

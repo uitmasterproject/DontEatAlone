@@ -48,12 +48,12 @@
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_rectangle_radius10_orange_search.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_rectangle_radius10_orange_search.xml"
-    },
-    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_rightsight_default.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_rightsight_default.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_rectangle_radius10_orange_search.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_rectangle_radius10_orange_search.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_dialog_material_background.xml",
@@ -260,6 +260,10 @@
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_pause_light.xml"
     },
     {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_rectangle_radius_left.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_rectangle_radius_left.xml"
+    },
+    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_round_orange_edit_profile_no_pressed.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_round_orange_edit_profile_no_pressed.xml"
     },
@@ -278,6 +282,10 @@
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_ic_cast_light.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_ic_cast_light.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_rectangle_radius_right.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_rectangle_radius_right.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\btn_login.xml",

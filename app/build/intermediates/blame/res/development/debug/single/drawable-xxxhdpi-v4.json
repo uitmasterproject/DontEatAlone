@@ -180,6 +180,10 @@
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable-xxxhdpi-v4\\ic_cast_white.png"
     },
     {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-xxxhdpi-v4\\temp.jpg",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-xxxhdpi\\temp.jpg"
+    },
+    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-xxxhdpi-v4\\quantum_ic_replay_30_grey600_36.png",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable-xxxhdpi-v4\\quantum_ic_replay_30_grey600_36.png"
     },
