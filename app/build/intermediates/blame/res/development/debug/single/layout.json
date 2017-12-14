@@ -16,56 +16,56 @@
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_adapter_recyclerview_fragment_restaurant_reservation.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_action_menu_layout.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\abc_action_menu_layout.xml"
-    },
-    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\49889d13ab5ac089a2a1285ac37a0568b8faf773\\output\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\tutorial_screen_step_4.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\tutorial_screen_step_4.xml"
-    },
-    {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_dialog_require_on_result_invite.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_dialog_require_on_result_invite.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_register_step7.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_register_step7.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_dialog_require_on_result_invite.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_dialog_require_on_result_invite.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_require_off.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_require_off.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\tutorial_screen_step_4.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\tutorial_screen_step_4.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_register_step7.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_register_step7.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_dialog_profile_age.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_dialog_profile_age.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\mr_chooser_dialog.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\layout\\mr_chooser_dialog.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_require_off.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_require_off.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\design_bottom_navigation_item.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\layout\\design_bottom_navigation_item.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\mr_chooser_dialog.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\layout\\mr_chooser_dialog.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\cast_tracks_chooser_dialog_row_layout.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\layout\\cast_tracks_chooser_dialog_row_layout.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_dialog_profile_character.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_dialog_profile_character.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\design_bottom_navigation_item.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\b779a891f71b90b0d15fcd27bbe6ffd76a025a4e\\output\\res\\layout\\design_bottom_navigation_item.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\select_dialog_item_material.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\custom_dialog_profile_character.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\custom_dialog_profile_character.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\design_layout_snackbar_include.xml",
@@ -82,6 +82,10 @@
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\fragment_restaurant_reservation_book.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\layout\\fragment_restaurant_reservation_book.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",

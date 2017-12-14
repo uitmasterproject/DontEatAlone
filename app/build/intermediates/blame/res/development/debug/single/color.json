@@ -12,12 +12,12 @@
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\color\\bg_text_color_orange_orange2.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\color\\abc_btn_colored_text_material.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\color\\abc_btn_colored_text_material.xml"
-    },
-    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\color\\bg_text_color_black_orange.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\color\\bg_text_color_black_orange.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\color\\abc_btn_colored_text_material.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\color\\abc_btn_colored_text_material.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\color\\abc_primary_text_material_dark.xml",

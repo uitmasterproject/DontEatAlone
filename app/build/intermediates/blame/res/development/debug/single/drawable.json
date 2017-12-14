@@ -40,32 +40,32 @@
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_vector_test.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_vector_test.xml"
-    },
-    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_rightsight_default.xml",
-        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_rightsight_default.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_vector_test.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_vector_test.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bg_rectangle_radius10_orange_search.xml",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bg_rectangle_radius10_orange_search.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_dialog_material_background.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_dialog_material_background.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\design_require_off_txt_gender_rightsight_default.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\design_require_off_txt_gender_rightsight_default.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_dialog_material_background_light.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_dialog_material_background_light.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_ic_search_api_material.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_ic_search_api_material.xml"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\mr_dialog_material_background_light.xml",
-        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\985c0b0ab840fb5cf10248287704b100e3c4d209\\output\\res\\drawable\\mr_dialog_material_background_light.xml"
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\ChomChom\\.android\\build-cache\\853671dea378f8b0913bd1a615997c425a4a1af6\\output\\res\\drawable\\abc_dialog_material_background.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_skip_prev.xml",
@@ -142,6 +142,10 @@
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\cast_ic_notification_rewind.xml",
         "source": "C:\\Users\\ChomChom\\.android\\build-cache\\f23dc83dd6d8d40168b1071ab6aa40b8fe841f74\\output\\res\\drawable\\cast_ic_notification_rewind.xml"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\bt_rectangle_ripple_5_radius_grey.xml",
+        "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable\\bt_rectangle_ripple_5_radius_grey.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable\\abc_seekbar_track_material.xml",
