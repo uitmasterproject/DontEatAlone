@@ -1,1 +1,16 @@
-/build
+*.iml
+*.idea
+*.ipr
+*.iws
+*.hprof
+*.json
+out
+build
+captures
+.gradle
+.DS_Store
+local.properties
+/.idea
+/*.iml
+/local.properties
+/app/app.iml
