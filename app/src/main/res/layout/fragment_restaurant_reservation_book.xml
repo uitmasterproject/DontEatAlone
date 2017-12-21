@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RadioGroup
+                android:id="@+id/radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_restaurant_reservation_info_tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Display restaurant's name"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_1" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Ban-->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bt_rectangle_ripple_5_radius_grey">
+
+                    <Spinner
+                        android:id="@+id/spn_list_table"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/btn_round_orange_edit_profile"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="end|center"
+                        android:layout_marginEnd="25dp"
+                        android:src="@drawable/ic_down" />
+
+                </FrameLayout>
+
+                <!--Thoi gian-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <!--Chon buoi - lunch, dinner-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.5"
+                        android:background="@drawable/bt_rectangle_ripple_5_radius_grey">
+
+                        <Spinner
+                            android:id="@+id/spn_list_session"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black" />
+
+
+                    </LinearLayout>
+
+                    <!--List gio nguoi dung den - cach nhau 30 phut -->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rcv_list_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:layout_gravity="center"
+                        android:background="@android:color/darker_gray"
+                        android:orientation="horizontal">
+
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/btn_login_no_pressed"
+                    android:text="Reservation"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
