@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
+import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.utils.ImageProcessor;
 import com.app.donteatalone.utils.MySharePreference;
@@ -242,7 +243,7 @@ public class StatusActivity extends Activity {
                     title = infoBlog.getTitle();
                     thisDate = infoBlog.getDate();
                 }
-                ArrayList<String> image = new ArrayList<>();
+                final ArrayList<String> image = new ArrayList<>();
 
                 countImage = 0;
                 countResult = 0;
@@ -528,7 +529,7 @@ public class StatusActivity extends Activity {
         for (int count = 0; count < llContainer.getChildCount(); count++) {
             if (llContainer.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
                 final ImageView dynamicImage = (ImageView) llContainer.getChildAt(count);
-                int finalCount = count;
+                final int finalCount = count;
                 dynamicImage.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {

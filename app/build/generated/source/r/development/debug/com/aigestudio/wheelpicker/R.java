@@ -8,75 +8,75 @@ package com.aigestudio.wheelpicker;
 
 public final class R {
     public static final class array {
-        public static final int WheelArrayDefault = 0x7f10000a;
-        public static final int WheelArrayWeek = 0x7f10000b;
+        public static final int WheelArrayDefault = 0x7f03000a;
+        public static final int WheelArrayWeek = 0x7f03000b;
     }
     public static final class attr {
-        public static final int wheel_atmospheric = 0x7f0101f3;
-        public static final int wheel_curtain = 0x7f0101f1;
-        public static final int wheel_curtain_color = 0x7f0101f2;
-        public static final int wheel_curved = 0x7f0101f4;
-        public static final int wheel_cyclic = 0x7f0101ed;
-        public static final int wheel_data = 0x7f0101e3;
-        public static final int wheel_indicator = 0x7f0101ee;
-        public static final int wheel_indicator_color = 0x7f0101ef;
-        public static final int wheel_indicator_size = 0x7f0101f0;
-        public static final int wheel_item_align = 0x7f0101f5;
-        public static final int wheel_item_space = 0x7f0101ec;
-        public static final int wheel_item_text_color = 0x7f0101e6;
-        public static final int wheel_item_text_size = 0x7f0101e5;
-        public static final int wheel_maximum_width_text = 0x7f0101e9;
-        public static final int wheel_maximum_width_text_position = 0x7f0101ea;
-        public static final int wheel_same_width = 0x7f0101e8;
-        public static final int wheel_selected_item_position = 0x7f0101e4;
-        public static final int wheel_selected_item_text_color = 0x7f0101e7;
-        public static final int wheel_visible_item_count = 0x7f0101eb;
+        public static final int wheel_atmospheric = 0x7f0401d7;
+        public static final int wheel_curtain = 0x7f0401d8;
+        public static final int wheel_curtain_color = 0x7f0401d9;
+        public static final int wheel_curved = 0x7f0401da;
+        public static final int wheel_cyclic = 0x7f0401db;
+        public static final int wheel_data = 0x7f0401dc;
+        public static final int wheel_indicator = 0x7f0401dd;
+        public static final int wheel_indicator_color = 0x7f0401de;
+        public static final int wheel_indicator_size = 0x7f0401df;
+        public static final int wheel_item_align = 0x7f0401e0;
+        public static final int wheel_item_space = 0x7f0401e1;
+        public static final int wheel_item_text_color = 0x7f0401e2;
+        public static final int wheel_item_text_size = 0x7f0401e3;
+        public static final int wheel_maximum_width_text = 0x7f0401e4;
+        public static final int wheel_maximum_width_text_position = 0x7f0401e5;
+        public static final int wheel_same_width = 0x7f0401e6;
+        public static final int wheel_selected_item_position = 0x7f0401e7;
+        public static final int wheel_selected_item_text_color = 0x7f0401e8;
+        public static final int wheel_visible_item_count = 0x7f0401e9;
     }
     public static final class dimen {
-        public static final int WheelIndicatorSize = 0x7f0b0028;
-        public static final int WheelItemSpace = 0x7f0b0029;
-        public static final int WheelItemTextSize = 0x7f0b002a;
-        public static final int WheelMargins = 0x7f0b002b;
+        public static final int WheelIndicatorSize = 0x7f070000;
+        public static final int WheelItemSpace = 0x7f070001;
+        public static final int WheelItemTextSize = 0x7f070002;
+        public static final int WheelMargins = 0x7f070003;
     }
     public static final class id {
-        public static final int center = 0x7f110036;
-        public static final int left = 0x7f11003b;
-        public static final int right = 0x7f11003c;
-        public static final int wheel_date_picker_day = 0x7f1102bc;
-        public static final int wheel_date_picker_day_tv = 0x7f1102bd;
-        public static final int wheel_date_picker_month = 0x7f1102ba;
-        public static final int wheel_date_picker_month_tv = 0x7f1102bb;
-        public static final int wheel_date_picker_year = 0x7f1102b8;
-        public static final int wheel_date_picker_year_tv = 0x7f1102b9;
+        public static final int center = 0x7f090087;
+        public static final int left = 0x7f090201;
+        public static final int right = 0x7f09025c;
+        public static final int wheel_date_picker_day = 0x7f0902c5;
+        public static final int wheel_date_picker_day_tv = 0x7f0902c6;
+        public static final int wheel_date_picker_month = 0x7f0902c7;
+        public static final int wheel_date_picker_month_tv = 0x7f0902c8;
+        public static final int wheel_date_picker_year = 0x7f0902c9;
+        public static final int wheel_date_picker_year_tv = 0x7f0902ca;
     }
     public static final class layout {
-        public static final int view_wheel_date_picker = 0x7f040095;
+        public static final int view_wheel_date_picker = 0x7f0c0097;
     }
     public static final class string {
-        public static final int Day = 0x7f0a006e;
-        public static final int Month = 0x7f0a006f;
-        public static final int Year = 0x7f0a0070;
+        public static final int Day = 0x7f110000;
+        public static final int Month = 0x7f110001;
+        public static final int Year = 0x7f110002;
     }
     public static final class styleable {
-        public static final int[] WheelPicker = { 0x7f0101e3, 0x7f0101e4, 0x7f0101e5, 0x7f0101e6, 0x7f0101e7, 0x7f0101e8, 0x7f0101e9, 0x7f0101ea, 0x7f0101eb, 0x7f0101ec, 0x7f0101ed, 0x7f0101ee, 0x7f0101ef, 0x7f0101f0, 0x7f0101f1, 0x7f0101f2, 0x7f0101f3, 0x7f0101f4, 0x7f0101f5 };
-        public static final int WheelPicker_wheel_atmospheric = 16;
-        public static final int WheelPicker_wheel_curtain = 14;
-        public static final int WheelPicker_wheel_curtain_color = 15;
-        public static final int WheelPicker_wheel_curved = 17;
-        public static final int WheelPicker_wheel_cyclic = 10;
-        public static final int WheelPicker_wheel_data = 0;
-        public static final int WheelPicker_wheel_indicator = 11;
-        public static final int WheelPicker_wheel_indicator_color = 12;
-        public static final int WheelPicker_wheel_indicator_size = 13;
-        public static final int WheelPicker_wheel_item_align = 18;
-        public static final int WheelPicker_wheel_item_space = 9;
-        public static final int WheelPicker_wheel_item_text_color = 3;
-        public static final int WheelPicker_wheel_item_text_size = 2;
-        public static final int WheelPicker_wheel_maximum_width_text = 6;
-        public static final int WheelPicker_wheel_maximum_width_text_position = 7;
-        public static final int WheelPicker_wheel_same_width = 5;
-        public static final int WheelPicker_wheel_selected_item_position = 1;
-        public static final int WheelPicker_wheel_selected_item_text_color = 4;
-        public static final int WheelPicker_wheel_visible_item_count = 8;
+        public static final int[] WheelPicker = { 0x7f0401d7, 0x7f0401d8, 0x7f0401d9, 0x7f0401da, 0x7f0401db, 0x7f0401dc, 0x7f0401dd, 0x7f0401de, 0x7f0401df, 0x7f0401e0, 0x7f0401e1, 0x7f0401e2, 0x7f0401e3, 0x7f0401e4, 0x7f0401e5, 0x7f0401e6, 0x7f0401e7, 0x7f0401e8, 0x7f0401e9 };
+        public static final int WheelPicker_wheel_atmospheric = 0;
+        public static final int WheelPicker_wheel_curtain = 1;
+        public static final int WheelPicker_wheel_curtain_color = 2;
+        public static final int WheelPicker_wheel_curved = 3;
+        public static final int WheelPicker_wheel_cyclic = 4;
+        public static final int WheelPicker_wheel_data = 5;
+        public static final int WheelPicker_wheel_indicator = 6;
+        public static final int WheelPicker_wheel_indicator_color = 7;
+        public static final int WheelPicker_wheel_indicator_size = 8;
+        public static final int WheelPicker_wheel_item_align = 9;
+        public static final int WheelPicker_wheel_item_space = 10;
+        public static final int WheelPicker_wheel_item_text_color = 11;
+        public static final int WheelPicker_wheel_item_text_size = 12;
+        public static final int WheelPicker_wheel_maximum_width_text = 13;
+        public static final int WheelPicker_wheel_maximum_width_text_position = 14;
+        public static final int WheelPicker_wheel_same_width = 15;
+        public static final int WheelPicker_wheel_selected_item_position = 16;
+        public static final int WheelPicker_wheel_selected_item_text_color = 17;
+        public static final int WheelPicker_wheel_visible_item_count = 18;
     }
 }

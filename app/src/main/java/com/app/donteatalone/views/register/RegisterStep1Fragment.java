@@ -134,6 +134,8 @@ public class RegisterStep1Fragment extends Fragment {
                             tilErrorPhone.setError("This phone was exit");
                             edtPhone.setText("");
                         }
+                    }else{
+                        progressDialog.hideProgressLoading();
                     }
                 }
 

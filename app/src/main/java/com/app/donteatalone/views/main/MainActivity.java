@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class FragmentAdapter extends FragmentPagerAdapter {
+    public class FragmentAdapter extends FragmentStatePagerAdapter {
         private List<Fragment> mFragmentList = new ArrayList<>();
 
         public FragmentAdapter(FragmentManager fm) {

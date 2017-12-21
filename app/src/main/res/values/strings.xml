@@ -9,15 +9,15 @@
          %1$s, %2$s
     </string>
 
-    <string name="food_target">Target\'s Food are \b </string>
-    <string name="character_target">Target\'s Character are \b </string>
-    <string name="style_target">Target\'s Style are \b </string>
+    <string name="food_target">Target\'s Food are \t </string>
+    <string name="character_target">Target\'s Character are \t </string>
+    <string name="style_target">Target\'s Style are \t </string>
 
-    <string name="my_character">Characters are \b </string>
-    <string name="my_style">Styles are \b </string>
+    <string name="my_character">Characters are \t </string>
+    <string name="my_style">Styles are \t </string>
 
-    <string name="live_in">Live in \b</string>
-    <string name="phone_is">Phone is \b</string>
+    <string name="live_in">Live in \t</string>
+    <string name="phone_is">Phone is \t</string>
 
     <string name="suggestInvite"><u>You need wait for 5 minute to they respond</u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
@@ -56,6 +56,18 @@
 
     <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
     <string name="default_lat_lng">10.771423,106.698471</string>
+
+    <string name="open_door">Đang mở cửa</string>
+    <string name="close_door">Đang đóng cửa</string>
+    <string name="up_to_date">Đang cập nhật</string>
+
+    <string name="morning_session">buổi sáng</string>
+    <string name="lunch_session">buổi trưa</string>
+    <string name="evening_session">buổi tối</string>
+    <string name="night_session">buổi đêm</string>
+
+    <string name="empty_session">Chọn bàn khác</string>
+    <string name="table">Bàn \t</string>
 
     <string-array name="Day_31">
         <item>01</item>
@@ -347,11 +359,11 @@
         <item>Quận 12</item>
         <item>Thủ Đức</item>
         <item>Quận 9</item>
-        <item>Quận Gò Vấp</item>
-        <item>Quận Bình Thạnh</item>
-        <item>Quận Tân Bình</item>
-        <item>Quận Tân Phú</item>
-        <item>Quận Phú Nhuận</item>
+        <item>Gò Vấp</item>
+        <item>Bình Thạnh</item>
+        <item>Tân Bình</item>
+        <item>Tân Phú</item>
+        <item>Phú Nhuận</item>
         <item>Quận 2</item>
         <item>Quận 3</item>
         <item>Quận 10</item>
@@ -362,11 +374,11 @@
         <item>Quận 8</item>
         <item>Quận Bình Tân</item>
         <item>Quận 7</item>
-        <item>Huyện Củ Chi</item>
-        <item>Huyện Hóc Môn</item>
-        <item>Huyện Bình Chánh</item>
-        <item>Huyện Nhà Bè</item>
-        <item>Huyện Cần Giờ</item>
+        <item>Củ Chi</item>
+        <item>Hóc Môn</item>
+        <item>Bình Chánh</item>
+        <item>Nhà Bè</item>
+        <item>Cần Giờ</item>
     </string-array>
 
     <string-array name="ID_District">
@@ -398,7 +410,7 @@
 
 
     <string-array name="City">
-        <item>Tp.Hồ Chí Minh</item>
+        <item>Hồ Chí Minh</item>
     </string-array>
 
     <string-array name="limit">

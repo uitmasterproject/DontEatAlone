@@ -57,10 +57,10 @@
                                 android:id="@+id/fragment_require_on_custom_cardview_txt_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Name"
+                                android:maxLines="1"
+                                android:text="display name"
                                 android:textColor="@color/color_deep_orange_1"
-                                android:textSize="17sp"
-                                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+                                android:textSize="17sp" />
 
                         </LinearLayout>
 
@@ -96,42 +96,28 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.3"
+                        android:layout_weight="0.4"
                         android:gravity="center">
 
-                        <LinearLayout
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                        <TextView
+                            android:id="@+id/fragment_require_on_custom_cardview_txt_percent"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="10dp"
                             android:background="@drawable/bg_oval_round_orange"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/fragment_require_on_custom_cardview_txt_percent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="100%"
-                                android:textColor="@color/color_tab_selected"
-                                android:textSize="11sp" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
                             android:gravity="center"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp">
+                            android:text="100%"
+                            android:textColor="@color/color_tab_selected"
+                            android:textSize="12sp" />
 
-                            <ImageButton
-                                android:id="@+id/fragment_require_on_custom_cardview_ibtn_invite"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/transparent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_invite" />
 
-                        </LinearLayout>
+                        <ImageButton
+                            android:id="@+id/fragment_require_on_custom_cardview_ibtn_invite"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:background="@color/transparent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_invite" />
 
                     </LinearLayout>
 

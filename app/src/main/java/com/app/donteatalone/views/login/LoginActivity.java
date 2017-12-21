@@ -98,7 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                             } else {
                                 if (response.body().getStatus().equals("0")) {
-                                    if (!response.body().getUuid().equals(mySharePreference.getUUIDLogin())) {
+                                    if (!response.body().getUuid().equals(mySharePreference.getUUIDLogin())||
+                                            !edtPhone.getText().toString().equals(mySharePreference.getPhoneLogin())) {
                                         saveInfoUser();
                                     } else {
                                         checkRemember();

@@ -8,7 +8,9 @@ import com.app.donteatalone.model.InfoProfileUpdate;
 import com.app.donteatalone.model.InitParam;
 import com.app.donteatalone.model.ProfileHistoryModel;
 import com.app.donteatalone.model.Request;
+import com.app.donteatalone.model.ReservationDetail;
 import com.app.donteatalone.model.Restaurant;
+import com.app.donteatalone.model.RestaurantDetail;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 
@@ -89,10 +91,14 @@ public interface Structure {
         Call<ArrayList<Restaurant>> getRestaurant(@Path("latlng") String latlng);
         @GET("/restaurant/latlng/{latlng}")
         Call<ArrayList<Restaurant>> getRestaurantFollowLatlng(@Path("latlng") String latlng);
-        @GET("/restaurant/district/{district}")
-        Call<ArrayList<Restaurant>> getRestaurantFollowDistrict(@Path("district") String district);
-        @GET("/restaurant")
-        Call<ArrayList<Restaurant>> getAllRestaurant();
+        @GET("/restaurant/district/{city}/{district}")
+        Call<ArrayList<Restaurant>> getRestaurantFollowDistrict(@Path("city") String city,@Path("district") String district);
+        @GET("/restaurant/reservation/{city}/{district}")
+        Call<ArrayList<RestaurantDetail>> getListRestaurantReservation(@Path("city") String city,@Path("district") String district);
+        @GET("/restaurant/reservation/detail/{city}/{district}/{id}")
+        Call<RestaurantDetail> getRestaurantReservationDetail(@Path("city") String city,@Path("district") String district, @Path("id") String id);
+        @GET("/restaurant/reservation/table/{city}/{district}/{id}/{table}")
+        Call<ReservationDetail> getReservation(@Path("city") String city, @Path("district") String district, @Path("id") String id, @Path("table") String table);
 
         @GET("/eventhistory/{phone}")
         Call<ArrayList<ProfileHistoryModel>> getEventHistory(@Path("phone") String phone);

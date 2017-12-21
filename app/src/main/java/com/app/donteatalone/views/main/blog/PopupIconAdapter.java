@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.OnRecyclerItemClickListener;
 
 import java.util.ArrayList;
 

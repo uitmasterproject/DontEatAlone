@@ -20,6 +20,15 @@
             android:scaleType="centerCrop"
             android:background="@color/blue_grey" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:indeterminate="true"
+            android:max="100"
+            android:progress="20"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+
         <!--Restaurant info-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,8 +56,9 @@
                     android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_reservation_tv_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="2"
                     android:gravity="start"
+                    android:maxLines="1"
                     android:text="Display restaurant's address"
                     android:textColor="@color/dot_tutorial_inactive"
                     android:textSize="14sp"
@@ -63,7 +73,7 @@
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/ic_time"
                     android:gravity="start"
-                    android:maxLength="9"
+                    android:maxLines="1"
                     android:text="lunch"
                     android:textColor="@color/color_deep_orange"
                     android:textSize="14sp"
@@ -74,6 +84,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_reservation"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="Reservation"

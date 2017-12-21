@@ -8,43 +8,43 @@ package com.victor.loading;
 
 public final class R {
     public static final class attr {
-        public static final int cradle_ball_color = 0x7f01010f;
-        public static final int loading_color = 0x7f010177;
-        public static final int loading_speed = 0x7f010179;
-        public static final int loading_width = 0x7f010176;
-        public static final int shadow_position = 0x7f010178;
+        public static final int cradle_ball_color = 0x7f0400a5;
+        public static final int loading_color = 0x7f040108;
+        public static final int loading_speed = 0x7f040109;
+        public static final int loading_width = 0x7f04010a;
+        public static final int shadow_position = 0x7f040174;
     }
     public static final class color {
-        public static final int book_loading_background = 0x7f0f0011;
-        public static final int book_loading_book = 0x7f0f0012;
-        public static final int book_loading_page = 0x7f0f0013;
+        public static final int book_loading_background = 0x7f060029;
+        public static final int book_loading_book = 0x7f06002a;
+        public static final int book_loading_page = 0x7f06002b;
     }
     public static final class dimen {
-        public static final int book_border = 0x7f0b0065;
-        public static final int book_padding = 0x7f0b0066;
-        public static final int page_border = 0x7f0b00b8;
+        public static final int book_border = 0x7f07004e;
+        public static final int book_padding = 0x7f07004f;
+        public static final int page_border = 0x7f0700b8;
     }
     public static final class id {
-        public static final int ball_five = 0x7f110294;
-        public static final int ball_four = 0x7f110293;
-        public static final int ball_one = 0x7f110290;
-        public static final int ball_three = 0x7f110292;
-        public static final int ball_two = 0x7f110291;
+        public static final int ball_five = 0x7f090061;
+        public static final int ball_four = 0x7f090062;
+        public static final int ball_one = 0x7f090063;
+        public static final int ball_three = 0x7f090064;
+        public static final int ball_two = 0x7f090065;
     }
     public static final class layout {
-        public static final int book_loading = 0x7f040024;
-        public static final int newton_cradle_loading = 0x7f040075;
+        public static final int book_loading = 0x7f0c0024;
+        public static final int newton_cradle_loading = 0x7f0c0076;
     }
     public static final class string {
-        public static final int app_name = 0x7f0a007d;
+        public static final int app_name = 0x7f110023;
     }
     public static final class styleable {
-        public static final int[] CradleBall = { 0x7f01010f };
+        public static final int[] CradleBall = { 0x7f0400a5 };
         public static final int CradleBall_cradle_ball_color = 0;
-        public static final int[] RotateLoading = { 0x7f010176, 0x7f010177, 0x7f010178, 0x7f010179 };
-        public static final int RotateLoading_loading_color = 1;
-        public static final int RotateLoading_loading_speed = 3;
-        public static final int RotateLoading_loading_width = 0;
-        public static final int RotateLoading_shadow_position = 2;
+        public static final int[] RotateLoading = { 0x7f040108, 0x7f040109, 0x7f04010a, 0x7f040174 };
+        public static final int RotateLoading_loading_color = 0;
+        public static final int RotateLoading_loading_speed = 1;
+        public static final int RotateLoading_loading_width = 2;
+        public static final int RotateLoading_shadow_position = 3;
     }
 }

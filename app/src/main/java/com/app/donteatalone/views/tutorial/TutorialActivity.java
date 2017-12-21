@@ -1,36 +1,43 @@
 package com.app.donteatalone.views.tutorial;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.login.LoginActivity;
+import com.app.donteatalone.widgets.CircleIndicator;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
 
-@EActivity(R.layout.activity_tutorial)
-public class TutorialActivity extends AppCompatActivity {
-
-    @ViewById(R.id.activity_tutorial_viewpager)
+public class TutorialActivity extends AppCompatActivity implements View.OnClickListener{
     ViewPager viewPager;
-    @ViewById(R.id.activity_tutorial_circle_indicator)
     com.app.donteatalone.widgets.CircleIndicator cirIndicator;
-    @ViewById(R.id.activity_tutorial_rl_next)
     RelativeLayout rlNext;
-    @ViewById(R.id.activity_tutorial_tv_next)
     TextView tvNext;
 
     private TutorialAdapter tutorialAdapter;
 
-    @AfterViews
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tutorial);
+        init();
+    }
+
     void init() {
+        viewPager=(ViewPager) findViewById(R.id.activity_tutorial_viewpager);
+        cirIndicator = (CircleIndicator) findViewById(R.id.activity_tutorial_circle_indicator);
+        rlNext=(RelativeLayout) findViewById(R.id.activity_tutorial_rl_next);
+        tvNext=(TextView) findViewById(R.id.activity_tutorial_tv_next);
+
+        rlNext.setOnClickListener(this);
+
         //Checking first login?
 //        checkNextScreen();
         // Making notification bar transparent
@@ -53,7 +60,6 @@ public class TutorialActivity extends AppCompatActivity {
         cirIndicator.setSeletedTab(0, tutorialAdapter.getCount());
     }
 
-    @Click(R.id.activity_tutorial_rl_next)
     void rlNextClick() {
         int current = getItem(+1);
         if (current < tutorialAdapter.getCount()) {
@@ -79,5 +85,14 @@ public class TutorialActivity extends AppCompatActivity {
 
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.activity_tutorial_rl_next:
+                rlNextClick();
+                break;
+        }
     }
 }

@@ -27,13 +27,9 @@
         android:name="android.support.VERSION"
         android:value="25.3.1" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Optional permission for Analytics to run. -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Permissions required for GCM -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
 
     <permission
         android:name="com.app.donteatalone.permission.C2D_MESSAGE"
@@ -41,88 +37,63 @@
 
     <uses-permission android:name="com.app.donteatalone.permission.C2D_MESSAGE" />
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
-        android:name="com.app.donteatalone.MainApplication_"
+        android:name="com.app.donteatalone.MainApplication"
         android:allowBackup="true"
+        android:debuggable="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/SplashTheme1" >
-        <activity android:name="com.app.donteatalone.views.tutorial.TutorialActivity_" >
+        <activity android:name="com.app.donteatalone.views.tutorial.TutorialActivity" >
         </activity>
-        <activity android:name="com.app.donteatalone.views.login.LoginActivity" >
+        <activity
+            android:name="com.app.donteatalone.views.login.LoginActivity"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.app.donteatalone.views.register.RegisterActivity" >
+        <activity
+            android:name="com.app.donteatalone.views.register.RegisterActivity"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name="com.app.donteatalone.views.main.MainActivity" >
+        <activity
+            android:name="com.app.donteatalone.views.main.MainActivity"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name="com.app.donteatalone.views.main.blog.StatusActivity" >
+        <activity
+            android:name="com.app.donteatalone.views.main.blog.StatusActivity"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name="com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser" >
+        <activity
+            android:name="com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name="com.app.donteatalone.views.main.blog.DetailBlogActivity" />
-        <activity android:name="com.app.donteatalone.views.main.profile.EditProfileActivity" >
+        <activity
+            android:name="com.app.donteatalone.views.main.blog.DetailBlogActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.app.donteatalone.views.main.profile.EditProfileActivity"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        // for activity facebook
-        <!-- <activity android:name="com.facebook.FacebookActivity" -->
-        <!-- android:configChanges= -->
-        <!-- "keyboard|keyboardHidden|screenLayout|screenSize|orientation" -->
-        <!-- android:label="@string/app_name" /> -->
+        <activity
+            android:name="com.app.donteatalone.views.main.restaurant.AllowReservation.AllowReservationDetail"
+            android:windowSoftInputMode="stateHidden" />
 
-
-        <!-- <meta-data -->
-        <!-- android:name="com.facebook.sdk.ApplicationId" -->
-        <!-- android:value="@string/facebook_app_id" /> -->
-
-
-        <!-- <provider -->
-        <!-- android:name="com.facebook.FacebookContentProvider" -->
-        <!-- android:authorities="com.facebook.app.FacebookContentProvider160470204481557" -->
-        <!-- android:exported="true" /> -->
-
-        //for google place
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCScmOg2hONYOE9OrD0YaDW44p31RwxYPw" />
-        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"
-            android:theme="@style/Theme.IAPTheme" />
-        <activity
-            android:name="com.google.android.gms.appinvite.PreviewActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppInvite.Preview" >
-            <intent-filter>
-                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--
-Service handling Google Sign-In user revocation. For apps that do not integrate with
-            Google Sign-In, this service will never be started.
-        -->
-        <service
-            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-            android:exported="true"
-            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
 
         <receiver android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver" />
 
@@ -156,10 +127,6 @@ Service handling Google Sign-In user revocation. For apps that do not integrate 
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver
             android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
@@ -216,13 +183,49 @@ Service handling Google Sign-In user revocation. For apps that do not integrate 
             android:exported="false"
             android:initOrder="100" />
 
+        <activity
+            android:name="com.google.android.gms.appinvite.PreviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppInvite.Preview" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+Service handling Google Sign-In user revocation. For apps that do not integrate with
+            Google Sign-In, this service will never be started.
+        -->
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"
+            android:theme="@style/Theme.IAPTheme" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <provider
-            android:name="com.android.tools.fd.runtime.InstantRunContentProvider"
-            android:authorities="com.app.donteatalone.com.android.tools.fd.runtime.InstantRunContentProvider"
+            android:name="com.android.tools.ir.server.InstantRunContentProvider"
+            android:authorities="com.app.donteatalone.com.android.tools.ir.server.InstantRunContentProvider"
             android:multiprocess="true" />
     </application>
 

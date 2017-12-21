@@ -124,9 +124,9 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
     private void initDialog(final Dialog dialog, final int position){
         final TextView txtDate, txtTimer, txtAddress;
         Button btnInvite;
-        LinearLayout llContainerTime, llContainerPlace, llContainerSearch;
+        final LinearLayout llContainerTime, llContainerPlace, llContainerSearch;
         RelativeLayout rlContainerTime,rlContainerSearch;
-        ArrayList<Restaurant> listRestaurant=new ArrayList<>();
+        final ArrayList<Restaurant> listRestaurant=new ArrayList<>();
         txtDate=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_invite_txt_date);
         txtTimer=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_invite_txt_time);
         txtAddress=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_invite_txt_address);
@@ -228,7 +228,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         txtDate.setText(calendar.get(Calendar.DATE)+"/"+(calendar.get(Calendar.MONTH)+1));
     }
 
-    private void setValuePlace(TextView txtPlace,int position, ArrayList<Restaurant>listRestaurant){
+    private void setValuePlace(final TextView txtPlace, int position, final ArrayList<Restaurant>listRestaurant){
 
         MySharePreference requireInfoSharePreference=new MySharePreference((Activity)context,new MySharePreference((Activity)context).getPhoneLogin());
 
@@ -244,7 +244,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
                 if(response.body().size()>0){
                     txtPlace.setText(response.body().get(0).getName());
                     for (Restaurant res:response.body()) {
-                        listRestaurant.add(new Restaurant(res.getId(),res.getName(),res.getAddress(),res.getLatlng(),res.getOpenDay()));
+                        //listRestaurant.add(new Restaurant(res.getId(),res.getName(),res.getAddress(),res.getLatlng(),res.getOpenDay()));
                     }
                 }
             }
@@ -256,8 +256,8 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         });
     }
 
-    private void setOnclickllContainerTime(Dialog dialog, TextView txtDate, TextView txtTime){
-        WheelPicker wpdate, wpmonth, wphour, wpminute;
+    private void setOnclickllContainerTime(Dialog dialog, final TextView txtDate, final TextView txtTime){
+        final WheelPicker wpdate, wpmonth, wphour, wpminute;
         wpdate=(WheelPicker) dialog.findViewById(R.id.custom_dialog_require_on_invite_wp_date);
         wpmonth=(WheelPicker) dialog.findViewById(R.id.custom_dialog_require_on_invite_wp_month);
         wphour=(WheelPicker)dialog.findViewById(R.id.custom_dialog_require_on_invite_wp_hour);
@@ -272,7 +272,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         wpminute.setData(Arrays.asList(context.getResources().getStringArray(R.array.Minute)));
         wpminute.setSelectedItemPosition((Integer.parseInt(txtTime.getText().toString().trim().split(":")[1])/10)+1);
 
-        LocalDate localDate=new LocalDate();
+        final LocalDate localDate=new LocalDate();
         wpmonth.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
             @Override
             public void onWheelScrolled(int i) {

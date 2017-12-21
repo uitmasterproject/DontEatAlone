@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.utils.MySharePreference;
@@ -41,6 +42,8 @@ public class NoReservationFragment extends Fragment{
 
     private MySharePreference mySharePreference;
 
+    private BaseProgress baseProgress;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class NoReservationFragment extends Fragment{
 
     private void init(){
         mySharePreference=new MySharePreference(getActivity());
+
+        baseProgress=new BaseProgress();
 
         snCity=(Spinner) view.findViewById(R.id.choose_city);
         ArrayAdapter<String> cityAdapter =new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,getResources().getStringArray(R.array.City));
@@ -77,17 +82,19 @@ public class NoReservationFragment extends Fragment{
         rcvListRestaurant.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         listRestaurant=new ArrayList<>();
-        adapter=new NoReservationAdapter(listRestaurant);
+        adapter=new NoReservationAdapter(listRestaurant, getActivity());
 
         rcvListRestaurant.setAdapter(adapter);
 
         snDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Call<ArrayList<Restaurant>> methodListRestaurantFollowDistrict = Connect.getRetrofit().getRestaurantFollowDistrict(snDistrict.getSelectedItem().toString());
+                baseProgress.showProgressLoading(getActivity());
+                Call<ArrayList<Restaurant>> methodListRestaurantFollowDistrict = Connect.getRetrofit().getRestaurantFollowDistrict(snCity.getSelectedItem().toString(), snDistrict.getSelectedItem().toString());
                 methodListRestaurantFollowDistrict.enqueue(new Callback<ArrayList<Restaurant>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
+                        baseProgress.hideProgressLoading();
                         if (response.body()!=null) {
                             listRestaurant.clear();
                             listRestaurant.addAll(response.body());
@@ -97,6 +104,7 @@ public class NoReservationFragment extends Fragment{
 
                     @Override
                     public void onFailure(Call<ArrayList<Restaurant>> call, Throwable t) {
+                        baseProgress.hideProgressLoading();
                     }
                 });
             }

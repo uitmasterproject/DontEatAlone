@@ -11,5 +11,15 @@
         android:background="@android:color/transparent"
         android:contentDescription="@null"
         android:padding="10dp"
-        android:scaleType="fitCenter" />
+        android:scaleType="centerInside" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:indeterminate="true"
+        android:max="100"
+        android:progress="20"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
 </LinearLayout>

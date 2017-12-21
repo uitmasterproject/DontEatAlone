@@ -25,6 +25,7 @@ public class RestaurantFragment extends Fragment {
     private View view;
     private ViewPager viewPager;
     private TabLayout tabs;
+    private TabsPagerAdapter adapter;
 
     private ArrayList<Fragment> listFragment;
 
@@ -35,7 +36,7 @@ public class RestaurantFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_restaurant_new, container, false);
+        view = inflater.inflate(R.layout.fragment_restaurant, container, false);
         init();
         return view;
     }
@@ -44,15 +45,15 @@ public class RestaurantFragment extends Fragment {
         viewPager = (ViewPager) view.findViewById(R.id.fragment_restaurant_viewpager);
         viewPager.setOffscreenPageLimit(2);
 
-        listFragment=new ArrayList<>();
+        listFragment = new ArrayList<>();
         listFragment.add(new NoReservationFragment());
         listFragment.add(new AllowReservationFragment());
 
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getChildFragmentManager(),listFragment);
+        adapter = new TabsPagerAdapter(getChildFragmentManager(), listFragment);
 
         viewPager.setAdapter(adapter);
 
-        tabs=(TabLayout) view.findViewById(R.id.fragment_restaurant_tabs);
+        tabs = (TabLayout) view.findViewById(R.id.fragment_restaurant_tabs);
 
         tabs.setupWithViewPager(viewPager);
 

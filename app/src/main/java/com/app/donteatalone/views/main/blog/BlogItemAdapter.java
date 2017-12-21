@@ -64,7 +64,7 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
     }
 
     @Override
-    public void onBindViewHolder(InnerVH holder, int position) {
+    public void onBindViewHolder(final InnerVH holder, final int position) {
 
         views.add(holder);
 
@@ -122,7 +122,11 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
         if(listInnerBlog.get(position).getFeeling()==0){
             holder.imgEmotion.setImageResource(R.drawable.ic_happy);
         }else {
-            holder.imgEmotion.setImageResource(listInnerBlog.get(position).getFeeling());
+            try {
+                holder.imgEmotion.setImageResource(listInnerBlog.get(position).getFeeling());
+            }catch (Exception e){
+                holder.imgEmotion.setImageResource(R.drawable.ic_happy);
+            }
         }
 
         holder.txtImageNumber.setText(listInnerBlog.get(position).getImage().size()+"");

@@ -99,7 +99,11 @@ public class BlogFragment extends Fragment {
                         Collections.reverse(listInfoBlog);
 
                         if (listInfoBlog.get(0).getFeeling() != 0) {
-                            imgAvatar.setImageResource(listInfoBlog.get(0).getFeeling());
+                            try {
+                                imgAvatar.setImageResource(listInfoBlog.get(0).getFeeling());
+                            }catch (Exception exception){
+                                imgAvatar.setImageResource(R.drawable.ic_happy);
+                            }
                         } else {
                             imgAvatar.setImageResource(R.drawable.ic_happy);
                         }

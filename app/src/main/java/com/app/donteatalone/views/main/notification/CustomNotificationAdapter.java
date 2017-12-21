@@ -34,12 +34,12 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recycleview_notification, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recyclerview_notification, null);
         return new CustomViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final CustomViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         holder.txtName.setText(listInfoNotification.get(position).getNameSend());
         if (listInfoNotification.get(position).getStatus().equals("accept")) {
             holder.txtContent.setText("was accepted your invite. Please, Let's contact their by phone: " + listInfoNotification.get(position).getUserSend());
@@ -69,7 +69,7 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
             });
         } else {
             holder.txtContent.setText("was invited you eat their together                                                            ");
-            holder.imgIcon.setImageResource(R.drawable.ic_noti);
+            holder.imgIcon.setImageResource(R.drawable.ic_invite);
             holder.txtTimer.setText(listInfoNotification.get(position).getTimeSend());
             holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
