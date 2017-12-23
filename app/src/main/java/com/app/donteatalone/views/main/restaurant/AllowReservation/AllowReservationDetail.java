@@ -1,10 +1,12 @@
 package com.app.donteatalone.views.main.restaurant.AllowReservation;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,11 +56,15 @@ public class AllowReservationDetail extends FragmentActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.activity_restaurant_reservation_tv_info:
+                txtInfo.setTextColor(ContextCompat.getColor(AllowReservationDetail.this,R.color.color_deep_orange));
+                txtReserve.setTextColor(Color.WHITE);
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.activity_restaurant_reservation_fl_container, ReservationDetailInfo.newInstance(restaurantDetail));
                 transaction.commit();
                 break;
             case R.id.activity_restaurant_reservation_tv_reserve:
+                txtReserve.setTextColor(ContextCompat.getColor(AllowReservationDetail.this,R.color.color_deep_orange));
+                txtInfo.setTextColor(Color.WHITE);
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.activity_restaurant_reservation_fl_container, ReservationDetailDesign.newInstance(restaurantDetail));
                 transaction.commit();

@@ -1,9 +1,13 @@
 package com.app.donteatalone.views.main.restaurant.AllowReservation;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,18 +17,25 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.RestaurantDetail;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
+import com.app.donteatalone.views.main.MainActivity;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +53,12 @@ public class AllowReservationFragment extends Fragment {
     private RecyclerView rcvListRestaurant;
     private ArrayList<RestaurantDetail> listRestaurant;
     private AllowRestaurantAdapter adapter;
+
+    private RecyclerView rcvListReservation;
+    private ArrayList<RestaurantDetail> listReservation;
+    private ReservationAdapter reservationAdapter;
+
+    private BroadcastReceiver broadcastReceiver;
 
     private MySharePreference mySharePreference;
     private BaseProgress baseProgress;
@@ -99,6 +116,16 @@ public class AllowReservationFragment extends Fragment {
             }
         });
 
+        rcvListReservation=(RecyclerView) view.findViewById(R.id.rcv_list_reservation);
+        rcvListReservation.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        listReservation=new ArrayList<>();
+        reservationAdapter=new ReservationAdapter(listReservation,getActivity());
+
+        rcvListReservation.setAdapter(reservationAdapter);
+
+        getReservation();
+
         snDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -129,5 +156,63 @@ public class AllowReservationFragment extends Fragment {
 
         });
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        listenBroadcast();
+    }
+
+    private void listenBroadcast(){
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA) != null) {
+
+                    listReservation.add(0, (RestaurantDetail) intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA));
+                    if(rcvListReservation.getVisibility()==View.GONE){
+                        rcvListReservation.setVisibility(View.VISIBLE);
+                    }
+                    reservationAdapter.notifyDataSetChanged();
+                }
+            }
+        };
+
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(MainActivity.BROADCAST_RESTAURANT_NAME));
+
+    }
+
+
+    private void getReservation(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("MM:dd:yyyy", Locale.ENGLISH);
+        String currentTime = format.format(calendar.getTime());
+        if(AppUtils.isNetworkAvailable(getActivity())){
+            Call<ArrayList<RestaurantDetail>> getAllReservation = Connect.getRetrofit().getAllReservation(mySharePreference.getPhoneLogin(), currentTime);
+            getAllReservation.enqueue(new Callback<ArrayList<RestaurantDetail>>() {
+                @Override
+                public void onResponse(Call<ArrayList<RestaurantDetail>> call, Response<ArrayList<RestaurantDetail>> response) {
+                    if(response.body()!=null){
+                        listReservation.clear();
+                        listReservation.addAll(response.body());
+                        Collections.reverse(listReservation);
+
+                        if(listReservation.size()>0){
+                            rcvListReservation.setVisibility(View.VISIBLE);
+                        }else {
+                            rcvListReservation.setVisibility(View.GONE);
+                        }
+
+                        reservationAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<RestaurantDetail>> call, Throwable t) {
+                    Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

@@ -40,7 +40,6 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
 
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, final int position) {
-        holder.txtName.setText(listInfoNotification.get(position).getNameSend());
         if (listInfoNotification.get(position).getStatus().equals("accept")) {
             holder.txtContent.setText("was accepted your invite. Please, Let's contact their by phone: " + listInfoNotification.get(position).getUserSend());
             holder.imgIcon.setImageResource(R.drawable.ic_accepted);
@@ -99,13 +98,12 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtName, txtContent, txtTimer;
+        private TextView txtContent, txtTimer;
         private ImageView imgIcon;
         private LinearLayout llContainer;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_name);
             txtContent = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_content);
             txtTimer = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_txt_timer);
             imgIcon = (ImageView) itemView.findViewById(R.id.custom_adapter_recyclerview_notification_img_icon);

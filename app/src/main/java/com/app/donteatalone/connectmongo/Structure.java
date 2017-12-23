@@ -13,6 +13,7 @@ import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.model.RestaurantDetail;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
+import com.app.donteatalone.model.UserReservation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +100,11 @@ public interface Structure {
         Call<RestaurantDetail> getRestaurantReservationDetail(@Path("city") String city,@Path("district") String district, @Path("id") String id);
         @GET("/restaurant/reservation/table/{city}/{district}/{id}/{table}")
         Call<ReservationDetail> getReservation(@Path("city") String city, @Path("district") String district, @Path("id") String id, @Path("table") String table);
+
+        @POST("/restaurant/reservation")
+        Call<Status> reserveRestaurant(@Body UserReservation userReservation);
+        @GET("/restaurant/reservation/all/{phone}/{date}")
+        Call<ArrayList<RestaurantDetail>> getAllReservation(@Path("phone") String phone, @Path("date") String date);
 
         @GET("/eventhistory/{phone}")
         Call<ArrayList<ProfileHistoryModel>> getEventHistory(@Path("phone") String phone);

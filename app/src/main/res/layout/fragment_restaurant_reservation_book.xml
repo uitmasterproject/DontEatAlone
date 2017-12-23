@@ -108,17 +108,17 @@
                     <Spinner
                         android:id="@+id/spn_list_table"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:background="@drawable/btn_round_orange_edit_profile"
                         android:gravity="center"
                         android:padding="10dp"
                         android:textColor="@color/black" />
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="end|center"
-                        android:layout_marginEnd="25dp"
+                        android:layout_marginEnd="15dp"
                         android:src="@drawable/ic_down" />
 
                 </FrameLayout>
@@ -133,7 +133,7 @@
                     <!--Chon buoi - lunch, dinner-->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1.5"
                         android:background="@drawable/bt_rectangle_ripple_5_radius_grey">
@@ -155,14 +155,22 @@
                         android:layout_weight="2.5"
                         android:layout_gravity="center"
                         android:background="@android:color/darker_gray"
-                        android:orientation="horizontal">
-
-
-                    </android.support.v7.widget.RecyclerView>
-
+                        android:orientation="horizontal" />
+                        
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/txt_empty_time_session"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:layout_gravity="center"
+                        android:textSize="16dp"
+                        android:text="@string/empty_time_session"
+                        android:background="@android:color/darker_gray" />
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_reservation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"

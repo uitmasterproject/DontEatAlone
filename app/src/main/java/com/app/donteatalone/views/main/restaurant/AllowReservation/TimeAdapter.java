@@ -49,13 +49,10 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.MyViewHolder> 
             public void onClick(View v) {
                 if (onRecyclerItemClickListener != null) {
                     for(int i=0;i<views.size();i++){
-                        if(i!=position){
                             TextView textView = views.get(i).txtTimeSession;
                             textView.setBackgroundColor(android.R.color.darker_gray);
-                        }else {
-                            holder.txtTimeSession.setBackgroundColor(Color.GREEN);
-                        }
                     }
+                    holder.txtTimeSession.setBackgroundColor(Color.GREEN);
                     onRecyclerItemClickListener.onItemClick(v, position);
                 }
             }

@@ -68,6 +68,11 @@
 
     <string name="empty_session">Chọn bàn khác</string>
     <string name="table">Bàn \t</string>
+    <string name="empty_time_session">Khung giờ này đã hết thời gian đặt bàn</string>
+    <string name="was_reserve">Lựa chọn của bạn đã bị trùng, vui lòng chọn lựa chọn khác.</string>
+    <string name="error_reserve">Bạn chưa đặt được bàn, vui lòng thử lại.</string>
+    <string name="choose_session">Bạn chưa chọn buổi đặt bàn</string>
+    <string name="choose_time_session">Bạn chưa chọn thời gian đến</string>
 
     <string-array name="Day_31">
         <item>01</item>

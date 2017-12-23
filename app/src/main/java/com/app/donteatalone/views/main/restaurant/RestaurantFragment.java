@@ -59,7 +59,6 @@ public class RestaurantFragment extends Fragment {
 
         tabs.getTabAt(0).setText("no reservation");
         tabs.getTabAt(1).setText("allow reservation");
-
     }
 
 

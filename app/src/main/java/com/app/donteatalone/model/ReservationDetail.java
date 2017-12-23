@@ -12,10 +12,37 @@ public class ReservationDetail implements Parcelable{
     private String time;
     private String session;
 
+
+
+    public String getTable() {
+        return table;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
+    }
+
     public ReservationDetail() {
     }
 
     public ReservationDetail(String table, String time, String session) {
+
         this.table = table;
         this.time = time;
         this.session = session;
@@ -38,18 +65,6 @@ public class ReservationDetail implements Parcelable{
             return new ReservationDetail[size];
         }
     };
-
-    public String getTable() {
-        return table;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getSession() {
-        return session;
-    }
 
     @Override
     public int describeContents() {

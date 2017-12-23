@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String SEND_BROADCAST_DATA = "DONTEATALONE.BROADCAST_DATA";
     public static final String SEND_BROADCAST_TITLE = "DONTEATALONE.BROADCAST_TITLE";
 
+    public static final String BROADCAST_RESTAURANT_NAME="DONTEATALONE.BROADCAST_RESTAURANT_NAME";
+    public static final String SEND_BROADCAST_RESTAURANT_DATA = "DONTEATALONE.BROADCAST_RESTAURANT_DATA";
+
     public static final String ARG_FROM_VIEW = "ARG_FROM_VIEW";
     public static final String ARG_DETAIL_BLOG_ACTIVITY = "ARG_DETAIL_BLOG_ACTIVITY";
     public static final String ARG_PROFILE_ACCORDANT_USER_ACTIVITY = "ARG_PROFILE_ACCORDANT_USER_ACTIVITY";
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         viewPager = (ViewPager) findViewById(R.id.activity_blog_viewpager);
         view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab_notification, null);

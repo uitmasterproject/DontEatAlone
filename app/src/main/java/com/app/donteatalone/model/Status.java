@@ -13,6 +13,9 @@ public class Status{
     @SerializedName("uuid")
     private String uuid;
 
+    @SerializedName("restaurantReservation")
+    private RestaurantDetail restaurantReservation;
+
     public String getStatus() {
         return status;
     }
@@ -27,5 +30,13 @@ public class Status{
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public RestaurantDetail getRestaurantReservation() {
+        return restaurantReservation;
+    }
+
+    public void setRestaurantReservation(RestaurantDetail restaurantReservation) {
+        this.restaurantReservation = restaurantReservation;
     }
 }

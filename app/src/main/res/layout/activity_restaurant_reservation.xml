@@ -42,7 +42,7 @@
             android:paddingStart="15dp"
             android:paddingTop="8dp"
             android:text="Info"
-            android:textColor="@color/white"
+            android:textColor="@color/color_deep_orange"
             android:textSize="17sp"
             android:textStyle="bold" />
 

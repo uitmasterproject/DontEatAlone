@@ -73,13 +73,13 @@ public class ReservationDetailInfo extends Fragment {
         PickerLayoutManager pickerLayoutManager = new PickerLayoutManager(getActivity(), PickerLayoutManager.HORIZONTAL, false);
         pickerLayoutManager.setChangeAlpha(true);
         pickerLayoutManager.setScaleDownBy(0.1f);
-        pickerLayoutManager.setScaleDownDistance(0.2f);
+        pickerLayoutManager.setScaleDownDistance(0.4f);
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
 
         recyclerView.setLayoutManager(pickerLayoutManager);
 
-        recyclerView.setAdapter(new RealImageAdapter(restaurantDetail.getRealImage()));
+        recyclerView.setAdapter(new RealImageAdapter(restaurantDetail.getRealImage(), getActivity()));
 
         txtName = (TextView) view.findViewById(R.id.fragment_restaurant_reservation_info_tv_name);
         txtTime = (TextView) view.findViewById(R.id.fragment_restaurant_reservation_info_tv_open_time);

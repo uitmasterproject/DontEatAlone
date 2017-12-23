@@ -1,8 +1,11 @@
 package com.app.donteatalone.views.main.restaurant.AllowReservation;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +28,13 @@ public class RealImageAdapter extends RecyclerView.Adapter<RealImageAdapter.View
     private List<String> data;
     private ArrayList<Target> listTarget;
     private ArrayList<ViewHolder> views;
+    private Context context;
 
-    public RealImageAdapter(List<String> data) {
+    private DisplayMetrics metrics;
+
+    public RealImageAdapter(List<String> data, Context context) {
         this.data = data;
+        this.context=context;
         listTarget = new ArrayList<>();
         views = new ArrayList<>();
     }
@@ -43,11 +50,16 @@ public class RealImageAdapter extends RecyclerView.Adapter<RealImageAdapter.View
     public void onBindViewHolder(final ViewHolder holder, int position) {
         views.add(holder);
 
+        metrics = new DisplayMetrics();
+        ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
         Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 if (bitmap != null) {
-                    holder.image.setImageBitmap(bitmap);
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(
+                            bitmap, metrics.widthPixels, (int)context.getResources().getDimension(R.dimen.image_size), false);
+                    holder.image.setImageBitmap(resizedBitmap);
                 } else {
                     holder.image.setImageResource(R.drawable.temp);
                 }

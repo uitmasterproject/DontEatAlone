@@ -32,6 +32,10 @@ public class RestaurantDetail extends Restaurant implements Parcelable {
     private ArrayList<String> listSessions;
     private ArrayList<ReservationDetail> listReservations;
 
+    public RestaurantDetail() {
+        this.listReservations=new ArrayList<>();
+    }
+
     public RestaurantDetail(ArrayList<String> realImage, ArrayList<String> designImage,
                             ArrayList<String> service, String phoneNumber, String type,
                             ArrayList<String> listTables, ArrayList<String> listSessions,
