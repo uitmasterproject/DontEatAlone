@@ -23,15 +23,36 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/fragment_restaurant_reservation_info_tv_name"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Display restaurant's name"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:paddingEnd="10dp">
+
+                <TextView
+                    android:id="@+id/fragment_restaurant_reservation_info_tv_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Display restaurant's name"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_restaurant_no_reservation_ib_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_oval_round_orange"
+                    android:padding="7dp"
+                    android:text="8.5"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -50,7 +71,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <!--O day hien thi la OPEING or CLOSE => CO THE CHINH THEM MAU BEN FILE JAVA
@@ -60,7 +81,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="3dp"
-                        android:text="Display Status"
                         android:textColor="@color/color_deep_orange"
                         android:textSize="18sp" />
 
@@ -68,7 +88,6 @@
                         android:id="@+id/fragment_restaurant_reservation_info_tv_open_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Display time"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -81,11 +100,11 @@
                     android:layout_gravity="center"
                     android:layout_weight="2"
                     android:background="@drawable/bt_rectangle_ripple_5_radius"
-                    android:drawableLeft="@drawable/ic_contact_64"
+                    android:drawableStart="@drawable/ic_contact_64"
                     android:drawablePadding="5dp"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="0939296324"
+                    android:text="Đang cập nhật"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
