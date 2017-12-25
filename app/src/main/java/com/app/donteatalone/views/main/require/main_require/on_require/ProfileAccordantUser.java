@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.main.require.main_require.on_require;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,11 +25,12 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Achievement;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
-import com.app.donteatalone.utils.ImageProcessor;
-import com.app.donteatalone.views.main.MainActivity;
+import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.profile.ProfileBlogFragment;
 import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryFragment;
+import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -39,8 +39,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.app.donteatalone.views.main.MainActivity.ARG_FROM_VIEW;
-import static com.app.donteatalone.views.main.MainActivity.ARG_PROFILE_ACCORDANT_USER_ACTIVITY;
 import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
 
 /**
@@ -61,6 +59,8 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
     private String phoneNumber;
 
+    private String myPhone;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +79,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
     }
 
     private void init() {
+        myPhone = new MySharePreference(ProfileAccordantUser.this).getPhoneLogin();
         /*Toolbar*/
         rlBack = (RelativeLayout) findViewById(R.id.fragment_accordant_user_profile_rl_back);
         tvName1 = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_name_1);
@@ -137,12 +138,8 @@ public class ProfileAccordantUser extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<UserName> call, Response<UserName> response) {
                     if (response.body() != null) {
-                        UserName userName = new UserName(ProfileAccordantUser.this, response.body().getPhone(), response.body().getFullName(),
-                                response.body().getPassword(), response.body().getAvatar(), response.body().getBirthday(),
-                                response.body().getGender(), response.body().getAddress(), response.body().getLatlngAdress(),
-                                response.body().getMyCharacter(), response.body().getMyStyle(), response.body().getTargetCharacter(),
-                                response.body().getTargetStyle(), response.body().getTargetFood());
-                        setValueDefaultProfile(userName);
+
+                        setValueDefaultProfile(response.body());
 
                         Call<Achievement> getAchievement = Connect.getRetrofit().getAchievement(phoneNumber);
                         getAchievement.enqueue(new Callback<Achievement>() {
@@ -154,6 +151,15 @@ public class ProfileAccordantUser extends AppCompatActivity {
                                     tvCountsLike.setText(achievement.getLike() + "");
                                     tvCountsAppointment.setText(achievement.getAppointment() + "");
                                     tvCountsStar.setText(achievement.getRate() + "");
+
+                                    if(achievement.getListUser()!=null && achievement.getListUser().size()>0){
+                                        for(int i=0;i<achievement.getListUser().size();i++){
+                                            if(achievement.getListUser().get(i).equals(myPhone)){
+                                                ivLike.setColorFilter(Color.BLUE);
+                                                llButtonLike.setOnClickListener(null);
+                                            }
+                                        }
+                                    }
                                 }
                             }
 
@@ -177,19 +183,25 @@ public class ProfileAccordantUser extends AppCompatActivity {
         rlBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileAccordantUser.this, MainActivity.class);
-                intent.putExtra(ARG_FROM_VIEW, ARG_PROFILE_ACCORDANT_USER_ACTIVITY);
-                startActivity(intent);
+//                Intent intent = new Intent(ProfileAccordantUser.this, MainActivity.class);
+//                intent.putExtra(ARG_FROM_VIEW, ARG_PROFILE_ACCORDANT_USER_ACTIVITY);
+//                startActivity(intent);
+                onBackPressed();
             }
         });
     }
 
     private void setValueDefaultProfile(UserName userName) {
         LocalDate date = new LocalDate();
-        ivAvatar.setImageBitmap(ImageProcessor.decodeBitmap(userName.getAvatar()));
-        tvName.setText(userName.getFullName());
-        tvName1.setText(userName.getFullName());
-        tvName2.setText(userName.getFullName());
+
+        Picasso.with(ProfileAccordantUser.this)
+                .load(userName.getAvatar())
+                .error(R.drawable.avatar)
+                .into(ivAvatar);
+
+        tvName.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
+        tvName1.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
+        tvName2.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
         if (userName.getBirthday().equals(""))
             tvAge.setText("");
         else
@@ -203,7 +215,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
         if (userName.getAddress().equals("")) {
             tvAddress.setText("Ho Chi Minh");
         } else {
-            tvAddress.setText(userName.getAddress());
+            tvAddress.setText(StringEscapeUtils.unescapeJava(userName.getAddress()));
         }
 
         putDataHobbyIntoReference(userName);
@@ -212,24 +224,14 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
 
     private void putDataHobbyIntoReference(UserName userName) {
-        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target) + userName.getTargetFood(),
-                getResources().getString(R.string.food_target).length(),
-                getResources().getString(R.string.food_target).length() + userName.getTargetFood().length()));
-        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target) + userName.getTargetCharacter(),
-                getResources().getString(R.string.character_target).length(),
-                getResources().getString(R.string.character_target).length() + userName.getTargetCharacter().length()));
-        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target) + userName.getTargetStyle(),
-                getResources().getString(R.string.style_target).length(),
-                getResources().getString(R.string.style_target).length() + userName.getTargetStyle().length()));
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target), userName.getTargetFood()));
+        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target), userName.getTargetCharacter()));
+        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target), userName.getTargetStyle()));
     }
 
     private void putDataPersonalIntoReference(UserName userName) {
-        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character) + userName.getMyCharacter(),
-                getResources().getString(R.string.my_character).length(),
-                getResources().getString(R.string.my_character).length() + userName.getMyCharacter().length()));
-        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style) + userName.getMyStyle(),
-                getResources().getString(R.string.my_style).length(),
-                getResources().getString(R.string.my_style).length() + userName.getMyStyle().length()));
+        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character), userName.getMyCharacter()));
+        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style), userName.getMyStyle()));
     }
 
     private void setClickButtonLike() {
@@ -237,13 +239,15 @@ public class ProfileAccordantUser extends AppCompatActivity {
             llButtonLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<Status> addLike = Connect.getRetrofit().addLike(phoneNumber, 0);
+                    Call<Status> addLike = Connect.getRetrofit().addLike(phoneNumber, myPhone, 0);
                     addLike.enqueue(new Callback<Status>() {
                         @Override
                         public void onResponse(Call<Status> call, Response<Status> response) {
                             if (response.body() != null) {
                                 if (response.body().getStatus().equals("1")) {
                                     tvCountsLike.setText((Integer.parseInt(tvCountsLike.getText().toString()) + 1) + "");
+                                    ivLike.setColorFilter(Color.BLUE);
+                                    llButtonLike.setOnClickListener(null);
                                 }
                             }
                         }
@@ -258,10 +262,10 @@ public class ProfileAccordantUser extends AppCompatActivity {
         }
     }
 
-    private Spannable setMultiColorText(String text, int start, int end) {
-        Spannable spannable = new SpannableString(text);
+    private Spannable setMultiColorText(String defaultText,String text) {
+        Spannable spannable = new SpannableString(defaultText+StringEscapeUtils.unescapeJava(text));
 
-        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), defaultText.length(), defaultText.length()+StringEscapeUtils.unescapeJava(text).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return spannable;
     }

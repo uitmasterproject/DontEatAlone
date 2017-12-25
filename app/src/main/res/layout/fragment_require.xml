@@ -9,33 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_deep_orange"
-        android:orientation="horizontal"
-        android:padding="10dp">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_exit"
-            android:background="@color/transparent"
-            android:id="@+id/fragment_require_ibtn_exit"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Require"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf">
-
-        </TextView>
+        android:orientation="horizontal">
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/fragment_require_sc_control"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:paddingLeft="20dp"
-            android:paddingRight="5dp" />
+            android:layout_height="40dp"
+            android:thumbTextPadding="6dp"
+            app:switchMinWidth="6dp"
+            app:switchPadding="6dp"
+            android:layout_alignParentEnd="true"
+            android:paddingStart="0dp"
+            android:paddingEnd="20dp" />
 
     </RelativeLayout>
 

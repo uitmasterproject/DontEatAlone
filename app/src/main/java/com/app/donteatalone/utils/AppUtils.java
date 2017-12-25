@@ -14,9 +14,6 @@ import android.util.Base64;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.MultiAutoCompleteTextView;
 
 import java.io.ByteArrayOutputStream;
 import java.security.KeyFactory;
@@ -73,8 +70,8 @@ public class AppUtils {
 
     //Hide keyboard when touch outside
     public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        activity.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     public static String convertBitmaptoString(Bitmap bitmap) {
@@ -124,24 +121,6 @@ public class AppUtils {
             e.printStackTrace();
         }
         return "";
-    }
-
-    public static void setOnSelectedItemInMACT(MultiAutoCompleteTextView actvHobby) {
-        actvHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (actvHobby.getText().toString().length() > 0) {
-                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(",")) + convertStringToNFD((String) parent.getItemAtPosition(position)));
-                } else {
-                    actvHobby.setText(actvHobby.getText().toString().substring(0, actvHobby.getText().toString().lastIndexOf(",")) + "," + convertStringToNFD((String) parent.getItemAtPosition(position)));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     public static int convertPxToDp(int px) {

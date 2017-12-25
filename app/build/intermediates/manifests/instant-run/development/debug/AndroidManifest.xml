@@ -70,7 +70,8 @@
         </activity>
         <activity
             android:name="com.app.donteatalone.views.main.MainActivity"
-            android:windowSoftInputMode="stateHidden" >
+            android:configChanges="keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name="com.app.donteatalone.views.main.blog.StatusActivity"

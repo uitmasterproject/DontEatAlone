@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,10 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.views.main.blog.BlogFragment;
 import com.app.donteatalone.views.main.notification.NotificationFragment;
 import com.app.donteatalone.views.main.profile.MyProfileFragment;
@@ -96,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                AppUtils.hideSoftKeyboard(MainActivity.this);
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(viewPager.getApplicationWindowToken(), 0);
             }
 
             @Override
             public void onPageSelected(int position) {
-                AppUtils.hideSoftKeyboard(MainActivity.this);
                 if(position!=1) {
                     tabLayout.getTabAt(position).setIcon(srcIconSelected[position]);
                 }else {

@@ -11,7 +11,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_notification" />
+        android:src="@drawable/ic_notification"
+        android:contentDescription="@null" />
 
     <TextView
         android:id="@+id/custom_tab_notification_txt_count"

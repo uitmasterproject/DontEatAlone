@@ -19,7 +19,7 @@
     <string name="live_in">Live in \t</string>
     <string name="phone_is">Phone is \t</string>
 
-    <string name="suggestInvite"><u>You need wait for 5 minute to they respond</u></string>
+    <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
     <!--String for Login Screen-->
@@ -73,6 +73,18 @@
     <string name="error_reserve">Bạn chưa đặt được bàn, vui lòng thử lại.</string>
     <string name="choose_session">Bạn chưa chọn buổi đặt bàn</string>
     <string name="choose_time_session">Bạn chưa chọn thời gian đến</string>
+
+
+    <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
+    <string name="date">Thời gian</string>
+    <string name="place">Địa điểm</string>
+    <string name="have_not_restaurant">Chưa có nhà hàng</string>
+    <string name="have_restaurant">Đã có nhà hàng</string>
+    <string name="invite">Gửi lời mời</string>
+
+    <string name="choose_address">Hãy lựa chọn địa điểm</string>
+    <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
+    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
 
     <string-array name="Day_31">
         <item>01</item>

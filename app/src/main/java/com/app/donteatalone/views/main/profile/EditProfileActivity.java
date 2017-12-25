@@ -90,7 +90,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
     private ImageView ivCancel, ivSave;
     private ImageView ivAvatar;
-    private LinearLayout llEditAvatar, llGender, llDoB, llDobCustomize;
+    private LinearLayout llGender, llDoB, llDobCustomize;
     private EditText etName;
     private RadioGroup radioGroupGender;
     private WheelPicker wpDobMonths, wpDobDays;
@@ -132,7 +132,6 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
         ivSave = (ImageView) findViewById(R.id.activity_edit_profile_iv_save);
         /*Personal Information*/
         ivAvatar = (ImageView) findViewById(R.id.activity_edit_profile_iv_avatar);
-        llEditAvatar = (LinearLayout) findViewById(R.id.activity_edit_profile_ll_edit_avatar);
         etName = (EditText) findViewById(activity_edit_profile_et_name);
             /*Gender - show and hide*/
         llGender = (LinearLayout) findViewById(R.id.activity_edit_profile_ll_gender);
@@ -236,7 +235,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
             @Override
             public void onClick(View v) {
                 AppUtils.hideSoftKeyboard(EditProfileActivity.this);
-                BaseProgress baseProgress = new BaseProgress();
+                final BaseProgress baseProgress = new BaseProgress();
 
                 SimpleDateFormat format = new SimpleDateFormat("MMMM/dd/yyyy", Locale.ENGLISH);
                 Date date = null;
@@ -291,7 +290,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
     }
 
-    private void setValueAfterEdit(BaseProgress baseProgress) {
+    private void setValueAfterEdit(final BaseProgress baseProgress) {
         userName.setFullName(StringEscapeUtils.escapeJava(etName.getText().toString()));
         userName.setGender(tvGender.getText().toString());
         userName.setBirthday(tvAge.getText().toString());
@@ -620,7 +619,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
         }
     }
 
-    private void editMultiAutoCompleteTextView(MultiAutoCompleteTextView mactv, int source) {
+    private void editMultiAutoCompleteTextView(final MultiAutoCompleteTextView mactv, int source) {
         mactv.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
         ArrayAdapter hobbyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(source));

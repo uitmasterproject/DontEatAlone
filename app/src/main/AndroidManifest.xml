@@ -41,7 +41,8 @@
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".views.main.MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:configChanges="keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
         <activity android:name=".views.main.blog.StatusActivity"
             android:windowSoftInputMode="stateHidden">

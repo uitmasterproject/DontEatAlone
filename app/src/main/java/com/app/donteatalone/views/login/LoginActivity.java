@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         init.enqueue(new Callback<InitParam>() {
             @Override
             public void onResponse(Call<InitParam> call, Response<InitParam> response) {
-                if (response != null) {
+                if (response.body() != null) {
                     String password = AppUtils.encrypt(response.body().getInitParam(), edtPassword.getText().toString());
 
                     UserName userName=new UserName(edtPhone.getText().toString(), password);
@@ -123,6 +123,9 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+                }else {
+                    dialog.hideProgressLoading();
+                    Toast.makeText(LoginActivity.this, getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                 }
             }
 

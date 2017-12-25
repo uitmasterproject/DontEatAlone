@@ -413,10 +413,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         llDisplay.setVisibility(View.GONE);
     }
 
-    private void saveInfo(LinearLayout llDisplay, TextView tvContent, int titleDefaultResource) {
-        MySharePreference mySharePreference=new MySharePreference(getActivity());
+    private void saveInfo(final LinearLayout llDisplay, final TextView tvContent, final int titleDefaultResource) {
+        final MySharePreference mySharePreference=new MySharePreference(getActivity());
         if(AppUtils.isNetworkAvailable(getActivity())) {
-            InfoProfileUpdate infoUpdate = new InfoProfileUpdate(getActivity());
+            final InfoProfileUpdate infoUpdate = new InfoProfileUpdate(getActivity());
             infoUpdate.setPhone(userName.getPhone());
 
             if (mactvEdit.getText().toString().trim().endsWith(",")) {

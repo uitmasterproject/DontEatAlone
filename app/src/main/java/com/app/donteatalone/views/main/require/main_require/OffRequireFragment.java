@@ -1,7 +1,5 @@
 package com.app.donteatalone.views.main.require.main_require;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,20 +7,24 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aigestudio.wheelpicker.WheelPicker;
 import com.app.donteatalone.R;
+import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
-import com.app.donteatalone.views.main.profile.ProfileDialogCustom;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
@@ -35,6 +37,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import static android.app.Activity.RESULT_OK;
@@ -43,29 +47,46 @@ import static android.app.Activity.RESULT_OK;
  * Created by ChomChom on 5/8/2017
  */
 
-public class OffRequireFragment extends Fragment implements PlaceSelectionListener {
+public class OffRequireFragment extends Fragment implements PlaceSelectionListener, View.OnClickListener {
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
 
     private View viewGroup;
-    private RelativeLayout rlGenderAll, rlGenderFemale, rlGenderMale, rlAgeClose;
+    private RelativeLayout rlGenderAll, rlGenderFemale, rlGenderMale;
     private TextView txtGenderAll, txtGenderFemale, txtGenderMale;
-    private LinearLayout llContainerAge, llContainerAddress, llAgeAccept;
+    private LinearLayout llContainerAge, llContainerAddress;
     private LinearLayout llContainerHobbyFood, llContainerHobbyCharacter, llContainerHobbyStyle;
     private TextView txtAge, txtAdress, txtHobbyFood, txtHobbyCharacter, txtHobbyStyle;
-    private String location = "", valuetemp, phone;
+    private String location = "", phone;
     private MySharePreference accountSharePreference;
     private MySharePreference infoRequireSharePreference;
 
+    private LinearLayout llEditAge;
+
+    private RelativeLayout rlEdit;
+    private MultiAutoCompleteTextView mactvEdit;
+    private ImageView imgSave, imgRefresh;
+
+    private String contentBeforeEdit;
+
     public static OffRequireFragment newInstance() {
         return new OffRequireFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_off, container, false);
+
+        Log.e("activity Off", getActivity()+"++++++++++++++++++++++++++++++++++++++++");
+
         accountSharePreference = new MySharePreference(getActivity());
         phone = accountSharePreference.getPhoneLogin();
         putInfoRequireIntoShareReference();
@@ -80,6 +101,24 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         return viewGroup;
     }
 
+    @Override
+    public void onStop() {
+        Log.e("activity onStop", getActivity()+"++++++++++++++++++++++++++++++++++++++++");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.e("activity onDestroy", getActivity()+"++++++++++++++++++++++++++++++++++++++++");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStart() {
+        Log.e("activity Off on Start", getActivity()+"++++++++++++++++++++++++++++++++++++++++");
+        super.onStart();
+    }
+
     private void init() {
         rlGenderAll = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_all);
         rlGenderFemale = (RelativeLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_female);
@@ -92,6 +131,8 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         txtGenderAll.setTextColor(getResources().getColor(R.color.color_deep_orange_1));
 
         llContainerAge = (LinearLayout) viewGroup.findViewById(R.id.fragment_require_off_rl_container_range);
+
+        llEditAge = (LinearLayout) viewGroup.findViewById(R.id.ll_edit_age);
 
         txtAge = (TextView) viewGroup.findViewById(R.id.fragment_require_off_txt_age);
 
@@ -174,14 +215,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
 
     //Select Age
     private void setClickEditAge() {
-        llContainerAge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
-                        viewGroup.getContext(), R.layout.custom_dialog_require_off_choose_age, txtAge);
-                profileDialogCustom.showDialogCustom();
-            }
-        });
+        llContainerAge.setOnClickListener(this);
     }
 
     //Select Address
@@ -233,78 +267,11 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
 
     //Select hobby, in here, change value hobby
     private void setClickEditHobby() {
-        llContainerHobbyFood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
-                        viewGroup.getContext(), R.layout.custom_dialog_profile_hobby_food, txtHobbyFood);
-                profileDialogCustom.showDialogCustom();
-            }
-        });
+        llContainerHobbyFood.setOnClickListener(this);
 
-        llContainerHobbyCharacter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
-                        viewGroup.getContext(), R.layout.custom_dialog_profile_hobby_character, txtHobbyCharacter);
-                profileDialogCustom.showDialogCustom();
-            }
-        });
+        llContainerHobbyCharacter.setOnClickListener(this);
 
-        llContainerHobbyStyle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ProfileDialogCustom profileDialogCustom = new ProfileDialogCustom(
-                        viewGroup.getContext(), R.layout.custom_dialog_profile_hobby_style, txtHobbyStyle);
-                profileDialogCustom.showDialogCustom();
-            }
-        });
-    }
-
-    private void setClickrlContainerHobby(String title, TextView textView, int resource) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.custom_dialog_require_off_choose_hobby, null);
-        dialog.setView(dialogView);
-        dialog.setTitle(title);
-        final MultiAutoCompleteTextView atctcHobby = (MultiAutoCompleteTextView) dialogView.findViewById(R.id.custom_dialog_require_off_choose_hobby_atctv_hobby);
-        atctcHobby.setText(textView.getText().toString());
-        valuetemp = textView.getText().toString();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(resource));
-        atctcHobby.setAdapter(adapter);
-        atctcHobby.setThreshold(1);
-        atctcHobby.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        atctcHobby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (atctcHobby.getText().toString().length() > 0) {
-                    atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + atctcHobby.getItemSelectedListener().toString());
-                } else {
-                    atctcHobby.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().lastIndexOf(",")) + "," + atctcHobby.getItemSelectedListener().toString());
-                }
-                valuetemp = atctcHobby.getText().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                txtHobbyCharacter.setText(atctcHobby.getText().toString().substring(0, atctcHobby.getText().toString().length() - 1));
-                infoRequireSharePreference.setTargetStyleRequire(valuetemp);
-            }
-        })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-        AlertDialog alertDialog = dialog.create();
-        alertDialog.show();
+        llContainerHobbyStyle.setOnClickListener(this);
     }
 
     private void putInfoRequireIntoShareReference() {
@@ -330,4 +297,211 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fragment_require_off_ll_container_hobby_food:
+                getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+                editInfo(R.id.rl_edit_target_food, R.id.mactv_target_food, R.array.food,
+                        R.id.img_save_target_food, R.id.refresh_target_food, llContainerHobbyFood, txtHobbyFood);
+                break;
+            case R.id.img_save_target_food:
+                saveInfo(llContainerHobbyFood, txtHobbyFood, R.id.img_save_target_food);
+                break;
+            case R.id.fragment_require_off_ll_container_hobby_character:
+                getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                editInfo(R.id.rl_edit_target_character, R.id.mactv_target_character,
+                        R.string.character_target, R.id.img_save_target_character, R.id.refresh_target_character,
+                        llContainerHobbyCharacter, txtHobbyCharacter);
+                break;
+            case R.id.img_save_target_character:
+                saveInfo(llContainerHobbyCharacter, txtHobbyCharacter, R.id.img_save_target_character);
+                break;
+            case R.id.fragment_require_off_ll_container_hobby_style:
+                getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                editInfo(R.id.rl_edit_target_style, R.id.mactv_target_style, R.array.style,
+                        R.id.img_save_target_style, R.id.refresh_target_style, llContainerHobbyStyle, txtHobbyStyle);
+                break;
+            case R.id.img_save_target_style:
+                saveInfo(llContainerHobbyStyle, txtHobbyStyle, R.id.img_save_target_style);
+                break;
+            case R.id.mactv_my_character:
+            case R.id.mactv_my_style:
+            case R.id.mactv_target_food:
+            case R.id.mactv_target_character:
+            case R.id.mactv_target_style:
+                if (!TextUtils.isEmpty(mactvEdit.getText().toString()) && !mactvEdit.getText().toString().trim().endsWith(",")) {
+                    mactvEdit.setText(mactvEdit.getText().toString() + ", ");
+                }
+                mactvEdit.setSelection(mactvEdit.getText().toString().length());
+                break;
+            case R.id.refresh_character:
+            case R.id.refresh_style:
+            case R.id.refresh_target_food:
+            case R.id.refresh_target_character:
+            case R.id.refresh_target_style:
+                mactvEdit.setText(contentBeforeEdit);
+                if (!TextUtils.isEmpty(mactvEdit.getText().toString()) && !mactvEdit.getText().toString().trim().endsWith(",")) {
+                    mactvEdit.setText(mactvEdit.getText().toString() + ", ");
+                }
+                mactvEdit.setSelection(mactvEdit.getText().toString().length());
+                break;
+            case R.id.fragment_require_off_rl_container_range:
+                if (llEditAge.getVisibility() == View.GONE) {
+                    llEditAge.setVisibility(View.VISIBLE);
+                    editAge();
+                } else {
+                    llEditAge.setVisibility(View.GONE);
+                }
+                break;
+        }
+    }
+
+    private void editInfo(int rlEditSource, int macTvEditSource, int listDataSource,
+                          int imgSaveSource, int imgRefreshSource, LinearLayout llDisplay, TextView tvContent) {
+
+        AppUtils.hideSoftKeyboard(getActivity());
+
+        int[] listEdit = new int[]{R.id.rl_edit_target_food, R.id.rl_edit_target_character, R.id.rl_edit_target_style};
+        LinearLayout[] listDisplay = new LinearLayout[]{llContainerHobbyFood, llContainerHobbyCharacter, llContainerHobbyStyle};
+
+        for (int i = 0; i < listEdit.length; i++) {
+            if (listEdit[i] != rlEditSource) {
+                RelativeLayout rl = (RelativeLayout) viewGroup.findViewById(listEdit[i]);
+                if (rl.getVisibility() == View.VISIBLE) {
+                    rl.setVisibility(View.GONE);
+                    listDisplay[i].setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+        rlEdit = (RelativeLayout) viewGroup.findViewById(rlEditSource);
+
+        rlEdit.setOnClickListener(this);
+        rlEdit.setVisibility(View.VISIBLE);
+
+        mactvEdit = (MultiAutoCompleteTextView) viewGroup.findViewById(macTvEditSource);
+        mactvEdit.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        ArrayAdapter hobbyAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(listDataSource));
+        mactvEdit.setAdapter(hobbyAdapter);
+
+        contentBeforeEdit = tvContent.getText().toString();
+        mactvEdit.setText(contentBeforeEdit);
+
+        mactvEdit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mactvEdit.setSelection(mactvEdit.getText().toString().length());
+            }
+        });
+
+        mactvEdit.setOnClickListener(this);
+
+        imgSave = (ImageView) viewGroup.findViewById(imgSaveSource);
+        imgSave.setOnClickListener(this);
+
+        imgRefresh = (ImageView) viewGroup.findViewById(imgRefreshSource);
+        imgRefresh.setOnClickListener(this);
+
+        llDisplay.setVisibility(View.GONE);
+    }
+
+    private void saveInfo(final LinearLayout llDisplay, final TextView tvContent, final int titleDefaultResource) {
+        String content;
+
+        if (mactvEdit.getText().toString().trim().endsWith(",")) {
+            content = StringEscapeUtils.escapeJava(mactvEdit.getText().toString().trim().
+                    substring(0, mactvEdit.getText().toString().trim().lastIndexOf(",")));
+        } else {
+            content = StringEscapeUtils.escapeJava(mactvEdit.getText().toString());
+        }
+
+        switch (titleDefaultResource) {
+            case R.id.img_save_target_food:
+                infoRequireSharePreference.setTargetFoodRequire(content);
+                break;
+            case R.id.img_save_target_character:
+                infoRequireSharePreference.setTargetCharacterRequire(content);
+                break;
+            case R.id.img_save_target_style:
+                infoRequireSharePreference.setTargetStyleRequire(content);
+                break;
+        }
+
+        llDisplay.setVisibility(View.VISIBLE);
+        tvContent.setText(StringEscapeUtils.unescapeJson(content));
+        rlEdit.setVisibility(View.GONE);
+        AppUtils.hideSoftKeyboard(getActivity());
+
+    }
+
+    private void editAge() {
+        WheelPicker wpkAgeMin = (WheelPicker) viewGroup.findViewById(R.id.fragment_require_off_wpk_min);
+        WheelPicker wpkAgeMax = (WheelPicker) viewGroup.findViewById(R.id.fragment_require_off_wpk_max);
+        wpkAgeMin.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(0, 2).trim()) - 10);
+        if (Integer.parseInt(txtAge.getText().toString().trim().substring(0, 2).trim()) < 10) {
+            wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(4).trim()) - 10);
+        } else {
+            wpkAgeMax.setSelectedItemPosition(Integer.parseInt(txtAge.getText().toString().trim().substring(5).trim()) - 10);
+        }
+        //get value in resource
+        String[] list = getResources().getStringArray(R.array.age_limit);
+        final ArrayList<String> ageLimit = new ArrayList<String>(Arrays.asList(list));
+
+        //set data for age min and age max
+        wpkAgeMin.setData(ageLimit);
+        wpkAgeMax.setData(ageLimit);
+        setEventChooseValueAge(wpkAgeMin, wpkAgeMax);
+    }
+
+    private void setEventChooseValueAge(final WheelPicker wpkAgeMin, final WheelPicker wpkAgeMax) {
+
+        //listen event when choose value
+        wpkAgeMax.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int i) {
+            }
+
+            @Override
+            public void onWheelSelected(int i) {
+                if (Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) >=
+                        Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())) {
+                    wpkAgeMin.setSelectedItemPosition(wpkAgeMax.getCurrentItemPosition() - 1);
+                }
+
+                txtAge.setText(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString() + " - " +
+                        wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString());
+
+                infoRequireSharePreference.setAgeMinRequire(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString());
+                infoRequireSharePreference.setAgeMaxRequire(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString());
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int i) {
+            }
+        });
+
+        wpkAgeMin.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int i) {
+            }
+
+            @Override
+            public void onWheelSelected(int i) {
+                if (Integer.parseInt(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString()) >=
+                        Integer.parseInt(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString())) {
+                    wpkAgeMax.setSelectedItemPosition(wpkAgeMin.getCurrentItemPosition() + 1);
+                }
+                txtAge.setText(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString() + " - " +
+                        wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString());
+                infoRequireSharePreference.setAgeMinRequire(wpkAgeMin.getData().get(wpkAgeMin.getCurrentItemPosition()).toString());
+                infoRequireSharePreference.setAgeMaxRequire(wpkAgeMax.getData().get(wpkAgeMax.getCurrentItemPosition()).toString());
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int i) {
+            }
+        });
+    }
 }

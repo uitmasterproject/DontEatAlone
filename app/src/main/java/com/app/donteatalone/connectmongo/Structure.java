@@ -88,8 +88,8 @@ public interface Structure {
         Call<Status> editProfile(@Body UserName userName);
 
 
-        @GET("/restaurant/{latlng}")
-        Call<ArrayList<Restaurant>> getRestaurant(@Path("latlng") String latlng);
+        @GET("/restaurant/{latlng}/{city}/{district}")
+        Call<ArrayList<Restaurant>> getRestaurant(@Path("latlng") String latlng, @Path("city")String city, @Path("district") String district);
         @GET("/restaurant/latlng/{latlng}")
         Call<ArrayList<Restaurant>> getRestaurantFollowLatlng(@Path("latlng") String latlng);
         @GET("/restaurant/district/{city}/{district}")
@@ -112,8 +112,8 @@ public interface Structure {
         Call<ArrayList<ProfileHistoryModel>> editEventHistory(@Path("phone") String phone, @Body ProfileHistoryModel profileHistoryModel);
 
 
-        @GET("/accordant/{phone}/{type}")
-        Call<Status> addLike(@Path("phone") String phone, @Path("type") int type);
+        @GET("/accordant/{phone}/{phoneUser}/{type}")
+        Call<Status> addLike(@Path("phone") String phone, @Path("phoneUser") String phoneUser,  @Path("type") int type);
 
         @GET("/accordant/{phone}")
         Call<Achievement> getAchievement(@Path("phone") String phone);

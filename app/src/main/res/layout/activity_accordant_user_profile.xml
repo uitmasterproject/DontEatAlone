@@ -26,7 +26,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_exit"
+                android:src="@drawable/ic_back_arrow_white"
                 android:background="@color/transparent" />
 
         </RelativeLayout>

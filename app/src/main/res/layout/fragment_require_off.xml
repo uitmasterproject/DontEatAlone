@@ -1,412 +1,544 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
-    android:orientation="vertical">
-
-    //Filter by
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:background="@color/grey"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="Filter By"
-            android:textColor="@color/dot_tutorial_inactive"
-            android:textSize="16sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-        <!--Gender-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Gender"
-                android:textColor="@color/font_color_for_require"
-                android:textSize="16sp"
-                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/fragment_require_off_rl_all"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/design_require_off_txt_gender_leftsight_selector">
-
-                    <TextView
-                        android:id="@+id/fragment_require_off_txt_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:padding="8dp"
-                        android:text="All"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="15dp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/fragment_require_off_rl_female"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/grey_1">
-
-                    <TextView
-                        android:id="@+id/fragment_require_off_txt_female"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:padding="8dp"
-                        android:text="Female"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="15dp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/fragment_require_off_rl_male"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/design_require_off_txt_gender_rightsight_default">
-
-                    <TextView
-                        android:id="@+id/fragment_require_off_txt_male"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerInParent="true"
-                        android:padding="8dp"
-                        android:text="Male"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="15dp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--Range-->
-        <LinearLayout
-            android:id="@+id/fragment_require_off_rl_container_range"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_normal"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Range"
-                android:textColor="@color/font_color_for_require"
-                android:textSize="16sp"
-                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/fragment_require_off_txt_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="min - max"
-                    android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="age"
-                    android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/ic_arrow_to_left"
-                    android:scaleType="centerCrop" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/transparent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Details About People You Need"
+                android:text="Filter By"
                 android:textColor="@color/dot_tutorial_inactive"
-                android:textSize="16sp"
-                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                android:textSize="16sp"/>
 
-            <!--Food-->
+            <!--Gender-->
             <LinearLayout
-                android:id="@+id/fragment_require_off_ll_container_hobby_food"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_normal"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.33">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/red_dot"
-                        android:drawablePadding="10dp"
-                        android:text="Food"
-                        android:textColor="@color/font_color_for_require"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="0.7"
-                    android:gravity="right">
+                    android:text="Gender"
+                    android:textColor="@color/font_color_for_require"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/fragment_required_off_txt_hobby_food"
-                        android:layout_width="wrap_content"
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/fragment_require_off_rl_all"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="14sp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/design_require_off_txt_gender_leftsight_selector">
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/fragment_require_off_txt_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:padding="8dp"
+                            android:text="All"
+                            android:textColor="@color/dot_tutorial_inactive"
+                            android:textSize="15dp"
+                            app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/fragment_require_off_rl_female"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/grey_1">
+
+                        <TextView
+                            android:id="@+id/fragment_require_off_txt_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:padding="8dp"
+                            android:text="Female"
+                            android:textColor="@color/dot_tutorial_inactive"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/fragment_require_off_rl_male"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/design_require_off_txt_gender_rightsight_default">
+
+                        <TextView
+                            android:id="@+id/fragment_require_off_txt_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true"
+                            android:padding="8dp"
+                            android:text="Male"
+                            android:textColor="@color/dot_tutorial_inactive"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!--Range-->
             <LinearLayout
-                android:id="@+id/fragment_require_off_ll_container_hobby_character"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_normal"
-                android:padding="10dp">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.34">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:drawableLeft="@drawable/green_dot"
-                        android:drawablePadding="10dp"
-                        android:text="Character"
-                        android:textColor="@color/font_color_for_require"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.74"
-                    android:gravity="right">
-
-                    <TextView
-                        android:id="@+id/fragment_required_off_txt_hobby_character"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="14sp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/fragment_require_off_ll_container_hobby_style"
+                android:id="@+id/fragment_require_off_rl_container_range"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_normal"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35">
+                    android:layout_gravity="center_vertical"
+                    android:text="Range"
+                    android:textColor="@color/font_color_for_require"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_require_off_txt_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="min - max"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="age"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_arrow_to_left"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_edit_age"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/app_background"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:visibility="gone">
+
+                <com.aigestudio.wheelpicker.WheelPicker
+                    android:id="@+id/fragment_require_off_wpk_min"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    app:wheel_atmospheric="true"
+                    app:wheel_curtain="true"
+                    app:wheel_curved="true"
+                    app:wheel_cyclic="true"
+                    app:wheel_indicator="true"
+                    app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                    app:wheel_indicator_size="1dp"
+                    app:wheel_item_text_size="15sp"
+                    app:wheel_selected_item_text_color="@color/black"
+                    app:wheel_visible_item_count="3" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="#000" />
+
+                <com.aigestudio.wheelpicker.WheelPicker
+                    android:id="@+id/fragment_require_off_wpk_max"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    app:wheel_atmospheric="true"
+                    app:wheel_curtain="true"
+                    app:wheel_curved="true"
+                    app:wheel_cyclic="true"
+                    app:wheel_indicator="true"
+                    app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                    app:wheel_indicator_size="1dp"
+                    app:wheel_item_text_size="15sp"
+                    app:wheel_selected_item_text_color="@color/black"
+                    app:wheel_visible_item_count="3" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/transparent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Details About People You Need"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="16sp"
+                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+                <!--Food-->
+                <LinearLayout
+                    android:id="@+id/fragment_require_off_ll_container_hobby_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_normal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:drawableLeft="@drawable/red_dot"
+                        android:drawablePadding="10dp"
+                        android:text="Food"
+                        android:textColor="@color/font_color_for_require"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fragment_required_off_txt_hobby_food"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.74"
+                        android:gravity="end"
+                        android:text="aaaaaaaaaaaaaaaaaaaaa"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="14sp"
+                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_edit_target_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:padding="1dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_save_target_food"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_save" />
+
+                    <MultiAutoCompleteTextView
+                        android:id="@+id/mactv_target_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="28dp"
+                        android:completionThreshold="1"
+                        android:maxLines="1"
+                        android:text="Character  "
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/refresh_target_food"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_refresh" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/fragment_require_off_ll_container_hobby_character"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_normal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="0.34"
+                        android:drawableLeft="@drawable/green_dot"
+                        android:drawablePadding="10dp"
+                        android:text="Character"
+                        android:textColor="@color/font_color_for_require"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fragment_required_off_txt_hobby_character"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.74"
+                        android:gravity="end"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="14sp"
+                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_edit_target_character"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:padding="1dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_save_target_character"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_save" />
+
+                    <MultiAutoCompleteTextView
+                        android:id="@+id/mactv_target_character"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="28dp"
+                        android:completionThreshold="1"
+                        android:maxLines="1"
+                        android:text="Character  "
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/refresh_target_character"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_refresh" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fragment_require_off_ll_container_hobby_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_normal"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.34"
                         android:drawableLeft="@drawable/orange_dot"
                         android:drawablePadding="10dp"
                         android:text="Style"
                         android:textColor="@color/font_color_for_require"
                         android:textSize="16sp" />
 
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.75"
-                    android:gravity="right">
-
                     <TextView
                         android:id="@+id/fragment_required_off_txt_hobby_style"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.74"
+                        android:gravity="end"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="14sp"
                         app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
 
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_edit_target_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:padding="1dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_save_target_style"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_save" />
+
+                    <MultiAutoCompleteTextView
+                        android:id="@+id/mactv_target_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="28dp"
+                        android:completionThreshold="1"
+                        android:maxLines="1"
+                        android:text="Style  "
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        app:fontPath="fonts/Roboto-Regular" />
+
+                    <ImageView
+                        android:id="@+id/refresh_target_style"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_refresh" />
+
                 </RelativeLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/transparent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/transparent" />
-
-    <!--location you are looking for-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="The Location You Are Looking For"
-            android:textColor="@color/dot_tutorial_inactive"
-            android:textSize="16sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-        <!--Location-->
+        <!--location you are looking for-->
         <LinearLayout
-            android:id="@+id/fragment_require_off_ll_container_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="Location"
-                android:textColor="@color/font_color_for_require"
-                android:textSize="16sp"
-                app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="The Location You Are Looking For"
+                android:textColor="@color/dot_tutorial_inactive"
+                android:textSize="16sp" />
 
+            <!--Location-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/fragment_require_off_ll_container_address"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/fragment_required_off_txt_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ho Chi Minh"
-                    android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="14sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="Location"
+                    android:textColor="@color/font_color_for_require"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:id="@+id/fragment_required_off_txt_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ho Chi Minh"
+                        android:textColor="@color/dot_tutorial_inactive"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

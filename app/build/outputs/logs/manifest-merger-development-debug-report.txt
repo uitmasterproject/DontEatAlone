@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
 MERGED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\design-25.3.1.aar\6500c0efb8e4170d6372cd5cb6823a8f\AndroidManifest.xml:17:1-31:12
 MERGED from [uk.co.chrisjenx:calligraphy:2.2.0] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\calligraphy-2.2.0.aar\69ce44f81f51060fe7842ee0c0ac0f9a\AndroidManifest.xml:2:1-13:12
 MERGED from [com.github.adityagohad:HorizontalPicker:1.0.1] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\HorizontalPicker-1.0.1.aar\44c80f5ac790e129b8e00e98df3fb6ac\AndroidManifest.xml:2:1-17:12
@@ -79,20 +79,20 @@ MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\ChomChom\
 MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\03bf90adb26340891bdc11dae6bb0826\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\060a7e0d5cbd87b8072a729efbe877a7\AndroidManifest.xml:17:1-31:12
 MERGED from [com.facebook.conceal:conceal:1.1.3] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\conceal-1.1.3.aar\c40692a94ab50e89f0469db1291afd2a\AndroidManifest.xml:7:1-16:12
-INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
 	package
 		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:3:5-35
 		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
 		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
 		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-65:12
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:1-66:12
 		INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:2:11-69
@@ -155,7 +155,7 @@ ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:16:5-18:35
 	android:name
 		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:17:9-53
 application
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:20:5-63:19
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:20:5-64:19
 MERGED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\design-25.3.1.aar\6500c0efb8e4170d6372cd5cb6823a8f\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:design:25.3.1] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\design-25.3.1.aar\6500c0efb8e4170d6372cd5cb6823a8f\AndroidManifest.xml:29:5-20
 MERGED from [uk.co.chrisjenx:calligraphy:2.2.0] C:\Users\ChomChom\.gradle\caches\transforms-1\files-1.1\calligraphy-2.2.0.aar\69ce44f81f51060fe7842ee0c0ac0f9a\AndroidManifest.xml:11:5-20
@@ -319,47 +319,49 @@ ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:40:9-42:20
 	android:name
 		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:40:19-66
 activity#com.app.donteatalone.views.main.MainActivity
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:43:9-45:20
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:43:9-46:20
 	android:windowSoftInputMode
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:44:13-54
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:45:13-67
+	android:configChanges
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:44:13-51
 	android:name
 		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:43:19-58
 activity#com.app.donteatalone.views.main.blog.StatusActivity
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:46:9-48:20
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:47:9-49:20
 	android:windowSoftInputMode
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:47:13-54
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:48:13-54
 	android:name
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:46:19-65
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:47:19-65
 activity#com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:49:9-51:20
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:50:9-52:20
 	android:windowSoftInputMode
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:50:13-54
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:51:13-54
 	android:name
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:49:19-98
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:50:19-98
 activity#com.app.donteatalone.views.main.blog.DetailBlogActivity
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:52:9-53:56
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:53:9-54:56
 	android:windowSoftInputMode
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:53:13-54
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:54:13-54
 	android:name
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:52:19-69
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:53:19-69
 activity#com.app.donteatalone.views.main.profile.EditProfileActivity
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:54:9-56:20
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:55:9-57:20
 	android:windowSoftInputMode
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:55:13-54
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:56:13-54
 	android:name
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:54:19-73
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:55:19-73
 activity#com.app.donteatalone.views.main.restaurant.AllowReservation.AllowReservationDetail
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:57:9-58:56
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:58:9-59:56
 	android:windowSoftInputMode
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:58:13-54
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:59:13-54
 	android:name
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:57:19-96
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:58:19-96
 meta-data#com.google.android.geo.API_KEY
-ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:60:9-62:71
+ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:61:9-63:71
 	android:value
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:62:13-68
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:63:13-68
 	android:name
-		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:61:13-58
+		ADDED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml:62:13-58
 uses-sdk
 INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\SOLUTION\DontEatAlone\app\src\main\AndroidManifest.xml

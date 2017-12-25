@@ -52,7 +52,6 @@ public class BlogFragment extends Fragment {
         return new BlogFragment();
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

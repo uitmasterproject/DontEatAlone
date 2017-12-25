@@ -156,28 +156,28 @@ public class AllowReservationFragment extends Fragment {
 
         });
 
+        listenBroadcast();
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        listenBroadcast();
-    }
 
     private void listenBroadcast(){
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA) != null) {
+        if(broadcastReceiver==null) {
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA) != null) {
 
-                    listReservation.add(0, (RestaurantDetail) intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA));
-                    if(rcvListReservation.getVisibility()==View.GONE){
-                        rcvListReservation.setVisibility(View.VISIBLE);
+
+                        listReservation.add(0, (RestaurantDetail) intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA));
+                        if (rcvListReservation.getVisibility() == View.GONE) {
+                            rcvListReservation.setVisibility(View.VISIBLE);
+                        }
+                        reservationAdapter.notifyDataSetChanged();
                     }
-                    reservationAdapter.notifyDataSetChanged();
                 }
-            }
-        };
+            };
+        }
 
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(MainActivity.BROADCAST_RESTAURANT_NAME));
 
@@ -214,5 +214,11 @@ public class AllowReservationFragment extends Fragment {
                 }
             });
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+        super.onDestroy();
     }
 }

@@ -294,8 +294,7 @@
                             android:layout_gravity="center"
                             android:text="Character  "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -396,8 +395,7 @@
                             android:maxLines="1"
                             android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:completionThreshold="1"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:completionThreshold="1" />
 
                         <ImageView
                             android:id="@+id/refresh_style"
@@ -431,8 +429,7 @@
                             android:layout_gravity="center"
                             android:text="0902323 "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -474,8 +471,7 @@
                         android:layout_marginStart="10dp"
                         android:text="My Target is ..."
                         android:textColor="@color/black"
-                        android:textSize="18dp"
-                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -516,8 +512,7 @@
                             android:layout_gravity="center"
                             android:text="Like "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -549,8 +544,7 @@
                             android:maxLines="1"
                             android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:completionThreshold="1"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:completionThreshold="1" />
 
                         <ImageView
                             android:id="@+id/refresh_target_food"
@@ -585,8 +579,7 @@
                             android:layout_gravity="center"
                             android:text="Character  "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -618,8 +611,7 @@
                             android:maxLines="1"
                             android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:completionThreshold="1"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:completionThreshold="1" />
 
                         <ImageView
                             android:id="@+id/refresh_target_character"
