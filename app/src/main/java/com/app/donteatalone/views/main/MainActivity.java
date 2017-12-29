@@ -37,10 +37,15 @@ public class MainActivity extends AppCompatActivity {
     public static final String BROADCAST_RESTAURANT_NAME="DONTEATALONE.BROADCAST_RESTAURANT_NAME";
     public static final String SEND_BROADCAST_RESTAURANT_DATA = "DONTEATALONE.BROADCAST_RESTAURANT_DATA";
 
+    public static final String BROADCAST_MODIFY_BLOG_NAME="DONTEATALONE.BROADCAST_MODIFY_BLOG_NAME";
+    public static final String SEND_BROADCAST_MODIFY_BLOG_DATA = "DONTEATALONE.SEND_BROADCAST_MODIFY_BLOG_DATA";
+
+    public static final String BROADCAST_EDIT_PROFILE_NAME="DONTEATALONE.BROADCAST_EDIT_PROFILE_NAME";
+    public static final String SEND_BROADCAST_EDIT_PROFILE_DATA = "DONTEATALONE.BROADCAST_EDIT_PROFILE_DATA";
+
     public static final String ARG_FROM_VIEW = "ARG_FROM_VIEW";
     public static final String ARG_DETAIL_BLOG_ACTIVITY = "ARG_DETAIL_BLOG_ACTIVITY";
     public static final String ARG_PROFILE_ACCORDANT_USER_ACTIVITY = "ARG_PROFILE_ACCORDANT_USER_ACTIVITY";
-    public static final String ARG_STATUS_ACTIVITY_DATA = "ARG_STATUS_ACTIVITY_DATA";
     public static final String ARG_EDIT_PROFILE_ACTIVITY = "ARG_EDIT_PROFILE_ACTIVITY";
 
     public static final String URL_STORAGE_FIRE_BASE = "gs://dont-eat-alone-storage.appspot.com";

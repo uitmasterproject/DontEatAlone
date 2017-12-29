@@ -25,6 +25,7 @@ import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.login.LoginActivity;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -141,9 +142,9 @@ public class RegisterStep7Fragment extends Fragment {
                 if (stringFood.trim().endsWith(",")) {
                     mactvFood.setText(stringFood.substring(0, stringFood.trim().lastIndexOf(",")));
                 }
-                RegisterStep1Fragment.userName.setTargetCharacter(StringEscapeUtils.escapeJava(mactvCharacter.getText().toString()));
-                RegisterStep1Fragment.userName.setTargetStyle(StringEscapeUtils.escapeJava(mactvStyle.getText().toString()));
-                RegisterStep1Fragment.userName.setTargetFood(StringEscapeUtils.escapeJava(mactvFood.getText().toString()));
+                RegisterStep1Fragment.userName.setTargetCharacter(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvCharacter.getText().toString())));
+                RegisterStep1Fragment.userName.setTargetStyle(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvStyle.getText().toString())));
+                RegisterStep1Fragment.userName.setTargetFood(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvFood.getText().toString())));
                 InsertUserIntoDB();
             }
         });

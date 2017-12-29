@@ -41,7 +41,7 @@ public class ProfileBlogAdapter extends RecyclerView.Adapter<ProfileBlogAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ProfileBlogVH holder, int position) {
+    public void onBindViewHolder(ProfileBlogVH holder, final int position) {
         holder.txtTitle.setText(listBlog.get(position).getTitle());
         holder.txtTime.setText(listBlog.get(position).getDate());
         ProfileBlogInnerAdapter adapter = new ProfileBlogInnerAdapter(listBlog.get(position).getImage(), context);

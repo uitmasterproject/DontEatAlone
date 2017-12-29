@@ -46,6 +46,17 @@ public class Restaurant implements Parcelable{
         }
     };
 
+    public Restaurant(RestaurantDetail restaurantDetail){
+        id = restaurantDetail.getId();
+        avatar = restaurantDetail.getAvatar();
+        name = restaurantDetail.getName();
+        address = restaurantDetail.getAddress();
+        rate = restaurantDetail.getRate();
+        latlng = restaurantDetail.getLatlng();
+        openDay = restaurantDetail.getOpenDay();
+        price = restaurantDetail.getPrice();
+    }
+
     public int getId() {
         return id;
     }

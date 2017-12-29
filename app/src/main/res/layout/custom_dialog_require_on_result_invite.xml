@@ -3,32 +3,35 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:background="@color/color_deep_orange">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center_vertical"
-            android:text="Invite"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/custom_dialog_require_on_result_invite_txt_title"/>
+
         <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/custom_dialog_require_on_result_invite_img_close"
+            android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_delete"
-            android:id="@+id/custom_dialog_require_on_result_invite_img_close"/>
-    </RelativeLayout>
+            android:layout_gravity="end"
+            android:background="@drawable/ripple_selector"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close_white_36dp" />
+
+        <TextView
+            android:id="@+id/custom_dialog_require_on_result_invite_txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/user_offline"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,11 +44,13 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Full Name:" />
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="name"
+                    android:textColor="@color/black"
                     android:textSize="17dp"
                     android:id="@+id/custom_dialog_require_on_result_invite_txt_name"/>
             </LinearLayout>
@@ -56,11 +61,13 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Phone:" />
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="phone"
+                    android:textColor="@color/black"
                     android:textSize="17dp"
                     android:id="@+id/custom_dialog_require_on_result_invite_txt_phone"/>
             </LinearLayout>
@@ -70,18 +77,14 @@
                 android:gravity="center">
                 <TextView
                     android:layout_width="70dp"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:text="Time: "/>
                 <TextView
-                    android:layout_width="55dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="31/05"
-                    android:textSize="17dp"
-                    android:id="@+id/custom_dialog_require_on_result_invite_txt_date"/>
-                <TextView
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:text="08:30"
+                    android:textColor="@color/black"
                     android:textSize="17dp"
                     android:id="@+id/custom_dialog_require_on_result_invite_txt_time"/>
             </LinearLayout>
@@ -91,11 +94,13 @@
                 android:gravity="center">
                 <TextView
                     android:layout_width="70dp"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:text="Place: "/>
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="KTX khu B, dai hoc quoc gia TP.HCM, Ho Chi Minh"
                     android:textSize="17dp"
                     android:id="@+id/custom_dialog_require_on_result_invite_txt_place"/>

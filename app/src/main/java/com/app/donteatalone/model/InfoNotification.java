@@ -1,46 +1,18 @@
 package com.app.donteatalone.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
  * Created by ChomChom on 09-Jun-17
  */
 
-public class InfoNotification implements Parcelable {
-    private String userSend;
-    private String nameSend;
-    private String timeSend;
-    private String date;
-    private String time;
-    private String place;
-    private String status;
+public class InfoNotification{
+    private AccordantUser participant;
+    private String currentTime;
+    private String timeInvite;
+    private Restaurant restaurantInfo;
+    private ReservationDetail reservationDetail;
+    private String resultInvitation;
     private String read;
     private String seen;
-
-    protected InfoNotification(Parcel in) {
-        userSend = in.readString();
-        nameSend = in.readString();
-        timeSend = in.readString();
-        date = in.readString();
-        time = in.readString();
-        place = in.readString();
-        status = in.readString();
-        read = in.readString();
-        seen = in.readString();
-    }
-
-    public static final Creator<InfoNotification> CREATOR = new Creator<InfoNotification>() {
-        @Override
-        public InfoNotification createFromParcel(Parcel in) {
-            return new InfoNotification(in);
-        }
-
-        @Override
-        public InfoNotification[] newArray(int size) {
-            return new InfoNotification[size];
-        }
-    };
 
     public String getRead() {
         return read;
@@ -61,89 +33,64 @@ public class InfoNotification implements Parcelable {
     public InfoNotification() {
     }
 
-    public InfoNotification(String userSend, String nameSend, String timeSend, String date, String time, String place, String status, String read, String seen) {
-        this.userSend = userSend;
-        this.nameSend = nameSend;
-        this.timeSend = timeSend;
-        this.date = date;
-        this.time = time;
-        this.place = place;
-        this.status = status;
+    public InfoNotification(AccordantUser participant, String currentTime, String timeInvite,
+                            Restaurant restaurantInfo, ReservationDetail reservationDetail,
+                            String resultInvitation, String read, String seen) {
+        this.participant = participant;
+        this.currentTime = currentTime;
+        this.timeInvite = timeInvite;
+        this.restaurantInfo = restaurantInfo;
+        this.reservationDetail = reservationDetail;
+        this.resultInvitation = resultInvitation;
         this.read = read;
         this.seen = seen;
     }
 
-    public String getNameSend() {
-        return nameSend;
+    public AccordantUser getParticipant() {
+        return participant;
     }
 
-    public void setNameSend(String nameSend) {
-        this.nameSend = nameSend;
+    public void setParticipant(AccordantUser participant) {
+        this.participant = participant;
     }
 
-    public String getUserSend() {
-        return userSend;
+    public String getCurrentTime() {
+        return currentTime;
     }
 
-    public void setUserSend(String userSend) {
-        this.userSend = userSend;
+    public void setCurrentTime(String currentTime) {
+        this.currentTime = currentTime;
     }
 
-    public String getTimeSend() {
-        return timeSend;
+    public String getTimeInvite() {
+        return timeInvite;
     }
 
-    public void setTimeSend(String timeSend) {
-        this.timeSend = timeSend;
+    public void setTimeInvite(String timeInvite) {
+        this.timeInvite = timeInvite;
     }
 
-    public String getDate() {
-        return date;
+    public Restaurant getRestaurantInfo() {
+        return restaurantInfo;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setRestaurantInfo(Restaurant restaurantInfo) {
+        this.restaurantInfo = restaurantInfo;
     }
 
-    public String getTime() {
-        return time;
+    public ReservationDetail getReservationDetail() {
+        return reservationDetail;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setReservationDetail(ReservationDetail reservationDetail) {
+        this.reservationDetail = reservationDetail;
     }
 
-    public String getPlace() {
-        return place;
+    public String getResultInvitation() {
+        return resultInvitation;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(userSend);
-        dest.writeString(nameSend);
-        dest.writeString(timeSend);
-        dest.writeString(date);
-        dest.writeString(time);
-        dest.writeString(place);
-        dest.writeString(status);
-        dest.writeString(read);
-        dest.writeString(seen);
+    public void setResultInvitation(String resultInvitation) {
+        this.resultInvitation = resultInvitation;
     }
 }

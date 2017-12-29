@@ -83,8 +83,7 @@
                             android:padding="10dp"
                             android:text="0"
                             android:textColor="@color/color_deep_orange"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
 
                         <ImageView

@@ -350,7 +350,7 @@ public class ReservationDetailDesign extends Fragment implements View.OnClickLis
 
                     final UserReservation userReservation = new UserReservation();
                     Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat format = new SimpleDateFormat("MM:dd:yyyy", Locale.ENGLISH);
+                    SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy", Locale.ENGLISH);
                     String currentTime = format.format(calendar.getTime());
                     userReservation.setPhone(new MySharePreference(getActivity()).getPhoneLogin());
                     userReservation.setTimeReservation(currentTime);

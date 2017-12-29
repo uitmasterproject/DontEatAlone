@@ -17,9 +17,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.model.Restaurant;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 
@@ -31,6 +34,8 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
     private ArrayList<Restaurant> listRestaurant;
     private ArrayList<Target> listTarget = new ArrayList<>();
     private ArrayList<MyViewHolder> views;
+
+    private OnRecyclerItemClickListener onRecyclerItemClickListener;
     private Context context;
 
     public NoReservationAdapter(ArrayList<Restaurant> listRestaurant, Context context) {
@@ -43,6 +48,10 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
     public NoReservationAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recyclerview_fragment_restaurant_not_reservation, parent, false);
         return new MyViewHolder(view);
+    }
+
+    public void setClickItemRecyclerView(OnRecyclerItemClickListener onRecyclerItemClickListener){
+        this.onRecyclerItemClickListener= onRecyclerItemClickListener;
     }
 
     @Override
@@ -78,10 +87,12 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
                 .load(listRestaurant.get(position).getAvatar())
                 .into(listTarget.get(position));
         holder.txtRate.setText(listRestaurant.get(position).getRate());
-        holder.txtName.setText(listRestaurant.get(position).getName());
-        holder.txtAddress.setText(listRestaurant.get(position).getAddress());
+        holder.txtName.setText(StringEscapeUtils.unescapeJava(listRestaurant.get(position).getName()));
+        holder.txtAddress.setText(StringEscapeUtils.unescapeJava(listRestaurant.get(position).getAddress()));
         if (TextUtils.isEmpty(listRestaurant.get(position).getOpenDay())) {
             holder.txtOpenDay.setText("All day");
+        }else {
+            holder.txtOpenDay.setText(listRestaurant.get(position).getOpenDay());
         }
     }
 
@@ -115,6 +126,7 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
                     dialog.cancel();
                     break;
                 default:
+                    dialog.setCanceledOnTouchOutside(true);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     View view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_dialog_restaurant_no_reservation, null);
 
@@ -125,7 +137,18 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
                     TextView txtTime = (TextView) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_open_time);
                     TextView txtPrice = (TextView) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_price);
                     Button btnDone = (Button) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_ib_close);
+                    ImageView imgClose = (ImageView) view.findViewById(R.id.img_close);
                     btnDone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(onRecyclerItemClickListener!=null){
+                                onRecyclerItemClickListener.onItemClick(v,getAdapterPosition());
+                            }
+                            dialog.cancel();
+                        }
+                    });
+
+                    imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.cancel();

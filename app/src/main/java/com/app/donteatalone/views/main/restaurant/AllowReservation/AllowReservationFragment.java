@@ -186,7 +186,7 @@ public class AllowReservationFragment extends Fragment {
 
     private void getReservation(){
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("MM:dd:yyyy", Locale.ENGLISH);
+        SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy", Locale.ENGLISH);
         String currentTime = format.format(calendar.getTime());
         if(AppUtils.isNetworkAvailable(getActivity())){
             Call<ArrayList<RestaurantDetail>> getAllReservation = Connect.getRetrofit().getAllReservation(mySharePreference.getPhoneLogin(), currentTime);

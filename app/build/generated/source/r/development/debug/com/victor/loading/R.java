@@ -36,7 +36,7 @@ public final class R {
         public static final int newton_cradle_loading = 0x7f0c0068;
     }
     public static final class string {
-        public static final int app_name = 0x7f110023;
+        public static final int app_name = 0x7f110024;
     }
     public static final class styleable {
         public static final int[] CradleBall = { 0x7f0400a5 };

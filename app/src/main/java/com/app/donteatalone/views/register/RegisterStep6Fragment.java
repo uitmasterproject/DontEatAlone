@@ -18,6 +18,7 @@ import com.app.donteatalone.R;
 import com.app.donteatalone.utils.AppUtils;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by ChomChom on 4/7/2017
@@ -102,8 +103,8 @@ public class RegisterStep6Fragment extends Fragment {
                 if (stringStyle.trim().endsWith(",")) {
                     mactvStyle.setText(stringStyle.substring(0, stringStyle.lastIndexOf(",")));
                 }
-                RegisterStep1Fragment.userName.setMyCharacter(StringEscapeUtils.escapeJava(mactvCharacter.getText().toString()));
-                RegisterStep1Fragment.userName.setMyStyle(StringEscapeUtils.escapeJava(mactvStyle.getText().toString()));
+                RegisterStep1Fragment.userName.setMyCharacter(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvCharacter.getText().toString())));
+                RegisterStep1Fragment.userName.setMyStyle(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvStyle.getText().toString())));
                 _mViewPager.setCurrentItem(6, true);
             }
         });

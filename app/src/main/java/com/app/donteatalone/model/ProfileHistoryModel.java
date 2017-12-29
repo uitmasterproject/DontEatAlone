@@ -10,130 +10,88 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ProfileHistoryModel implements Parcelable {
-    @SerializedName("AccordantPhone")
-    private String accordantPhone;
-
-    @SerializedName("AccordantFullName")
-    private String accordantFullName;
-
-    @SerializedName("TimeSend")
-    private String timeSend;
-
-    @SerializedName("Timer")
-    private String timer;
-
-    @SerializedName("Date")
-    private String date;
-
-    @SerializedName("Place")
-    private String place;
-
+    private AccordantUser participant;
+    private String currentTime;
+    private String timeInvite;
+    private Restaurant restaurantInfo;
+    private ReservationDetail reservationDetail;
+    private String resultInvitation;
     @SerializedName("MyRate")
     private boolean myRate;
-
     @SerializedName("AccordantRate")
     private boolean accordantRate;
-
     @SerializedName("MyAppraise")
     private String myAppraise;
-
     @SerializedName("AccordantAppraise")
     private String accordantAppraise;
-    /*private boolean heart;*/
 
     public ProfileHistoryModel() {
-        super();
     }
 
-    public ProfileHistoryModel(String accordantPhone, String accordantFullName, String timeSend, String timer,
-                               String date, String place, boolean myRate, boolean accordantRate, String myAppraise,
-                               String accordantAppraise) {
-        this.accordantPhone = accordantPhone;
-        this.accordantFullName = accordantFullName;
-        this.timeSend = timeSend;
-        this.timer = timer;
-        this.date = date;
-        this.place = place;
+    public ProfileHistoryModel(AccordantUser participant, String currentTime, String timeInvite, Restaurant restaurantInfo,
+                               ReservationDetail reservationDetail, String resultInvitation, boolean myRate, boolean accordantRate,
+                               String myAppraise, String accordantAppraise) {
+        this.participant = participant;
+        this.currentTime = currentTime;
+        this.timeInvite = timeInvite;
+        this.restaurantInfo = restaurantInfo;
+        this.reservationDetail = reservationDetail;
+        this.resultInvitation = resultInvitation;
         this.myRate = myRate;
         this.accordantRate = accordantRate;
         this.myAppraise = myAppraise;
         this.accordantAppraise = accordantAppraise;
     }
 
-    protected ProfileHistoryModel(Parcel in) {
-        accordantPhone = in.readString();
-        accordantFullName = in.readString();
-        timeSend = in.readString();
-        timer = in.readString();
-        date = in.readString();
-        place = in.readString();
-        myRate = in.readByte() != 0;
-        accordantRate = in.readByte() != 0;
-        myAppraise = in.readString();
-        accordantAppraise = in.readString();
+    public AccordantUser getParticipant() {
+        return participant;
     }
 
-    public static final Creator<ProfileHistoryModel> CREATOR = new Creator<ProfileHistoryModel>() {
-        @Override
-        public ProfileHistoryModel createFromParcel(Parcel in) {
-            return new ProfileHistoryModel(in);
-        }
-
-        @Override
-        public ProfileHistoryModel[] newArray(int size) {
-            return new ProfileHistoryModel[size];
-        }
-    };
-
-    public String getTimer() {
-        return timer;
+    public void setParticipant(AccordantUser participant) {
+        this.participant = participant;
     }
 
-    public void setTimer(String timer) {
-        this.timer = timer;
+    public String getCurrentTime() {
+        return currentTime;
     }
 
-    public String getDate() {
-        return date;
+    public void setCurrentTime(String currentTime) {
+        this.currentTime = currentTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getTimeInvite() {
+        return timeInvite;
     }
 
-    public String getAccordantFullName() {
-        return accordantFullName;
+    public void setTimeInvite(String timeInvite) {
+        this.timeInvite = timeInvite;
     }
 
-    public void setAccordantFullName(String accordantFullName) {
-        this.accordantFullName = accordantFullName;
+    public Restaurant getRestaurantInfo() {
+        return restaurantInfo;
     }
 
-    public String getPlace() {
-        return place;
+    public void setRestaurantInfo(Restaurant restaurantInfo) {
+        this.restaurantInfo = restaurantInfo;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public ReservationDetail getReservationDetail() {
+        return reservationDetail;
     }
 
-    public String getAccordantPhone() {
-        return accordantPhone;
+    public void setReservationDetail(ReservationDetail reservationDetail) {
+        this.reservationDetail = reservationDetail;
     }
 
-    public void setAccordantPhone(String accordantPhone) {
-        this.accordantPhone = accordantPhone;
+    public String getResultInvitation() {
+        return resultInvitation;
     }
 
-    public String getTimeSend() {
-        return timeSend;
+    public void setResultInvitation(String resultInvitation) {
+        this.resultInvitation = resultInvitation;
     }
 
-    public void setTimeSend(String timeSend) {
-        this.timeSend = timeSend;
-    }
-
-    public boolean getMyRate() {
+    public boolean isMyRate() {
         return myRate;
     }
 
@@ -141,7 +99,7 @@ public class ProfileHistoryModel implements Parcelable {
         this.myRate = myRate;
     }
 
-    public boolean getAccordantRate() {
+    public boolean isAccordantRate() {
         return accordantRate;
     }
 
@@ -165,6 +123,31 @@ public class ProfileHistoryModel implements Parcelable {
         this.accordantAppraise = accordantAppraise;
     }
 
+    protected ProfileHistoryModel(Parcel in) {
+        participant = in.readParcelable(AccordantUser.class.getClassLoader());
+        currentTime = in.readString();
+        timeInvite = in.readString();
+        restaurantInfo = in.readParcelable(Restaurant.class.getClassLoader());
+        reservationDetail = in.readParcelable(ReservationDetail.class.getClassLoader());
+        resultInvitation = in.readString();
+        myRate = in.readByte() != 0;
+        accordantRate = in.readByte() != 0;
+        myAppraise = in.readString();
+        accordantAppraise = in.readString();
+    }
+
+    public static final Creator<ProfileHistoryModel> CREATOR = new Creator<ProfileHistoryModel>() {
+        @Override
+        public ProfileHistoryModel createFromParcel(Parcel in) {
+            return new ProfileHistoryModel(in);
+        }
+
+        @Override
+        public ProfileHistoryModel[] newArray(int size) {
+            return new ProfileHistoryModel[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -172,15 +155,18 @@ public class ProfileHistoryModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(accordantPhone);
-        dest.writeString(accordantFullName);
-        dest.writeString(timeSend);
-        dest.writeString(timer);
-        dest.writeString(date);
-        dest.writeString(place);
+        dest.writeParcelable(participant, flags);
+        dest.writeString(currentTime);
+        dest.writeString(timeInvite);
+        dest.writeParcelable(restaurantInfo, flags);
+        dest.writeParcelable(reservationDetail, flags);
+        dest.writeString(resultInvitation);
         dest.writeByte((byte) (myRate ? 1 : 0));
         dest.writeByte((byte) (accordantRate ? 1 : 0));
         dest.writeString(myAppraise);
         dest.writeString(accordantAppraise);
     }
+    /*private boolean heart;*/
+
+
 }

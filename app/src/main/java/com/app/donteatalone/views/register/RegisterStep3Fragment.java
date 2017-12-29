@@ -252,7 +252,11 @@ public class RegisterStep3Fragment extends Fragment {
                             Toast.makeText(getActivity(), getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        userName.setAvatar(null);
+                        if(gender.equals("Female")) {
+                            userName.setAvatar("https://firebasestorage.googleapis.com/v0/b/dont-eat-alone-storage.appspot.com/o/avatar_woman.png?alt=media&token=7ada04ec-abef-4224-81a2-0ba209f11cef");
+                        }else {
+                            userName.setAvatar("https://firebasestorage.googleapis.com/v0/b/dont-eat-alone-storage.appspot.com/o/avatar_man.png?alt=media&token=3f4db113-759c-4819-9998-8400687af0d8");
+                        }
                     }
                     userName.setGender(gender);
                     _mViewPager.setCurrentItem(3, true);

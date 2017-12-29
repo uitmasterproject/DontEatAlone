@@ -7,16 +7,19 @@
     android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txt_title"
             android:background="@color/color_deep_orange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="5dp"
             android:text="@string/custom_dialog_require_on_invite_setting_time_title"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp" />
+            android:textSize="18dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:drawableEnd="@drawable/ic_close_white_36dp"
+            android:drawablePadding="10dp"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -167,12 +170,8 @@
                     android:text="@string/place"
                     android:layout_gravity="center"
                     android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="16sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="0.1"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"/>
 
                 <TextView
                     android:id="@+id/custom_dialog_require_on_invite_txt_address"
@@ -191,8 +190,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
+                android:paddingEnd="3dp"
+                android:paddingStart="2dp"
                 android:layout_marginBottom="10dp">
 
                 <RadioButton
@@ -200,16 +199,10 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:layout_gravity="center_vertical"
                     android:text="@string/have_not_restaurant"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
 
                 <RadioButton
                     android:id="@+id/custom_dialog_require_on_invite_setting_time_rb_have_restaurant"
@@ -224,18 +217,9 @@
             </RadioGroup>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/custom_dialog_require_on_invite_setting_time_rcv_place_have_not_restaurant"
+                android:id="@+id/custom_dialog_require_on_invite_setting_time_rcv_restaurant"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:visibility="visible">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/custom_dialog_require_on_invite_setting_time_rcv_place_have_restaurant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:padding="5dp"
                 android:visibility="gone">
 
@@ -244,7 +228,7 @@
             <TextView
                 android:id="@+id/txt_empty_restaurant"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:text="@string/empty_no_restaurant"
                 android:textColor="@android:color/black"
                 android:gravity="center"
@@ -253,7 +237,7 @@
             <Button
                 android:id="@+id/custom_dialog_require_on_invite_btn_invite"
                 android:layout_width="200dp"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/btn_login"

@@ -1,35 +1,28 @@
 package com.app.donteatalone.views.main.require.main_require.on_require;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v4.view.ViewPager;
-import android.util.Base64;
-import android.util.Log;
+import android.support.v4.content.LocalBroadcastManager;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
-import com.app.donteatalone.connectmongo.Connect;
-import com.app.donteatalone.model.InfoNotification;
-import com.app.donteatalone.utils.MySharePreference;
+import com.app.donteatalone.model.InfoInvitation;
 import com.app.donteatalone.views.main.MainActivity;
 import com.github.nkzawa.socketio.client.Socket;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Collections;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_NUMBER;
 
@@ -40,134 +33,224 @@ import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_
 public class CustomDialogInfoAccordantUser {
     private Dialog dialog;
     private Context context;
-    private JSONObject data;
+    private InfoInvitation infoInvitation;
     private Socket socketIO;
-    private String name;
-    private MySharePreference mySharePreference;
-    private ViewPager viewPager;
-    public CustomDialogInfoAccordantUser(Dialog dialog, Context context, JSONObject data, Socket socketIO, String name, ViewPager viewpager) {
-        this.dialog=dialog;
-        this.context=context;
-        mySharePreference=new MySharePreference((Activity)context);
-        this.data=data;
-        this.socketIO=socketIO;
-        this.name=name;
-        this.viewPager=viewpager;
+
+    public CustomDialogInfoAccordantUser(Dialog dialog, Context context, InfoInvitation infoInvitation, Socket socketIO) {
+        this.dialog = dialog;
+        this.context = context;
+        this.infoInvitation = infoInvitation;
+        this.socketIO = socketIO;
     }
 
     public void setDefaultValue() throws JSONException {
-        ImageView imgClose=(ImageView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_img_close);
-        ImageView imgAvatar=(ImageView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_img_avatar);
-        TextView txtAge=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_age);
-        ImageView imgGender=(ImageView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_img_gender);
-        TextView txtFullName=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_fullname);
-        TextView txtPhone=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_phone);
-        TextView txtCharacter=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_character);
-        TextView txtDate=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_date);
-        TextView txtTime=(TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_time);
-        TextView txtPlace=(TextView)dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_place);
-        Button btnViewProfile=(Button) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_btn_viewprofile);
-        Button btnAccept=(Button) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_btn_accept);
-        Button btnRefuse=(Button) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_btn_refuse);
-        setClickClose(imgClose);
+        ImageView imgClose = (ImageView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_img_close);
+        ImageView imgAvatar = (ImageView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_img_avatar);
+
+        TextView txtAge = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_age);
+
+        ImageView imgGender = (ImageView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_img_gender);
+
+        TextView txtFullName = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_fullname);
+        TextView txtPhone = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_phone);
+
+        TextView txtCharacter = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_character);
+        TextView txtStyle = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_style);
+        TextView txtFood = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_food);
+
+        TextView txtDate = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_date);
+
+        TextView txtRestaurant = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_name_restaurant);
+        TextView txtAddress = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_txt_address);
+
+        Button btnViewProfile = (Button) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_btn_viewprofile);
+        Button btnAccept = (Button) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_btn_accept);
+        Button btnRefuse = (Button) dialog.findViewById(R.id.custom_dialog_require_on_info_account_user_btn_refuse);
+
         setValueAvatar(imgAvatar);
+
         setValueAge(txtAge);
+
         setValueGender(imgGender);
+
         setValueFullName(txtFullName);
+
         setValuePhone(txtPhone);
-        setValueCharacter(txtCharacter);
-        setValueTime(txtTime,txtDate);
-        setValuePlace(txtPlace);
+
+        setValueCharacter(txtCharacter, txtStyle, txtFood);
+
+        setValueTime(txtDate);
+
+        setValueRestaurant(txtRestaurant, txtAddress);
+
+        setClickRestaurant(txtRestaurant);
+
+        setClickClose(imgClose);
+
         setClickViewProfile(btnViewProfile);
+
         setClickAccept(btnAccept);
+
         setClickRefuse(btnRefuse);
     }
-    private void setClickClose(ImageView imgClose){
-        imgClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    socketIO.emit("reponseInvitation", sendData("nothing"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                dialog.dismiss();
-                if(viewPager.getCurrentItem()==1) {
-                    setNotification();
-                }
-            }
-        });
+
+    private void setValueAvatar(ImageView imgAvatar) {
+        Picasso.with(context)
+                .load(infoInvitation.getOwnInvitation().getAvatar())
+                .error(R.drawable.avatar)
+                .into(imgAvatar);
     }
 
-    private void setValueAvatar(ImageView imgAvatar) throws JSONException {
-        imgAvatar.setImageBitmap(convertStringtoBitmap(data.getJSONObject("invitation").getString("avatar")));
+    private void setValueAge(TextView txtAge) {
+        txtAge.setText(infoInvitation.getOwnInvitation().getAge() + "");
     }
 
-    private void setValueAge(TextView txtAge) throws JSONException {
-        txtAge.setText(data.getJSONObject("invitation").getInt("age")+"");
-    }
-
-    private void setValueGender(ImageView imgGender) throws JSONException {
-        if(data.getJSONObject("invitation").getString("gender").equals("Male")){
+    private void setValueGender(ImageView imgGender) {
+        if (infoInvitation.getOwnInvitation().getGender().equals("Male")) {
             imgGender.setImageResource(R.drawable.ic_male);
-        }
-        else {
+        } else {
             imgGender.setImageResource(R.drawable.ic_female);
         }
     }
 
-    private void setValueFullName(TextView txtName) throws JSONException {
-        txtName.setText(data.getJSONObject("invitation").getString("fullName"));
+    private void setValueFullName(TextView txtName) {
+        txtName.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(
+                infoInvitation.getOwnInvitation().getFullName())));
     }
 
-    private void setValuePhone(TextView txtPhone) throws JSONException {
-        txtPhone.setText(data.getJSONObject("invitation").getString("phoneInviter"));
+    private void setValuePhone(TextView txtPhone) {
+        txtPhone.setText(infoInvitation.getOwnInvitation().getAccordantUser());
     }
 
-    private void setValueCharacter(TextView txtCharacter) throws JSONException {
-        txtCharacter.setText(data.getJSONObject("invitation").getString("character"));
+    private void setValueCharacter(TextView txtCharacter, TextView txtStyle, TextView txtFood) throws JSONException {
+        txtCharacter.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(
+                infoInvitation.getOwnInvitation().getMyCharacter())));
+        txtStyle.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(
+                infoInvitation.getOwnInvitation().getMyStyle())));
+        txtFood.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(
+                infoInvitation.getOwnInvitation().getTargetFood())));
     }
 
-    private void setValueTime(TextView txtTime, TextView txtDate) throws JSONException {
-        txtTime.setText(data.getJSONObject("invitation").getString("timer"));
-        txtDate.setText(data.getJSONObject("invitation").getString("date"));
+    private void setValueTime(TextView txtDate) {
+        txtDate.setText(infoInvitation.getTimeInvite());
     }
 
-    private void setValuePlace(TextView txtPlace) throws JSONException {
-        txtPlace.setText(data.getJSONObject("invitation").getString("place"));
+    private void setValueRestaurant(TextView txtRestaurant, TextView txtPlace) {
+        SpannableString content = new SpannableString(StringUtils.capitalize(StringEscapeUtils.unescapeJava(
+                infoInvitation.getRestaurantInfo().getName())));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        txtRestaurant.setText(content);
+
+        txtPlace.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(
+                infoInvitation.getRestaurantInfo().getAddress())));
     }
 
-    private void setClickViewProfile(Button btnViewProfile){
+    private void setClickRestaurant(TextView txtRestaurant){
+        txtRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.custom_dialog_restaurant_no_reservation);
+
+                ImageView imgAvatar;
+                TextView txtName, txtAddress, txtOpenDay, txtRate, txtPrice, txtReserve;
+                Button btnDone;
+
+                imgAvatar = (ImageView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_ib_image);
+                txtName = (TextView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_name);
+                txtAddress = (TextView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_address);
+                txtOpenDay = (TextView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_open_time);
+                txtRate = (TextView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_ib_rate);
+                txtPrice = (TextView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_price);
+                txtReserve = (TextView) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_table);
+                btnDone = (Button) dialog.findViewById(R.id.custom_dialog_restaurant_no_reservation_ib_close);
+
+                Picasso.with(context)
+                        .load(infoInvitation.getRestaurantInfo().getAvatar())
+                        .error(R.drawable.temp)
+                        .into(imgAvatar);
+
+                txtName.setText(StringEscapeUtils.unescapeJava(infoInvitation.getRestaurantInfo().getName()));
+                txtAddress.setText(StringEscapeUtils.unescapeJava(infoInvitation.getRestaurantInfo().getAddress()));
+                txtRate.setText(infoInvitation.getRestaurantInfo().getRate());
+                if (TextUtils.isEmpty(infoInvitation.getRestaurantInfo().getPrice())) {
+                    txtPrice.setText("20.000 - 10.000");
+                } else {
+                    txtPrice.setText(infoInvitation.getRestaurantInfo().getPrice());
+                }
+
+                if(infoInvitation.getReservationDetail()==null) {
+                    if (TextUtils.isEmpty(infoInvitation.getRestaurantInfo().getOpenDay())) {
+                        txtOpenDay.setText("10:00 - 22:00");
+                    } else {
+                        txtOpenDay.setText(infoInvitation.getRestaurantInfo().getOpenDay());
+                    }
+                }else {
+                    txtOpenDay.setText(infoInvitation.getReservationDetail().getTime());
+                    txtReserve.setText(context.getString(R.string.order_table)+" "+infoInvitation.getReservationDetail().getTable());
+                }
+
+                btnDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+    }
+
+    private void setClickClose(ImageView imgClose) {
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Gson gson = new Gson();
+                infoInvitation.setResultInvitation("nothing");
+                String json = gson.toJson(infoInvitation);
+
+                socketIO.emit("responseInvitation", json);
+                dialog.dismiss();
+
+                Intent intent = new Intent(MainActivity.BROADCAST_NAME);
+                intent.putExtra(MainActivity.SEND_BROADCAST_DATA, true);
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+            }
+        });
+    }
+
+    private void setClickViewProfile(Button btnViewProfile) {
         btnViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    socketIO.emit("reponseInvitation", sendData("nothing"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+                Gson gson = new Gson();
+                infoInvitation.setResultInvitation("nothing");
+                String json = gson.toJson(infoInvitation);
+
+                socketIO.emit("responseInvitation", json);
                 dialog.dismiss();
+
                 Intent intent=new Intent(context, ProfileAccordantUser.class);
-                try {
-                    intent.putExtra(ARG_PHONE_NUMBER,data.getJSONObject("invitation").getString("phoneInviter"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                intent.putExtra(ARG_PHONE_NUMBER,infoInvitation.getOwnInvitation().getAccordantUser());
                 context.startActivity(intent);
             }
         });
     }
 
-    private void setClickAccept(Button btnAccept){
+    private void setClickAccept(Button btnAccept) {
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    socketIO.emit("reponseInvitation", sendData("accept"));
-                    dialog.dismiss();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Gson gson = new Gson();
+                infoInvitation.setResultInvitation("accept");
+                String json = gson.toJson(infoInvitation);
+
+                socketIO.emit("responseInvitation", json);
+                dialog.dismiss();
             }
         });
     }
@@ -176,67 +259,40 @@ public class CustomDialogInfoAccordantUser {
         btnRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    socketIO.emit("reponseInvitation", sendData("refuse"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+                Gson gson = new Gson();
+                infoInvitation.setResultInvitation("refuse");
+                String json = gson.toJson(infoInvitation);
+
+                socketIO.emit("responseInvitation", json);
                 dialog.dismiss();
             }
         });
     }
-
-    private String sendData( String result) throws JSONException {
-        String temp=data.getJSONObject("invitation").getString("phoneInviter")+"|"+
-                data.getJSONObject("invitation").getString("fullName")+"|"+
-                data.getString("phoneInvited")+"|"+
-                name+"|"+
-                data.getJSONObject("invitation").getString("timeSend")+"|"+
-                data.getJSONObject("invitation").getString("date")+"|"+
-                data.getJSONObject("invitation").getString("timer")+"|"+
-                data.getJSONObject("invitation").getString("place")+"|"+
-                result;
-        return temp;
-    }
-
-    private Bitmap convertStringtoBitmap(String str){
-        Bitmap bitmap= BitmapFactory.decodeResource(context.getResources(),R.drawable.avatar);
-        if(!str.equals("")){
-            try {
-                byte[] encodeByte = Base64.decode(str, Base64.DEFAULT);
-                bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            }
-            catch (Exception e){
-                Log.e("exception",e.toString());
-            }
-        }
-        return bitmap;
-    }
-
-    public void setNotification() {
-        final ArrayList<InfoNotification> listInfoNotification = new ArrayList<>();
-        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(mySharePreference.getPhoneLogin());
-        getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
-            @Override
-            public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
-                for (InfoNotification element : response.body()) {
-                    InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
-                            element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
-                    listInfoNotification.add(info);
-                }
-                Collections.reverse(listInfoNotification);
-
-                Intent intent=new Intent(MainActivity.BROADCAST_NAME);
-                intent.putExtra(MainActivity.SEND_BROADCAST_DATA,listInfoNotification);
-                context.sendBroadcast(intent);
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<InfoNotification>> call, Throwable t) {
-                Log.e("listInfoNotification2", t.toString() + "");
-            }
-        });
-    }
-
 }
+
+//    public void setNotification() {
+//        final ArrayList<InfoNotification> listInfoNotification = new ArrayList<>();
+//        Call<ArrayList<InfoNotification>> getInfoNotification = Connect.getRetrofit().getNotification(mySharePreference.getPhoneLogin());
+//        getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
+//                for (InfoNotification element : response.body()) {
+//                    InfoNotification info = new InfoNotification(element.getUserSend(), element.getNameSend(), element.getTimeSend(),
+//                            element.getDate(), element.getTime(), element.getPlace(), element.getStatus(), element.getRead(), element.getSeen());
+//                    listInfoNotification.add(info);
+//                }
+//                Collections.reverse(listInfoNotification);
+//
+//                Intent intent=new Intent(MainActivity.BROADCAST_NAME);
+//                intent.putExtra(MainActivity.SEND_BROADCAST_DATA,listInfoNotification);
+//                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<InfoNotification>> call, Throwable t) {
+//                Log.e("listInfoNotification2", t.toString() + "");
+//            }
+//        });
+//    }
+

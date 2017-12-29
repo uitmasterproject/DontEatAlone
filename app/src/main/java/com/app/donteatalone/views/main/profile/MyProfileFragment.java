@@ -82,6 +82,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
     private UserName userName;
 
+
     private ProfileHistoryAdapter profileHistoryAdapter;
     private ArrayList<ProfileHistoryModel> listProfileHistory;
 
@@ -112,7 +113,6 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
     }
 
     private void init() {
-        userName = new MySharePreference(getActivity()).createObjectLogin();
 
         /*Personal information*/
         ivAvatar = (ImageView) viewGroup.findViewById(R.id.fragment_my_profile_iv_avatar);
@@ -171,8 +171,8 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
     private void getAchievement() {
 
-        if (userName.getPhone() != null) {
-            Call<Achievement> getAchievement = Connect.getRetrofit().getAchievement(userName.getPhone());
+        if (new MySharePreference(getActivity()).getPhoneLogin() != null) {
+            Call<Achievement> getAchievement = Connect.getRetrofit().getAchievement(new MySharePreference(getActivity()).getPhoneLogin());
             getAchievement.enqueue(new Callback<Achievement>() {
                 @Override
                 public void onResponse(Call<Achievement> call, Response<Achievement> response) {
@@ -220,6 +220,8 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
     }
 
     private void setDefaultValue() {
+        userName = new MySharePreference(getActivity()).createObjectLogin();
+
         progressBar.setVisibility(View.VISIBLE);
 
         target = new Target() {
@@ -420,9 +422,9 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             infoUpdate.setPhone(userName.getPhone());
 
             if (mactvEdit.getText().toString().trim().endsWith(",")) {
-                infoUpdate.setContent(StringEscapeUtils.escapeJava(mactvEdit.getText().toString().trim().substring(0, mactvEdit.getText().toString().trim().lastIndexOf(","))));
+                infoUpdate.setContent(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvEdit.getText().toString().trim().substring(0, mactvEdit.getText().toString().trim().lastIndexOf(",")))));
             } else {
-                infoUpdate.setContent(StringEscapeUtils.escapeJava(mactvEdit.getText().toString()));
+                infoUpdate.setContent(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvEdit.getText().toString())));
             }
 
             switch (titleDefaultResource) {

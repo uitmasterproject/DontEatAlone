@@ -74,7 +74,11 @@ public class DetailBlogActivity extends AppCompatActivity {
         if (infoBlog.getFeeling() == 0) {
             imgFeel.setImageResource(R.drawable.ic_happy);
         } else {
-            imgFeel.setImageResource(infoBlog.getFeeling());
+            try {
+                imgFeel.setImageResource(infoBlog.getFeeling());
+            }catch (Exception e){
+                imgFeel.setImageResource(R.drawable.ic_happy);
+            }
         }
         txtLimit.setText(infoBlog.getLimit());
         txtDate.setText("| "+infoBlog.getDate());
@@ -108,6 +112,7 @@ public class DetailBlogActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailBlogActivity.this, StatusActivity.class);
                 intent.putExtra(ARG_ITEM_BLOG, infoBlog);
+                (DetailBlogActivity.this).finish();
                 startActivity(intent);
             }
         });

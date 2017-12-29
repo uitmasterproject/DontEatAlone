@@ -17,9 +17,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.model.RestaurantDetail;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 
@@ -31,6 +34,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     private ArrayList<RestaurantDetail> listReservation;
     private ArrayList<Target> listTarget = new ArrayList<>();
     private ArrayList<ReservationAdapter.MyViewHolder> views;
+    private OnRecyclerItemClickListener onRecyclerItemClickListener;
     private Context context;
 
     public ReservationAdapter(ArrayList<RestaurantDetail> listReservation, Context context) {
@@ -43,6 +47,10 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public ReservationAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recyclerview_fragmnet_restaurant_reservation_booked, parent, false);
         return new ReservationAdapter.MyViewHolder(view);
+    }
+
+    public void setOnClickRecyclerView(OnRecyclerItemClickListener onClickRecyclerView) {
+        this.onRecyclerItemClickListener = onClickRecyclerView;
     }
 
     @Override
@@ -77,11 +85,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         Picasso.with(context)
                 .load(listReservation.get(position).getAvatar())
                 .into(listTarget.get(position));
-        holder.txtName.setText(listReservation.get(position).getName());
-        holder.txtAddress.setText(listReservation.get(position).getAddress());
+        holder.txtName.setText(StringEscapeUtils.unescapeJava(listReservation.get(position).getName()));
+        holder.txtAddress.setText(StringEscapeUtils.unescapeJava(listReservation.get(position).getAddress()));
         holder.txtSession.setText(listReservation.get(position).getListReservations().get(0).getSession());
         holder.txtTime.setText(listReservation.get(position).getListReservations().get(0).getTime());
-        holder.txtTable.setText(context.getString(R.string.table)+listReservation.get(position).getListReservations().get(0).getTable());
+        holder.txtTable.setText(context.getString(R.string.table) + listReservation.get(position).getListReservations().get(0).getTable());
     }
 
     @Override
@@ -115,6 +123,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                     dialog.cancel();
                     break;
                 default:
+
+                    dialog.setCanceledOnTouchOutside(true);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     View view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_dialog_restaurant_no_reservation, null);
 
@@ -124,14 +134,24 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                     TextView txtAddress = (TextView) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_address);
                     TextView txtTime = (TextView) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_open_time);
                     TextView txtPrice = (TextView) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_tv_price);
+                    ImageView imgClose = (ImageView) view.findViewById(R.id.img_close);
                     Button btnDone = (Button) view.findViewById(R.id.custom_dialog_restaurant_no_reservation_ib_close);
                     btnDone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (onRecyclerItemClickListener != null) {
+                                onRecyclerItemClickListener.onItemClick(v, getAdapterPosition());
+                            }
+                            dialog.cancel();
+                        }
+                    });
+
+                    imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.cancel();
                         }
                     });
-
                     imgAvatar.setImageBitmap(((BitmapDrawable) this.imgAvatar.getDrawable()).getBitmap());
                     txtName.setText(this.txtName.getText().toString());
                     txtRate.setText(listReservation.get(getAdapterPosition()).getRate());

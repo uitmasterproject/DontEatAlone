@@ -57,6 +57,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,8 +76,6 @@ import static com.app.donteatalone.utils.ImageProcessor.PERMISSION_CAMERA_REQUES
 import static com.app.donteatalone.utils.ImageProcessor.PERMISSION_READ_REQUEST_CODE;
 import static com.app.donteatalone.utils.ImageProcessor.RESULT_CHOOSE_IMAGE;
 import static com.app.donteatalone.utils.ImageProcessor.RESULT_TAKE_PHOTO;
-import static com.app.donteatalone.views.main.MainActivity.ARG_EDIT_PROFILE_ACTIVITY;
-import static com.app.donteatalone.views.main.MainActivity.ARG_FROM_VIEW;
 
 /**
  * Created by Delbert on 9/23/2017
@@ -299,33 +298,33 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
             userName.setLatlngAdress(latlngAddress);
         }
         if (mactvCharacters.getText().toString().trim().endsWith(",")) {
-            userName.setMyCharacter(StringEscapeUtils.escapeJava(mactvCharacters.getText().toString().substring(0, mactvCharacters.getText().toString().lastIndexOf(","))));
+            userName.setMyCharacter(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvCharacters.getText().toString().substring(0, mactvCharacters.getText().toString().lastIndexOf(",")))));
         } else {
-            userName.setMyCharacter(StringEscapeUtils.escapeJava(mactvCharacters.getText().toString()));
+            userName.setMyCharacter(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvCharacters.getText().toString())));
         }
 
         if (mactvStyles.getText().toString().trim().endsWith(",")) {
-            userName.setMyStyle(StringEscapeUtils.escapeJava(mactvStyles.getText().toString().substring(0, mactvStyles.getText().toString().lastIndexOf(","))));
+            userName.setMyStyle(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvStyles.getText().toString().substring(0, mactvStyles.getText().toString().lastIndexOf(",")))));
         } else {
-            userName.setMyStyle(StringEscapeUtils.escapeJava(mactvStyles.getText().toString()));
+            userName.setMyStyle(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvStyles.getText().toString())));
         }
 
         if (mactvTargetCharacters.getText().toString().trim().endsWith(",")) {
-            userName.setTargetCharacter(StringEscapeUtils.escapeJava(mactvTargetCharacters.getText().toString().substring(0, mactvTargetCharacters.getText().toString().lastIndexOf(","))));
+            userName.setTargetCharacter(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvTargetCharacters.getText().toString().substring(0, mactvTargetCharacters.getText().toString().lastIndexOf(",")))));
         } else {
-            userName.setTargetCharacter(StringEscapeUtils.escapeJava(mactvTargetCharacters.getText().toString()));
+            userName.setTargetCharacter(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvTargetCharacters.getText().toString())));
         }
 
         if (mactvTargetStyles.getText().toString().trim().endsWith(",")) {
-            userName.setTargetStyle(StringEscapeUtils.escapeJava(mactvTargetStyles.getText().toString().substring(0, mactvTargetStyles.getText().toString().lastIndexOf(","))));
+            userName.setTargetStyle(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvTargetStyles.getText().toString().substring(0, mactvTargetStyles.getText().toString().lastIndexOf(",")))));
         } else {
-            userName.setTargetStyle(StringEscapeUtils.escapeJava(mactvTargetStyles.getText().toString()));
+            userName.setTargetStyle(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvTargetStyles.getText().toString())));
         }
 
         if (mactvTagetFoods.getText().toString().trim().endsWith(",")) {
-            userName.setTargetFood(StringEscapeUtils.escapeJava(mactvTagetFoods.getText().toString().substring(0, mactvTagetFoods.getText().toString().lastIndexOf(","))));
+            userName.setTargetFood(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvTagetFoods.getText().toString().substring(0, mactvTagetFoods.getText().toString().lastIndexOf(",")))));
         } else {
-            userName.setTargetFood(StringEscapeUtils.escapeJava(mactvTagetFoods.getText().toString()));
+            userName.setTargetFood(StringUtils.capitalize(StringEscapeUtils.escapeJava(mactvTagetFoods.getText().toString())));
         }
         Call<Status> editProfile = Connect.getRetrofit().editProfile(userName);
         editProfile.enqueue(new Callback<Status>() {
@@ -335,12 +334,13 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                 if (response.body() != null) {
                     if (response.body().getStatus().equals("0")) {
 
-                        Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-                        intent.putExtra(ARG_FROM_VIEW, ARG_EDIT_PROFILE_ACTIVITY);
+//                        Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+//                        intent.putExtra(ARG_FROM_VIEW, ARG_EDIT_PROFILE_ACTIVITY);
 
                         new MySharePreference(EditProfileActivity.this).saveAccountInfo(userName);
 
-                        startActivity(intent);
+//                        startActivity(intent);
+                        onBackPressed();
                     }else {
                         Toast.makeText(EditProfileActivity.this, getString(R.string.not_update), Toast.LENGTH_SHORT).show();
                     }
@@ -627,7 +627,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
         mactv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mactv.setText(AppUtils.convertStringToNFD(mactv.getText().toString()));
+                mactv.setText(mactv.getText().toString());
                 mactv.setSelection(mactv.getText().toString().length());
             }
         });

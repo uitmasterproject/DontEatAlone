@@ -1,14 +1,14 @@
 package com.app.donteatalone.views.main.profile;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.app.donteatalone.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -54,20 +54,11 @@ public class ProfileBlogInnerAdapter extends BaseAdapter {
         {
             imageView = (ImageView) convertView;
         }
-        imageView.setImageBitmap(decodeBitmap(listImage.get(position)));
-        return imageView;
-    }
 
-    private Bitmap decodeBitmap(String avatar){
-        Bitmap bitmap=null;
-        if(!avatar.equals("")) {
-            try {
-                byte[] encodeByte = Base64.decode(avatar, Base64.DEFAULT);
-                bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
-        return bitmap;
+        Picasso.with(context)
+                .load(listImage.get(position))
+                .error(R.drawable.temp)
+                .into(imageView);
+        return imageView;
     }
 }

@@ -15,12 +15,15 @@ import android.widget.TextView;
 import com.app.donteatalone.R;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.CustomSocket;
+import com.app.donteatalone.model.InfoInvitation;
 import com.app.donteatalone.model.InfoNotification;
 import com.app.donteatalone.model.Status;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 import com.github.nkzawa.emitter.Emitter;
+import com.google.gson.Gson;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,27 +58,31 @@ public class CustomDialogItemNotification {
 
     public void setDefaultValue() throws ParseException {
         TextView txtTitle = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_title);
-        if (!data.getStatus().equals("nothing"))
-            txtTitle.setText(data.getStatus());
+        if (!data.getResultInvitation().equals("nothing"))
+            txtTitle.setText(data.getResultInvitation());
+
         TextView txtFullName = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_name);
-        txtFullName.setText(data.getNameSend());
+        txtFullName.setText(StringEscapeUtils.unescapeJava(data.getParticipant().getFullName()));
+
         TextView txtPhone = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_phone);
-        txtPhone.setText(data.getUserSend());
-        TextView txtDate = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_date);
-        txtDate.setText(data.getDate());
+        txtPhone.setText(data.getParticipant().getAccordantUser());
+
         TextView txtTime = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_time);
-        txtTime.setText(data.getTime());
+        txtTime.setText(data.getTimeInvite());
+
         TextView txtPlace = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_place);
-        txtPlace.setText(data.getPlace());
+        txtPlace.setText(StringEscapeUtils.unescapeJava(data.getRestaurantInfo().getAddress()));
+
         ImageView imgClose = (ImageView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_img_close);
         setClickClose(imgClose);
+
         RelativeLayout rlContainer = (RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_rl_container);
         LinearLayout llContainer = (LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_ll_container);
-        if (data.getStatus().equals("accept") || data.getStatus().equals("refuse")) {
+        if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse")) {
             rlContainer.setVisibility(View.VISIBLE);
             llContainer.setVisibility(View.GONE);
             setClickinRelative();
-        } else if (data.getStatus().equals("nothing")) {
+        } else if (data.getResultInvitation().equals("nothing")) {
             rlContainer.setVisibility(View.GONE);
             llContainer.setVisibility(View.VISIBLE);
             setClickinLinner();
@@ -99,7 +106,7 @@ public class CustomDialogItemNotification {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileAccordantUser.class);
-                intent.putExtra(ARG_PHONE_NUMBER, data.getUserSend());
+                intent.putExtra(ARG_PHONE_NUMBER, data.getParticipant().getAccordantUser());
                 context.startActivity(intent);
             }
         });
@@ -107,7 +114,7 @@ public class CustomDialogItemNotification {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
         String formattedDate = df.format(c.getTime());
-        int time = (int) ((df.parse(formattedDate).getTime() - df.parse(data.getTimeSend()).getTime()) / 60000);
+        int time = (int) ((df.parse(formattedDate).getTime() - df.parse(data.getCurrentTime()).getTime()) / 60000);
         Button btnAccept = (Button) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_btn_accept);
         Button btnRefuse = (Button) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_btn_refuse);
         TextView txtResponse = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_suggest);
@@ -160,18 +167,27 @@ public class CustomDialogItemNotification {
         }
     }
 
-    private void setEventSendResult(String result, Boolean status) throws JSONException {
-        socketIO.emit("reponseInvitation", sendData(result));
+    private void setEventSendResult(String result, final Boolean status) throws JSONException {
+        data.setResultInvitation(result);
+        InfoInvitation infoInvitation = new InfoInvitation(context, data);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(infoInvitation);
+        socketIO.emit("responseInvitation", json);
+
         socketIO.on("userInviteOff", new Emitter.Listener() {
             @Override
-            public void call(Object... args) {
-                ((Activity)context).runOnUiThread(new Runnable() {
+            public void call(final Object... args) {
+                ((Activity) context).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         JSONObject data = (JSONObject) args[0];
                         try {
                             if (control) {
-                                listenInviterOffline(data.getString("nameReceiver"), data.getString("phoneReceiver"), status);
+
+                                Gson gson = new Gson();
+                                InfoInvitation infoInvitation = gson.fromJson(data.getString("userOff"), InfoInvitation.class);
+                                listenInviterOffline(infoInvitation, status);
                                 control = false;
                             }
                         } catch (JSONException e) {
@@ -183,19 +199,19 @@ public class CustomDialogItemNotification {
         });
     }
 
-    private void listenInviterOffline(String name, String phone, Boolean status) {
-        Dialog dialog = new Dialog(context);
+    private void listenInviterOffline(InfoInvitation infoInvitation, final Boolean status) {
+        final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog_require_on_inviter_offline);
         TextView txtName, txtNameRepeat, txtPhone;
         Button btnOk;
         ImageView imgClose;
         txtName = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_txt_name);
-        txtName.setText(name);
+        txtName.setText(infoInvitation.getOwnInvitation().getFullName());
         txtNameRepeat = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_txt_repeat_name);
-        txtNameRepeat.setText(name);
+        txtNameRepeat.setText(infoInvitation.getOwnInvitation().getFullName());
         txtPhone = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_txt_phone);
-        txtPhone.setText(phone);
+        txtPhone.setText(infoInvitation.getOwnInvitation().getAccordantUser());
         btnOk = (Button) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_btn_ok);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,23 +237,11 @@ public class CustomDialogItemNotification {
         dialog.show();
     }
 
-    private String sendData(String result) throws JSONException {
-        return data.getUserSend() + "|" +
-                data.getNameSend() + "|" +
-                new MySharePreference((Activity) context).getPhoneLogin() + "|" +
-                new MySharePreference((Activity) context).getFullNameLogin() + "|" +
-                data.getTimeSend() + "|" +
-                data.getDate() + "|" +
-                data.getTime() + "|" +
-                data.getPlace() + "|" +
-                result;
-    }
-
     private void setClickClose(ImageView imgClose) {
         imgClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (data.getStatus().equals("accept") || data.getStatus().equals("refuse"))
+                if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse"))
                     updateData();
                 dialog.dismiss();
             }
@@ -246,7 +250,7 @@ public class CustomDialogItemNotification {
 
     private void updateData() {
         Call<Status> updateReadNotification = Connect.getRetrofit().updateReadNotification(new MySharePreference((Activity) context).getPhoneLogin(),
-                data.getUserSend(), data.getStatus(), data.getTimeSend());
+                data.getParticipant().getAccordantUser(), data.getResultInvitation(), data.getCurrentTime());
         updateReadNotification.enqueue(new Callback<Status>() {
             @Override
             public void onResponse(Call<Status> call, Response<Status> response) {

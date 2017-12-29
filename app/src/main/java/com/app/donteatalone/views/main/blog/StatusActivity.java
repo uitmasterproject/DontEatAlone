@@ -166,7 +166,12 @@ public class StatusActivity extends Activity {
                 snLimit.setSelection(0);
             }
             if (infoBlog.getFeeling() != 0) {
-                iBtnFelling.setImageResource(infoBlog.getFeeling());
+                try {
+                    iBtnFelling.setImageResource(infoBlog.getFeeling());
+                }catch (Exception e){
+                    iBtnFelling.setImageResource(R.drawable.ic_happy);
+                }
+
             }
             llContainer.removeAllViews();
             setValueContent();

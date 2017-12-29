@@ -3,8 +3,12 @@ package com.app.donteatalone.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
+import com.app.donteatalone.model.AccordantUser;
 import com.app.donteatalone.model.UserName;
+
+import java.util.Calendar;
 
 
 /**
@@ -333,6 +337,19 @@ public class MySharePreference {
         return new UserName(activity, getPhoneLogin(), getFullNameLogin(), getAvatarLogin(), getBirthdayLogin(),
                 getGenderLogin(), getAddressLogin(), getLatLngAddressLogin(), getMyCharacterLogin(), getMyStyleLogin(),
                 getTargetCharacterLogin(), getTargetStyleLogin(), getTargetFoodLogin());
+    }
+
+    public AccordantUser createInfoUser(){
+        int age = 20;
+        Calendar calendar = Calendar.getInstance();
+        if(TextUtils.isEmpty(getBirthdayLogin()) && getBirthdayLogin().contains("/")){
+            String [] arr = getBirthdayLogin().split("/");
+            if(arr.length==3){
+                age = calendar.get(Calendar.YEAR) - Integer.parseInt(arr[2]);
+            }
+        }
+        return new AccordantUser(getPhoneLogin(),getAvatarLogin(), getFullNameLogin(),"",getGenderLogin(), age,
+                 getAddressLogin(), getLatLngAddressLogin(), getMyCharacterLogin(), getMyStyleLogin(), getTargetFoodLogin());
     }
 
     public UserName createObjectRequire() {

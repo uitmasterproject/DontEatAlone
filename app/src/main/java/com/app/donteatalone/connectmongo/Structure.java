@@ -88,8 +88,8 @@ public interface Structure {
         Call<Status> editProfile(@Body UserName userName);
 
 
-        @GET("/restaurant/{latlng}/{city}/{district}")
-        Call<ArrayList<Restaurant>> getRestaurant(@Path("latlng") String latlng, @Path("city")String city, @Path("district") String district);
+        @GET("/restaurant/latlng/{city}/{district}/{latlng}")
+        Call<ArrayList<Restaurant>> getRestaurant(@Path("city")String city, @Path("district") String district, @Path("latlng") String latlng);
         @GET("/restaurant/latlng/{latlng}")
         Call<ArrayList<Restaurant>> getRestaurantFollowLatlng(@Path("latlng") String latlng);
         @GET("/restaurant/district/{city}/{district}")

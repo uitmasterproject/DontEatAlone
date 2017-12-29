@@ -78,13 +78,24 @@
     <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
     <string name="date">Thời gian</string>
     <string name="place">Địa điểm</string>
-    <string name="have_not_restaurant">Chưa có nhà hàng</string>
-    <string name="have_restaurant">Đã có nhà hàng</string>
+    <string name="have_not_restaurant">Gợi ý nhà hàng</string>
+    <string name="have_restaurant">Nhà hàng của tôi</string>
     <string name="invite">Gửi lời mời</string>
 
     <string name="choose_address">Hãy lựa chọn địa điểm</string>
     <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
-    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
+    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào ngày này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
+    <string name="limit_time">Bạn nên đặt cuộc hẹn sau 1h. Cả hai cần có sự chuẩn bị</string>
+    <string name="limit_time_reservation">Bạn nên lưu ý, bàn sẽ bị hủy nếu bạn đến muộn hơn 30p</string>
+    <string name="choose_restaurant">Vui lòng chọn nhà hàng</string>
+    <string name="choose_other_restaurant">Chọn nhà hàng khác</string>
+
+    <string name="user_offline">Thông báo</string>
+    <string name="order_table">Đã đặt bàn </string>
+
+    <string name="accept_content"> đã chấp nhận lời mời của bạn. Hãy liên hệ với bạn ấy qua số điện thoại: %1$s</string>
+    <string name="refuse_content"> đã từ chối lời mời của bạn. Hãy tìm kiếm một người phù hợp hơn với bạn</string>
+    <string name="invite_content"> đã mời bạn đi ăn với bạn ấy. Hãy trả lời bạn ấy trước 5 phút nhé.</string>
 
     <string-array name="Day_31">
         <item>01</item>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,8 +90,13 @@ public class SaveAsDialog implements View.OnClickListener {
                             baseProgress.hideProgressLoading();
                             if (response.body() != null) {
                                 if (response.body().getStatus().equals("0")) {
-                                    Intent intent = new Intent(activity, MainActivity.class);
-                                    activity.startActivity(intent);
+//                                    Intent intent = new Intent(activity, MainActivity.class);
+//                                    activity.startActivity(intent);
+                                    Intent intent = new Intent(MainActivity.BROADCAST_MODIFY_BLOG_NAME);
+                                    intent.putExtra(MainActivity.SEND_BROADCAST_MODIFY_BLOG_DATA, true);
+                                    LocalBroadcastManager.getInstance(activity).sendBroadcast(intent);
+
+                                    activity.onBackPressed();
                                 } else {
                                     Toast.makeText(activity, "check internet again", Toast.LENGTH_SHORT).show();
                                 }

@@ -1,111 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
-    <RelativeLayout
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:background="@color/color_deep_orange">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center_vertical"
-            android:text="Inviter is Offline"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/custom_dialog_require_on_result_invite_txt_title"/>
+
         <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/custom_dialog_require_on_inviter_offline_img_close"
+            android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_delete"
-            android:id="@+id/custom_dialog_require_on_inviter_offline_img_close"/>
-    </RelativeLayout>
+            android:layout_gravity="end"
+            android:background="@drawable/ripple_selector"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close_white_36dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/user_offline"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:text="Sorry,"
-                    android:textSize="20dp"/>
-            </LinearLayout>
+                android:layout_marginLeft="10dp"
+                android:text="Sorry,"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp">
+
                 <TextView
+                    android:id="@+id/custom_dialog_require_on_inviter_offline_txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
                     android:text="Sorry"
-                    android:textStyle="bold"
-                    android:id="@+id/custom_dialog_require_on_inviter_offline_txt_name"/>
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="is Offline."
-                    android:textSize="17dp"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Please find another person to go out to eat or contact the inviter by number phone"
+                    android:textColor="@color/black"
                     android:textSize="17dp" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Please find another person to go out to eat or contact the inviter by number phone"
+                android:textColor="@color/black"
+                android:textSize="17dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp">
+
                 <TextView
+                    android:id="@+id/custom_dialog_require_on_inviter_offline_txt_repeat_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
                     android:text="Sorry: "
-                    android:id="@+id/custom_dialog_require_on_inviter_offline_txt_repeat_name"/>
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+
                 <TextView
+                    android:id="@+id/custom_dialog_require_on_inviter_offline_txt_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
-                    android:text="Sorry"
-                    android:textStyle="bold"
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/custom_dialog_require_on_inviter_offline_txt_phone"/>
+                    android:text="Sorry"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
             </LinearLayout>
-            <LinearLayout
+
+            <Button
+                android:id="@+id/custom_dialog_require_on_inviter_offline_btn_ok"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="280dp"
-                android:layout_marginTop="10dp">
-                <Button
-                    android:layout_width="60dp"
-                    android:layout_height="35dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/btn_login"
-                    android:text="OK"
-                    android:textSize="12dp"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/custom_dialog_require_on_inviter_offline_btn_ok"/>
-            </LinearLayout>
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_login"
+                android:text="OK"
+                android:textSize="18dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
