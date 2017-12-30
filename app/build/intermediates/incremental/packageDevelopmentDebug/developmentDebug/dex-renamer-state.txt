@@ -1,0 +1,10 @@
+#Sat Dec 30 17:09:43 ICT 2017
+path.2=classes2.dex
+path.1=classes.dex
+path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+base.2=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\transforms\\dexMerger\\development\\debug\\29
+base.1=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\transforms\\dexMerger\\development\\debug\\224
+base.0=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\transforms\\dexMerger\\development\\debug\\29
