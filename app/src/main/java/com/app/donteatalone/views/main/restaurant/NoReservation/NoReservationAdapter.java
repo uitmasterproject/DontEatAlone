@@ -148,12 +148,7 @@ public class NoReservationAdapter extends RecyclerView.Adapter<NoReservationAdap
                         }
                     });
 
-                    imgClose.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.cancel();
-                        }
-                    });
+
 
                     imgAvatar.setImageBitmap(((BitmapDrawable) this.imgAvatar.getDrawable()).getBitmap());
                     txtName.setText(this.txtName.getText().toString());

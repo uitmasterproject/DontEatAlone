@@ -64,8 +64,7 @@
                         android:maxLines="1"
                         android:text="Display name"
                         android:textColor="@color/bg_text_color_orange_orange2"
-                        android:textSize="22sp"
-                        app:fontPath="fonts/Montserrat-Bold.ttf" />
+                        android:textSize="22sp" />
 
 
                     <!--Set Age and Gender below here-->
@@ -102,8 +101,7 @@
                             android:padding="10dp"
                             android:text="F"
                             android:textColor="@color/color_deep_orange"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -147,8 +145,7 @@
                             android:layout_height="wrap_content"
                             android:text="likes"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -167,8 +164,7 @@
                             android:layout_height="wrap_content"
                             android:text="34"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
-                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+                            android:textSize="20sp" />
 
                         <!--Text Appointment-->
                         <TextView
@@ -176,8 +172,7 @@
                             android:layout_height="wrap_content"
                             android:text="appointment"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -195,8 +190,7 @@
                             android:layout_height="wrap_content"
                             android:text="19"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
-                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+                            android:textSize="20sp" />
 
                         <!--Text Star-->
                         <TextView
@@ -204,8 +198,7 @@
                             android:layout_height="wrap_content"
                             android:text="star"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp"/>
 
                     </LinearLayout>
 
@@ -231,8 +224,7 @@
                         android:gravity="center"
                         android:text="EDIT YOUR PROFILE"
                         android:textColor="@color/bg_text_color_orange_orange2"
-                        android:textSize="15sp"
-                        app:fontPath="fonts/Montserrat-Bold.ttf" />
+                        android:textSize="15sp"/>
 
                 </LinearLayout>
 
@@ -265,8 +257,7 @@
                             android:layout_gravity="center"
                             android:text="Live in "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/ANDROID-ROBOT.ttf" />
+                            android:textSize="16dp"/>
 
                     </LinearLayout>
 
@@ -325,8 +316,7 @@
                             android:maxLines="1"
                             android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:completionThreshold="1"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:completionThreshold="1"/>
 
                         <ImageView
                             android:id="@+id/refresh_character"
@@ -361,8 +351,7 @@
                             android:layout_gravity="center"
                             android:text="Styles are "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16dp"/>
 
                     </LinearLayout>
 
@@ -644,8 +633,7 @@
                             android:layout_gravity="center"
                             android:text="Styles are "
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -677,8 +665,7 @@
                             android:maxLines="1"
                             android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:completionThreshold="1"
-                            app:fontPath="fonts/Roboto-Regular" />
+                            android:completionThreshold="1"/>
 
                         <ImageView
                             android:id="@+id/refresh_target_style"
@@ -703,11 +690,11 @@
                 android:orientation="vertical">
 
                 <!--History Label-->
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="3dp"
-                    android:paddingEnd="10dp"
+                    android:paddingEnd="8dp"
                     android:paddingStart="8dp"
                     android:paddingTop="3dp">
 
@@ -722,13 +709,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="35dp"
                         android:text="History"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
-                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+                        android:textSize="18dp"/>
 
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/img_reload"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_reload"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"

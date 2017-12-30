@@ -16,6 +16,8 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -80,7 +82,11 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
     private Target target;
 
+    private ImageView imgReLoad;
+
     private UserName userName;
+
+    private Animation animation;
 
 
     private ProfileHistoryAdapter profileHistoryAdapter;
@@ -97,7 +103,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
         init();
 
-        getEventHistory();
+        getEventHistory(false);
 
         getAchievement();
 
@@ -167,6 +173,14 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         llDisplayTargetStyle.setOnClickListener(this);
 
         progressBar = (ProgressBar) viewGroup.findViewById(R.id.progress);
+
+        animation= new RotateAnimation(0, 359, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setRepeatCount(1000);
+        animation.setDuration(2000);
+
+        imgReLoad = (ImageView) viewGroup.findViewById(R.id.img_reload);
+
+        imgReLoad.setOnClickListener(this);
     }
 
     private void getAchievement() {
@@ -192,11 +206,14 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    private void getEventHistory() {
+    private void getEventHistory(final boolean rotate) {
         Call<ArrayList<ProfileHistoryModel>> getEventHistory = Connect.getRetrofit().getEventHistory(new MySharePreference(getActivity()).getPhoneLogin());
         getEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
             @Override
             public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
+                if(rotate){
+                    imgReLoad.clearAnimation();
+                }
                 if (response.body() != null && response.body().size() > 0) {
                     llEmptyHistory.setVisibility(View.GONE);
 
@@ -215,6 +232,9 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
             @Override
             public void onFailure(Call<ArrayList<ProfileHistoryModel>> call, Throwable t) {
+                if(rotate){
+                    imgReLoad.clearAnimation();
+                }
             }
         });
     }
@@ -360,6 +380,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.img_save_target_style:
                 saveInfo(llDisplayTargetStyle, tvTargetStyles, R.string.style_target);
+                break;
+            case R.id.img_reload:
+                imgReLoad.setAnimation(animation);
+                getEventHistory(true);
                 break;
         }
     }

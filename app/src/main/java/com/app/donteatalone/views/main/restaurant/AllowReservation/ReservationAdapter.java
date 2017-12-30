@@ -35,11 +35,14 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     private ArrayList<Target> listTarget = new ArrayList<>();
     private ArrayList<ReservationAdapter.MyViewHolder> views;
     private OnRecyclerItemClickListener onRecyclerItemClickListener;
+    private OnRecyclerItemClickListener onClearRestaurant;
     private Context context;
+    private boolean isClear;
 
-    public ReservationAdapter(ArrayList<RestaurantDetail> listReservation, Context context) {
+    public ReservationAdapter(ArrayList<RestaurantDetail> listReservation, Context context, boolean isClear) {
         this.listReservation = listReservation;
         this.context = context;
+        this.isClear = isClear;
         views = new ArrayList<>();
     }
 
@@ -51,6 +54,10 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     public void setOnClickRecyclerView(OnRecyclerItemClickListener onClickRecyclerView) {
         this.onRecyclerItemClickListener = onClickRecyclerView;
+    }
+
+    public void setOnClearRestaurant(OnRecyclerItemClickListener onClearRestaurant) {
+        this.onClearRestaurant = onClearRestaurant;
     }
 
     @Override
@@ -102,6 +109,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         private ImageView imgAvatar;
         private TextView txtName, txtAddress, txtSession, txtTime, txtTable;
         private ProgressBar progressBar;
+        private ImageView imgClear;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -112,6 +120,13 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             txtTime = (TextView) itemView.findViewById(R.id.txt_time);
             txtTable = (TextView) itemView.findViewById(R.id.txt_table);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+            imgClear = (ImageView) itemView.findViewById(R.id.img_clear);
+
+            if (isClear) {
+                imgClear.setVisibility(View.VISIBLE);
+            } else {
+                imgClear.setVisibility(View.GONE);
+            }
             itemView.setOnClickListener(this);
         }
 
@@ -119,6 +134,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         public void onClick(View v) {
             final Dialog dialog = new Dialog(context);
             switch (v.getId()) {
+                case R.id.img_clear:
+                    if (onClearRestaurant != null) {
+                        onClearRestaurant.onItemClick(v, getAdapterPosition());
+                    }
+                    break;
                 case R.id.custom_dialog_restaurant_no_reservation_ib_close:
                     dialog.cancel();
                     break;

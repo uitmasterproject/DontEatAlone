@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -238,7 +239,6 @@ public class OnRequireFragment extends Fragment {
                         public void run() {
                             JSONObject data = (JSONObject) args[0];
                             try {
-                                Log.e("userLike", data.getString("userLikeUpdate") + "***************************");
                                 Gson gson = new Gson();
                                 AccordantUserUpdate userUpdate = gson.fromJson(data.getString("userLikeUpdate"), AccordantUserUpdate.class);
 
@@ -297,18 +297,6 @@ public class OnRequireFragment extends Fragment {
                         public void run() {
                             JSONObject data = (JSONObject) args[0];
                             try {
-//                                if (((JSONObject) args[0]).getString("phoneInvited").equals(phone)) {
-//                                    JSONObject data = (JSONObject) args[0];
-//                                    if (getActivity() != null) {
-//                                        Dialog dialog = new Dialog(getActivity(), R.style.MyDialogTheme);
-//                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                                        dialog.setContentView(R.layout.custom_dialog_require_on_info_accordant_user);
-//                                        CustomDialogInfoAccordantUser customDialog = new CustomDialogInfoAccordantUser(dialog, getContext(), data, socketIO,
-//                                                new MySharePreference(getActivity()).getFullNameLogin(), viewPager);
-//                                        customDialog.setDefaultValue();
-//                                        dialog.show();
-//                                    }
-//                                }
                                 Gson gson = new Gson();
                                 InfoInvitation infoInvitation = gson.fromJson(data.getString("invitation"), InfoInvitation.class);
 
@@ -340,13 +328,10 @@ public class OnRequireFragment extends Fragment {
                         @Override
                         public void run() {
                             try {
-
-                                Log.e("userLike", "resultInvitation"+"############################");
                                 JSONObject data = (JSONObject) args[0];
                                 Gson gson = new Gson();
                                 InfoInvitation infoInvitation = gson.fromJson(data.getString("result"), InfoInvitation.class);
 
-                                Log.e("userLike", infoInvitation.getOwnInvitation().getAccordantUser()+"############################");
                                 if (infoInvitation.getOwnInvitation().getAccordantUser().equals(phone)) {
                                     //update title + 1 in notification
 
@@ -420,14 +405,6 @@ public class OnRequireFragment extends Fragment {
     }
 
     private String getInforRequire() {
-//        require = phone + "|" + setDefaultValue(infoRequireSharePreference.getGenderRequire(), "all") + "|" +
-//                setDefaultValue(infoRequireSharePreference.getAgeMinRequire(), "18") + "|" +
-//                setDefaultValue(infoRequireSharePreference.getAgeMaxRequire(), "25") + "|" +
-//                setDefaultValue(infoRequireSharePreference.getAddressRequire(), StringEscapeUtils.escapeJava(getString(R.string.default_address))) + "|" +
-//                setDefaultValue(infoRequireSharePreference.getLatLngAddressRequire(), getString(R.string.default_lat_lng)) + "|" +
-//                setDefaultValue(infoRequireSharePreference.getTargetFoodRequire(), "") + "|" +
-//                setDefaultValue(infoRequireSharePreference.getTargetCharacterRequire(), "") + "|" +
-//                setDefaultValue(infoRequireSharePreference.getTargetStyleRequire(), "");
 
         SocketInfoUser socketInfoUser = new SocketInfoUser(phone, setDefaultValue(infoRequireSharePreference.getGenderRequire(), "all"),
                 setDefaultValue(infoRequireSharePreference.getAgeMinRequire(), "18"),
@@ -484,6 +461,8 @@ public class OnRequireFragment extends Fragment {
 
         final RadioButton rbNoReservation, rbReservation;
 
+        final ProgressBar progressBar;
+
         final RecyclerView rcvRestaurant;
 
         final TextView txtEmptyRestaurant;
@@ -513,6 +492,8 @@ public class OnRequireFragment extends Fragment {
         wpHour = (WheelPicker) dialog.findViewById(R.id.custom_dialog_require_on_invite_wp_hour);
         wpMinute = (WheelPicker) dialog.findViewById(R.id.custom_dialog_require_on_invite_wp_minute);
 
+        progressBar = (ProgressBar) dialog.findViewById(R.id.progress);
+
         rcvRestaurant = (RecyclerView) dialog.findViewById(R.id.custom_dialog_require_on_invite_setting_time_rcv_restaurant);
 
         rcvRestaurant.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -527,7 +508,7 @@ public class OnRequireFragment extends Fragment {
             @Override
             public void onItemClick(View view, int resource) {
 
-                txtAddress.setText(StringEscapeUtils.unescapeJava(listRestaurant.get(resource).getName()));
+                txtAddress.setText(listRestaurant.get(resource).getName());
 
                 infoInvitation.setRestaurantInfo(listRestaurant.get(resource));
 
@@ -538,13 +519,13 @@ public class OnRequireFragment extends Fragment {
             }
         });
 
-        final ReservationAdapter reservationAdapter = new ReservationAdapter(listRestaurantDetail, getActivity());
+        final ReservationAdapter reservationAdapter = new ReservationAdapter(listRestaurantDetail, getActivity(), false);
 
         reservationAdapter.setOnClickRecyclerView(new OnRecyclerItemClickListener() {
             @Override
             public void onItemClick(View view, int resource) {
 
-                txtAddress.setText(StringEscapeUtils.unescapeJava(listRestaurantDetail.get(resource).getName()));
+                txtAddress.setText(listRestaurantDetail.get(resource).getName());
 
                 txtTimer.setText(listRestaurantDetail.get(resource).getListReservations().get(0).getTime());
 
@@ -572,8 +553,7 @@ public class OnRequireFragment extends Fragment {
                 if (isChecked) {
                     rcvRestaurant.setVisibility(View.VISIBLE);
                     rcvRestaurant.setAdapter(noReservationAdapter);
-                    setValuePlaceNoReservation(txtAddress, position, listRestaurant, noReservationAdapter, rcvRestaurant,
-                            txtEmptyRestaurant, infoInvitation);
+                    setValuePlaceNoReservation(position, progressBar, listRestaurant, noReservationAdapter, rcvRestaurant,txtEmptyRestaurant);
 
                 }
             }
@@ -585,8 +565,8 @@ public class OnRequireFragment extends Fragment {
                 if (isChecked) {
                     rcvRestaurant.setVisibility(View.VISIBLE);
                     rcvRestaurant.setAdapter(reservationAdapter);
-                    setValuePlaceReservation(txtDate.getText().toString(), txtAddress, txtTimer, wpHour, wpMinute, llContainerSetTime,
-                            listRestaurantDetail, reservationAdapter, rcvRestaurant, txtEmptyRestaurant, infoInvitation);
+                    setValuePlaceReservation(txtDate.getText().toString(), progressBar, listRestaurantDetail, reservationAdapter,
+                            rcvRestaurant, txtEmptyRestaurant);
 
                 }
             }
@@ -608,8 +588,8 @@ public class OnRequireFragment extends Fragment {
                     llContainerSetTime.setVisibility(View.GONE);
                 else {
                     llContainerSetTime.setVisibility(View.VISIBLE);
-                    setOnClickContainerTime(wpDate, wpMonth, wpHour, wpMinute, txtAddress, llContainerSetTime, txtDate, txtTimer,
-                            listRestaurantDetail, reservationAdapter, rcvRestaurant, txtEmptyRestaurant, rbReservation, infoInvitation);
+                    setOnClickContainerTime(wpDate, wpMonth, wpHour, wpMinute, txtDate, txtTimer,progressBar, listRestaurantDetail,
+                            reservationAdapter, rcvRestaurant, txtEmptyRestaurant, rbReservation);
                 }
             }
         });
@@ -657,9 +637,6 @@ public class OnRequireFragment extends Fragment {
                     Gson gson = new Gson();
                     String json = gson.toJson(infoInvitation);
 
-//            socketIO.emit("invite", new MySharePreference(getActivity()).getPhoneLogin() + "|" + listAccordantUser.get(position).getAccordantUser() + "|" +
-//                    txtDate.getText().toString() + "|" + txtTimer.getText().toString() + "|" + StringEscapeUtils.escapeJava(txtAddress.getText().toString()) + "|" + formattedDate);
-
                     socketIO.emit("invite", json);
 
                     for (AccordantUser temp : listAccordantUser) {
@@ -702,10 +679,9 @@ public class OnRequireFragment extends Fragment {
         txtDate.setText(currentTime.split(",")[0]);
     }
 
-    private void setValuePlaceNoReservation(final TextView txtPlace, int position, final ArrayList<Restaurant> listRestaurant,
-                                            final NoReservationAdapter adapter, final RecyclerView rcv, final TextView txtEmpty,
-                                            final InfoInvitation infoInvitation) {
-
+    private void setValuePlaceNoReservation(int position, final ProgressBar progressBar, final ArrayList<Restaurant> listRestaurant,
+                                            final NoReservationAdapter adapter, final RecyclerView rcv, final TextView txtEmpty) {
+        progressBar.setVisibility(View.VISIBLE);
         MySharePreference requireInfoSharePreference = new MySharePreference(getActivity(), new MySharePreference(getActivity()).getPhoneLogin());
 
         String latlng = Math.abs((Float.parseFloat(requireInfoSharePreference.getLatLngAddressRequire().split(",")[0].trim()) -
@@ -738,14 +714,13 @@ public class OnRequireFragment extends Fragment {
                 getListRestaurant.enqueue(new Callback<ArrayList<Restaurant>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Restaurant>> call, Response<ArrayList<Restaurant>> response) {
+                        progressBar.setVisibility(View.GONE);
                         if (response.body() != null && response.body().size() > 0) {
 
                             if(rcv.getVisibility()==View.GONE) {
                                 rcv.setVisibility(View.VISIBLE);
                             }
                             txtEmpty.setVisibility(View.GONE);
-
-                            infoInvitation.setRestaurantInfo(response.body().get(0));
 
                             listRestaurant.addAll(response.body());
                             adapter.notifyDataSetChanged();
@@ -758,22 +733,25 @@ public class OnRequireFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<ArrayList<Restaurant>> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
+                progressBar.setVisibility(View.GONE);
                 rcv.setVisibility(View.GONE);
                 txtEmpty.setVisibility(View.VISIBLE);
                 txtEmpty.setText(getActivity().getString(R.string.empty_no_restaurant));
             }
         } else {
+            progressBar.setVisibility(View.GONE);
             Toast.makeText(getActivity(), getActivity().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void setValuePlaceReservation(String date, final TextView txtPlace, final TextView txtTime, final WheelPicker wpHour, final WheelPicker wpMinute,
-                                          final LinearLayout llContainerTime, final ArrayList<RestaurantDetail> listRestaurant,
-                                          final ReservationAdapter adapter, final RecyclerView rcv, final TextView txtEmpty, final InfoInvitation infoInvitation) {
+    private void setValuePlaceReservation(String date, final ProgressBar progressBar, final ArrayList<RestaurantDetail> listRestaurant,
+                                          final ReservationAdapter adapter, final RecyclerView rcv, final TextView txtEmpty) {
+        progressBar.setVisibility(View.VISIBLE);
 
         MySharePreference mySharePreference = new MySharePreference(getActivity());
 
@@ -786,22 +764,13 @@ public class OnRequireFragment extends Fragment {
             getAllReservation.enqueue(new Callback<ArrayList<RestaurantDetail>>() {
                 @Override
                 public void onResponse(Call<ArrayList<RestaurantDetail>> call, Response<ArrayList<RestaurantDetail>> response) {
+                    progressBar.setVisibility(View.GONE);
                     if (response.body() != null && response.body().size() > 0) {
                         if(rcv.getVisibility()==View.GONE) {
                             rcv.setVisibility(View.VISIBLE);
                         }
                         txtEmpty.setVisibility(View.GONE);
 
-                        txtTime.setText(response.body().get(0).getListReservations().get(0).getTime());
-
-                        infoInvitation.setRestaurantInfo(new Restaurant(response.body().get(0)));
-
-                        if (llContainerTime.getVisibility() == View.VISIBLE) {
-
-                            wpHour.setSelectedItemPosition(Integer.parseInt(txtTime.getText().toString().trim().split(":")[0]));
-
-                            wpMinute.setSelectedItemPosition(((Integer.parseInt(txtTime.getText().toString().trim().split(":")[1]) / 10) + 1));
-                        }
                         listRestaurant.clear();
                         listRestaurant.addAll(response.body());
                         Collections.reverse(listRestaurant);
@@ -816,10 +785,12 @@ public class OnRequireFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<ArrayList<RestaurantDetail>> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
+            progressBar.setVisibility(View.GONE);
             Toast.makeText(getActivity(), getActivity().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
         }
     }
@@ -830,10 +801,9 @@ public class OnRequireFragment extends Fragment {
     }
 
     private void setOnClickContainerTime(final WheelPicker wpDate, final WheelPicker wpMonth, final WheelPicker wpHour,
-                                         final WheelPicker wpMinute, final TextView txtPlace, final LinearLayout llContainerSetTime,
-                                         final TextView txtDate, final TextView txtTime, final ArrayList<RestaurantDetail> list,
-                                         final ReservationAdapter reservationAdapter, final RecyclerView rcvReservation, final TextView txtEmpty,
-                                         final RadioButton rbReservation, final InfoInvitation infoInvitation) {
+                                         final WheelPicker wpMinute, final TextView txtDate, final TextView txtTime, final ProgressBar progress,
+                                         final ArrayList<RestaurantDetail> list, final ReservationAdapter reservationAdapter,
+                                         final RecyclerView rcvReservation, final TextView txtEmpty, final RadioButton rbReservation) {
 
         setDefaultValueWP(wpDate, R.array.Day_31, (Integer.parseInt(txtDate.getText().toString().trim().split("/")[0]) - 1));
 
@@ -860,8 +830,7 @@ public class OnRequireFragment extends Fragment {
                 setDataForWhellPicker(i, wpDate, localDate.getYear());
 
                 if (rbReservation.isChecked()) {
-                    setValuePlaceReservation(txtDate.getText().toString(), txtPlace, txtTime, wpHour, wpMinute, llContainerSetTime,
-                            list, reservationAdapter, rcvReservation, txtEmpty, infoInvitation);
+                    setValuePlaceReservation(txtDate.getText().toString(), progress, list, reservationAdapter, rcvReservation, txtEmpty);
                 }
             }
 
@@ -886,8 +855,7 @@ public class OnRequireFragment extends Fragment {
                 }
 
                 if (rbReservation.isChecked()) {
-                    setValuePlaceReservation(txtDate.getText().toString(), txtPlace, txtTime, wpHour, wpMinute, llContainerSetTime,
-                            list, reservationAdapter, rcvReservation, txtEmpty, infoInvitation);
+                    setValuePlaceReservation(txtDate.getText().toString(), progress, list, reservationAdapter, rcvReservation, txtEmpty);
                 }
             }
 

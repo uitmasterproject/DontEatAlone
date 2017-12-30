@@ -25,6 +25,8 @@ import retrofit2.Response;
  */
 
 public class ProfileBlogFragment extends Fragment {
+    private static String ARG_PROFILE_BLOG_PHONE = "ARG_PROFILE_BLOG_PHONE";
+
     private View viewGroup;
     private RecyclerView rvListBlog;
     private ProfileBlogAdapter adapter;
@@ -32,8 +34,25 @@ public class ProfileBlogFragment extends Fragment {
     private String phoneBlog;
     private String limit;
 
-    public ProfileBlogFragment(String phoneBlog) {
-        this.phoneBlog = phoneBlog;
+    public ProfileBlogFragment() {
+    }
+
+    public static ProfileBlogFragment newInstance(String phoneBlog) {
+        ProfileBlogFragment fm = new ProfileBlogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_PROFILE_BLOG_PHONE, phoneBlog);
+        fm.setArguments(bundle);
+        return fm;
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null && getArguments().getString(ARG_PROFILE_BLOG_PHONE) != null) {
+            phoneBlog = getArguments().getString(ARG_PROFILE_BLOG_PHONE);
+        }
     }
 
     @Nullable

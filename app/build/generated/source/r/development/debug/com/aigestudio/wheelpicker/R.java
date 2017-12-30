@@ -39,18 +39,18 @@ public final class R {
         public static final int WheelMargins = 0x7f070003;
     }
     public static final class id {
-        public static final int center = 0x7f090087;
-        public static final int left = 0x7f0901dc;
-        public static final int right = 0x7f090239;
-        public static final int wheel_date_picker_day = 0x7f0902a9;
-        public static final int wheel_date_picker_day_tv = 0x7f0902aa;
-        public static final int wheel_date_picker_month = 0x7f0902ab;
-        public static final int wheel_date_picker_month_tv = 0x7f0902ac;
-        public static final int wheel_date_picker_year = 0x7f0902ad;
-        public static final int wheel_date_picker_year_tv = 0x7f0902ae;
+        public static final int center = 0x7f090089;
+        public static final int left = 0x7f0901e0;
+        public static final int right = 0x7f09023e;
+        public static final int wheel_date_picker_day = 0x7f0902af;
+        public static final int wheel_date_picker_day_tv = 0x7f0902b0;
+        public static final int wheel_date_picker_month = 0x7f0902b1;
+        public static final int wheel_date_picker_month_tv = 0x7f0902b2;
+        public static final int wheel_date_picker_year = 0x7f0902b3;
+        public static final int wheel_date_picker_year_tv = 0x7f0902b4;
     }
     public static final class layout {
-        public static final int view_wheel_date_picker = 0x7f0c0089;
+        public static final int view_wheel_date_picker = 0x7f0c008a;
     }
     public static final class string {
         public static final int Day = 0x7f110000;

@@ -97,6 +97,13 @@
     <string name="refuse_content"> đã từ chối lời mời của bạn. Hãy tìm kiếm một người phù hợp hơn với bạn</string>
     <string name="invite_content"> đã mời bạn đi ăn với bạn ấy. Hãy trả lời bạn ấy trước 5 phút nhé.</string>
 
+    <string name="book_count">Số lượng đặt chỗ: </string>
+
+    <string name="logout">Logout</string>
+    <string name="logout_content">Bạn chắc chắn muốn thoát khỏi ứng dụng này?</string>
+    <string name="ok">Thoát</string>
+    <string name="cancel">Hủy</string>
+
     <string-array name="Day_31">
         <item>01</item>
         <item>02</item>
@@ -347,6 +354,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>21</item>
         <item>22</item>
         <item>23</item>
     </string-array>
@@ -361,25 +369,131 @@
     </string-array>
 
     <string-array name="food">
-        <item>các món từ gà, gà rán, gà nướng, gà quay...</item>
-        <item>các loại lẩu</item>
-        <item>đồ xiên que</item>
-        <item>đồ ăn liền</item>
-        <item>các món ngọt</item>
-        <item>phở, bún, bánh canh cua...</item>
+        <item>	Ăn vặt	</item>
+        <item>	Bánh mì	</item>
+        <item>	Bánh ngọt	</item>
+        <item>	BBQ	</item>
+        <item>	Buffet	</item>
+        <item>	Các món bún	</item>
+        <item>	Các món ăn phương tây	</item>
+        <item>	Các món ăn Hàn Quốc	</item>
+        <item>	Các món ăn Nhật Bản	</item>
+        <item>	Các món ăn Thái Lan	</item>
+        <item>	Các món ăn Trung Quốc	</item>
+        <item>	Các món ăn Truyền thống	</item>
+        <item>	Các món chay	</item>
+        <item>	Các món gỏi	</item>
+        <item>	Các món hấp	</item>
+        <item>	Các món kho	</item>
+        <item>	Các món nướng	</item>
+        <item>	Các món rán	</item>
+        <item>	Các món xào	</item>
+        <item>	Các sản phẩm từ sữa	</item>
+        <item>	Carry	</item>
+        <item>	Cơm	</item>
+        <item>	Hải sản	</item>
+        <item>	Hamburger	</item>
+        <item>	Hủ tiếu	</item>
+        <item>	Kim chi	</item>
+        <item>	Lẩu	</item>
+        <item>	Các món mì	</item>
+        <item>	Món ăn đường phố	</item>
+        <item>	Món ăn truyền thống	</item>
+        <item>	Mức	</item>
+        <item>	Phở	</item>
+        <item>	Pizza	</item>
+        <item>	Sandwich	</item>
+        <item>	Súp/Cháo	</item>
+        <item>	Sushi	</item>
+        <item>	Thịt bò	</item>
+        <item>	Thịt cá	</item>
+        <item>	Thịt gà	</item>
+        <item>	Thịt lợn	</item>
+        <item>	Thịt nướng	</item>
+        <item>	Thịt vịt	</item>
+        <item>	Thức ăn nhanh	</item>
+        <item>	Trái cây	</item>
+        <item>	Bia	</item>
+        <item>	Café	</item>
+        <item>	Kem	</item>
+        <item>	Nước ép trái cây	</item>
+        <item>	Nước ngọt	</item>
+        <item>	Rượu	</item>
+        <item>	Sinh tố	</item>
+        <item>	Trà	</item>
+        <item>	Trà Sữa	</item>
     </string-array>
 
     <string-array name="character">
-        <item>vui vẻ</item>
-        <item>trầm tĩnh</item>
-        <item>hóm hĩnh</item>
-        <item>thoải mái</item>
+        <item>	nóng tính	</item>
+        <item>	dũng cảm	</item>
+        <item>	cẩn thận	</item>
+        <item>	bất cẩn	</item>
+        <item>	vui vẻ	</item>
+        <item>	điên	</item>
+        <item>	dễ tính	</item>
+        <item>	thú vị	</item>
+        <item>	thân thiện	</item>
+        <item>	vui vẻ	</item>
+        <item>	hào phóng	</item>
+        <item>	chăm chỉ	</item>
+        <item>	tốt bụng	</item>
+        <item>	lười biếng	</item>
+        <item>	cởi mở	</item>
+        <item>	lịch sự	</item>
+        <item>	ít nói	</item>
+        <item>	nghiêm túc	</item>
+        <item>	nhút nhát	</item>
+        <item>	thông minh	</item>
+        <item>	hòa đồng	</item>
+        <item>	dịu dàng	</item>
+        <item>	nghiêm khắc	</item>
+        <item>	cầu tiến	</item>
+        <item>	thận trọng	</item>
+        <item>	tự tin	</item>
+        <item>	độc lập	</item>
+        <item>	nhiệt tình	</item>
+        <item>	hướng ngoại	</item>
+        <item>	hướng nội	</item>
+        <item>	giàu trí tưởng tượng	</item>
+        <item>	tinh ý	</item>
+        <item>	lạc quan	</item>
+        <item>	bi quan	</item>
+        <item>	có lý trí	</item>
+        <item>	hấp tấp	</item>
+        <item>	chân thành	</item>
+        <item>	bướng bỉnh	</item>
+        <item>	dễ cảm thông	</item>
+        <item>	thông thái	</item>
+        <item>	lịch thiệp	</item>
+        <item>	chung thủy	</item>
+        <item>	nhẹ nhàng	</item>
+        <item>	hài hước	</item>
+        <item>	trung thực	</item>
+        <item>	trung thành	</item>
+        <item>	kiên nhẫn	</item>
+        <item>	phóng khoáng	</item>
+        <item>	lạnh lùng	</item>
+        <item>  trầm tĩnh  </item>
     </string-array>
 
     <string-array name="style">
-        <item>tự do</item>
-        <item>quái dị</item>
-        <item>trưởng thành</item>
+        <item>	nghệ sĩ	</item>
+        <item>	sang trọng	</item>
+        <item>	cổ điển	</item>
+        <item>	quyến rũ	</item>
+        <item>	lãng mạn	</item>
+        <item>	gợi cảm	</item>
+        <item>	tinh tế	</item>
+        <item>	truyền thống	</item>
+        <item>	nổi loạn	</item>
+        <item>	nam tính	</item>
+        <item>	ấn tượng	</item>
+        <item>	thể thao	</item>
+        <item>	thời thượng	</item>
+        <item>	thoải mái	</item>
+        <item>	trưởng thành	</item>
+
     </string-array>
 
     <string-array name="District">

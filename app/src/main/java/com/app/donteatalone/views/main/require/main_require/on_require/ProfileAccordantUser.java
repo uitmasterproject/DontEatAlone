@@ -114,8 +114,8 @@ public class ProfileAccordantUser extends AppCompatActivity {
     private void setValueViewPager() {
         ArrayList<Fragment> listFragment = new ArrayList<>();
         if (phoneNumber != null) {
-            listFragment.add(new ProfileBlogFragment(phoneNumber));
-            listFragment.add(new ProfileHistoryFragment(phoneNumber));
+            listFragment.add(ProfileBlogFragment.newInstance(phoneNumber));
+            listFragment.add(ProfileHistoryFragment.newInstance(phoneNumber));
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);

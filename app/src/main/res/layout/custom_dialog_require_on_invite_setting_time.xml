@@ -216,6 +216,17 @@
 
             </RadioGroup>
 
+            <ProgressBar
+                android:id="@+id/progress"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="true"
+                android:max="100"
+                android:progress="20"
+                style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/custom_dialog_require_on_invite_setting_time_rcv_restaurant"
                 android:layout_width="match_parent"

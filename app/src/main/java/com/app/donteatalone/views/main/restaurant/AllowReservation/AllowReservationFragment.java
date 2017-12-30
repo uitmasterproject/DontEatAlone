@@ -16,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
@@ -60,6 +62,10 @@ public class AllowReservationFragment extends Fragment {
 
     private BroadcastReceiver broadcastReceiver;
 
+    private LinearLayout llContainerReservation;
+
+    private TextView txtCount;
+
     private MySharePreference mySharePreference;
     private BaseProgress baseProgress;
 
@@ -77,6 +83,10 @@ public class AllowReservationFragment extends Fragment {
         mySharePreference = new MySharePreference(getActivity());
 
         baseProgress = new BaseProgress();
+
+        txtCount = (TextView) view.findViewById(R.id.txt_restaurant_reservation_count);
+
+        llContainerReservation = (LinearLayout) view.findViewById(R.id.ll_list_reservation);
 
         snCity = (Spinner) view.findViewById(R.id.choose_city);
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.City));
@@ -116,11 +126,19 @@ public class AllowReservationFragment extends Fragment {
             }
         });
 
+
         rcvListReservation=(RecyclerView) view.findViewById(R.id.rcv_list_reservation);
         rcvListReservation.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         listReservation=new ArrayList<>();
-        reservationAdapter=new ReservationAdapter(listReservation,getActivity());
+        reservationAdapter=new ReservationAdapter(listReservation,getActivity(),true);
+
+        reservationAdapter.setOnClearRestaurant(new OnRecyclerItemClickListener() {
+            @Override
+            public void onItemClick(View view, int resource) {
+
+            }
+        });
 
         rcvListReservation.setAdapter(reservationAdapter);
 
@@ -170,10 +188,13 @@ public class AllowReservationFragment extends Fragment {
 
 
                         listReservation.add(0, (RestaurantDetail) intent.getParcelableExtra(MainActivity.SEND_BROADCAST_RESTAURANT_DATA));
-                        if (rcvListReservation.getVisibility() == View.GONE) {
-                            rcvListReservation.setVisibility(View.VISIBLE);
+
+                        if (llContainerReservation.getVisibility() == View.GONE) {
+                            llContainerReservation.setVisibility(View.VISIBLE);
                         }
                         reservationAdapter.notifyDataSetChanged();
+
+                        txtCount.setText(getString(R.string.book_count) + " "+ reservationAdapter.getItemCount());
                     }
                 }
             };
@@ -199,12 +220,14 @@ public class AllowReservationFragment extends Fragment {
                         Collections.reverse(listReservation);
 
                         if(listReservation.size()>0){
-                            rcvListReservation.setVisibility(View.VISIBLE);
+                            llContainerReservation.setVisibility(View.VISIBLE);
                         }else {
-                            rcvListReservation.setVisibility(View.GONE);
+                            llContainerReservation.setVisibility(View.GONE);
                         }
 
                         reservationAdapter.notifyDataSetChanged();
+
+                        txtCount.setText(getString(R.string.book_count) + " "+ reservationAdapter.getItemCount());
                     }
                 }
 

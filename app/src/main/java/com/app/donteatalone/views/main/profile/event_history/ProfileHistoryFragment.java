@@ -26,6 +26,8 @@ import retrofit2.Response;
  */
 
 public class ProfileHistoryFragment extends Fragment {
+    private static String ARG_PROFILE_HISTORY_PHONE = "ARG_PROFILE_HISTORY_PHONE";
+
     private View viewGroup;
     private RecyclerView rclvHistory;
     private ProfileHistoryAdapter profileHistoryAdapter;
@@ -35,8 +37,24 @@ public class ProfileHistoryFragment extends Fragment {
 
     private LinearLayout llEmptyHistory;
 
-    public ProfileHistoryFragment(String phoneHistory) {
-        this.phoneHistory=phoneHistory;
+    public ProfileHistoryFragment() {
+    }
+
+    public static ProfileHistoryFragment newInstance(String phoneHistory) {
+        ProfileHistoryFragment fm = new ProfileHistoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_PROFILE_HISTORY_PHONE, phoneHistory);
+        fm.setArguments(bundle);
+        return fm;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null && getArguments().getString(ARG_PROFILE_HISTORY_PHONE) != null) {
+            phoneHistory = getArguments().getString(ARG_PROFILE_HISTORY_PHONE);
+        }
     }
 
     @Nullable
@@ -49,17 +67,16 @@ public class ProfileHistoryFragment extends Fragment {
     }
 
 
-
-    private void init(){
-        llEmptyHistory=(LinearLayout) viewGroup.findViewById(R.id.fragment_history_ll_entry);
+    private void init() {
+        llEmptyHistory = (LinearLayout) viewGroup.findViewById(R.id.fragment_history_ll_entry);
 
         rclvHistory = (RecyclerView) viewGroup.findViewById(R.id.fragment_profile_history_rclv_history);
-        srlRefresh=(SwipeRefreshLayout) viewGroup.findViewById(R.id.fragment_profile_history_srl_refresh);
+        srlRefresh = (SwipeRefreshLayout) viewGroup.findViewById(R.id.fragment_profile_history_srl_refresh);
 
         rclvHistory.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        listProfileHistory=new ArrayList<>();
-        profileHistoryAdapter = new ProfileHistoryAdapter(listProfileHistory,getContext());
+        listProfileHistory = new ArrayList<>();
+        profileHistoryAdapter = new ProfileHistoryAdapter(listProfileHistory, getContext(), phoneHistory);
 
         rclvHistory.setAdapter(profileHistoryAdapter);
 
@@ -71,13 +88,13 @@ public class ProfileHistoryFragment extends Fragment {
         });
     }
 
-    private void getEventHistory(){
-        Call<ArrayList<ProfileHistoryModel>> getEventHistory= Connect.getRetrofit().getEventHistory(phoneHistory);
+    private void getEventHistory() {
+        Call<ArrayList<ProfileHistoryModel>> getEventHistory = Connect.getRetrofit().getEventHistory(phoneHistory);
         getEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
             @Override
             public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
                 srlRefresh.setRefreshing(false);
-                if(response.body()!=null && response.body().size()>0){
+                if (response.body() != null && response.body().size() > 0) {
                     llEmptyHistory.setVisibility(View.GONE);
 
                     rclvHistory.setVisibility(View.VISIBLE);
@@ -86,7 +103,7 @@ public class ProfileHistoryFragment extends Fragment {
                     listProfileHistory.addAll(response.body());
 
                     profileHistoryAdapter.notifyDataSetChanged();
-                }else {
+                } else {
                     rclvHistory.setVisibility(View.GONE);
 
                     llEmptyHistory.setVisibility(View.VISIBLE);
