@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.main.restaurant.AllowReservation;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +15,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.RestaurantDetail;
+import com.app.donteatalone.model.Status;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
@@ -136,7 +140,7 @@ public class AllowReservationFragment extends Fragment {
         reservationAdapter.setOnClearRestaurant(new OnRecyclerItemClickListener() {
             @Override
             public void onItemClick(View view, int resource) {
-
+                dialogDeleteReservation(resource);
             }
         });
 
@@ -237,6 +241,80 @@ public class AllowReservationFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void dialogDeleteReservation(final int position){
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.custom_dialog_logout);
+
+        TextView txtTile = (TextView) dialog.findViewById(R.id.txt_title);
+        txtTile.setText(R.string.delete_reservation_title);
+
+        TextView txtContent =(TextView) dialog.findViewById(R.id.txt_content);
+        txtContent.setText(R.string.delete_reservation_content);
+
+        Button btnDeleteReservation = (Button) dialog.findViewById(R.id.btn_ok);
+        btnDeleteReservation.setText(R.string.delete_reservation);
+
+        btnDeleteReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseProgress.showProgressLoading(getActivity());
+                if(AppUtils.isNetworkAvailable(getActivity())){
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy", Locale.ENGLISH);
+                    String currentTime = format.format(calendar.getTime());
+
+                    Call<Status> deleteReservation = Connect.getRetrofit().deleteReservationRestaurant(mySharePreference.getPhoneLogin(), currentTime, listReservation.get(position));
+                    deleteReservation.enqueue(new Callback<Status>() {
+                        @Override
+                        public void onResponse(Call<Status> call, Response<Status> response) {
+                            dialog.cancel();
+                            baseProgress.hideProgressLoading();
+                            if(response.body()!=null){
+                                if(response.body().getStatus().equals("1")){
+                                    listReservation.remove(position);
+                                    adapter.notifyDataSetChanged();
+
+                                    if(listReservation.size()>0){
+                                        llContainerReservation.setVisibility(View.VISIBLE);
+                                    }else {
+                                        llContainerReservation.setVisibility(View.GONE);
+                                    }
+                                }else {
+                                    Toast.makeText(getActivity(),getString(R.string.not_delete_reservation),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Status> call, Throwable t) {
+                            dialog.cancel();
+                            baseProgress.hideProgressLoading();
+                        }
+                    });
+                }else {
+                    dialog.cancel();
+                    baseProgress.hideProgressLoading();
+                    Toast.makeText(getActivity(), getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+
+
+        dialog.show();
     }
 
     @Override

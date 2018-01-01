@@ -804,11 +804,11 @@ public final class R {
         public static final int title_template = 0x7f09028f;
         public static final int top = 0x7f090292;
         public static final int topPanel = 0x7f090293;
-        public static final int up = 0x7f0902a3;
-        public static final int useLogo = 0x7f0902a5;
-        public static final int volume_item_container = 0x7f0902ae;
-        public static final int withText = 0x7f0902b6;
-        public static final int wrap_content = 0x7f0902b7;
+        public static final int up = 0x7f0902a4;
+        public static final int useLogo = 0x7f0902a6;
+        public static final int volume_item_container = 0x7f0902af;
+        public static final int withText = 0x7f0902b7;
+        public static final int wrap_content = 0x7f0902b8;
     }
     public static final class integer {
         public static final int abc_config_activityDefaultDur = 0x7f0a0000;
@@ -900,23 +900,23 @@ public final class R {
         public static final int abc_shareactionprovider_share_with = 0x7f11001f;
         public static final int abc_shareactionprovider_share_with_application = 0x7f110020;
         public static final int abc_toolbar_collapse_description = 0x7f110021;
-        public static final int mr_button_content_description = 0x7f11009e;
-        public static final int mr_chooser_searching = 0x7f11009f;
-        public static final int mr_chooser_title = 0x7f1100a0;
-        public static final int mr_controller_album_art = 0x7f1100a1;
-        public static final int mr_controller_casting_screen = 0x7f1100a2;
-        public static final int mr_controller_close_description = 0x7f1100a3;
-        public static final int mr_controller_collapse_group = 0x7f1100a4;
-        public static final int mr_controller_disconnect = 0x7f1100a5;
-        public static final int mr_controller_expand_group = 0x7f1100a6;
-        public static final int mr_controller_no_info_available = 0x7f1100a7;
-        public static final int mr_controller_no_media_selected = 0x7f1100a8;
-        public static final int mr_controller_pause = 0x7f1100a9;
-        public static final int mr_controller_play = 0x7f1100aa;
-        public static final int mr_controller_stop = 0x7f1100ab;
-        public static final int mr_system_route_name = 0x7f1100ac;
-        public static final int mr_user_route_category_name = 0x7f1100ad;
-        public static final int status_bar_notification_info_overflow = 0x7f1100cc;
+        public static final int mr_button_content_description = 0x7f1100a2;
+        public static final int mr_chooser_searching = 0x7f1100a3;
+        public static final int mr_chooser_title = 0x7f1100a4;
+        public static final int mr_controller_album_art = 0x7f1100a5;
+        public static final int mr_controller_casting_screen = 0x7f1100a6;
+        public static final int mr_controller_close_description = 0x7f1100a7;
+        public static final int mr_controller_collapse_group = 0x7f1100a8;
+        public static final int mr_controller_disconnect = 0x7f1100a9;
+        public static final int mr_controller_expand_group = 0x7f1100aa;
+        public static final int mr_controller_no_info_available = 0x7f1100ab;
+        public static final int mr_controller_no_media_selected = 0x7f1100ac;
+        public static final int mr_controller_pause = 0x7f1100ad;
+        public static final int mr_controller_play = 0x7f1100ae;
+        public static final int mr_controller_stop = 0x7f1100af;
+        public static final int mr_system_route_name = 0x7f1100b0;
+        public static final int mr_user_route_category_name = 0x7f1100b1;
+        public static final int status_bar_notification_info_overflow = 0x7f1100d1;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat = 0x7f120003;

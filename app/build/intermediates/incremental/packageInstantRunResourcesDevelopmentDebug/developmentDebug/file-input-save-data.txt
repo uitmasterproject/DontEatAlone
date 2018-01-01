@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Dec 22 17:07:32 ICT 2017
+#Mon Jan 01 16:49:37 ICT 2018
 2.base=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\assets\\development\\debug
 0.path=fonts/1.otf
 2.baseType=DIRECTORY

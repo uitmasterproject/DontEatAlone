@@ -92,6 +92,13 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         Picasso.with(context)
                 .load(listReservation.get(position).getAvatar())
                 .into(listTarget.get(position));
+
+        if (isClear) {
+            holder.imgClear.setVisibility(View.VISIBLE);
+        } else {
+            holder.imgClear.setVisibility(View.GONE);
+        }
+
         holder.txtName.setText(StringEscapeUtils.unescapeJava(listReservation.get(position).getName()));
         holder.txtAddress.setText(StringEscapeUtils.unescapeJava(listReservation.get(position).getAddress()));
         holder.txtSession.setText(listReservation.get(position).getListReservations().get(0).getSession());
@@ -121,12 +128,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             txtTable = (TextView) itemView.findViewById(R.id.txt_table);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
             imgClear = (ImageView) itemView.findViewById(R.id.img_clear);
-
-            if (isClear) {
-                imgClear.setVisibility(View.VISIBLE);
-            } else {
-                imgClear.setVisibility(View.GONE);
-            }
+            imgClear.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -172,7 +174,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                             dialog.cancel();
                         }
                     });
-                    imgAvatar.setImageBitmap(((BitmapDrawable) this.imgAvatar.getDrawable()).getBitmap());
+                    if(((BitmapDrawable) this.imgAvatar.getDrawable()).getBitmap()!=null){
+                        imgAvatar.setImageBitmap(((BitmapDrawable) this.imgAvatar.getDrawable()).getBitmap());
+                    }
                     txtName.setText(this.txtName.getText().toString());
                     txtRate.setText(listReservation.get(getAdapterPosition()).getRate());
                     txtAddress.setText(this.txtAddress.getText().toString());

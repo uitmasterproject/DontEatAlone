@@ -87,6 +87,8 @@ public class OnRequireFragment extends Fragment {
     private ViewPager viewPager;
     private MySharePreference infoRequireSharePreference;
 
+    private long countReverse = 0;
+
     private SwipeRefreshLayout srlResultsList;
 
     public static OnRequireFragment newInstance(ViewPager viewPager) {
@@ -104,8 +106,6 @@ public class OnRequireFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_on, container, false);
         phone = new MySharePreference(getActivity()).getPhoneLogin();
-
-        Log.e("activity On", getActivity() + "++++++++++++++++++++++++++++++++++++++++");
 
         init();
 
@@ -137,7 +137,6 @@ public class OnRequireFragment extends Fragment {
 
     @Override
     public void onStart() {
-        Log.e("activity On on Start", getActivity() + "++++++++++++++++++++++++++++++++++++++++");
         super.onStart();
 
         listenUserLikeUpdate();
@@ -193,28 +192,19 @@ public class OnRequireFragment extends Fragment {
                         public void run() {
                             JSONObject data = (JSONObject) args[0];
                             try {
-                                Log.e("userLike", data.getString("listUserLike") + "+++++++++++++++++++");
-
-//                                Log.e("userLike", data.getJSONArray("listUserLike").length() + "+++++++++++++++++++");
-////                                for (int i = 0; i < data.getJSONArray("listUserLike").length(); i++) {
-////
-////                                    listAccordantUser.add(new AccordantUser(data.getJSONArray("listUserLike").getJSONObject(i).getString("accordantUser"),
-////                                            data.getJSONArray("listUserLike").getJSONObject(i).getString("avatar"),
-////                                            data.getJSONArray("listUserLike").getJSONObject(i).getString("fullName"),
-////                                            Integer.parseInt(data.getJSONArray("listUserLike").getJSONObject(i).getString("percent")),
-////                                            data.getJSONArray("listUserLike").getJSONObject(i).getString("gender"),
-////                                            Integer.parseInt(data.getJSONArray("listUserLike").getJSONObject(i).getString("age")),
-////                                            data.getJSONArray("listUserLike").getJSONObject(i).getString("address"),
-////                                            data.getJSONArray("listUserLike").getJSONObject(i).getString("latlng"),
-////                                            data.getJSONArray("listUserLike").getJSONObject(i).getString("character")));
-////                                }
-//
                                 Gson gson = new Gson();
                                 Type type = new TypeToken<ArrayList<AccordantUser>>() {
                                 }.getType();
                                 ArrayList<AccordantUser> list = gson.fromJson(data.getString("listUserLike"), type);
 
-                                listAccordantUser.addAll(list);
+                                if(countReverse<1000) {
+                                    listAccordantUser.addAll(list);
+                                }else {
+                                    for(int i=0;i<list.size();i++){
+                                        list.get(i).setControl(false);
+                                        listAccordantUser.add(list.get(i));
+                                    }
+                                }
 
                                 accordantUserAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {
@@ -266,7 +256,12 @@ public class OnRequireFragment extends Fragment {
                                                     userUpdate.setPercent(percent);
                                                     AccordantUser accordantUser = new AccordantUser(userUpdate);
 
-                                                    listAccordantUser.add(accordantUser);
+                                                    if(countReverse<1000) {
+                                                        listAccordantUser.add(accordantUser);
+                                                    }else {
+                                                        accordantUser.setControl(false);
+                                                        listAccordantUser.add(accordantUser);
+                                                    }
 
                                                     accordantUserAdapter.notifyDataSetChanged();
                                                 }
@@ -658,8 +653,9 @@ public class OnRequireFragment extends Fragment {
 
 
     private void countDown5Minute() {
-        new CountDownTimer(300000, 1000) {
+        new CountDownTimer(300000, 500) {
             public void onTick(long millisUntilFinished) {
+                countReverse =millisUntilFinished;
             }
 
             public void onFinish() {

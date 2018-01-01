@@ -42,12 +42,12 @@ public final class R {
         public static final int center = 0x7f090089;
         public static final int left = 0x7f0901e0;
         public static final int right = 0x7f09023e;
-        public static final int wheel_date_picker_day = 0x7f0902af;
-        public static final int wheel_date_picker_day_tv = 0x7f0902b0;
-        public static final int wheel_date_picker_month = 0x7f0902b1;
-        public static final int wheel_date_picker_month_tv = 0x7f0902b2;
-        public static final int wheel_date_picker_year = 0x7f0902b3;
-        public static final int wheel_date_picker_year_tv = 0x7f0902b4;
+        public static final int wheel_date_picker_day = 0x7f0902b0;
+        public static final int wheel_date_picker_day_tv = 0x7f0902b1;
+        public static final int wheel_date_picker_month = 0x7f0902b2;
+        public static final int wheel_date_picker_month_tv = 0x7f0902b3;
+        public static final int wheel_date_picker_year = 0x7f0902b4;
+        public static final int wheel_date_picker_year_tv = 0x7f0902b5;
     }
     public static final class layout {
         public static final int view_wheel_date_picker = 0x7f0c008a;

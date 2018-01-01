@@ -48,7 +48,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
         return new CustomViewHolder(view);
     }
 
-    public void setOnClickItemRecyclerView(OnRecyclerItemClickListener onClickItemRecyclerView){
+    public void setOnClickItemRecyclerView(OnRecyclerItemClickListener onClickItemRecyclerView) {
         this.onRecyclerItemClickListener = onClickItemRecyclerView;
     }
 
@@ -85,7 +85,7 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
 
         holder.txtName.setText(StringEscapeUtils.unescapeJava(listAccordantUser.get(position).getFullName()));
 
-        Float litersOfPetrol=Float.parseFloat(listAccordantUser.get(position).getPercent());
+        Float litersOfPetrol = Float.parseFloat(listAccordantUser.get(position).getPercent());
         DecimalFormat df = new DecimalFormat("00.0");
         df.setMaximumFractionDigits(2);
         holder.txtPercent.setText(df.format(litersOfPetrol) + "%");
@@ -110,15 +110,17 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
             }
         });
 
-        if (listAccordantUser.get(position).getControl())
+        if (listAccordantUser.get(position).getControl()) {
             holder.ibtnInvite.setVisibility(View.VISIBLE);
-        else
+        }
+        else {
             holder.ibtnInvite.setVisibility(View.INVISIBLE);
+        }
         holder.ibtnInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onRecyclerItemClickListener!=null) {
-                    onRecyclerItemClickListener.onItemClick(v,position);
+                if (onRecyclerItemClickListener != null) {
+                    onRecyclerItemClickListener.onItemClick(v, position);
                 }
             }
         });
@@ -129,7 +131,6 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
     public int getItemCount() {
         return listAccordantUser.size();
     }
-
 
 
     class CustomViewHolder extends RecyclerView.ViewHolder {

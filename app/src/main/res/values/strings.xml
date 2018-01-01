@@ -104,6 +104,13 @@
     <string name="ok">Thoát</string>
     <string name="cancel">Hủy</string>
 
+    <string name="delete_reservation_content">Bạn có chắc chắn muốn hủy đặt chỗ này?</string>
+    <string name="delete_reservation">Hủy đặt chỗ</string>
+    <string name="cancel_dialog_reservation">Không</string>
+    <string name="delete_reservation_title">Hủy đặt chỗ</string>
+
+    <string name="not_delete_reservation">Xin lỗi, bạn chưa hủy được đặt chỗ này, vui lòng thử lại.</string>
+
     <string-array name="Day_31">
         <item>01</item>
         <item>02</item>

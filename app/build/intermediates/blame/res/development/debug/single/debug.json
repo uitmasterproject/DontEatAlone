@@ -2300,12 +2300,12 @@
         "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\android.joda-2.9.9.aar\\05e21cb54f9a7225ec8b741c601f1815\\res\\raw\\joda_indian_cocos"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\raw_joda_america_anguilla.flat",
-        "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\android.joda-2.9.9.aar\\05e21cb54f9a7225ec8b741c601f1815\\res\\raw\\joda_america_anguilla"
-    },
-    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-mdpi-v4_quantum_ic_forward_30_white_36.png.flat",
         "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-10.0.1.aar\\d7507003edbe4fbcef077bc1defb94aa\\res\\drawable-mdpi-v4\\quantum_ic_forward_30_white_36.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\raw_joda_america_anguilla.flat",
+        "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\android.joda-2.9.9.aar\\05e21cb54f9a7225ec8b741c601f1815\\res\\raw\\joda_america_anguilla"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\raw_joda_asia_dhaka.flat",
@@ -4724,12 +4724,12 @@
         "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-24.0.0.aar\\29f3454af30e3ff2b2ad93a189796aed\\res\\drawable-xxhdpi-v4\\ic_tv_dark.png"
     },
     {
-        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable_cast_ic_notification_stop_live_stream.xml.flat",
-        "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-10.0.1.aar\\d7507003edbe4fbcef077bc1defb94aa\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
-    },
-    {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-xhdpi_ic_reload.png.flat",
         "source": "D:\\SOLUTION\\DontEatAlone\\app\\src\\main\\res\\drawable-xhdpi\\ic_reload.png"
+    },
+    {
+        "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable_cast_ic_notification_stop_live_stream.xml.flat",
+        "source": "C:\\Users\\ChomChom\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-10.0.1.aar\\d7507003edbe4fbcef077bc1defb94aa\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
     },
     {
         "merged": "D:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\res\\merged\\development\\debug\\drawable-xxhdpi-v4_abc_list_pressed_holo_light.9.png.flat",

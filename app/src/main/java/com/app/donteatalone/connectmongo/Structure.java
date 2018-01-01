@@ -105,6 +105,8 @@ public interface Structure {
         Call<Status> reserveRestaurant(@Body UserReservation userReservation);
         @GET("/restaurant/reservation/all/{phone}/{date}")
         Call<ArrayList<RestaurantDetail>> getAllReservation(@Path("phone") String phone, @Path("date") String date);
+        @POST("/restaurant/cancel/{phone}/{date}")
+        Call<Status> deleteReservationRestaurant (@Path("phone") String phone, @Path("date") String date, @Body RestaurantDetail reservationDetail);
 
         @GET("/eventhistory/{phone}")
         Call<ArrayList<ProfileHistoryModel>> getEventHistory(@Path("phone") String phone);

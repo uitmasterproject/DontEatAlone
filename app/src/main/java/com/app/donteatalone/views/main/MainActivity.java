@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String ARG_LIST_BLOG = "ARG_LIST_BLOG";
 
+
     public ViewPager viewPager;
     public View view;
     private TabLayout tabLayout;
@@ -172,9 +173,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         final Dialog dialog = new Dialog(MainActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.custom_dialog_logout);
 
         Button btnOk=(Button) dialog.findViewById(R.id.btn_ok);
@@ -183,7 +184,8 @@ public class MainActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                dialog.cancel();
+                MainActivity.super.onBackPressed();
             }
         });
 

@@ -73,10 +73,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-
-    //Annotations
-//    compile 'org.androidannotations:androidannotations-api:4.0.0'
-//    apt 'org.androidannotations:androidannotations:4.0.0'
     annotationProcessor 'com.contentful.vault:compiler:2.1.0'
     annotationProcessor 'com.contentful.vault:core:3.0.1'
 
