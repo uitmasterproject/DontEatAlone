@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dont Eat Alone Alone</string>
+    <string name="app_name">Don\'t Eat Alone</string>
 
     <string name="facebook_app_id">160470204481557</string>
 
@@ -8,6 +8,51 @@
     <string name="formatted_place_data">
          %1$s, %2$s
     </string>
+    <!--String for all app-->
+    <string name="login">Đăng nhập</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="continute">Tiếp tục</string>
+    <string name="send_again">Gửi lại mã xác thực</string>
+    <string name="finish">Hoàn thành</string>
+
+    <!--String for defaut data-->
+    <string name="default_image_contentDescription">Don\'t Eat Alone</string>
+
+    <!--Strings for login screen-->
+    <string name="login_title">LOGIN</string>
+    <string name="new_here_create_an_account">Tạo tài khoản DEA mới</string>
+    <string name="remember_me">Lưu tài khoản</string>
+    <string name="forgot_password">Quên mật khẩu</string>
+
+    <!--Strings for forget password dialog screen-->
+    <string name="forgot_password_title">Thay đổi mật khẩu</string>
+    <string name="forgot_password_suggest_phone">Nhập số điện thoại của bạn để nhận mã xác thực tài khoản</string>
+    <string name="forgot_password_suggest_code">Nhập mã xác thực đã gửi đến số điện thoại của bạn</string>
+    <string name="forgot_password_suggest_finish">Xác thực thành công. Tạo ngay mật khẩu mới cho tài khoản của bạn</string>
+
+    <!--Strings for error and yêu cầu thiết bị-->
+            <!--error about phone number-->
+    <string name="invalid_phone">Số điện thoại không hợp lệ</string>
+    <string name="empty_phone">Bạn cần phải nhập số điện thoại</string>
+    <string name="phone_isnt_exist">Số điện thoại này không tồn tại. Hãy đăng ký tài khoản mới</string>
+
+            <!--error about password-->
+    <string name="invalid_password">Mật khẩu không hợp lệ</string>
+    <string name="empty_password">Bạn cần phải nhập mật khẩu</string>
+    <string name="password_incorecct">Mật khẩu bạn nhập không chính xác, Vui lòng kiểm tra lại</string>
+    <string name="password_length">Mật khẩu phải dài hơn 5 ký tự</string>
+
+            <!--others error-->
+    <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
+    <string name="register_fail">Đăng ký thất bại. Vui lòng thử lại</string>
+    <string name="deny_camera">Ứng dụng cần được cấp quyền truy cập Camera</string>
+    <string name="deny_read_storage">Ứng dụng cần được cấp quyền truy cập thư mục lưu trữ</string>
+    <string name="dont_find_image">Không thể tìm thấy ứng dụng cắt chỉnh ảnh.</string>
+    <string name="not_support_crop">Thiết bị này không hỗ trợ thao tác cắt ảnh</string>
+
+7239
 
     <string name="food_target">Target\'s Food are \t </string>
     <string name="character_target">Target\'s Character are \t </string>
@@ -22,31 +67,18 @@
     <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
-    <!--String for Login Screen-->
-    <string name="login_text">LOGIN</string>
+
 
     <string name="tutorial_step_4">You\'re older than 15 year old </string>
 
-    <string name="phone_isnt_exist">This phone isn\'t exits. Press register to create account</string>
-    <string name="password_incorecct">Password incorecct, Check phone or password again</string>
-    <string name="register_fail">Register Fail. Try again</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="phone">Mobile Number</string>
-    <string name="password">Password</string>
-    <string name="new_here_create_an_account">New here, Create an account</string>
-    <string name="remember_me">Remember me</string>
-    <string name="forgot_password">Forgot Password</string>
-    <string name="hide">HIDE</string>
-    <string name="show">SHOW</string>
-    <string name="invalid_network">Invalid network</string>
 
 
-    <string name="deny_camera">Camera permission denied.</string>
-    <string name="deny_read_storage">Read External Storage permission denied</string>
-    <string name="dont_find_image">Can not find image crop app.</string>
-    <string name="not_support_crop">This device doesn\'t support the crop action!</string>
+
+
+
 
     <string name="not_save">Failure for save blog</string>
 
@@ -498,29 +530,29 @@
 
     <string-array name="District">
         <item>Quận 1</item>
-        <item>Quận 12</item>
-        <item>Thủ Đức</item>
-        <item>Quận 9</item>
-        <item>Gò Vấp</item>
-        <item>Bình Thạnh</item>
-        <item>Tân Bình</item>
-        <item>Tân Phú</item>
-        <item>Phú Nhuận</item>
         <item>Quận 2</item>
         <item>Quận 3</item>
-        <item>Quận 10</item>
-        <item>Quận 11</item>
         <item>Quận 4</item>
         <item>Quận 5</item>
         <item>Quận 6</item>
-        <item>Quận 8</item>
-        <item>Quận Bình Tân</item>
         <item>Quận 7</item>
-        <item>Củ Chi</item>
-        <item>Hóc Môn</item>
+        <item>Quận 8</item>
+        <item>Quận 9</item>
+        <item>Quận 10</item>
+        <item>Quận 11</item>
+        <item>Quận 12</item>
+        <item>Quận Bình Thạnh</item>
+        <item>Quận Phú Nhuận</item>
+        <item>Quận Gò Vấp</item>
+        <item>Quận Thủ Đức</item>
+        <item>Quận Tân Bình</item>
+        <item>Quận Tân Phú</item>
+        <item>Quận Bình Tân</item>
         <item>Bình Chánh</item>
-        <item>Nhà Bè</item>
+        <item>Củ Chi</item>
         <item>Cần Giờ</item>
+        <item>Hóc Môn</item>
+        <item>Nhà Bè</item>
     </string-array>
 
     <string-array name="ID_District">

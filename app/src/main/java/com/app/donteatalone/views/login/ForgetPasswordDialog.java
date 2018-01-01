@@ -31,17 +31,18 @@ public class ForgetPasswordDialog {
     private Dialog dialog;
     private Activity activity;
     private BaseProgress baseProgress;
-    public ForgetPasswordDialog(Activity activity){
-        this.activity=activity;
-        baseProgress=new BaseProgress();
-        dialog=new Dialog(activity);
+
+    public ForgetPasswordDialog(Activity activity) {
+        this.activity = activity;
+        baseProgress = new BaseProgress();
+        dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
-    public void showDialog(EditText edtPass){
-        if(activity!=null){
+    public void showDialog(EditText edtPass) {
+        if (activity != null) {
             dialog.setContentView(R.layout.custom_dialog_forgetpassword);
-            RelativeLayout relativeLayout=(RelativeLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_rl_close);
+            RelativeLayout relativeLayout = (RelativeLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_rl_close);
             relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -55,11 +56,11 @@ public class ForgetPasswordDialog {
         }
     }
 
-    private void sendCode(){
-        LinearLayout llContainerPhone=(LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_phone);
-        LinearLayout llContainerCode=(LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_code);
-        EditText edtPhone = (EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_phone);
-        Button btnReceiveCode=(Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_ok);
+    private void sendCode() {
+        final LinearLayout llContainerPhone = (LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_phone);
+        final LinearLayout llContainerCode = (LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_code);
+        final EditText edtPhone = (EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_phone);
+        Button btnReceiveCode = (Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_ok);
 
         changeEditText(edtPhone);
 
@@ -67,57 +68,56 @@ public class ForgetPasswordDialog {
         btnReceiveCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edtPhone.getText().toString().equals("")){
-                    edtPhone.setError("Phone field isn't entry");
-                }
-                else {
-                    baseProgress.showProgressLoading(activity);
-                    Call<Status> checkPhoneExist= Connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
-                    checkPhoneExist.enqueue(new Callback<Status>() {
-                        @Override
-                        public void onResponse(Call<Status> call, Response<Status> response) {
-                            if(response.body()!=null){
-                                baseProgress.hideProgressLoading();
-                                if(response.body().getStatus().equals("1")){
-                                    //Send code
-                                    llContainerPhone.setVisibility(View.GONE);
-                                    llContainerCode.setVisibility(View.VISIBLE);
-                                }
-                                else {
-                                    edtPhone.setError("This phone isn't register");
-                                }
-                            }else {
-                                baseProgress.hideProgressLoading();
-                                Toast.makeText(activity,activity.getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Status> call, Throwable t) {
+                baseProgress.showProgressLoading(activity);
+                Call<Status> checkPhoneExist = Connect.getRetrofit().checkPhoneExits(edtPhone.getText().toString());
+                checkPhoneExist.enqueue(new Callback<Status>() {
+                    @Override
+                    public void onResponse(Call<Status> call, Response<Status> response) {
+                        if (response.body() != null) {
                             baseProgress.hideProgressLoading();
-                            Toast.makeText(activity,activity.getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+
+                            if (response.body().getStatus().equals("1")) {
+                                //Send code
+                                llContainerPhone.setVisibility(View.GONE);
+                                llContainerCode.setVisibility(View.VISIBLE);
+                            } else {
+                                if (response.body().getStatus().length() != 10 || response.body().getStatus().length() != 11) {
+                                    edtPhone.setError(activity.getResources().getString(R.string.invalid_phone));
+                                } else {
+                                    edtPhone.setError(activity.getResources().getString(R.string.phone_isnt_exist));
+                                }
+                            }
+                        } else {
+                            baseProgress.hideProgressLoading();
+                            Toast.makeText(activity, activity.getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Status> call, Throwable t) {
+                        baseProgress.hideProgressLoading();
+                        Toast.makeText(activity, activity.getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
 
-    private void changePassword(){
-        LinearLayout llContainerCode=(LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_code);
-        EditText edtCode = (EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_code);
-        TextView txtResendCode=(TextView) dialog.findViewById(R.id.custom_dialog_forgetpassword_txt_receivecodeagain);
-        Button btnChangePassword=(Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_okcode);
-        LinearLayout llContainerFinish=(LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_newpassword);
+    private void changePassword() {
+        final LinearLayout llContainerCode = (LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_code);
+        final EditText edtCode = (EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_code);
+        TextView txtResendCode = (TextView) dialog.findViewById(R.id.custom_dialog_forgetpassword_txt_receivecodeagain);
+        Button btnChangePassword = (Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_okcode);
+        final LinearLayout llContainerFinish = (LinearLayout) dialog.findViewById(R.id.custom_dialog_forgetpassword_ll_container_newpassword);
 
         changeEditText(edtCode);
 
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edtCode.getText().toString().equals("")){
+                if (edtCode.getText().toString().equals("")) {
                     edtCode.setError("Input Code");
-                }else {
+                } else {
                     llContainerCode.setVisibility(View.GONE);
                     llContainerFinish.setVisibility(View.VISIBLE);
                 }
@@ -132,35 +132,35 @@ public class ForgetPasswordDialog {
         });
     }
 
-    private void finishNewPassword(EditText edtPass){
-        EditText edtNewPassword= (EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_newpassword);
-        Button btnFinish=(Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_finish);
+    private void finishNewPassword(final EditText edtPass) {
+        final EditText edtNewPassword = (EditText) dialog.findViewById(R.id.custom_dialog_forgetpassword_edt_newpassword);
+        Button btnFinish = (Button) dialog.findViewById(R.id.custom_dialog_forgetpassword_btn_finish);
 
         changeEditText(edtNewPassword);
 
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edtNewPassword.getText().toString().length()<6){
-                    edtNewPassword.setError("Password field must longer than 6 character");
-                }else {
-                    Call<Status> changePassword=Connect.getRetrofit().changePass(new MySharePreference(activity).getPhoneLogin(),edtNewPassword.getText().toString());
+                if (edtNewPassword.getText().toString().length() < 6) {
+                    edtNewPassword.setError(activity.getResources().getString(R.string.invalid_password));
+                } else {
+                    Call<Status> changePassword = Connect.getRetrofit().changePass(new MySharePreference(activity).getPhoneLogin(), edtNewPassword.getText().toString());
                     changePassword.enqueue(new Callback<Status>() {
                         @Override
                         public void onResponse(Call<Status> call, Response<Status> response) {
-                            if(response.body()!=null){
-                                if(response.body().getStatus().equals("1")){
+                            if (response.body() != null) {
+                                if (response.body().getStatus().equals("1")) {
                                     edtPass.setText(edtNewPassword.getText().toString());
                                     dialog.dismiss();
-                                }else {
-                                    Toast.makeText(activity,activity.getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, activity.getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Status> call, Throwable t) {
-                            Toast.makeText(activity,activity.getResources().getString(R.string.invalid_network),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, activity.getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -168,7 +168,7 @@ public class ForgetPasswordDialog {
         });
     }
 
-    private void changeEditText(EditText edt){
+    private void changeEditText(final EditText edt) {
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -182,7 +182,7 @@ public class ForgetPasswordDialog {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(edt.getText().toString().length()>0){
+                if (edt.getText().toString().length() > 0) {
                     edt.setError(null);
                 }
             }
