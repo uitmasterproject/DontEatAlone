@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    tools:ignore="MissingPrefix,contentDescription">
+    android:orientation="vertical">
 
     <!--Set content below here-->
     <LinearLayout
@@ -27,19 +25,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:text="Enter Your Mobile Number"
+                android:text="@string/register_step_1_title"
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+                android:textSize="17sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="You'll use this number when you log in and if you ever need to reset your password."
+                android:text="@string/register_step_1_suggest"
                 android:textColor="@color/dot_tutorial_inactive"
-                android:textSize="14sp"
-                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -60,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
-                android:hint="Mobile Number"
+                android:hint="@string/phone"
                 android:imeOptions="actionDone"
                 android:inputType="phone"
                 android:maxLines="1"
@@ -83,27 +79,22 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:text="Send Verify Code To My Phone"
+            android:text="@string/register_step_1_send_virify_code"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
-        <RelativeLayout
+        <TextView
             android:id="@+id/fragment_register_step1_tutorial_verify_code"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Please enter your verify code"
-                android:textColor="@color/dot_tutorial_inactive"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
+            android:paddingTop="15dp"
+            android:text="@string/forgot_password_suggest_code"
+            android:textColor="@color/dot_tutorial_inactive"
+            android:textSize="14sp"
+            android:visibility="invisible" />
 
         <com.app.donteatalone.utils.CustomTextInputLayout
             android:id="@+id/til_error_code"
@@ -116,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
-                android:hint="Verify Code"
+                android:hint="@string/verify_code"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLines="1"
@@ -124,8 +115,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="16sp"
-                android:visibility="invisible"
-                app:fontPath="fonts/Montserrat-Medium.ttf" />
+                android:visibility="invisible" />
 
         </com.app.donteatalone.utils.CustomTextInputLayout>
 
@@ -140,7 +130,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:text="Next"
+            android:text="@string/continute"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"

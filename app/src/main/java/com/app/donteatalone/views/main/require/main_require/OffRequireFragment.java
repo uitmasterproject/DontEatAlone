@@ -312,7 +312,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
             case R.id.fragment_require_off_ll_container_hobby_character:
                 getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 editInfo(R.id.rl_edit_target_character, R.id.mactv_target_character,
-                        R.string.character_target, R.id.img_save_target_character, R.id.refresh_target_character,
+                        R.string.target_character, R.id.img_save_target_character, R.id.refresh_target_character,
                         llContainerHobbyCharacter, txtHobbyCharacter);
                 break;
             case R.id.img_save_target_character:

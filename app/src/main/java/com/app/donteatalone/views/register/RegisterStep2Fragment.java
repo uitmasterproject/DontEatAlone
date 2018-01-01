@@ -1,6 +1,7 @@
 package com.app.donteatalone.views.register;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -100,6 +101,7 @@ public class RegisterStep2Fragment extends Fragment {
     }
 
     /*Hide keyboard when touch outsite edittext*/
+    @SuppressLint("ClickableViewAccessibility")
     private void llRootTouch() {
         llRoot.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -122,14 +124,14 @@ public class RegisterStep2Fragment extends Fragment {
                 if (TextUtils.isEmpty(edtFullName.getText().toString()) ||
                         TextUtils.isEmpty(edtPassword.getText().toString())) {
                     if (TextUtils.isEmpty(edtFullName.getText().toString())) {
-                        tilErrorFullName.setError("Full Name field not entry");
+                        tilErrorFullName.setError(getString(R.string.empty_name));
                     }
                     if (TextUtils.isEmpty(edtPassword.getText().toString())) {
-                        tilErrorPassword.setError("Password field not entry");
+                        tilErrorPassword.setError(getString(R.string.empty_password));
                     }
                 } else {
                     if (edtPassword.getText().toString().length() < 6) {
-                        tilErrorPassword.setError("Length password is longer 6 character");
+                        tilErrorPassword.setError(getString(R.string.password_length));
                     } else {
                         userName.setFullName(StringEscapeUtils.escapeJava(edtFullName.getText().toString()));
                         userName.setPassword(edtPassword.getText().toString());

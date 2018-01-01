@@ -280,7 +280,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                             setValueAfterEdit(baseProgress);
                         }
                     } else {
-                        Toast.makeText(EditProfileActivity.this, getString(R.string.tutorial_step_4), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, getString(R.string.invalid_age), Toast.LENGTH_SHORT).show();
                     }
                 }
 

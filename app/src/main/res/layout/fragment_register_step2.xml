@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    tools:ignore="MissingPrefix,contentDescription">
+    android:orientation="vertical">
 
     <!--Set content below here-->
     <LinearLayout
@@ -18,31 +17,22 @@
         android:padding="20dp">
 
         <!--Name tutorial text-->
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="@string/register_step_2_title_name"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="10dp"
-                android:text="What's Your Name?"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Using your real name makes it easier for everybody to recognize you."
-                android:textColor="@color/dot_tutorial_inactive"
-                android:textSize="14sp"
-                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
-
-        </LinearLayout>
+            android:gravity="center"
+            android:text="@string/register_step_2_suggest_name"
+            android:textColor="@color/dot_tutorial_inactive"
+            android:textSize="14sp" />
 
         <View
             android:layout_width="match_parent"
@@ -62,49 +52,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
-                android:hint="Full Name"
+                android:hint="@string/name"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
                 android:padding="7dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
-                android:textSize="16sp"
-                app:fontPath="fonts/Montserrat-Medium.ttf" />
+                android:textSize="16sp" />
 
         </com.app.donteatalone.utils.CustomTextInputLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.4" />
+            android:layout_weight="0.3" />
 
         <!--Password tutorial text-->
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="@string/register_step_2_title_password"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="10dp"
-                android:text="Choose a Password"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Remember this password. A password helps prevent strangers from using your account"
-                android:textColor="@color/dot_tutorial_inactive"
-                android:textSize="14sp"
-                app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
-
-        </LinearLayout>
+            android:gravity="center"
+            android:text="@string/register_step_2_suggest_password"
+            android:textColor="@color/dot_tutorial_inactive"
+            android:textSize="14sp" />
 
         <View
             android:layout_width="match_parent"
@@ -123,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:maxLines="1"
@@ -138,17 +118,16 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.4" />
 
         <!--Set Button Next-->
-
         <Button
             android:id="@+id/fragment_register_step2_btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:text="Next"
+            android:text="@string/continute"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp" />

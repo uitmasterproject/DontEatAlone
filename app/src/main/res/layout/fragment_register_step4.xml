@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:text="What's Your Birthday?"
+                android:text="@string/register_step_4_title"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Providing your birthday creates the best DEA experience for you"
+                android:text="@string/register_step_4_suggest"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="14sp"
                 app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
@@ -68,9 +68,9 @@
                 app:wheel_cyclic="true"
                 app:wheel_data="@array/Month"
                 app:wheel_indicator="true"
-                app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                app:wheel_indicator_color="@color/dot_tutorial_active"
                 app:wheel_indicator_size="1dp"
-                app:wheel_selected_item_text_color="@color/black" />
+                app:wheel_selected_item_text_color="@color/color_deep_orange" />
 
             <com.aigestudio.wheelpicker.WheelPicker
                 android:id="@+id/fragment_register_step4_wheelpicker_day"
@@ -83,9 +83,9 @@
                 app:wheel_cyclic="true"
                 app:wheel_data="@array/Day_31"
                 app:wheel_indicator="true"
-                app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                app:wheel_indicator_color="@color/dot_tutorial_active"
                 app:wheel_indicator_size="1dp"
-                app:wheel_selected_item_text_color="@color/black" />
+                app:wheel_selected_item_text_color="@color/color_deep_orange" />
 
             <com.aigestudio.wheelpicker.widgets.WheelYearPicker
                 android:id="@+id/fragment_register_step4_wheelpicker_year"
@@ -97,9 +97,9 @@
                 app:wheel_curved="true"
                 app:wheel_cyclic="true"
                 app:wheel_indicator="true"
-                app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                app:wheel_indicator_color="@color/dot_tutorial_active"
                 app:wheel_indicator_size="1dp"
-                app:wheel_selected_item_text_color="@color/black" />
+                app:wheel_selected_item_text_color="@color/color_deep_orange" />
 
         </LinearLayout>
 
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:text="Next"
+            android:text="@string/continute"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp" />

@@ -8,41 +8,79 @@
     <string name="formatted_place_data">
          %1$s, %2$s
     </string>
+
+<!--*********************************************************************************************-->
     <!--String for all app-->
     <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
     <string name="phone">Số điện thoại</string>
     <string name="password">Mật khẩu</string>
     <string name="new_password">Mật khẩu mới</string>
     <string name="continute">Tiếp tục</string>
     <string name="send_again">Gửi lại mã xác thực</string>
     <string name="finish">Hoàn thành</string>
+    <string name="verify_code">Mã xác thực</string>
+    <string name="name">Tên đầy đủ</string>
+    <string name="edit">Chỉnh Sửa</string>
+    <string name="man">Nam</string>
+    <string name="woman">Nữ</string>
+    <string name="address">Địa Chỉ</string>
+    <string name="my_characters">Tính cách</string>
+    <string name="my_styles">Phong cách</string>
+    <string name="food">Món ăn</string>
+    <string name="target_character">Tính cách của người ấy</string>
+    <string name="target_style">Phong cách của người ấy</string>
 
+
+
+    <!--*********************************************************************************************-->
     <!--String for defaut data-->
     <string name="default_image_contentDescription">Don\'t Eat Alone</string>
 
+<!--*********************************************************************************************-->
     <!--Strings for login screen-->
     <string name="login_title">LOGIN</string>
     <string name="new_here_create_an_account">Tạo tài khoản DEA mới</string>
     <string name="remember_me">Lưu tài khoản</string>
     <string name="forgot_password">Quên mật khẩu</string>
 
+<!--*********************************************************************************************-->
     <!--Strings for forget password dialog screen-->
     <string name="forgot_password_title">Thay đổi mật khẩu</string>
     <string name="forgot_password_suggest_phone">Nhập số điện thoại của bạn để nhận mã xác thực tài khoản</string>
     <string name="forgot_password_suggest_code">Nhập mã xác thực đã gửi đến số điện thoại của bạn</string>
     <string name="forgot_password_suggest_finish">Xác thực thành công. Tạo ngay mật khẩu mới cho tài khoản của bạn</string>
 
+<!--*********************************************************************************************-->
     <!--Strings for error and yêu cầu thiết bị-->
             <!--error about phone number-->
     <string name="invalid_phone">Số điện thoại không hợp lệ</string>
     <string name="empty_phone">Bạn cần phải nhập số điện thoại</string>
     <string name="phone_isnt_exist">Số điện thoại này không tồn tại. Hãy đăng ký tài khoản mới</string>
+    <string name="phone_exists">Tài khoản đã tồn tại</string>
 
             <!--error about password-->
     <string name="invalid_password">Mật khẩu không hợp lệ</string>
     <string name="empty_password">Bạn cần phải nhập mật khẩu</string>
     <string name="password_incorecct">Mật khẩu bạn nhập không chính xác, Vui lòng kiểm tra lại</string>
     <string name="password_length">Mật khẩu phải dài hơn 5 ký tự</string>
+
+            <!--error about name-->
+    <string name="invalid_name">Tên của bạn không hợp lệ</string>
+    <string name="empty_name">Bạn cần phải nhập tên đầy đủ của bạn</string>
+
+            <!--error about gender-->
+    <string name="empty_gender">Bạn phải chọn giới tính của bạn</string>
+
+            <!--error about age-->
+    <string name="invalid_age">Độ tuổi của bạn không hợp lệ. Ứng dụng yêu cầu người dùng phải lớn hơn 15 tuổi.</string>
+
+             <!--error about address-->
+    <string name="empty_address">Bạn phải cung cấp địa chỉ của bạn</string>
+
+            <!--error about verify-->
+    <string name="invalid_verify">Mã xác thực không đúng</string>
+    <string name="empty_verify">Bạn chưa nhập mã xác thực</string>
 
             <!--others error-->
     <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
@@ -52,14 +90,34 @@
     <string name="dont_find_image">Không thể tìm thấy ứng dụng cắt chỉnh ảnh.</string>
     <string name="not_support_crop">Thiết bị này không hỗ trợ thao tác cắt ảnh</string>
 
-7239
+<!--*********************************************************************************************-->
+    <!--Strings for register screen-->
+    <string name="register_step_1_title">Nhập Số Điện Thoại Của Bạn.</string>
+    <string name="register_step_1_suggest">Bạn sẽ sử dụng số điện thoại này để đăng nhập hoặc khi cần đặt lại mật khẩu.</string>
+    <string name="register_step_1_send_virify_code">Gửi mã xác thực đến điện thoại của tôi</string>
 
-    <string name="food_target">Target\'s Food are \t </string>
-    <string name="character_target">Target\'s Character are \t </string>
-    <string name="style_target">Target\'s Style are \t </string>
+    <string name="register_step_2_title_name">Tên Của Bạn Là Gì?</string>
+    <string name="register_step_2_suggest_name">Sử dụng tên thật của bạn giúp mọi người dễ dàng nhận ra bạn hơn.</string>
+    <string name="register_step_2_title_password">Chọn Mật Khẩu</string>
+    <string name="register_step_2_suggest_password">Hãy nhớ mật khẩu này. Mật khẩu giúp ngăn người lạ sử dụng tài khoản của bạn.</string>
 
-    <string name="my_character">Characters are \t </string>
-    <string name="my_style">Styles are \t </string>
+    <string name="register_step_3_title">Hãy Chọn Giới Tính Của Bạn</string>
+    <string name="register_step_3_suggest">Cung cấp giới tính của bạn tạo ra trải nghiệm DEA tốt nhất cho bạn.</string>
+
+    <string name="register_step_4_title">Sinh Nhật Của Bạn Khi Nào?</string>
+    <string name="register_step_4_suggest">Độ tuổi là một yếu tố quan trọng để tìm ra người bạn phù hợp cùng đi ăn chung.</string>
+
+    <string name="register_step_5_title">Bạn Đang Sống Ở Đâu?</string>
+    <string name="register_step_5_suggest">Sử dụng địa chỉ thật giúp bạn dễ dàng tìm gặp những người dùng ở gần bạn.</string>
+
+    <string name="register_step_6_title">Bạn Là Người Như Thế Nào?</string>
+    <string name="register_step_6_suggest">Miêu tả Tính cách và Phong cách của bạn giúp mang đến những trải nghiệm tốt nhất cho bạn.</string>
+
+    <string name="register_step_7_title">Đối Tượng Của Bạn Như Thế Nào?</string>
+    <string name="register_step_7_suggest">Miêu tả về đối tượng của bạn về Tính Cách, Phong Cách và Món Ăn mà bạn mong muốn sẽ cùng trải nghiệm với người đó.</string>
+
+    <!--*********************************************************************************************-->
+
 
     <string name="live_in">Live in \t</string>
     <string name="phone_is">Phone is \t</string>
@@ -69,7 +127,7 @@
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
 
 
-    <string name="tutorial_step_4">You\'re older than 15 year old </string>
+
 
 
 
@@ -83,8 +141,6 @@
     <string name="not_save">Failure for save blog</string>
 
     <string name="not_update">Failure for update profile</string>
-
-    <string name="not_choose_gender">You have to choose your gender</string>
 
     <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
     <string name="default_lat_lng">10.771423,106.698471</string>
@@ -131,6 +187,7 @@
 
     <string name="book_count">Số lượng đặt chỗ: </string>
 
+    <!--Strings for logout screen-->
     <string name="logout">Logout</string>
     <string name="logout_content">Bạn chắc chắn muốn thoát khỏi ứng dụng này?</string>
     <string name="ok">Thoát</string>

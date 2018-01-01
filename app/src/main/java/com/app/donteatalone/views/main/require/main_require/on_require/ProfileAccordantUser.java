@@ -224,14 +224,14 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
 
     private void putDataHobbyIntoReference(UserName userName) {
-        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target), userName.getTargetFood()));
-        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target), userName.getTargetCharacter()));
-        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target), userName.getTargetStyle()));
+            tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food), userName.getTargetFood()));
+        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.target_character), userName.getTargetCharacter()));
+        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.target_style), userName.getTargetStyle()));
     }
 
     private void putDataPersonalIntoReference(UserName userName) {
-        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character), userName.getMyCharacter()));
-        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style), userName.getMyStyle()));
+        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_characters), userName.getMyCharacter()));
+        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_styles), userName.getMyStyle()));
     }
 
     private void setClickButtonLike() {

@@ -301,15 +301,15 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
 
     private void putDataHobbyIntoReference() {
-        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target), userName.getTargetFood()));
-        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target), userName.getTargetCharacter()));
-        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target), userName.getTargetStyle()));
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food), userName.getTargetFood()));
+        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.target_character), userName.getTargetCharacter()));
+        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.target_style), userName.getTargetStyle()));
     }
 
     private void putDataPersonalIntoReference() {
 
-        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character), userName.getMyCharacter()));
-        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style), userName.getMyStyle()));
+        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_characters), userName.getMyCharacter()));
+        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_styles), userName.getMyStyle()));
 
     }
 
@@ -325,7 +325,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_display_character:
-                editInfo(R.id.rl_edit_character, R.id.mactv_my_character, R.array.character, R.string.my_character,
+                editInfo(R.id.rl_edit_character, R.id.mactv_my_character, R.array.character, R.string.my_characters,
                         R.id.img_save_character, R.id.refresh_character, llDisplayCharacter, tvCharacters);
                 break;
             case R.id.mactv_my_character:
@@ -339,7 +339,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                 mactvEdit.setSelection(mactvEdit.getText().toString().length());
                 break;
             case R.id.img_save_character:
-                saveInfo(llDisplayCharacter, tvCharacters, R.string.my_character);
+                saveInfo(llDisplayCharacter, tvCharacters, R.string.my_characters);
                 break;
             case R.id.refresh_character:
             case R.id.refresh_style:
@@ -353,33 +353,33 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                 mactvEdit.setSelection(mactvEdit.getText().toString().length());
                 break;
             case R.id.ll_display_style:
-                editInfo(R.id.rl_edit_style, R.id.mactv_my_style, R.array.style, R.string.my_style,
+                editInfo(R.id.rl_edit_style, R.id.mactv_my_style, R.array.style, R.string.my_styles,
                         R.id.img_save_style, R.id.refresh_style, llDisplayStyle, tvStyles);
                 break;
             case R.id.img_save_style:
-                saveInfo(llDisplayStyle, tvStyles, R.string.my_style);
+                saveInfo(llDisplayStyle, tvStyles, R.string.my_styles);
                 break;
             case R.id.ll_display_target_food:
-                editInfo(R.id.rl_edit_target_food, R.id.mactv_target_food, R.array.food, R.string.food_target,
+                editInfo(R.id.rl_edit_target_food, R.id.mactv_target_food, R.array.food, R.string.food,
                         R.id.img_save_target_food, R.id.refresh_target_food, llDisplayTargetFood, tvTargetFoods);
                 break;
             case R.id.img_save_target_food:
-                saveInfo(llDisplayTargetFood, tvTargetFoods, R.string.food_target);
+                saveInfo(llDisplayTargetFood, tvTargetFoods, R.string.food);
                 break;
             case R.id.ll_display_target_character:
                 editInfo(R.id.rl_edit_target_character, R.id.mactv_target_character, R.array.character,
-                        R.string.character_target, R.id.img_save_target_character, R.id.refresh_target_character,
+                        R.string.target_character, R.id.img_save_target_character, R.id.refresh_target_character,
                         llDisplayTargetCharacter, tvTargetCharacters);
                 break;
             case R.id.img_save_target_character:
-                saveInfo(llDisplayTargetCharacter, tvTargetCharacters, R.string.character_target);
+                saveInfo(llDisplayTargetCharacter, tvTargetCharacters, R.string.target_character);
                 break;
             case R.id.ll_display_target_style:
-                editInfo(R.id.rl_edit_target_style, R.id.mactv_target_style, R.array.style, R.string.style_target,
+                editInfo(R.id.rl_edit_target_style, R.id.mactv_target_style, R.array.style, R.string.target_style,
                         R.id.img_save_target_style, R.id.refresh_target_style, llDisplayTargetStyle, tvTargetStyles);
                 break;
             case R.id.img_save_target_style:
-                saveInfo(llDisplayTargetStyle, tvTargetStyles, R.string.style_target);
+                saveInfo(llDisplayTargetStyle, tvTargetStyles, R.string.target_style);
                 break;
             case R.id.img_reload:
                 imgReLoad.setAnimation(animation);
@@ -452,19 +452,19 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             }
 
             switch (titleDefaultResource) {
-                case R.string.my_character:
+                case R.string.my_characters:
                     infoUpdate.setType("myCharacter");
                     break;
-                case R.string.my_style:
+                case R.string.my_styles:
                     infoUpdate.setType("myStyle");
                     break;
-                case R.string.food_target:
+                case R.string.food:
                     infoUpdate.setType("targetFood");
                     break;
-                case R.string.character_target:
+                case R.string.target_character:
                     infoUpdate.setType("targetCharacter");
                     break;
-                case R.string.style_target:
+                case R.string.target_style:
                     infoUpdate.setType("targetStyle");
                     break;
             }
@@ -476,19 +476,19 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                     if(response.body()!=null){
                         if(response.body().getUuid().equals(mySharePreference.getUUIDLogin())){
                             switch (titleDefaultResource) {
-                                case R.string.my_character:
+                                case R.string.my_characters:
                                     mySharePreference.setMyCharacterLogin(infoUpdate.getContent());
                                     break;
-                                case R.string.my_style:
+                                case R.string.my_styles:
                                     mySharePreference.setMyStyleLogin(infoUpdate.getContent());
                                     break;
-                                case R.string.food_target:
+                                case R.string.food:
                                     mySharePreference.setTargetFoodLogin(infoUpdate.getContent());
                                     break;
-                                case R.string.character_target:
+                                case R.string.target_character:
                                     mySharePreference.setTargetCharacterLogin(infoUpdate.getContent());
                                     break;
-                                case R.string.style_target:
+                                case R.string.target_style:
                                     mySharePreference.setTargetStyleLogin(infoUpdate.getContent());
                                     break;
                             }
