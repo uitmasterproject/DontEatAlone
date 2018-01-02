@@ -116,7 +116,7 @@ public class ForgetPasswordDialog {
             @Override
             public void onClick(View v) {
                 if (edtCode.getText().toString().equals("")) {
-                    edtCode.setError("Input Code");
+                    edtCode.setError(activity.getResources().getString(R.string.empty_verify));
                 } else {
                     llContainerCode.setVisibility(View.GONE);
                     llContainerFinish.setVisibility(View.VISIBLE);

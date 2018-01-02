@@ -14,10 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Name's Blog"
+            android:text="@string/blog_title"
             android:textColor="@color/color_deep_orange"
-            android:textSize="20sp"
-            app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/img_close"
@@ -52,8 +51,7 @@
                 android:maxLines="1"
                 android:padding="15dp"
                 android:textColor="@android:color/black"
-                android:textColorHint="@color/grey"
-                app:fontPath="fonts/Montserrat-Light" />
+                android:textColorHint="@color/grey" />
         </LinearLayout>
 
         <View
@@ -62,11 +60,13 @@
 
         <Button
             android:id="@+id/btn_post"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
-            android:text="Post Blog"
-            android:textColor="#FFFFFF" />
+            android:text="@string/blog_post"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

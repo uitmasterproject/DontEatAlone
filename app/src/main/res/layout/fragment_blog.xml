@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -29,16 +28,18 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:paddingBottom="25dp"
+            android:textSize="17sp"
             android:paddingTop="25dp"
-            android:text="What do you think, today?..."
-            android:textColor="#75000000" />
+            android:text="@string/blog_status"
+            android:textAllCaps="false"
+            android:textColor="@color/dot_tutorial_inactive" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/grey"/>
+        android:background="@color/grey" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,31 +52,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_empty_blog"
+                android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:layout_gravity="center"/>
+                android:src="@drawable/ic_empty_blog"
+                android:contentDescription="@string/default_image_contentDescription" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp"
-                android:text="Blog"
-                android:textSize="35dp"
-                android:textColor="@color/black"/>
+                android:text="@string/blog"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+
             <TextView
-                android:paddingTop="20dp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/blog_suggest"
                 android:textColor="@color/black"
-                android:textSize="15dp"
-                android:text="Add blog to share your current feeling, it help somebody know about yourself"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
 

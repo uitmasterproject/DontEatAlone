@@ -98,7 +98,7 @@ public class SaveAsDialog implements View.OnClickListener {
 
                                     activity.onBackPressed();
                                 } else {
-                                    Toast.makeText(activity, "check internet again", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(activity,  activity.getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
@@ -109,7 +109,7 @@ public class SaveAsDialog implements View.OnClickListener {
                         }
                     });
                 } else {
-                    edtNameBlog.setError("Name's blog isn't entry");
+                    edtNameBlog.setError(activity.getResources().getString(R.string.empty_blog_title));
                 }
                 break;
             case R.id.img_close:

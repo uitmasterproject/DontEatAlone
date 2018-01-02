@@ -22,20 +22,33 @@
     <string name="verify_code">Mã xác thực</string>
     <string name="name">Tên đầy đủ</string>
     <string name="edit">Chỉnh Sửa</string>
+    <string name="read">Đọc</string>
+    <string name="delete">Xóa</string>
     <string name="man">Nam</string>
     <string name="woman">Nữ</string>
-    <string name="address">Địa Chỉ</string>
-    <string name="my_characters">Tính cách</string>
-    <string name="my_styles">Phong cách</string>
-    <string name="food">Món ăn</string>
+    <string name="address">Địa Chỉ \t</string>
+    <string name="my_characters">Tính cách \t</string>
+    <string name="my_styles">Phong cách \t</string>
+    <string name="food">Món ăn \t</string>
     <string name="target_character">Tính cách của người ấy</string>
     <string name="target_style">Phong cách của người ấy</string>
+    <string name="live_in">Sống tại \t</string>
+    <string name="phone_is">Số điện thoại \t</string>
 
+
+
+
+    <!--String for images-->
+    <string name="select_option">Tùy Chọn</string>
+    <string name="delete_image">Xóa ảnh</string>
+    <string name="insert_image">Chèn ảnh</string>
+    <string name="insert_content">Chèn nội dung</string>
 
 
     <!--*********************************************************************************************-->
     <!--String for defaut data-->
     <string name="default_image_contentDescription">Don\'t Eat Alone</string>
+    <string name="default_data_time">05.12.1995</string>
 
 <!--*********************************************************************************************-->
     <!--Strings for login screen-->
@@ -82,6 +95,10 @@
     <string name="invalid_verify">Mã xác thực không đúng</string>
     <string name="empty_verify">Bạn chưa nhập mã xác thực</string>
 
+            <!--error about blog-->
+    <string name="empty_blog_title">Bạn phải nhập Tiêu đề blog</string>
+    <string name="not_save">Lưu thất bại. Vui lòng thử lại sau</string>
+
             <!--others error-->
     <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
     <string name="register_fail">Đăng ký thất bại. Vui lòng thử lại</string>
@@ -115,12 +132,17 @@
 
     <string name="register_step_7_title">Đối Tượng Của Bạn Như Thế Nào?</string>
     <string name="register_step_7_suggest">Miêu tả về đối tượng của bạn về Tính Cách, Phong Cách và Món Ăn mà bạn mong muốn sẽ cùng trải nghiệm với người đó.</string>
+    
+<!--*********************************************************************************************-->
+    <!--Strings for blog screen-->
+    <string name="blog">Blog</string>
+    <string name="blog_status">Bạn đang nghĩ gì?</string>
+    <string name="blog_title">Tiêu đề blog</string>
+    <string name="blog_suggest">Viết blog để chia sẻ cảm giác hiện tại và giúp mọi người thêm hiểu hơn về bạn</string>
+    <string name="blog_post">Đăng</string>
 
-    <!--*********************************************************************************************-->
+<!--*********************************************************************************************-->
 
-
-    <string name="live_in">Live in \t</string>
-    <string name="phone_is">Phone is \t</string>
 
     <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
@@ -138,7 +160,7 @@
 
 
 
-    <string name="not_save">Failure for save blog</string>
+
 
     <string name="not_update">Failure for update profile</string>
 
@@ -645,13 +667,13 @@
     </string-array>
 
     <string-array name="limit">
-        <item>public</item>
-        <item>private</item>
+        <item>Mọi người</item>
+        <item>Chỉ mình tôi</item>
     </string-array>
 
     <string-array name="option">
-        <item>Take a photo</item>
-        <item>Choose from gallery</item>
-        <item>Cancel</item>
+        <item>Chụp ảnh mới</item>
+        <item>Chọn từ thư viện ảnh</item>
+        <item>Hủy</item>
     </string-array>
 </resources>
