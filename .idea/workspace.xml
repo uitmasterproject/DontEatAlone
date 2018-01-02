@@ -29,16 +29,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/development/debug/0/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/development/debug/0/buildId.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/development/debug/2/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/development/debug/2/buildId.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/development/debug/5/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/development/debug/5/buildId.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/login/ForgetPasswordDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/login/ForgetPasswordDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/BlogItemAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/BlogItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SaveAsDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SaveAsDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SelectOptionDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SelectOptionDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_blog_write_status.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_blog_write_status.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_blog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_blog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_inner_recycler_my_status_blog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_inner_recycler_my_status_blog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_activity_blog_write_status_option.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_activity_blog_write_status_option.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_save_as.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_save_as.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomDialogItemNotification.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomDialogItemNotification.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomNotificationAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomNotificationAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_inviter_offline.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_inviter_offline.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_result_invite.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_result_invite.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_blog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_blog.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notification.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notification.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="Connect Server.iws" />
@@ -80,14 +76,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="custom_dialog_require_on_result_invite.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_result_invite.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+              <folding>
+                <element signature="e#7975#7991#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomDialogItemNotification.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomDialogItemNotification.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="169" column="17" lean-forward="false" selection-start-line="169" selection-start-column="17" selection-end-line="169" selection-end-column="17" />
+              <folding>
+                <element signature="e#10385#10685#0" expanded="true" />
+                <element signature="e#10684#10685#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoNotification.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/InfoNotification.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="497">
+              <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+              <folding>
+                <element signature="e#2274#2275#0" expanded="true" />
+                <element signature="e#2313#2314#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomNotificationAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomNotificationAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="929">
+              <caret line="112" column="25" lean-forward="false" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotificationFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/NotificationFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1576">
+              <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1550">
-              <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+            <state relative-caret-position="550">
+              <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
               <folding>
-                <marker date="1514916697868" expanded="true" signature="22446:22472" ph="..." />
+                <marker date="1514920875939" expanded="true" signature="23120:23146" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="R.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/development/debug/com/app/donteatalone/R.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="6313" column="30" lean-forward="false" selection-start-line="6313" selection-start-column="30" selection-end-line="6313" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,6 +192,7 @@
       <find>tên</find>
       <find>address</find>
       <find>cha</find>
+      <find>custom_dialog_require_on_result_invite_txt_title</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -3007,9 +3075,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/Restaurant.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_my_profile.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_inviter_offline.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/require/main_require/on_require/CustomDialogInfoAccordantUser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/restaurant/AllowReservation/ReservationAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/restaurant/NoReservation/NoReservationAdapter.java" />
@@ -3018,14 +3084,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_invite_setting_time.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/InfoNotification.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_recyclerview_notification.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomNotificationAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_result_invite.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/InfoInvitation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/AccordantUser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/ProfileHistoryModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/profile/event_history/ProfileHistoryAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/require/main_require/OnRequireFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomDialogItemNotification.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/color/bg_text_color_orange_white.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/MainApplication.java" />
@@ -3047,7 +3110,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/require/main_require/on_require/ProfileAccordantUser.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_register_step1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_blog_write_status.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_blog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SelectOptionDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/login/ForgetPasswordDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SaveAsDialog.java" />
@@ -3056,8 +3118,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/BlogItemAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_save_as.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_activity_blog_write_status_option.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_inner_recycler_my_status_blog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_blog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_notification.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_inviter_offline.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomNotificationAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_result_invite.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomDialogItemNotification.java" />
       </list>
     </option>
   </component>
@@ -3400,7 +3468,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
+              <option name="myItemId" value="notification" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3457,7 +3525,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="password_le&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#password_leight&#10;invalid_phone&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#invalid_phone&#10;phone_isnt_exist&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#phone_isnt_exist&#10;hello_blank_fragment&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#hello_blank_fragment&#10;id_distr&#9;PSI&#9;JAVA://com.app.donteatalone.R.array#ID_District" />
+    <property name="SearchEverywhereHistoryKey" value="refuse&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#refuse&#10;password_le&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#password_leight&#10;invalid_phone&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#invalid_phone&#10;phone_isnt_exist&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#phone_isnt_exist&#10;hello_blank_fragment&#9;PSI&#9;JAVA://com.app.donteatalone.R.string#hello_blank_fragment&#10;id_distr&#9;PSI&#9;JAVA://com.app.donteatalone.R.array#ID_District" />
     <property name="sync.plugin.last.upgrade.timestamp" value="1513275656660" />
     <property name="android.profiler.active" value="true" />
   </component>
@@ -3581,7 +3649,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514917568654" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514922446906" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3629,7 +3697,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514917568654" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514922446907" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3812,7 +3880,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514917568655" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514922446908" />
       </method>
     </configuration>
     <list size="2">
@@ -3870,6 +3938,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -3888,7 +3957,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59215015" sideWeight="0.6580938" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2019334" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29001075" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24659607" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17170954" sideWeight="0.49317408" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7201365" sideWeight="0.4883721" order="3" side_tool="false" content_ui="tabs" />
@@ -3972,123 +4041,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/color/bg_text_color_orange_white.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/fonts/Pacifico.ttf" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/base/BaseProgress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/MainApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/utils/AppUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1225">
-          <caret line="71" column="23" lean-forward="false" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/design_underline.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_forgetpassword.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="94" column="46" lean-forward="false" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/development/debug/com/app/donteatalone/R.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/Status.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="android-dummy://D:/Project/SchoolProject/app/Translations Editor">
-      <provider selected="true" editor-type-id="string-resource-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/DevPrograms/Android/sdk/sources/android-25/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="22516" column="16" lean-forward="false" selection-start-line="22516" selection-start-column="16" selection-end-line="22516" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register_step2.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="950">
-          <caret line="122" column="30" lean-forward="false" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/register/RegisterStep2Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2213">
-          <caret line="129" column="76" lean-forward="true" selection-start-line="129" selection-start-column="76" selection-end-line="129" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/register/RegisterStep3Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1299">
-          <caret line="254" column="47" lean-forward="false" selection-start-line="254" selection-start-column="47" selection-end-line="254" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register_step3.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -4182,6 +4134,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-642">
           <caret line="490" column="58" lean-forward="false" selection-start-line="490" selection-start-column="58" selection-end-line="490" selection-end-column="58" />
+          <folding>
+            <element signature="e#11321#11360#0" expanded="false" />
+            <element signature="e#11443#11494#0" expanded="false" />
+            <element signature="e#11578#11625#0" expanded="false" />
+            <element signature="e#14578#14591#0" expanded="false" />
+            <element signature="e#14835#14848#0" expanded="false" />
+            <element signature="e#15053#15078#0" expanded="false" />
+            <element signature="e#15357#15382#0" expanded="false" />
+            <element signature="e#15547#15568#0" expanded="false" />
+            <element signature="e#15819#15840#0" expanded="false" />
+            <element signature="e#19532#19545#0" expanded="false" />
+            <element signature="e#19649#19674#0" expanded="false" />
+            <element signature="e#19783#19804#0" expanded="false" />
+            <element signature="e#20807#20820#0" expanded="false" />
+            <element signature="e#21001#21026#0" expanded="false" />
+            <element signature="e#21212#21233#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4189,6 +4158,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="314" column="49" lean-forward="false" selection-start-line="314" selection-start-column="49" selection-end-line="314" selection-end-column="49" />
+          <folding>
+            <element signature="e#14356#14381#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4259,21 +4231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_blog.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="69" column="42" lean-forward="false" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
-          <folding>
-            <element signature="e#1215#1236#0" expanded="true" />
-            <element signature="e#2295#2337#0" expanded="true" />
-            <element signature="e#2884#2906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/SelectOptionDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1349">
@@ -4323,17 +4280,6 @@
         <state relative-caret-position="400">
           <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/BlogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1525">
-          <caret line="94" column="32" lean-forward="false" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
-          <folding>
-            <element signature="e#2850#3169#0" expanded="true" />
-            <element signature="e#3168#3169#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4414,21 +4360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_activity_blog_write_status_option.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="35" />
-          <folding>
-            <element signature="e#1302#1324#0" expanded="true" />
-            <element signature="e#1910#1932#0" expanded="true" />
-            <element signature="e#2520#2544#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -4453,12 +4384,219 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_tab_notification.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/blog/BlogFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="94" column="32" lean-forward="false" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
+          <folding>
+            <element signature="e#2850#3169#0" expanded="true" />
+            <element signature="e#3168#3169#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_blog.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="78" column="46" lean-forward="false" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
+          <folding>
+            <element signature="e#2540#2554#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_recyclerview_fragment_require_on.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notification.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+          <folding>
+            <element signature="e#1057#1079#0" expanded="true" />
+            <element signature="e#1458#1488#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_invite_setting_time.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_info_accordant_user.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_logout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_forgetpassword.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_activity_blog_write_status_option.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_recyclerview_notification.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_adapter_recyclerview_fragment_restaurant_not_reservation.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/NotificationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1576">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/model/InfoNotification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+          <folding>
+            <element signature="e#2274#2275#0" expanded="true" />
+            <element signature="e#2313#2314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_inviter_offline.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="59" column="48" lean-forward="false" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomNotificationAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="929">
+          <caret line="112" column="25" lean-forward="false" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1550">
-          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        <state relative-caret-position="550">
+          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
           <folding>
-            <marker date="1514916697868" expanded="true" signature="22446:22472" ph="..." />
+            <marker date="1514920875939" expanded="true" signature="23120:23146" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/development/debug/com/app/donteatalone/R.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="6313" column="30" lean-forward="false" selection-start-line="6313" selection-start-column="30" selection-end-line="6313" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_require_on_result_invite.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding>
+            <element signature="e#7975#7991#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/donteatalone/views/main/notification/CustomDialogItemNotification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="169" column="17" lean-forward="false" selection-start-line="169" selection-start-column="17" selection-end-line="169" selection-end-column="17" />
+          <folding>
+            <element signature="e#10385#10685#0" expanded="true" />
+            <element signature="e#10684#10685#0" expanded="true" />
           </folding>
         </state>
       </provider>

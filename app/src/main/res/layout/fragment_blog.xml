@@ -78,7 +78,7 @@
                 android:padding="20dp"
                 android:text="@string/blog_suggest"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
