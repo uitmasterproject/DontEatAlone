@@ -15,12 +15,12 @@
             android:id="@+id/fragment_require_sc_control"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:paddingEnd="20dp"
+            android:paddingStart="0dp"
             android:thumbTextPadding="6dp"
             app:switchMinWidth="6dp"
-            app:switchPadding="6dp"
-            android:layout_alignParentEnd="true"
-            android:paddingStart="0dp"
-            android:paddingEnd="20dp" />
+            app:switchPadding="6dp" />
 
     </RelativeLayout>
 
@@ -28,7 +28,7 @@
         android:id="@+id/fragment_require_fl_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent">
+        android:background="@color/app_background">
 
     </FrameLayout>
 

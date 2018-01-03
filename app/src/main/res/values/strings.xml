@@ -29,7 +29,8 @@
     <string name="address">Địa Chỉ \t</string>
     <string name="my_characters">Tính cách \t</string>
     <string name="my_styles">Phong cách \t</string>
-    <string name="food">Thích món ăn \t</string>
+    <string name="food">Món ăn</string>
+    <string name="target_food">Thích món ăn \t</string>
     <string name="target_character">Tính cách \t</string>
     <string name="target_style">Phong cách \t</string>
     <string name="live_in">Sống tại \t</string>
@@ -48,6 +49,9 @@
     <string name="date">Thời gian</string>
     <string name="place">Địa điểm</string>
     <string name="done">Xong</string>
+    <string name="age">tuổi</string>
+    <string name="all">Tất cả</string>
+    <string name="point">100%</string>
 
 
     <!--String for images-->
@@ -221,18 +225,21 @@
     <string name="default_data_gender">F</string>
     <string name="default_data_restaurant_name">Display restaurant\'s name</string>
     <string name="default_data_restaurant_address">Display restaurant\'s address</string>
-    <string name="default_data_restaurant_opten_time">All day</string>
+    <string name="default_data_restaurant_open_time">All day</string>
     <string name="default_data_restaurant_rate">10</string>
     <string name="default_data_restaurant_price">Display price</string>
     <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
     <string name="default_lat_lng">10.771423,106.698471</string>
     <string name="have_not_restaurant">Gợi ý nhà hàng</string>
     <string name="have_restaurant">Nhà hàng của tôi</string>
-    <string name="invite">Gửi lời mời</string>
+    <string name="send_invite">Gửi lời mời</string>
 
     <!--*****************************************************************************************-->
     <!--Strings for require screen-->
-
+    <string name="filter_by">Đối tượng tìm kiếm</string>
+    <string name="Range">Độ tuổi</string>
+    <string name="detail_about_people_you_need">Tìm kiếm nâng cao</string>
+    <string name="the_location_you_are_looking_for">Khu vực tìm kiếm</string>
 
     <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
     <string name="choose_address">Hãy lựa chọn địa điểm</string>
@@ -242,6 +249,10 @@
     <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
+
+    <!--*****************************************************************************************-->
+    <!--Invite-->
+    <string name="invite">Lời mời</string>
 
     <!--*****************************************************************************************-->
     <!--Strings for logout screen-->

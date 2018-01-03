@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
                         android:maxLines="1"
-                        android:text="Display Restaunrant's name"
+                        android:text="@string/default_data_restaurant_name"
                         android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
@@ -63,7 +63,7 @@
                         android:id="@+id/txt_address_restaurant"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Display address"
+                        android:text="@string/default_data_restaurant_address"
                         android:maxLines="1"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />

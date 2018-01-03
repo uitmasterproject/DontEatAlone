@@ -498,7 +498,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@string/food"
+                            android:text="@string/target_food"
                             android:textColor="@color/color_grey_2"
                             android:textSize="16sp" />
 

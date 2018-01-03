@@ -15,7 +15,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -223,7 +222,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
 
     private void putDataHobbyIntoReference(UserName userName) {
-        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food), userName.getTargetFood()));
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.target_food), userName.getTargetFood()));
         tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.target_character), userName.getTargetCharacter()));
         tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.target_style), userName.getTargetStyle()));
     }

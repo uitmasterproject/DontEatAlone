@@ -50,7 +50,8 @@
                 android:padding="5dp"
                 android:text="@string/default_data_time"
                 android:textColor="@color/black"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
+
         </LinearLayout>
 
         <ProgressBar
@@ -92,12 +93,12 @@
                 android:id="@+id/txt_image_number"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:drawableStart="@drawable/photo"
                 android:drawablePadding="5dp"
+                android:drawableStart="@drawable/photo"
                 android:gravity="bottom"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:text="25"
+                android:text="@null"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>

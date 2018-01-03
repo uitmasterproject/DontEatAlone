@@ -42,7 +42,7 @@
                 android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_reservation_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Display restaurant's name"
+                android:text="@string/default_data_restaurant_name"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
@@ -59,10 +59,9 @@
                     android:layout_weight="2"
                     android:gravity="start"
                     android:maxLines="1"
-                    android:text="Display restaurant's address"
+                    android:text="@string/default_data_restaurant_address"
                     android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="14sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:textSize="14sp" />
 
                 <!--Display restaurant's open time-->
                 <TextView
@@ -74,10 +73,9 @@
                     android:drawableStart="@drawable/ic_time"
                     android:gravity="start"
                     android:maxLines="1"
-                    android:text="lunch"
+                    android:text="@string/default_data_restaurant_open_time"
                     android:textColor="@color/color_deep_orange"
-                    android:textSize="14sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

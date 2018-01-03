@@ -92,7 +92,7 @@
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:paddingTop="7dp"
-        android:text="@string/default_data_restaurant_opten_time"
+        android:text="@string/default_data_restaurant_open_time"
         android:textColor="@color/black"
         android:textSize="17sp" />
 

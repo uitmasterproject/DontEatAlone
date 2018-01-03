@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
-                android:hint="@string/food"
+                android:hint="@string/target_food"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLines="1"

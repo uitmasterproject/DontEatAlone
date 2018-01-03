@@ -571,7 +571,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:completionThreshold="1"
-                            android:hint="@string/food"
+                            android:hint="@string/target_food"
                             android:inputType="textAutoComplete"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"

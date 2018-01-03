@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:drawableStart="@drawable/ic_time"
-                    android:text="@string/default_data_restaurant_opten_time"
+                    android:text="@string/default_data_restaurant_open_time"
                     android:textColor="@color/color_deep_orange_1"
                     android:textSize="16sp"
                     app:fontPath="fonts/RobotoCondensed-Medium.ttf" />

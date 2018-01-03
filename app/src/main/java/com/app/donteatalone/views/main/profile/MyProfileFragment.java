@@ -301,7 +301,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
 
     private void putDataHobbyIntoReference() {
-        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food), userName.getTargetFood()));
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.target_food), userName.getTargetFood()));
         tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.target_character), userName.getTargetCharacter()));
         tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.target_style), userName.getTargetStyle()));
     }
@@ -360,11 +360,11 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                 saveInfo(llDisplayStyle, tvStyles, R.string.my_styles);
                 break;
             case R.id.ll_display_target_food:
-                editInfo(R.id.rl_edit_target_food, R.id.mactv_target_food, R.array.food, R.string.food,
+                editInfo(R.id.rl_edit_target_food, R.id.mactv_target_food, R.array.food, R.string.target_food,
                         R.id.img_save_target_food, R.id.refresh_target_food, llDisplayTargetFood, tvTargetFoods);
                 break;
             case R.id.img_save_target_food:
-                saveInfo(llDisplayTargetFood, tvTargetFoods, R.string.food);
+                saveInfo(llDisplayTargetFood, tvTargetFoods, R.string.target_food);
                 break;
             case R.id.ll_display_target_character:
                 editInfo(R.id.rl_edit_target_character, R.id.mactv_target_character, R.array.character,
@@ -458,7 +458,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                 case R.string.my_styles:
                     infoUpdate.setType("myStyle");
                     break;
-                case R.string.food:
+                case R.string.target_food:
                     infoUpdate.setType("targetFood");
                     break;
                 case R.string.target_character:
@@ -482,7 +482,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                                 case R.string.my_styles:
                                     mySharePreference.setMyStyleLogin(infoUpdate.getContent());
                                     break;
-                                case R.string.food:
+                                case R.string.target_food:
                                     mySharePreference.setTargetFoodLogin(infoUpdate.getContent());
                                     break;
                                 case R.string.target_character:

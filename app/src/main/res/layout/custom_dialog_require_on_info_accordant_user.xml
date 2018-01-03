@@ -16,19 +16,20 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invite"
             android:gravity="center_horizontal"
+            android:text="@string/invite"
             android:textColor="@color/white"
             android:textSize="20sp" />
+
         <ImageView
             android:id="@+id/custom_dialog_require_on_info_account_user_img_close"
-            android:layout_width="30dp"
+            android:layout_width="03dp"
             android:layout_height="30dp"
-            android:background="@drawable/ripple_selector"
-            android:scaleType="centerCrop"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_close_white_36dp"
-            android:contentDescription="@null" />
+            android:background="@drawable/ripple_selector"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close_white_36dp" />
 
     </RelativeLayout>
 
@@ -38,7 +39,6 @@
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingBottom="10dp">
-
 
         <ImageView
             android:id="@+id/custom_dialog_require_on_info_account_user_img_avatar"
@@ -52,14 +52,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/custom_dialog_require_on_info_account_user_txt_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="22"
+                android:text="@string/age"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="17sp" />
 
@@ -78,8 +78,8 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_male"
-                android:contentDescription="@null" />
+                android:contentDescription="@null"
+                android:src="@drawable/ic_male" />
         </LinearLayout>
 
         <ScrollView
@@ -104,8 +104,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Full Name:"
+                        android:layout_weight="0.3"
+                        android:text="@string/name"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -114,11 +114,10 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_fullname"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.7"
                         android:maxLines="1"
                         android:textColor="@color/color_deep_orange_1"
                         android:textSize="18sp" />
-
 
                 </LinearLayout>
 
@@ -132,8 +131,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Phone:"
+                        android:layout_weight="0.3"
+                        android:text="@string/phone"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -141,10 +140,10 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_phone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="0979662236"
+                        android:layout_weight="0.7"
+                        android:text="@null"
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -157,8 +156,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Character"
+                        android:layout_weight="0.3"
+                        android:text="@string/target_character"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -166,10 +165,10 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_character"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="vui ve"
+                        android:layout_weight="0.7"
+                        android:text="@null"
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -182,8 +181,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Style"
+                        android:layout_weight="0.3"
+                        android:text="@string/target_style"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -191,10 +190,10 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_style"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="vui ve"
+                        android:layout_weight="0.7"
+                        android:text="@null"
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -206,8 +205,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Food"
+                        android:layout_weight="0.3"
+                        android:text="@string/target_food"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -215,10 +214,10 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_food"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="vui ve"
+                        android:layout_weight="0.7"
+                        android:text="@null"
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -232,8 +231,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Time"
+                        android:layout_weight="0.3"
+                        android:text="@string/date"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -241,8 +240,8 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="31/05"
+                        android:layout_weight="0.7"
+                        android:text="@null"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
@@ -256,8 +255,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Restaurant"
+                        android:layout_weight="0.3"
+                        android:text="@string/place"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -265,10 +264,10 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_name_restaurant"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.7"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:text="KTX khu B, dai hoc quoc gia TP.HCM, Ho Chi Minh"
+                        android:text="@null"
                         android:textColor="@color/dot_tutorial_active"
                         android:textSize="15sp" />
 
@@ -285,8 +284,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="Address"
+                        android:layout_weight="0.3"
+                        android:text="@string/address"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="16sp" />
 
@@ -294,9 +293,9 @@
                         android:id="@+id/custom_dialog_require_on_info_account_user_txt_address"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.7"
                         android:gravity="center_vertical"
-                        android:text="KTX khu B, dai hoc quoc gia TP.HCM, Ho Chi Minh"
+                        android:text="@null"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -331,9 +330,9 @@
                 android:id="@+id/custom_dialog_require_on_info_account_user_btn_viewprofile"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:textAllCaps="false"
                 android:background="@drawable/btn_login"
-                android:text="View Profile"
+                android:text="@string/view_profile"
+                android:textAllCaps="false"
                 android:textSize="12sp"
                 tools:ignore="ButtonStyle" />
 
@@ -341,10 +340,10 @@
                 android:id="@+id/custom_dialog_require_on_info_account_user_btn_accept"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:textAllCaps="false"
+                android:layout_marginStart="15dp"
                 android:background="@drawable/btn_login"
-                android:text="Accept"
+                android:text="@string/accept"
+                android:textAllCaps="false"
                 android:textSize="12sp"
                 tools:ignore="ButtonStyle" />
 
@@ -352,10 +351,10 @@
                 android:id="@+id/custom_dialog_require_on_info_account_user_btn_refuse"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:textAllCaps="false"
+                android:layout_marginStart="15dp"
                 android:background="@drawable/btn_login"
-                android:text="Refuse"
+                android:text="@string/refuse"
+                android:textAllCaps="false"
                 android:textSize="12sp"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
