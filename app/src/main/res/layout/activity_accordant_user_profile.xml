@@ -1,73 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
-    android:orientation="vertical"
-    tools:ignore="contentDescription, MissingPrefix">
-
-    <!--Tool bar-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/color_deep_orange"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
-
-        <RelativeLayout
-            android:id="@+id/fragment_accordant_user_profile_rl_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_back_arrow_white"
-                android:background="@color/transparent" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp">
-
-            <TextView
-                android:id="@+id/fragment_accordant_user_profile_tv_target_name_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hoang Han Le"
-                android:textColor="@color/white"
-                android:textSize="19sp"
-                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" 's Profile"
-                android:textColor="@color/white"
-                android:textSize="19sp"
-                app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/color_deep_orange" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,105 +32,82 @@
                 <!--Persional information and Achievements and more information-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
+                    <!--Set avatar image-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/fragment_accordant_user_profile_iv_avatar"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:contentDescription="@null"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_avatar" />
+
+                    </RelativeLayout>
+
+                    <!--Set your name below here-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/ripple_selector_rectangle"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp">
+
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="@null"
+                            android:textColor="@color/bg_text_color_orange_orange2"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                    <!--Set Age and Gender below here-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="vertical">
+                        android:gravity="center">
 
-                        <!--Set avatar image-->
-                        <RelativeLayout
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_age"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp">
+                            android:background="@drawable/ripple_selector"
+                            android:padding="10dp"
+                            android:text="@null"
+                            android:textColor="@color/color_deep_orange"
+                            android:textSize="18sp" />
 
-                            <ImageView
-                                android:id="@+id/fragment_accordant_user_profile_iv_avatar"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/avatar_man" />
 
-                        </RelativeLayout>
-
-                        <!--Set your name below here-->
-                        <RelativeLayout
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/ripple_selector_rectangle"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp">
+                            android:layout_gravity="center_vertical"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_line_dots2x" />
 
-                            <TextView
-                                android:id="@+id/fragment_accordant_user_profile_tv_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:singleLine="true"
-                                android:text="Display name"
-                                android:textColor="@color/bg_text_color_orange_orange2"
-                                android:textSize="20sp"
-                                app:fontPath="fonts/Montserrat-Bold.ttf" />
-
-                        </RelativeLayout>
-
-                        <!--Set Age and Gender below here-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/fragment_accordant_user_profile_tv_gender"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center">
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/ripple_selector"
-                                android:padding="10dp">
-
-                                <TextView
-                                    android:id="@+id/fragment_accordant_user_profile_tv_age"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0"
-                                    android:textColor="@color/color_deep_orange"
-                                    android:textSize="18sp"
-                                    app:fontPath="fonts/Montserrat-Medium.ttf" />
-
-                            </RelativeLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:src="@drawable/ic_line_dots2x" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/ripple_selector"
-                                android:padding="10dp">
-
-                                <TextView
-                                    android:id="@+id/fragment_accordant_user_profile_tv_gender"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentTop="true"
-                                    android:singleLine="true"
-                                    android:text="F"
-                                    android:textColor="@color/color_deep_orange"
-                                    android:textSize="18sp"
-                                    app:fontPath="fonts/Montserrat-Medium.ttf" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
+                            android:background="@drawable/ripple_selector"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="@null"
+                            android:textColor="@color/color_deep_orange"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -210,19 +139,17 @@
                             android:id="@+id/fragment_accordant_user_profile_tv_counts_like"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
-                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+                            android:textSize="20sp" />
 
                         <!--Text Like-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="likes"
+                            android:text="@string/profile_like"
                             android:textColor="@color/grey"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -239,19 +166,17 @@
                             android:id="@+id/fragment_accordant_user_profile_tv_counts_appointment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
-                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+                            android:textSize="20sp" />
 
                         <!--Text Appointment-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="appointment"
+                            android:text="@string/profile_dating"
                             android:textColor="@color/grey"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -267,19 +192,17 @@
                             android:id="@+id/fragment_accordant_user_profile_tv_counts_star"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
-                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+                            android:textSize="20sp" />
 
                         <!--Text Star-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="star"
+                            android:text="@string/profile_star"
                             android:textColor="@color/grey"
-                            android:textSize="18sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -296,6 +219,7 @@
                             android:id="@+id/fragment_accordant_user_profile_iv_like"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
+                            android:contentDescription="@null"
                             android:src="@drawable/ic_thumb_up_grey" />
 
                     </LinearLayout>
@@ -323,7 +247,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_home" />
 
@@ -332,10 +257,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Live in "
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:text="@string/live_in"
+                            android:textColor="@color/grey"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -348,7 +272,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_character" />
 
@@ -357,10 +282,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Characters  "
+                            android:text="@string/my_characters"
                             android:textColor="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -373,7 +297,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_style" />
 
@@ -382,10 +307,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Styles are "
+                            android:text="@string/my_styles"
                             android:textColor="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -398,7 +322,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_phone" />
 
@@ -407,10 +332,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="0902323 "
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -438,29 +362,27 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:contentDescription="@null"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_find_target" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/your_target"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/fragment_accordant_user_profile_tv_target_name_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        app:fontPath="fonts/Montserrat-Medium.ttf" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:text="'s Target is ..."
-                        android:textColor="@color/black"
-                        android:textSize="17sp"
-                        app:fontPath="fonts/Montserrat-Medium.ttf" />
-
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -486,7 +408,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_food" />
 
@@ -495,10 +418,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Like "
+                            android:text="@string/target_food"
                             android:textColor="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -511,7 +433,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_target_character" />
 
@@ -520,10 +443,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Characters  "
+                            android:text="@string/target_character"
                             android:textColor="@color/grey"
-                            android:textSize="15sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
@@ -537,7 +459,8 @@
                             android:id="@+id/imageView3"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@null"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_target_style" />
 
@@ -546,10 +469,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Styles are "
+                            android:text="@string/target_style"
                             android:textColor="@color/grey"
-                            android:textSize="15sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
@@ -561,13 +483,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/fragment_accordant_user_profile_tl_tabs"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     app:tabBackground="@color/color_deep_orange"
                     app:tabTextColor="@color/black" />
 
@@ -576,7 +498,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp" />
             </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
 
-</LinearLayout>
+    <!--Tool bar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/black_anpha_20">
+
+        <ImageView
+            android:id="@+id/fragment_accordant_user_profile_iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back_arrow_white"
+            android:textSize="17sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp">
+
+            <TextView
+                android:id="@+id/fragment_accordant_user_profile_tv_target_name_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@null"
+                android:textColor="@color/white"
+                android:textSize="19sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

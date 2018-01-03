@@ -112,7 +112,7 @@ public class RegisterStep3Fragment extends Fragment {
                 animationImageAvatar(rltManAvatar, R.drawable.avatar_man);
                 gender = "Male";
 
-                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.not_choose_gender))){
+                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.empty_gender))){
                     tvTutorial.setText("");
                 }
             }
@@ -123,7 +123,7 @@ public class RegisterStep3Fragment extends Fragment {
                 animationImageAvatar(rltWomanAvatar, R.drawable.avatar_woman);
                 gender = "Female";
 
-                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.not_choose_gender))){
+                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.empty_gender))){
                     tvTutorial.setText("");
                 }
             }
@@ -223,7 +223,7 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (gender == null) {
-                    tvTutorial.setText(getResources().getString(R.string.not_choose_gender));
+                    tvTutorial.setText(getResources().getString(R.string.empty_gender));
                     tvTutorial.setTextColor(ContextCompat.getColor(getContext(), R.color.color_orange_pressed));
                 } else {
                     if (isChosen) {

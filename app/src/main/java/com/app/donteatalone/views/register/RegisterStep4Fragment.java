@@ -121,7 +121,7 @@ public class RegisterStep4Fragment extends Fragment {
                     userName.setBirthday(toStringDate());
                     _mViewPager.setCurrentItem(4, true);
                 } else {
-                    txtTutorial.setText(getResources().getString(R.string.tutorial_step_4));
+                    txtTutorial.setText(getResources().getString(R.string.invalid_age));
                     txtTutorial.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_orange_pressed));
                 }
             }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,14 +25,14 @@
                 android:layout_marginBottom="5dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Filter By"
+                android:text="@string/filter_by"
                 android:textColor="@color/dot_tutorial_inactive"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <!--Gender-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -40,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Gender"
+                    android:text="@string/gender"
                     android:textColor="@color/font_color_for_require"
                     android:textSize="16sp" />
 
@@ -50,17 +51,15 @@
                     android:layout_weight="1" />
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/fragment_require_off_rl_all"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:background="@drawable/design_require_off_txt_gender_leftsight_selector">
 
                         <TextView
@@ -70,37 +69,36 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:padding="8dp"
-                            android:text="All"
+                            android:text="@string/all"
                             android:textColor="@color/dot_tutorial_inactive"
-                            android:textSize="15dp"
-                            app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                            android:textSize="15sp" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/fragment_require_off_rl_female"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@color/grey_1">
 
                         <TextView
                             android:id="@+id/fragment_require_off_txt_female"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="16dp"
                             android:padding="8dp"
-                            android:text="Female"
+                            android:text="@string/woman"
                             android:textColor="@color/dot_tutorial_inactive"
-                            android:textSize="15dp" />
+                            android:textSize="15sp" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/fragment_require_off_rl_male"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@drawable/design_require_off_txt_gender_rightsight_default">
 
                         <TextView
@@ -111,9 +109,9 @@
                             android:layout_centerHorizontal="true"
                             android:layout_centerInParent="true"
                             android:padding="8dp"
-                            android:text="Male"
+                            android:text="@string/man"
                             android:textColor="@color/dot_tutorial_inactive"
-                            android:textSize="15dp" />
+                            android:textSize="15sp" />
 
                     </RelativeLayout>
 
@@ -134,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Range"
+                    android:text="@string/Range"
                     android:textColor="@color/font_color_for_require"
                     android:textSize="16sp" />
 
@@ -152,24 +150,25 @@
                         android:id="@+id/fragment_require_off_txt_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="min - max"
+                        android:text="@null"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="age"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/age"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="15dp"
                         android:background="@drawable/ic_arrow_to_left"
+                        android:contentDescription="@null"
                         android:scaleType="centerCrop" />
                 </LinearLayout>
 
@@ -252,10 +251,9 @@
                     android:layout_gravity="center_vertical"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Details About People You Need"
+                    android:text="@string/detail_about_people_you_need"
                     android:textColor="@color/dot_tutorial_inactive"
-                    android:textSize="16sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:textSize="16sp" />
 
                 <!--Food-->
                 <LinearLayout
@@ -269,9 +267,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.33"
-                        android:drawableLeft="@drawable/red_dot"
                         android:drawablePadding="10dp"
-                        android:text="Food"
+                        android:drawableStart="@drawable/red_dot"
+                        android:text="@string/food"
                         android:textColor="@color/font_color_for_require"
                         android:textSize="16sp" />
 
@@ -282,10 +280,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="0.74"
                         android:gravity="end"
-                        android:text="aaaaaaaaaaaaaaaaaaaaa"
+                        android:text="@null"
                         android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="14sp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                        android:textSize="14sp" />
 
 
                 </LinearLayout>
@@ -303,7 +300,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:contentDescription="@null"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_save" />
@@ -316,9 +313,9 @@
                         android:layout_marginStart="28dp"
                         android:completionThreshold="1"
                         android:maxLines="1"
-                        android:text="Character  "
+                        android:text="@string/target_character"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/refresh_target_food"
@@ -326,6 +323,7 @@
                         android:layout_height="25dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@null"
                         android:src="@drawable/ic_refresh" />
 
                 </RelativeLayout>
@@ -340,12 +338,10 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="0.34"
-                        android:drawableLeft="@drawable/green_dot"
                         android:drawablePadding="10dp"
-                        android:text="Character"
+                        android:drawableStart="@drawable/green_dot"
+                        android:text="@string/target_character"
                         android:textColor="@color/font_color_for_require"
                         android:textSize="16sp" />
 
@@ -357,8 +353,7 @@
                         android:layout_weight="0.74"
                         android:gravity="end"
                         android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="14sp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -375,7 +370,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:contentDescription="@null"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_save" />
@@ -388,9 +383,9 @@
                         android:layout_marginStart="28dp"
                         android:completionThreshold="1"
                         android:maxLines="1"
-                        android:text="Character  "
+                        android:text="@string/target_character"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/refresh_target_character"
@@ -398,6 +393,7 @@
                         android:layout_height="25dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@null"
                         android:src="@drawable/ic_refresh" />
 
                 </RelativeLayout>
@@ -415,9 +411,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.34"
-                        android:drawableLeft="@drawable/orange_dot"
                         android:drawablePadding="10dp"
-                        android:text="Style"
+                        android:drawableStart="@drawable/orange_dot"
+                        android:text="@string/target_style"
                         android:textColor="@color/font_color_for_require"
                         android:textSize="16sp" />
 
@@ -429,8 +425,7 @@
                         android:layout_weight="0.74"
                         android:gravity="end"
                         android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="14sp"
-                        app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -447,7 +442,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:contentDescription="@null"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_save" />
@@ -460,10 +455,9 @@
                         android:layout_marginStart="28dp"
                         android:completionThreshold="1"
                         android:maxLines="1"
-                        android:text="Style  "
+                        android:text="@string/target_style"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        app:fontPath="fonts/Roboto-Regular" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/refresh_target_style"
@@ -471,6 +465,7 @@
                         android:layout_height="25dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@null"
                         android:src="@drawable/ic_refresh" />
 
                 </RelativeLayout>
@@ -478,7 +473,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
         <View
             android:layout_width="match_parent"
@@ -500,7 +494,7 @@
                 android:layout_marginBottom="5dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="The Location You Are Looking For"
+                android:text="@string/the_location_you_are_looking_for"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="16sp" />
 
@@ -517,24 +511,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
-                    android:text="Location"
+                    android:text="@string/place"
                     android:textColor="@color/font_color_for_require"
                     android:textSize="16sp" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/fragment_required_off_txt_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp">
-
-                    <TextView
-                        android:id="@+id/fragment_required_off_txt_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ho Chi Minh"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
+                    android:gravity="start"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="15dp"
+                    android:text="@string/default_address"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

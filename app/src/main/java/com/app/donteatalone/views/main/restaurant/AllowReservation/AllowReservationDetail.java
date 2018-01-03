@@ -57,14 +57,14 @@ public class AllowReservationDetail extends FragmentActivity implements View.OnC
         switch (v.getId()){
             case R.id.activity_restaurant_reservation_tv_info:
                 txtInfo.setTextColor(ContextCompat.getColor(AllowReservationDetail.this,R.color.color_deep_orange));
-                txtReserve.setTextColor(Color.WHITE);
+                txtReserve.setTextColor(Color.GRAY);
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.activity_restaurant_reservation_fl_container, ReservationDetailInfo.newInstance(restaurantDetail));
                 transaction.commit();
                 break;
             case R.id.activity_restaurant_reservation_tv_reserve:
                 txtReserve.setTextColor(ContextCompat.getColor(AllowReservationDetail.this,R.color.color_deep_orange));
-                txtInfo.setTextColor(Color.WHITE);
+                txtInfo.setTextColor(Color.GRAY);
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.activity_restaurant_reservation_fl_container, ReservationDetailDesign.newInstance(restaurantDetail));
                 transaction.commit();

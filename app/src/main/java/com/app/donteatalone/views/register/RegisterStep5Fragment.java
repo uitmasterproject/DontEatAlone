@@ -143,7 +143,7 @@ public class RegisterStep5Fragment extends Fragment implements PlaceSelectionLis
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(txtAddress.getText().toString())) {
-                    tilErrorAddress.setError("address field is not empty");
+                    tilErrorAddress.setError(getString(R.string.empty_address));
                 } else {
                     userName.setAddress(StringEscapeUtils.escapeJava(txtAddress.getText().toString()));
                     userName.setLatlngAdress(location);

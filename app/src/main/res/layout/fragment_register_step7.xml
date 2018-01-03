@@ -27,16 +27,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:text="How are your Target?"
+                android:text="@string/register_step_7_title"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 app:fontPath="fonts/RobotoCondensed-Bold.ttf" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Providing your targetCharacter makes it easy to find someone to eat with you."
+                android:text="@string/register_step_7_suggest"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="14sp"
                 app:fontPath="fonts/RobotoCondensed-Mudium.ttf" />
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
-                android:hint="Character"
+                android:hint="@string/target_character"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
-                android:hint="Style"
+                android:hint="@string/target_style"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_solid_white"
                 android:completionThreshold="1"
-                android:hint="Food"
+                android:hint="@string/target_food"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLines="1"
@@ -138,10 +138,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_login"
             android:gravity="center"
-            android:text="Register"
-            android:textAllCaps="false"
+            android:text="@string/register"
+            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"

@@ -5,7 +5,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId 'com.app.donteatalone'
         minSdkVersion 17
@@ -80,7 +80,7 @@ dependencies {
     compile 'net.danlew:android.joda:2.9.9'
 
     //Calligraphy
-    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     compile 'com.android.support:multidex:1.0.0'
 
     //progress loading

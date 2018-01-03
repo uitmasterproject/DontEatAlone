@@ -2,8 +2,8 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/custom_adapter_inner_recyclerview_my_status_blog_ll_content"
@@ -17,13 +17,14 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="1dp"
-            android:paddingBottom="1dp">
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp">
 
             <ImageView
                 android:id="@+id/custom_adapter_inner_recyclerview_my_status_blog_img_icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:contentDescription="@null"
                 android:padding="5dp"
                 android:src="@drawable/ic_public" />
 
@@ -33,10 +34,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:maxLines="1"
+                android:paddingEnd="0dp"
                 android:paddingStart="5dp"
-                android:text="Title"
+                android:text="@string/blog_title"
                 android:textColor="@color/black"
-                android:textSize="19dp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/custom_adapter_inner_recyclerview_my_status_blog_txt_date"
@@ -46,19 +48,20 @@
                 android:layout_weight="1.2"
                 android:gravity="end"
                 android:padding="5dp"
-                android:text="29/08/2017"
+                android:text="@string/default_data_time"
                 android:textColor="@color/black"
-                android:textSize="11dp" />
+                android:textSize="12sp" />
+
         </LinearLayout>
 
         <ProgressBar
+            android:id="@+id/progress"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:id="@+id/progress"
             android:indeterminate="true"
             android:max="100"
-            android:progress="20"
-            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+            android:progress="20" />
 
         <ImageView
             android:id="@+id/custom_adapter_inner_recyclerview_my_status_blog_img_image"
@@ -70,31 +73,34 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey"/>
+            android:background="@color/grey" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
+
             <ImageView
                 android:id="@+id/img_emotion"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
                 android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="10dp"/>
+                android:scaleType="centerCrop" />
+
             <TextView
                 android:id="@+id/txt_image_number"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:gravity="bottom"
-                android:drawableLeft="@drawable/photo"
                 android:drawablePadding="5dp"
-                android:text="25"
-                android:textSize="16dp"
-                android:scaleY="0.8"
+                android:drawableStart="@drawable/photo"
+                android:gravity="bottom"
                 android:scaleX="0.8"
-                android:textColor="@android:color/black"/>
+                android:scaleY="0.8"
+                android:text="@null"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -105,11 +111,11 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:background="@color/transparent"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingStart="280dp"
         android:paddingEnd="1dp"
-        android:visibility="gone"
-        android:gravity="center_vertical">
+        android:paddingStart="280dp"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/custom_adapter_inner_recyclerview_my_status_blog_btn_read"
@@ -117,7 +123,7 @@
             android:layout_height="40dp"
             android:layout_marginBottom="7dp"
             android:background="@drawable/bg_btn_blog_item"
-            android:text="Read"
+            android:text="@string/read"
             android:textAllCaps="false" />
 
         <Button
@@ -126,7 +132,7 @@
             android:layout_height="40dp"
             android:layout_marginBottom="7dp"
             android:background="@drawable/bg_btn_blog_item"
-            android:text="Edit"
+            android:text="@string/edit"
             android:textAllCaps="false" />
 
         <Button
@@ -134,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/bg_btn_blog_item"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textAllCaps="false" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

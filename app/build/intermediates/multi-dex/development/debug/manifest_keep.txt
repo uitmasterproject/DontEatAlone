@@ -1,3 +1,0 @@
-# Referenced at D:\SOLUTION\DontEatAlone\app\build\intermediates\manifests\full\development\debug\AndroidManifest.xml:44
--keep class com.app.donteatalone.MainApplication { <init>(...); }
-

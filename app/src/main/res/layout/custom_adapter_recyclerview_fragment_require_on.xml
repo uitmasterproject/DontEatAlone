@@ -22,22 +22,24 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/fragment_require_on_custom_cardview_img_avatar"
                     android:layout_width="100dp"
                     android:layout_height="95dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@null"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/avatar_man"
-                    android:contentDescription="@null" />
+                    android:src="@drawable/avatar_man" />
+
                 <ProgressBar
                     android:id="@+id/progressBar"
+                    style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
                     android:layout_width="100dp"
                     android:layout_height="5dp"
                     android:indeterminate="true"
                     android:max="100"
-                    android:progress="20"
-                    style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+                    android:progress="20" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,14 +67,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"
-                            android:paddingLeft="10dp">
+                            android:paddingEnd="0dp"
+                            android:paddingStart="10dp">
 
                             <TextView
                                 android:id="@+id/fragment_require_on_custom_cardview_txt_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:text="display name"
+                                android:text="@string/default_data_name"
                                 android:textColor="@color/color_deep_orange_1"
                                 android:textSize="19sp" />
 
@@ -85,24 +88,25 @@
                             android:gravity="start"
                             android:orientation="horizontal"
                             android:paddingBottom="2dp"
-                            android:paddingLeft="2dp"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="0dp"
                             android:paddingTop="2dp">
 
                             <ImageView
                                 android:id="@+id/fragment_require_on_custom_cardview_img_gender"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/ic_male"
-                                android:contentDescription="@null" />
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_male" />
 
                             <TextView
                                 android:id="@+id/fragment_require_on_custom_cardview_txt_age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:text="22"
-                                android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:gravity="center_vertical"
+                                android:text="@string/default_data_age"
                                 android:textColor="@color/dot_tutorial_inactive"
                                 android:textSize="17sp" />
 
@@ -123,7 +127,7 @@
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/bg_oval_round_orange"
                             android:gravity="center"
-                            android:text="100%"
+                            android:text="@string/point"
                             android:textColor="@color/color_tab_selected"
                             android:textSize="12sp" />
 
@@ -149,14 +153,15 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_location" />
+                        android:src="@drawable/ic_location"
+                        android:contentDescription="@null" />
 
                     <TextView
                         android:id="@+id/fragment_require_on_custom_cardview_txt_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="KTX Khu B, ĐHQG, Tô Vĩnh Diện, Đông Hòa, Tx. Dĩ An, Bình Dương, Vietnam"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/default_address"
                         android:textColor="@color/dot_tutorial_inactive"
                         android:textSize="13sp" />
 

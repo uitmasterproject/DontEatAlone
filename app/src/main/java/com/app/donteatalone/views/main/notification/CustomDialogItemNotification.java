@@ -78,7 +78,7 @@ public class CustomDialogItemNotification {
 
         RelativeLayout rlContainer = (RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_rl_container);
         LinearLayout llContainer = (LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_ll_container);
-        if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse")) {
+        if (data.getResultInvitation().equals("Chấp nhận") || data.getResultInvitation().equals("Từ chối")) {
             rlContainer.setVisibility(View.VISIBLE);
             llContainer.setVisibility(View.GONE);
             setClickinRelative();
@@ -131,7 +131,7 @@ public class CustomDialogItemNotification {
             @Override
             public void onClick(View v) {
                 try {
-                    clickbtnResponseInvatition("accept");
+                    clickbtnResponseInvatition("Chấp nhận");
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -145,7 +145,7 @@ public class CustomDialogItemNotification {
             @Override
             public void onClick(View v) {
                 try {
-                    clickbtnResponseInvatition("refuse");
+                    clickbtnResponseInvatition("Từ chối");
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -241,7 +241,7 @@ public class CustomDialogItemNotification {
         imgClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse"))
+                if (data.getResultInvitation().equals("Chấp nhận") || data.getResultInvitation().equals("Từ chối"))
                     updateData();
                 dialog.dismiss();
             }

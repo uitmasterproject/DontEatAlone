@@ -15,7 +15,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,10 +46,9 @@ import static com.app.donteatalone.views.main.blog.DetailBlogActivity.ARG_PHONE_
 
 public class ProfileAccordantUser extends AppCompatActivity {
 
-    private ImageView ivAvatar, ivLike;
+    private ImageView ivAvatar, ivLike, ivBack;
     private TextView tvName1, tvName2, tvName, tvAge, tvGender, tvPhone, tvAddress;
     private TextView tvTargetCharacters, tvTargetStyles, tvCharacters, tvStyles, tvTargetFoods;
-    private RelativeLayout rlBack;
     private TextView tvCountsLike, tvCountsAppointment, tvCountsStar;
     private LinearLayout llButtonLike;
     private TabLayout tabLayout;
@@ -81,7 +79,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
     private void init() {
         myPhone = new MySharePreference(ProfileAccordantUser.this).getPhoneLogin();
         /*Toolbar*/
-        rlBack = (RelativeLayout) findViewById(R.id.fragment_accordant_user_profile_rl_back);
+        ivBack = (ImageView) findViewById(R.id.fragment_accordant_user_profile_iv_back);
         tvName1 = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_name_1);
         tvName2 = (TextView) findViewById(R.id.fragment_accordant_user_profile_tv_target_name_2);
         /*Personal Information*/
@@ -125,8 +123,8 @@ public class ProfileAccordantUser extends AppCompatActivity {
     }
 
     private void setValueTabLayout() {
-        tabLayout.getTabAt(0).setText("BLOG");
-        tabLayout.getTabAt(1).setText("HISTORY");
+        tabLayout.getTabAt(0).setText("BÀI VIẾT");
+        tabLayout.getTabAt(1).setText("LỊCH SỬ CUỘC HẸN");
     }
 
     private void getValueProfilefromDatabase() {
@@ -152,9 +150,9 @@ public class ProfileAccordantUser extends AppCompatActivity {
                                     tvCountsAppointment.setText(achievement.getAppointment() + "");
                                     tvCountsStar.setText(achievement.getRate() + "");
 
-                                    if(achievement.getListUser()!=null && achievement.getListUser().size()>0){
-                                        for(int i=0;i<achievement.getListUser().size();i++){
-                                            if(achievement.getListUser().get(i).equals(myPhone)){
+                                    if (achievement.getListUser() != null && achievement.getListUser().size() > 0) {
+                                        for (int i = 0; i < achievement.getListUser().size(); i++) {
+                                            if (achievement.getListUser().get(i).equals(myPhone)) {
                                                 ivLike.setColorFilter(Color.BLUE);
                                                 llButtonLike.setOnClickListener(null);
                                             }
@@ -180,7 +178,7 @@ public class ProfileAccordantUser extends AppCompatActivity {
     }
 
     private void setClickButtonExit() {
-        rlBack.setOnClickListener(new View.OnClickListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Intent intent = new Intent(ProfileAccordantUser.this, MainActivity.class);
@@ -224,14 +222,14 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
 
     private void putDataHobbyIntoReference(UserName userName) {
-        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.food_target), userName.getTargetFood()));
-        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.character_target), userName.getTargetCharacter()));
-        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.style_target), userName.getTargetStyle()));
+        tvTargetFoods.setText(setMultiColorText(getResources().getString(R.string.target_food), userName.getTargetFood()));
+        tvTargetCharacters.setText(setMultiColorText(getResources().getString(R.string.target_character), userName.getTargetCharacter()));
+        tvTargetStyles.setText(setMultiColorText(getResources().getString(R.string.target_style), userName.getTargetStyle()));
     }
 
     private void putDataPersonalIntoReference(UserName userName) {
-        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_character), userName.getMyCharacter()));
-        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_style), userName.getMyStyle()));
+        tvCharacters.setText(setMultiColorText(getResources().getString(R.string.my_characters), userName.getMyCharacter()));
+        tvStyles.setText(setMultiColorText(getResources().getString(R.string.my_styles), userName.getMyStyle()));
     }
 
     private void setClickButtonLike() {
@@ -262,10 +260,10 @@ public class ProfileAccordantUser extends AppCompatActivity {
         }
     }
 
-    private Spannable setMultiColorText(String defaultText,String text) {
-        Spannable spannable = new SpannableString(defaultText+StringEscapeUtils.unescapeJava(text));
+    private Spannable setMultiColorText(String defaultText, String text) {
+        Spannable spannable = new SpannableString(defaultText + StringEscapeUtils.unescapeJava(text));
 
-        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), defaultText.length(), defaultText.length()+StringEscapeUtils.unescapeJava(text).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), defaultText.length(), defaultText.length() + StringEscapeUtils.unescapeJava(text).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return spannable;
     }

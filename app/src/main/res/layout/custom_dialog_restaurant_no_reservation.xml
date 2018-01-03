@@ -9,21 +9,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp">
+
         <ImageView
             android:id="@+id/custom_dialog_restaurant_no_reservation_ib_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/blue_grey"
-            android:scaleType="centerCrop"
-            android:contentDescription="@null" />
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
+
         <ImageView
             android:id="@+id/img_close"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_close_white_36dp"
+            android:alpha="0.8"
             android:contentDescription="@null"
-            android:alpha="0.8" />
+            android:src="@drawable/ic_close_white_36dp" />
     </RelativeLayout>
 
     <!--Set title and button close-->
@@ -42,7 +44,7 @@
             android:layout_gravity="start"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Display restaurant 's name"
+            android:text="@string/default_data_restaurant_name"
             android:textColor="@color/black"
             android:textSize="19sp"
             android:textStyle="bold" />
@@ -52,8 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_oval_round_orange"
+            android:gravity="center"
             android:padding="10dp"
-            android:text="8.5"
+            android:text="@string/default_data_restaurant_rate"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -69,13 +72,13 @@
         android:id="@+id/custom_dialog_restaurant_no_reservation_tv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_locate_64"
         android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_locate_64"
         android:paddingBottom="7dp"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:paddingTop="10dp"
-        android:text="Display restaurant's address"
+        android:text="@string/default_data_restaurant_address"
         android:textColor="@color/black"
         android:textSize="17sp" />
 
@@ -83,13 +86,13 @@
         android:id="@+id/custom_dialog_restaurant_no_reservation_tv_open_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_clock_64"
         android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_clock_64"
         android:paddingBottom="7dp"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:paddingTop="7dp"
-        android:text="Display open time"
+        android:text="@string/default_data_restaurant_open_time"
         android:textColor="@color/black"
         android:textSize="17sp" />
 
@@ -97,13 +100,13 @@
         android:id="@+id/custom_dialog_restaurant_no_reservation_tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_price_64"
         android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_price_64"
         android:paddingBottom="7dp"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:paddingTop="7dp"
-        android:text="Display price"
+        android:text="@string/default_data_restaurant_price"
         android:textColor="@color/black"
         android:textSize="17sp" />
 
@@ -111,13 +114,13 @@
         android:id="@+id/custom_dialog_restaurant_no_reservation_tv_table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_reserve"
         android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_reserve"
         android:paddingBottom="7dp"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:paddingTop="7dp"
-        android:text="Ban 1.1"
+        android:text="@null"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:visibility="gone" />
@@ -131,7 +134,8 @@
         android:padding="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_close_grey600_36dp"
-        android:text="Done"
+        android:text="@string/done"
+        android:textAllCaps="false"
         android:textColor="@color/bg_text_color_orange_white"
         android:textSize="19sp" />
 

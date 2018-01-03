@@ -57,8 +57,8 @@ public class RestaurantFragment extends Fragment {
 
         tabs.setupWithViewPager(viewPager);
 
-        tabs.getTabAt(0).setText("no reservation");
-        tabs.getTabAt(1).setText("allow reservation");
+        tabs.getTabAt(0).setText(getText(R.string.no_reservation_restaurant));
+        tabs.getTabAt(1).setText(getText(R.string.reservation_restaurant));
     }
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dont Eat Alone Alone</string>
+    <string name="app_name">Don\'t Eat Alone</string>
 
     <string name="facebook_app_id">160470204481557</string>
 
@@ -9,53 +9,196 @@
          %1$s, %2$s
     </string>
 
-    <string name="food_target">Target\'s Food are \t </string>
-    <string name="character_target">Target\'s Character are \t </string>
-    <string name="style_target">Target\'s Style are \t </string>
+    <!--*****************************************************************************************-->
+    <!--String for all app-->
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="continute">Tiếp tục</string>
+    <string name="send_again">Gửi lại mã xác thực</string>
+    <string name="finish">Hoàn thành</string>
+    <string name="verify_code">Mã xác thực</string>
+    <string name="name">Tên đầy đủ</string>
+    <string name="edit">Chỉnh Sửa</string>
+    <string name="read">Đọc</string>
+    <string name="delete">Xóa</string>
+    <string name="man">Nam</string>
+    <string name="woman">Nữ</string>
+    <string name="address">Địa Chỉ \t</string>
+    <string name="my_characters">Tính cách \t</string>
+    <string name="my_styles">Phong cách \t</string>
+    <string name="food">Món ăn</string>
+    <string name="target_food">Thích món ăn \t</string>
+    <string name="target_character">Tính cách \t</string>
+    <string name="target_style">Phong cách \t</string>
+    <string name="live_in">Sống tại \t</string>
+    <string name="phone_is">Số điện thoại \t</string>
+    <string name="btn_ok">OK</string>
+    <string name="view_profile">Xem Trang cá nhân</string>
+    <string name="accept">Chấp nhận</string>
+    <string name="refuse">Từ chối</string>
+    <string name="my_target">Đối tượng của tôi</string>
+    <string name="your_target">Đối tượng của \t</string>
+    <string name="feedback">Nhận xét</string>
+    <string name="write_feedback">Viết nhận xét...</string>
+    <string name="gender">Giới tính</string>
+    <string name="dob">DoB</string>
+    <string name="DOB">Ngày sinh</string>
+    <string name="date">Thời gian</string>
+    <string name="place">Địa điểm</string>
+    <string name="done">Xong</string>
+    <string name="age">tuổi</string>
+    <string name="all">Tất cả</string>
+    <string name="point">100%</string>
 
-    <string name="my_character">Characters are \t </string>
-    <string name="my_style">Styles are \t </string>
 
-    <string name="live_in">Live in \t</string>
-    <string name="phone_is">Phone is \t</string>
+    <!--String for images-->
+    <string name="select_option">Tùy Chọn</string>
+    <string name="delete_image">Xóa ảnh</string>
+    <string name="insert_image">Chèn ảnh</string>
+    <string name="insert_content">Chèn nội dung</string>
 
-    <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
-    <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
-    <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
-    <!--String for Login Screen-->
-    <string name="login_text">LOGIN</string>
+    <!--*****************************************************************************************-->
+    <!--Strings for login screen-->
+    <string name="login_title">LOGIN</string>
+    <string name="new_here_create_an_account">Tạo tài khoản DEA mới</string>
+    <string name="remember_me">Lưu tài khoản</string>
+    <string name="forgot_password">Quên mật khẩu</string>
 
-    <string name="tutorial_step_4">You\'re older than 15 year old </string>
+    <!--*****************************************************************************************-->
+    <!--Strings for forget password dialog screen-->
+    <string name="forgot_password_title">Thay đổi mật khẩu</string>
+    <string name="forgot_password_suggest_phone">Nhập số điện thoại của bạn để nhận mã xác thực tài khoản</string>
+    <string name="forgot_password_suggest_code">Nhập mã xác thực đã gửi đến số điện thoại của bạn</string>
+    <string name="forgot_password_suggest_finish">Xác thực thành công. Tạo ngay mật khẩu mới cho tài khoản của bạn</string>
 
-    <string name="phone_isnt_exist">This phone isn\'t exits. Press register to create account</string>
-    <string name="password_incorecct">Password incorecct, Check phone or password again</string>
-    <string name="register_fail">Register Fail. Try again</string>
+    <!--*****************************************************************************************-->
+    <!--Strings for error and yêu cầu thiết bị-->
+    <!--error about phone number-->
+    <string name="invalid_phone">Số điện thoại không hợp lệ</string>
+    <string name="empty_phone">Bạn cần phải nhập số điện thoại</string>
+    <string name="phone_isnt_exist">Số điện thoại này không tồn tại. Hãy đăng ký tài khoản mới</string>
+    <string name="phone_exists">Tài khoản đã tồn tại</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="phone">Mobile Number</string>
-    <string name="password">Password</string>
-    <string name="new_here_create_an_account">New here, Create an account</string>
-    <string name="remember_me">Remember me</string>
-    <string name="forgot_password">Forgot Password</string>
-    <string name="hide">HIDE</string>
-    <string name="show">SHOW</string>
-    <string name="invalid_network">Invalid network</string>
+    <!--error about password-->
+    <string name="invalid_password">Mật khẩu không hợp lệ</string>
+    <string name="empty_password">Bạn cần phải nhập mật khẩu</string>
+    <string name="password_incorecct">Mật khẩu bạn nhập không chính xác, Vui lòng kiểm tra lại</string>
+    <string name="password_length">Mật khẩu phải dài hơn 5 ký tự</string>
+
+    <!--error about name-->
+    <string name="invalid_name">Tên của bạn không hợp lệ</string>
+    <string name="empty_name">Bạn cần phải nhập tên đầy đủ của bạn</string>
+
+    <!--error about gender-->
+    <string name="empty_gender">Bạn phải chọn giới tính của bạn</string>
+
+    <!--error about age-->
+    <string name="invalid_age">Độ tuổi của bạn không hợp lệ. Ứng dụng yêu cầu người dùng phải lớn hơn 15 tuổi.</string>
+
+    <!--error about address-->
+    <string name="empty_address">Bạn phải cung cấp địa chỉ của bạn</string>
+
+    <!--error about verify-->
+    <string name="invalid_verify">Mã xác thực không đúng</string>
+    <string name="empty_verify">Bạn chưa nhập mã xác thực</string>
+
+    <!--error about blog-->
+    <string name="empty_blog_title">Bạn phải nhập Tiêu đề blog</string>
+    <string name="not_save">Lưu thất bại. Vui lòng thử lại sau.</string>
+
+    <!--error about profile-->
+    <string name="not_update">Cập nhật thông tin thất bại. Vui lòng thử lại sau.</string>
+    <string name="basic_information">Thông tin cơ bản</string>
+    <string name="advanced_information">Thông tin nâng cao</string>
+    <string name="target_information">Thông tin đối tượng</string>
+
+    <!--error about restaurant-->
+    <string name="empty_time_session">Khung giờ này đã hết thời gian đặt bàn</string>
+    <string name="was_reserve">Lựa chọn của bạn đã bị trùng, vui lòng chọn lựa chọn khác.</string>
+    <string name="error_reserve">Bạn chưa đặt được bàn, vui lòng thử lại.</string>
+    <string name="choose_session">Bạn chưa chọn buổi đặt bàn</string>
+    <string name="choose_time_session">Bạn chưa chọn thời gian đến</string>
 
 
-    <string name="deny_camera">Camera permission denied.</string>
-    <string name="deny_read_storage">Read External Storage permission denied</string>
-    <string name="dont_find_image">Can not find image crop app.</string>
-    <string name="not_support_crop">This device doesn\'t support the crop action!</string>
+    <!--error about require-->
+    <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
+    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào ngày này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
 
-    <string name="not_save">Failure for save blog</string>
+    <!--others error-->
+    <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
+    <string name="register_fail">Đăng ký thất bại. Vui lòng thử lại</string>
+    <string name="deny_camera">Ứng dụng cần được cấp quyền truy cập Camera</string>
+    <string name="deny_read_storage">Ứng dụng cần được cấp quyền truy cập thư mục lưu trữ</string>
+    <string name="dont_find_image">Không thể tìm thấy ứng dụng cắt chỉnh ảnh.</string>
+    <string name="not_support_crop">Thiết bị này không hỗ trợ thao tác cắt ảnh</string>
 
-    <string name="not_update">Failure for update profile</string>
+    <!--*****************************************************************************************-->
+    <!--Strings for register screen-->
+    <string name="register_step_1_title">Nhập Số Điện Thoại Của Bạn.</string>
+    <string name="register_step_1_suggest">Bạn sẽ sử dụng số điện thoại này để đăng nhập hoặc khi cần đặt lại mật khẩu.</string>
+    <string name="register_step_1_send_virify_code">Gửi mã xác thực đến điện thoại của tôi</string>
 
-    <string name="not_choose_gender">You have to choose your gender</string>
+    <string name="register_step_2_title_name">Tên Của Bạn Là Gì?</string>
+    <string name="register_step_2_suggest_name">Sử dụng tên thật của bạn giúp mọi người dễ dàng nhận ra bạn hơn.</string>
+    <string name="register_step_2_title_password">Chọn Mật Khẩu</string>
+    <string name="register_step_2_suggest_password">Hãy nhớ mật khẩu này. Mật khẩu giúp ngăn người lạ sử dụng tài khoản của bạn.</string>
 
-    <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
-    <string name="default_lat_lng">10.771423,106.698471</string>
+    <string name="register_step_3_title">Hãy Chọn Giới Tính Của Bạn</string>
+    <string name="register_step_3_suggest">Cung cấp giới tính của bạn tạo ra trải nghiệm DEA tốt nhất cho bạn.</string>
+
+    <string name="register_step_4_title">Sinh Nhật Của Bạn Khi Nào?</string>
+    <string name="register_step_4_suggest">Độ tuổi là một yếu tố quan trọng để tìm ra người bạn phù hợp cùng đi ăn chung.</string>
+
+    <string name="register_step_5_title">Bạn Đang Sống Ở Đâu?</string>
+    <string name="register_step_5_suggest">Sử dụng địa chỉ thật giúp bạn dễ dàng tìm gặp những người dùng ở gần bạn.</string>
+
+    <string name="register_step_6_title">Bạn Là Người Như Thế Nào?</string>
+    <string name="register_step_6_suggest">Miêu tả Tính cách và Phong cách của bạn giúp mang đến những trải nghiệm tốt nhất cho bạn.</string>
+
+    <string name="register_step_7_title">Đối Tượng Của Bạn Như Thế Nào?</string>
+    <string name="register_step_7_suggest">Miêu tả về đối tượng của bạn về Tính Cách, Phong Cách và Món Ăn mà bạn mong muốn sẽ cùng trải nghiệm với người đó.</string>
+
+    <!--*****************************************************************************************-->
+    <!--Strings for blog screen-->
+    <string name="blog">Blog</string>
+    <string name="blog_status_1">Hôm nay bạn thế nào?</string>
+    <string name="blog_status_2">Bạn đang nghĩ gì?</string>
+    <string name="blog_title">Tiêu đề blog</string>
+    <string name="blog_suggest">Viết blog để chia sẻ cảm giác hiện tại và giúp mọi người hiểu hơn về bạn.</string>
+    <string name="blog_post">Đăng</string>
+
+    <!--*****************************************************************************************-->
+    <!--Strings for notification screen-->
+    <string name="notification">Thông báo</string>
+    <string name="notification_suggest">Hiện tại, bạn chưa nhận được bất kỳ thông báo nào.</string>
+    <string name="accept_content">\t đã chấp nhận lời mời của bạn. Hãy liên hệ với bạn ấy qua số điện thoại: %1$s</string>
+    <string name="refuse_content">\t đã từ chối lời mời của bạn. Hãy tìm kiếm một người phù hợp hơn với bạn</string>
+    <string name="invite_content">\t đã mời bạn đi ăn với bạn ấy. Hãy trả lời bạn ấy trước 5 phút nhé.</string>
+
+    <!--notification about inviter offlined -->
+    <string name="sorry">Xin lỗi!</string>
+    <string name="offline">đã ngoại tuyến</string>
+    <string name="offline_notification_content">Bạn vui lòng tìm một người khác để cùng đi ăn hoặc có thể thử liên lạc trực tiếp qua số điện thoại.</string>
+
+    <!--*****************************************************************************************-->
+    <!--Strings for profile screen-->
+    <string name="profile">Trang cá nhân</string>
+    <string name="profile_like">Thích</string>
+    <string name="profile_dating">Lần hẹn</string>
+    <string name="profile_star">Thả tim</string>
+    <string name="edit_profile">Chỉnh sửa trang cá nhân</string>
+    <string name="profile_history">Lịch sử cuộc hẹn</string>
+    <string name="profile_history_suggest">Bạn hiện chưa có bất kỳ cuộc hẹn nào. Sau khi bạn hẹn người khác cùng đi ăn thành công. Lịch sử cuộc hẹn sẽ được ghi lại tại đây.</string>
+
+    <!--*****************************************************************************************-->
+    <!--Strings for restaurant screen-->
+    <string name="no_reservation_restaurant">Quán nổi bật</string>
+    <string name="reservation_restaurant">Đặt chỗ trước</string>
+    <string name="info">Thông tin</string>
+    <string name="reserve">Đặt bàn</string>
 
     <string name="open_door">Đang mở cửa</string>
     <string name="close_door">Đang đóng cửa</string>
@@ -68,41 +211,9 @@
 
     <string name="empty_session">Chọn bàn khác</string>
     <string name="table">Bàn \t</string>
-    <string name="empty_time_session">Khung giờ này đã hết thời gian đặt bàn</string>
-    <string name="was_reserve">Lựa chọn của bạn đã bị trùng, vui lòng chọn lựa chọn khác.</string>
-    <string name="error_reserve">Bạn chưa đặt được bàn, vui lòng thử lại.</string>
-    <string name="choose_session">Bạn chưa chọn buổi đặt bàn</string>
-    <string name="choose_time_session">Bạn chưa chọn thời gian đến</string>
-
-
-    <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
-    <string name="date">Thời gian</string>
-    <string name="place">Địa điểm</string>
-    <string name="have_not_restaurant">Gợi ý nhà hàng</string>
-    <string name="have_restaurant">Nhà hàng của tôi</string>
-    <string name="invite">Gửi lời mời</string>
-
-    <string name="choose_address">Hãy lựa chọn địa điểm</string>
-    <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
-    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào ngày này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
-    <string name="limit_time">Bạn nên đặt cuộc hẹn sau 1h. Cả hai cần có sự chuẩn bị</string>
     <string name="limit_time_reservation">Bạn nên lưu ý, bàn sẽ bị hủy nếu bạn đến muộn hơn 30p</string>
-    <string name="choose_restaurant">Vui lòng chọn nhà hàng</string>
-    <string name="choose_other_restaurant">Chọn nhà hàng khác</string>
-
-    <string name="user_offline">Thông báo</string>
     <string name="order_table">Đã đặt bàn </string>
-
-    <string name="accept_content"> đã chấp nhận lời mời của bạn. Hãy liên hệ với bạn ấy qua số điện thoại: %1$s</string>
-    <string name="refuse_content"> đã từ chối lời mời của bạn. Hãy tìm kiếm một người phù hợp hơn với bạn</string>
-    <string name="invite_content"> đã mời bạn đi ăn với bạn ấy. Hãy trả lời bạn ấy trước 5 phút nhé.</string>
-
     <string name="book_count">Số lượng đặt chỗ: </string>
-
-    <string name="logout">Logout</string>
-    <string name="logout_content">Bạn chắc chắn muốn thoát khỏi ứng dụng này?</string>
-    <string name="ok">Thoát</string>
-    <string name="cancel">Hủy</string>
 
     <string name="delete_reservation_content">Bạn có chắc chắn muốn hủy đặt chỗ này?</string>
     <string name="delete_reservation">Hủy đặt chỗ</string>
@@ -110,6 +221,59 @@
     <string name="delete_reservation_title">Hủy đặt chỗ</string>
 
     <string name="not_delete_reservation">Xin lỗi, bạn chưa hủy được đặt chỗ này, vui lòng thử lại.</string>
+
+    <!--*****************************************************************************************-->
+    <!--String for defaut data-->
+    <string name="default_image_contentDescription">Don\'t Eat Alone</string>
+    <string name="default_data_date">08/02 10:12</string>
+    <string name="default_data_time">05.12.1995</string>
+    <string name="default_data_name">Display name</string>
+    <string name="default_data_age">age</string>
+    <string name="default_data_gender">F</string>
+    <string name="default_data_restaurant_name">Display restaurant\'s name</string>
+    <string name="default_data_restaurant_address">Display restaurant\'s address</string>
+    <string name="default_data_restaurant_open_time">All day</string>
+    <string name="default_data_restaurant_rate">10</string>
+    <string name="default_data_restaurant_price">Display price</string>
+    <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
+    <string name="default_lat_lng">10.771423,106.698471</string>
+    <string name="have_not_restaurant">Gợi ý nhà hàng</string>
+    <string name="have_restaurant">Nhà hàng của tôi</string>
+    <string name="send_invite">Gửi lời mời</string>
+
+    <!--*****************************************************************************************-->
+    <!--Strings for require screen-->
+    <string name="filter_by">Đối tượng tìm kiếm</string>
+    <string name="Range">Độ tuổi</string>
+    <string name="detail_about_people_you_need">Tìm kiếm nâng cao</string>
+    <string name="the_location_you_are_looking_for">Khu vực tìm kiếm</string>
+
+    <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
+    <string name="choose_address">Hãy lựa chọn địa điểm</string>
+    <string name="choose_restaurant">Vui lòng chọn nhà hàng</string>
+    <string name="choose_other_restaurant">Chọn nhà hàng khác</string>
+    <string name="limit_time">Bạn nên đặt cuộc hẹn sau 1h. Cả hai cần có sự chuẩn bị</string>
+    <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
+    <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
+    <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
+
+    <!--*****************************************************************************************-->
+    <!--Invite-->
+    <string name="invite">Lời mời</string>
+
+    <!--*****************************************************************************************-->
+    <!--Strings for logout screen-->
+    <string name="logout">Đăng xuất</string>
+    <string name="logout_content">Bạn chắc chắn muốn thoát khỏi ứng dụng này?</string>
+    <string name="ok">Thoát</string>
+    <string name="cancel">Hủy</string>
+
+
+
+
+    <!--*****************************************************************************************-->
+    <!--String-array-->
+>>>>>>> fix_string
 
     <string-array name="Day_31">
         <item>01</item>
@@ -563,13 +727,13 @@
     </string-array>
 
     <string-array name="limit">
-        <item>public</item>
-        <item>private</item>
+        <item>Mọi người</item>
+        <item>Chỉ mình tôi</item>
     </string-array>
 
     <string-array name="option">
-        <item>Take a photo</item>
-        <item>Choose from gallery</item>
-        <item>Cancel</item>
+        <item>Chụp ảnh mới</item>
+        <item>Chọn từ thư viện ảnh</item>
+        <item>Hủy</item>
     </string-array>
 </resources>

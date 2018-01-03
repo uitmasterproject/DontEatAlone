@@ -18,6 +18,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_not_reservation_iv_image"
                 android:layout_width="100dp"
@@ -26,16 +27,18 @@
                 android:padding="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/temp" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
+                style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
                 android:layout_width="100dp"
                 android:layout_height="6dp"
                 android:layout_marginStart="5dp"
                 android:indeterminate="true"
                 android:max="100"
-                android:progress="20"
-                style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+                android:progress="20" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="Display restaurant's name"
+                android:text="@string/default_data_restaurant_name"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
@@ -61,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="display restaurant's  address "
+                android:text="@string/default_data_restaurant_address"
                 android:textColor="@color/dot_tutorial_inactive"
                 android:textSize="14sp"
                 app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
@@ -72,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingEnd="10dp">
+                android:paddingEnd="10dp"
+                android:paddingStart="0dp">
 
                 <TextView
                     android:id="@+id/custom_adapter_recycerview_fragment_restaurant_not_reservation_tv_open_time"
@@ -80,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:drawableStart="@drawable/ic_time"
-                    android:text="Breakfast"
+                    android:text="@string/default_data_restaurant_open_time"
                     android:textColor="@color/color_deep_orange_1"
                     android:textSize="16sp"
                     app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
@@ -96,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_oval_round_orange"
                     android:padding="10dp"
-                    android:text="8.5"
+                    android:text="@string/default_data_restaurant_rate"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />

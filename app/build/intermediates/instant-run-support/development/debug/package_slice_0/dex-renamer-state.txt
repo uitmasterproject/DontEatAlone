@@ -1,4 +1,0 @@
-#Mon Jan 01 20:58:46 ICT 2018
-base.0=D\:\\SOLUTION\\DontEatAlone\\app\\build\\intermediates\\transforms\\dexMerger\\development\\debug\\1
-path.0=classes.dex
-renamed.0=classes.dex

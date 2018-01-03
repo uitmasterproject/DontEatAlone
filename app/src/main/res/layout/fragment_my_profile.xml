@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
@@ -39,19 +39,19 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center_horizontal"
+                        android:contentDescription="@null"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/avatar_man"
-                        android:contentDescription="@null" />
+                        android:src="@drawable/avatar_man" />
 
                     <ProgressBar
                         android:id="@+id/progress"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
                         android:layout_width="150dp"
                         android:layout_height="7dp"
                         android:layout_gravity="center_horizontal"
                         android:indeterminate="true"
                         android:max="100"
-                        android:progress="20"
-                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+                        android:progress="20" />
 
 
                     <TextView
@@ -62,7 +62,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Display name"
+                        android:text="@string/default_data_name"
                         android:textColor="@color/bg_text_color_orange_orange2"
                         android:textSize="22sp" />
 
@@ -80,7 +80,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:padding="10dp"
-                            android:text="0"
                             android:textColor="@color/color_deep_orange"
                             android:textSize="18sp" />
 
@@ -89,8 +88,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_line_dots2x"
-                            android:contentDescription="@null" />
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_line_dots2x" />
 
                         <TextView
                             android:id="@+id/fragment_my_profile_tv_gender"
@@ -99,7 +98,6 @@
                             android:layout_gravity="center_horizontal"
                             android:maxLines="1"
                             android:padding="10dp"
-                            android:text="F"
                             android:textColor="@color/color_deep_orange"
                             android:textSize="18sp" />
 
@@ -134,16 +132,15 @@
                             android:id="@+id/fragment_my_profile_tv_counts_like"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="25"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
-                            app:fontPath="fonts/Montserrat-Bold.ttf" />
+                            android:textSize="20sp" />
 
                         <!--Text Like-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="likes"
+                            android:text="@string/profile_like"
                             android:textColor="@color/color_grey_2"
                             android:textSize="18sp" />
 
@@ -162,7 +159,7 @@
                             android:id="@+id/fragment_my_profile_tv_counts_appointment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="34"
+                            android:text="@null"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -170,7 +167,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="appointment"
+                            android:text="@string/profile_dating"
                             android:textColor="@color/color_grey_2"
                             android:textSize="18sp" />
 
@@ -188,7 +185,7 @@
                             android:id="@+id/fragment_my_profile_tv_counts_star"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="19"
+                            android:text="@null"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -196,9 +193,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="star"
+                            android:text="@string/profile_star"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="18sp"/>
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -222,9 +219,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="EDIT YOUR PROFILE"
+                        android:text="@string/edit_profile"
+                        android:textAllCaps="true"
                         android:textColor="@color/bg_text_color_orange_orange2"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -239,13 +237,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:padding="3dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_home" />
@@ -255,9 +253,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Live in "
+                            android:text="@string/live_in"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -266,13 +264,13 @@
                         android:id="@+id/ll_display_character"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:padding="3dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_character" />
@@ -282,9 +280,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Character  "
+                            android:text="@string/my_characters"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -292,18 +290,18 @@
                         android:id="@+id/rl_edit_character"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="1dp"
                         android:layout_marginBottom="5dp"
+                        android:padding="1dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/img_save_character"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
-                            android:layout_centerVertical="true"
                             android:src="@drawable/ic_save" />
 
                         <MultiAutoCompleteTextView
@@ -312,19 +310,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="28dp"
-                            android:text="Character  "
+                            android:completionThreshold="1"
                             android:maxLines="1"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:completionThreshold="1"/>
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/refresh_character"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_refresh"
-                            android:layout_alignParentEnd="true"/>
+                            android:contentDescription="@null" />
 
                     </RelativeLayout>
 
@@ -333,13 +332,13 @@
                         android:id="@+id/ll_display_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:padding="3dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_style" />
@@ -349,9 +348,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Styles are "
+                            android:text="@string/my_styles"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -359,18 +358,18 @@
                         android:id="@+id/rl_edit_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="1dp"
                         android:layout_marginBottom="5dp"
+                        android:padding="1dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/img_save_style"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
-                            android:layout_centerVertical="true"
                             android:src="@drawable/ic_save" />
 
                         <MultiAutoCompleteTextView
@@ -379,19 +378,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="28dp"
-                            android:text="Character  "
+                            android:completionThreshold="1"
                             android:maxLines="1"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:completionThreshold="1" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/refresh_style"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_refresh"
-                            android:layout_alignParentEnd="true"/>
+                            android:contentDescription="@null" />
 
                     </RelativeLayout>
 
@@ -399,13 +399,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:padding="3dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_phone" />
@@ -415,9 +415,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="0902323 "
+                            android:text="@null"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -428,7 +428,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@color/app_background"/>
+                android:background="@color/app_background" />
             <!--My target's information-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -457,9 +457,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
-                        android:text="My Target is ..."
+                        android:text="@string/my_target"
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="17sp" />
 
                 </LinearLayout>
 
@@ -481,14 +481,14 @@
                         android:id="@+id/ll_display_target_food"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:padding="3dp">
 
                         <ImageView
                             android:id="@+id/imageView"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_food" />
@@ -498,9 +498,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Like "
+                            android:text="@string/target_food"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -508,18 +508,18 @@
                         android:id="@+id/rl_edit_target_food"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="1dp"
                         android:layout_marginBottom="5dp"
+                        android:padding="1dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/img_save_target_food"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
-                            android:layout_centerVertical="true"
                             android:src="@drawable/ic_save" />
 
                         <MultiAutoCompleteTextView
@@ -528,19 +528,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="28dp"
-                            android:text="Character  "
+                            android:completionThreshold="1"
                             android:maxLines="1"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:completionThreshold="1" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/refresh_target_food"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_refresh"
-                            android:layout_alignParentEnd="true"/>
+                            android:contentDescription="@null" />
 
                     </RelativeLayout>
 
@@ -549,13 +550,13 @@
                         android:id="@+id/ll_display_target_character"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:padding="3dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_target_character" />
@@ -565,9 +566,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Character  "
+                            android:text="@string/target_character"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -575,18 +576,18 @@
                         android:id="@+id/rl_edit_target_character"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="1dp"
                         android:layout_marginBottom="5dp"
+                        android:padding="1dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/img_save_target_character"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
-                            android:layout_centerVertical="true"
                             android:src="@drawable/ic_save" />
 
                         <MultiAutoCompleteTextView
@@ -595,19 +596,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="28dp"
-                            android:text="Character  "
+                            android:completionThreshold="1"
                             android:maxLines="1"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:completionThreshold="1" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/refresh_target_character"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_refresh"
-                            android:layout_alignParentEnd="true"/>
+                            android:contentDescription="@null" />
 
                     </RelativeLayout>
 
@@ -621,7 +623,7 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_target_style" />
@@ -631,9 +633,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Styles are "
+                            android:text="@string/target_character"
                             android:textColor="@color/color_grey_2"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -641,18 +643,18 @@
                         android:id="@+id/rl_edit_target_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="1dp"
                         android:layout_marginBottom="5dp"
+                        android:padding="1dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/img_save_target_style"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:contentDescription="@null"
                             android:scaleType="centerCrop"
-                            android:layout_centerVertical="true"
                             android:src="@drawable/ic_save" />
 
                         <MultiAutoCompleteTextView
@@ -661,19 +663,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="28dp"
-                            android:text="Character  "
+                            android:completionThreshold="1"
                             android:maxLines="1"
+                            android:text="@null"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:completionThreshold="1"/>
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/refresh_target_style"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_refresh"
-                            android:layout_alignParentEnd="true"/>
+                            android:contentDescription="@null" />
 
                     </RelativeLayout>
 
@@ -710,18 +713,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="35dp"
-                        android:text="History"
+                        android:text="@string/profile_history"
                         android:textColor="@color/black"
-                        android:textSize="18dp"/>
+                        android:textSize="17sp" />
 
                     <ImageView
                         android:id="@+id/img_reload"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_reload"
-                        android:scaleType="centerCrop"
+                        android:layout_alignParentEnd="true"
                         android:contentDescription="@null"
-                        android:layout_alignParentEnd="true"/>
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_reload" />
 
                 </RelativeLayout>
 
@@ -735,33 +738,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="10dp"
-                    android:gravity="center">
+                    android:padding="10dp">
+
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_empty_history"
-                        android:scaleType="centerCrop"
                         android:layout_gravity="center"
-                        android:contentDescription="@null" />
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_empty_history" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="20dp"
-                        android:text="Event History"
-                        android:textSize="25dp"
-                        android:textColor="@color/black"/>
+                        android:text="@string/profile_history"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
                     <TextView
-                        android:paddingTop="20dp"
-                        android:paddingStart="30dp"
-                        android:paddingEnd="30dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:paddingEnd="30dp"
+                        android:paddingStart="30dp"
+                        android:paddingTop="20dp"
+                        android:text="@string/profile_history_suggest"
                         android:textColor="@color/black"
-                        android:textSize="14dp"
-                        android:text="Currently, You haven't had any appointments yet. Make an appointment. please."/>
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

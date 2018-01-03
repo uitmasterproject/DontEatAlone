@@ -27,8 +27,8 @@ public class SelectOptionDialog {
         this.activity = activity;
     }
 
-    public void showDialog(ImageView imageView, final int count, LinearLayout linearLayout) {
-        Dialog dialog = new Dialog(activity);
+    public void showDialog(final ImageView imageView, final int count, final LinearLayout linearLayout) {
+        final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         View view = ((LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_dialog_activity_blog_write_status_option, null, false);
 
@@ -70,7 +70,7 @@ public class SelectOptionDialog {
                 for (int count = 0; count < linearLayout.getChildCount(); count++) {
                     if (linearLayout.getChildAt(count).getClass().getName().equals("android.widget.ImageView")) {
                         final ImageView dynamicImage = (ImageView) linearLayout.getChildAt(count);
-                        int finalCount = count;
+                        final int finalCount = count;
                         dynamicImage.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
                             public boolean onLongClick(View v) {

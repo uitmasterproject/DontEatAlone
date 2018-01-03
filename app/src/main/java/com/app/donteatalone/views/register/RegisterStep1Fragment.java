@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.register;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.donteatalone.R;
@@ -35,9 +37,8 @@ public class RegisterStep1Fragment extends Fragment {
     private View view;
 
     private ViewPager _mViewPager;
-
+    private TextView tvVerifyCode;
     private Button btnSendCode, btnNext;
-    private RelativeLayout rlVerifyCode;
     private EditText edtCode, edtPhone;
     private TextInputLayout tilErrorCode, tilErrorPhone;
 
@@ -86,7 +87,7 @@ public class RegisterStep1Fragment extends Fragment {
         tilErrorPhone = (TextInputLayout) view.findViewById(R.id.til_error_phone);
         tilErrorCode = (TextInputLayout) view.findViewById(R.id.til_error_code);
 
-        rlVerifyCode = (RelativeLayout) view.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
+        tvVerifyCode = (TextView) view.findViewById(R.id.fragment_register_step1_tutorial_verify_code);
 
         userName = new UserName(getActivity());
 
@@ -108,7 +109,7 @@ public class RegisterStep1Fragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                rlVerifyCode.setVisibility(View.INVISIBLE);
+                tvVerifyCode.setVisibility(View.INVISIBLE);
                 edtCode.setVisibility(View.INVISIBLE);
                 tilErrorCode.setErrorEnabled(false);
                 btnNext.setVisibility(View.INVISIBLE);
@@ -126,12 +127,12 @@ public class RegisterStep1Fragment extends Fragment {
                     if (response.body() != null) {
                         progressDialog.hideProgressLoading();
                         if (response.body().getStatus().equals("0")) {
-                            rlVerifyCode.setVisibility(View.VISIBLE);
+                            tvVerifyCode.setVisibility(View.VISIBLE);
                             edtCode.setVisibility(View.VISIBLE);
                             btnNext.setVisibility(View.VISIBLE);
                         } else {
                             tilErrorPhone.setErrorEnabled(true);
-                            tilErrorPhone.setError("This phone was exit");
+                            tilErrorPhone.setError(getString(R.string.phone_exists));
                             edtPhone.setText("");
                         }
                     }else{
@@ -152,6 +153,7 @@ public class RegisterStep1Fragment extends Fragment {
     }
 
     /* hide soft keyboard when touch outsite edittext*/
+    @SuppressLint("ClickableViewAccessibility")
     private void llRootTouch() {
         llRoot.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -168,10 +170,10 @@ public class RegisterStep1Fragment extends Fragment {
             public void onClick(View v) {
                 AppUtils.hideSoftKeyboard(getActivity());
                 if (TextUtils.isEmpty(edtPhone.getText().toString())) {
-                    tilErrorPhone.setError("Mobile Number field is not entry");
+                    tilErrorPhone.setError(getString(R.string.empty_phone));
                 } else if (edtPhone.getText().toString().length() < 10 ||
                         edtPhone.getText().toString().length() > 11) {
-                    tilErrorPhone.setError("Mobile Number field is invalid");
+                    tilErrorPhone.setError(getString(R.string.invalid_phone));
                 } else {
                     checkExitsPhone();
                 }
@@ -185,7 +187,7 @@ public class RegisterStep1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(edtCode.getText().toString())) {
-                    tilErrorCode.setError("Verify code field not entry");
+                    tilErrorCode.setError(getString(R.string.empty_verify));
                 } else {
                     userName.setPhone(edtPhone.getText().toString());
                     _mViewPager.setCurrentItem(1, true);

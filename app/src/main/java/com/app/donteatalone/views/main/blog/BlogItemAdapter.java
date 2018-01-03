@@ -97,7 +97,7 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
         listTarget.add(target);
 
         holder.txtTitle.setText(StringUtils.capitalize(listInnerBlog.get(position).getTitle()));
-        if (listInnerBlog.get(position).getLimit().equals("private")) {
+        if (listInnerBlog.get(position).getLimit().equals("Chỉ mình tôi")) {
             holder.imgIcon.setImageResource(R.drawable.ic_private);
         } else {
             holder.imgIcon.setImageResource(R.drawable.ic_public);

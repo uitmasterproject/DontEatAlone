@@ -95,7 +95,7 @@
         android:drawablePadding="5dp"
         android:drawableStart="@drawable/ic_reservation"
         android:padding="5dp"
-        android:text="Đặt chỗ trước"
+        android:text="@string/reservation_restaurant"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
