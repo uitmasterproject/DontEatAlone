@@ -45,7 +45,9 @@
     <string name="gender">Giới tính</string>
     <string name="dob">DoB</string>
     <string name="DOB">Ngày sinh</string>
-
+    <string name="date">Thời gian</string>
+    <string name="place">Địa điểm</string>
+    <string name="done">Xong</string>
 
 
     <!--String for images-->
@@ -53,16 +55,6 @@
     <string name="delete_image">Xóa ảnh</string>
     <string name="insert_image">Chèn ảnh</string>
     <string name="insert_content">Chèn nội dung</string>
-
-
-    <!--*****************************************************************************************-->
-    <!--String for defaut data-->
-    <string name="default_image_contentDescription">Don\'t Eat Alone</string>
-    <string name="default_data_date">08/02 10:12</string>
-    <string name="default_data_time">05.12.1995</string>
-    <string name="default_data_name">Display name</string>
-    <string name="default_data_age">age</string>
-    <string name="default_data_gender">F</string>
 
     <!--*****************************************************************************************-->
     <!--Strings for login screen-->
@@ -118,6 +110,18 @@
     <string name="basic_information">Thông tin cơ bản</string>
     <string name="advanced_information">Thông tin nâng cao</string>
     <string name="target_information">Thông tin đối tượng</string>
+
+    <!--error about restaurant-->
+    <string name="empty_time_session">Khung giờ này đã hết thời gian đặt bàn</string>
+    <string name="was_reserve">Lựa chọn của bạn đã bị trùng, vui lòng chọn lựa chọn khác.</string>
+    <string name="error_reserve">Bạn chưa đặt được bàn, vui lòng thử lại.</string>
+    <string name="choose_session">Bạn chưa chọn buổi đặt bàn</string>
+    <string name="choose_time_session">Bạn chưa chọn thời gian đến</string>
+
+
+    <!--error about require-->
+    <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
+    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào ngày này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
 
     <!--others error-->
     <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
@@ -185,21 +189,12 @@
     <string name="profile_history">Lịch sử cuộc hẹn</string>
     <string name="profile_history_suggest">Bạn hiện chưa có bất kỳ cuộc hẹn nào. Sau khi bạn hẹn người khác cùng đi ăn thành công. Lịch sử cuộc hẹn sẽ được ghi lại tại đây.</string>
 
-
-    
     <!--*****************************************************************************************-->
-    <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
-    <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
-    <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-
-
-
-    <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
-    <string name="default_lat_lng">10.771423,106.698471</string>
+    <!--Strings for restaurant screen-->
+    <string name="no_reservation_restaurant">Quán nổi bật</string>
+    <string name="reservation_restaurant">Đặt chỗ trước</string>
+    <string name="info">Thông tin</string>
+    <string name="reserve">Đặt bàn</string>
 
     <string name="open_door">Đang mở cửa</string>
     <string name="close_door">Đang đóng cửa</string>
@@ -212,38 +207,51 @@
 
     <string name="empty_session">Chọn bàn khác</string>
     <string name="table">Bàn \t</string>
-    <string name="empty_time_session">Khung giờ này đã hết thời gian đặt bàn</string>
-    <string name="was_reserve">Lựa chọn của bạn đã bị trùng, vui lòng chọn lựa chọn khác.</string>
-    <string name="error_reserve">Bạn chưa đặt được bàn, vui lòng thử lại.</string>
-    <string name="choose_session">Bạn chưa chọn buổi đặt bàn</string>
-    <string name="choose_time_session">Bạn chưa chọn thời gian đến</string>
+    <string name="limit_time_reservation">Bạn nên lưu ý, bàn sẽ bị hủy nếu bạn đến muộn hơn 30p</string>
+    <string name="order_table">Đã đặt bàn </string>
+    <string name="book_count">Số lượng đặt chỗ: </string>
 
-
-    <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
-    <string name="date">Thời gian</string>
-    <string name="place">Địa điểm</string>
+    <!--*****************************************************************************************-->
+    <!--String for defaut data-->
+    <string name="default_image_contentDescription">Don\'t Eat Alone</string>
+    <string name="default_data_date">08/02 10:12</string>
+    <string name="default_data_time">05.12.1995</string>
+    <string name="default_data_name">Display name</string>
+    <string name="default_data_age">age</string>
+    <string name="default_data_gender">F</string>
+    <string name="default_data_restaurant_name">Display restaurant\'s name</string>
+    <string name="default_data_restaurant_address">Display restaurant\'s address</string>
+    <string name="default_data_restaurant_opten_time">All day</string>
+    <string name="default_data_restaurant_rate">10</string>
+    <string name="default_data_restaurant_price">Display price</string>
+    <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
+    <string name="default_lat_lng">10.771423,106.698471</string>
     <string name="have_not_restaurant">Gợi ý nhà hàng</string>
     <string name="have_restaurant">Nhà hàng của tôi</string>
     <string name="invite">Gửi lời mời</string>
 
+    <!--*****************************************************************************************-->
+    <!--Strings for require screen-->
+
+
+    <string name="custom_dialog_require_on_invite_setting_time_title">Tùy chỉnh thời gian và địa điểm</string>
     <string name="choose_address">Hãy lựa chọn địa điểm</string>
-    <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
-    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào ngày này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
-    <string name="limit_time">Bạn nên đặt cuộc hẹn sau 1h. Cả hai cần có sự chuẩn bị</string>
-    <string name="limit_time_reservation">Bạn nên lưu ý, bàn sẽ bị hủy nếu bạn đến muộn hơn 30p</string>
     <string name="choose_restaurant">Vui lòng chọn nhà hàng</string>
     <string name="choose_other_restaurant">Chọn nhà hàng khác</string>
+    <string name="limit_time">Bạn nên đặt cuộc hẹn sau 1h. Cả hai cần có sự chuẩn bị</string>
+    <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
+    <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
+    <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
 
-    <string name="order_table">Đã đặt bàn </string>
-
-
-    <string name="book_count">Số lượng đặt chỗ: </string>
-
+    <!--*****************************************************************************************-->
     <!--Strings for logout screen-->
-    <string name="logout">Logout</string>
+    <string name="logout">Đăng xuất</string>
     <string name="logout_content">Bạn chắc chắn muốn thoát khỏi ứng dụng này?</string>
     <string name="ok">Thoát</string>
     <string name="cancel">Hủy</string>
+
+    <!--*****************************************************************************************-->
+    <!--String-array-->
 
     <string-array name="Day_31">
         <item>01</item>
@@ -639,29 +647,29 @@
 
     <string-array name="District">
         <item>Quận 1</item>
+        <item>Quận 12</item>
+        <item>Thủ Đức</item>
+        <item>Quận 9</item>
+        <item>Gò Vấp</item>
+        <item>Bình Thạnh</item>
+        <item>Tân Bình</item>
+        <item>Tân Phú</item>
+        <item>Phú Nhuận</item>
         <item>Quận 2</item>
         <item>Quận 3</item>
+        <item>Quận 10</item>
+        <item>Quận 11</item>
         <item>Quận 4</item>
         <item>Quận 5</item>
         <item>Quận 6</item>
-        <item>Quận 7</item>
         <item>Quận 8</item>
-        <item>Quận 9</item>
-        <item>Quận 10</item>
-        <item>Quận 11</item>
-        <item>Quận 12</item>
-        <item>Quận Bình Thạnh</item>
-        <item>Quận Phú Nhuận</item>
-        <item>Quận Gò Vấp</item>
-        <item>Quận Thủ Đức</item>
-        <item>Quận Tân Bình</item>
-        <item>Quận Tân Phú</item>
         <item>Quận Bình Tân</item>
-        <item>Bình Chánh</item>
+        <item>Quận 7</item>
         <item>Củ Chi</item>
-        <item>Cần Giờ</item>
         <item>Hóc Môn</item>
+        <item>Bình Chánh</item>
         <item>Nhà Bè</item>
+        <item>Cần Giờ</item>
     </string-array>
 
     <string-array name="ID_District">

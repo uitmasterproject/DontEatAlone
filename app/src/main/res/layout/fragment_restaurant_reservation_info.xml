@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Display restaurant's name"
+                android:text="@null"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -60,7 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="3dp"
-                        android:text="Display Status"
+                        android:text="@null"
                         android:textColor="@color/color_deep_orange"
                         android:textSize="18sp" />
 
@@ -68,7 +69,7 @@
                         android:id="@+id/fragment_restaurant_reservation_info_tv_open_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Display time"
+                        android:text="@null"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -81,11 +82,11 @@
                     android:layout_gravity="center"
                     android:layout_weight="2"
                     android:background="@drawable/bt_rectangle_ripple_5_radius"
-                    android:drawableLeft="@drawable/ic_contact_64"
                     android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_contact_64"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="0939296324"
+                    android:text="@null"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -100,70 +101,72 @@
                 android:id="@+id/ll_service_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingTop="5dp">
+                android:padding="5dp">
 
                 <ImageView
                     android:id="@+id/fragment_restaurant_reservation_info_img_wifi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_wifi_64"
+                    android:contentDescription="@null"
                     android:gravity="center"
                     android:padding="3dp"
-                    android:scaleType="centerInside" />
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_wifi_64" />
 
                 <ImageView
                     android:id="@+id/fragment_restaurant_reservation_info_img_air_conditioner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_airconditioner"
+                    android:contentDescription="@null"
                     android:gravity="center"
+                    android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:padding="3dp" />
+                    android:src="@drawable/ic_airconditioner" />
 
                 <ImageView
                     android:id="@+id/fragment_restaurant_reservation_info_tv_outdoor_seats"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_not_outdoor_seat_64"
+                    android:contentDescription="@null"
                     android:gravity="center"
+                    android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:padding="3dp" />
+                    android:src="@drawable/ic_not_outdoor_seat_64" />
 
                 <ImageView
                     android:id="@+id/fragment_restaurant_reservation_info_tv_credit_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_not_credit_card"
                     android:gravity="center"
+                    android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:padding="3dp" />
+                    android:src="@drawable/ic_not_credit_card" />
 
                 <ImageView
                     android:id="@+id/fragment_restaurant_reservation_info_tv_motorcycler_park"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_motorcycle_park"
+                    android:contentDescription="@null"
                     android:gravity="center"
+                    android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:padding="3dp" />
+                    android:src="@drawable/ic_motorcycle_park" />
 
                 <ImageView
                     android:id="@+id/fragment_restaurant_reservation_info_tv_car_park"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_car_park"
+                    android:contentDescription="@null"
                     android:gravity="center"
+                    android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:padding="3dp" />
-
+                    android:src="@drawable/ic_car_park" />
 
             </LinearLayout>
 
@@ -176,27 +179,27 @@
                 android:id="@+id/fragment_restaurant_reservation_info_tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_locate_64"
                 android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_locate_64"
                 android:paddingBottom="7dp"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
-                android:text="Display restaurant's address"
+                android:text="@null"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/fragment_restaurant_reservation_info_tv_types"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_collection"
                 android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_collection"
                 android:paddingBottom="7dp"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:paddingTop="7dp"
-                android:text="Display types"
+                android:text="@null"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -204,13 +207,13 @@
                 android:id="@+id/fragment_restaurant_reservation_info_tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_price_64"
                 android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_price_64"
                 android:paddingBottom="7dp"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:paddingTop="7dp"
-                android:text="Display price"
+                android:text="@null"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 

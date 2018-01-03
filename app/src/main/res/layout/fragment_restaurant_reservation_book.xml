@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Display restaurant's name"
+                android:text="@null"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -92,10 +93,10 @@
                 android:background="@color/grey_1" />
 
             <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <!--Ban-->
@@ -119,7 +120,8 @@
                         android:layout_height="25dp"
                         android:layout_gravity="end|center"
                         android:layout_marginEnd="15dp"
-                        android:src="@drawable/ic_down" />
+                        android:src="@drawable/ic_down"
+                        android:contentDescription="@null" />
 
                 </FrameLayout>
 
@@ -152,21 +154,21 @@
                         android:id="@+id/rcv_list_time"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2.5"
                         android:layout_gravity="center"
+                        android:layout_weight="2.5"
                         android:background="@android:color/darker_gray"
                         android:orientation="horizontal" />
-                        
+
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/txt_empty_time_session"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2.5"
                         android:layout_gravity="center"
-                        android:textSize="16dp"
+                        android:layout_weight="2.5"
+                        android:background="@android:color/darker_gray"
                         android:text="@string/empty_time_session"
-                        android:background="@android:color/darker_gray" />
+                        android:textSize="16dp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <Button
@@ -175,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:background="@drawable/btn_login_no_pressed"
-                    android:text="Reservation"
+                    android:text="@string/reserve"
                     android:textAllCaps="false"
                     android:textSize="17sp" />
 

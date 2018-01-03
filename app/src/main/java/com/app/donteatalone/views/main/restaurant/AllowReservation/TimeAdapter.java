@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.main.restaurant.AllowReservation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.MyViewHolder> 
         holder.txtTimeSession.setText(listTimeSession.get(position));
 
         holder.txtTimeSession.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 if (onRecyclerItemClickListener != null) {
