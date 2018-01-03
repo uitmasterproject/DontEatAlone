@@ -33,22 +33,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
+                    android:paddingStart="4dp"
                     android:src="@drawable/blue_dot" />
 
                 <TextView
                     android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_tv_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:text="Date"
+                    android:paddingStart="10dp"
+                    android:text="@string/default_data_date"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:fontPath="fonts/Montserrat-Bold.ttf" />
@@ -59,24 +58,36 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="7dp"
-                    android:paddingTop="3dp"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="7dp"
                     android:src="@drawable/blue_dot_05x" />
 
                 <TextView
-                    android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_tv_friend_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:text="With Le Hoang Han"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="16dp"
+                    android:text="Cùng với"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_tv_friend_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/default_data_name"
                     android:textColor="@color/black"
                     android:textSize="13sp"
+                    android:textStyle="bold"
                     app:fontPath="fonts/Montserrat-Medium.ttf" />
 
             </LinearLayout>
@@ -89,21 +100,20 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:layout_gravity="top"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingLeft="7dp"
-                    android:paddingRight="0dp"
-                    android:paddingTop="3dp"
+                    android:layout_height="match_parent"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
                     android:src="@drawable/blue_dot_05x" />
 
                 <TextView
                     android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_tv_place"
                     android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_height="match_parent"
                     android:maxLines="2"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="0dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"
                     android:text="Feel Coffee and Tea Express Đại học Nông Lâm TP Hồ Chí Minh."
                     android:textColor="@color/black"
                     android:textSize="13sp"
@@ -118,8 +128,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
-                android:paddingLeft="25dp"
-                android:paddingRight="2dp">
+                android:paddingStart="25dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+
+                android:paddingEnd="2dp">
 
                 <!--Share-->
                 <ImageView
@@ -131,8 +144,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Appraise"
+                    android:layout_marginStart="7dp"
+                    android:text="@string/feedback"
                     android:textColor="@color/blue_grey_1" />
 
             </LinearLayout>
@@ -150,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="30dp">
+                    android:paddingStart="30dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -169,7 +182,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingBottom="5dp"
-                            android:paddingLeft="7dp"
+                            android:paddingStart="7dp"
+                            android:paddingEnd="3dp"
                             android:text="abc"
                             android:textColor="@color/black" />
                     </LinearLayout>
@@ -197,7 +211,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"
-                        android:paddingLeft="27dp"
+                        android:paddingStart="27dp"
+                        android:paddingEnd="3dp"
                         android:text="abc"
                         android:textColor="@color/black" />
 
@@ -206,7 +221,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="5dp"
-                        android:paddingLeft="27dp"
+                        android:paddingStart="27dp"
+                        android:paddingEnd="3dp"
                         android:weightSum="7">
 
                         <EditText
@@ -215,7 +231,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
                             android:background="@drawable/bg_solid_white"
-                            android:hint="write appraise"
+                            android:hint="@string/write_feedback"
                             android:inputType="text"
                             android:maxLines="1"
                             android:padding="3dp"

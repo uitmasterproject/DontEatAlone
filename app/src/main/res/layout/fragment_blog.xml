@@ -30,7 +30,7 @@
             android:paddingBottom="25dp"
             android:textSize="17sp"
             android:paddingTop="25dp"
-            android:text="@string/blog_status"
+            android:text="@string/blog_status_1"
             android:textAllCaps="false"
             android:textColor="@color/dot_tutorial_inactive" />
 

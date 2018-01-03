@@ -15,6 +15,7 @@
     <color name="white_anpha_40">#30FFFFFF</color>
     <color name="black">#000000</color>
     <color name="black_anpha_40">#66000000</color>
+    <color name="black_anpha_20">#26000000</color>
     <color name="white_1">#F0F0F0</color>
 
     <color name="blue_grey">#CFD8DC</color>

@@ -9,7 +9,7 @@
          %1$s, %2$s
     </string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--String for all app-->
     <string name="login">Đăng nhập</string>
     <string name="register">Đăng ký</string>
@@ -29,15 +29,23 @@
     <string name="address">Địa Chỉ \t</string>
     <string name="my_characters">Tính cách \t</string>
     <string name="my_styles">Phong cách \t</string>
-    <string name="food">Món ăn \t</string>
-    <string name="target_character">Tính cách của người ấy</string>
-    <string name="target_style">Phong cách của người ấy</string>
+    <string name="food">Thích món ăn \t</string>
+    <string name="target_character">Tính cách \t</string>
+    <string name="target_style">Phong cách \t</string>
     <string name="live_in">Sống tại \t</string>
     <string name="phone_is">Số điện thoại \t</string>
     <string name="btn_ok">OK</string>
     <string name="view_profile">Xem Trang cá nhân</string>
     <string name="accept">Chấp nhận</string>
     <string name="refuse">Từ chối</string>
+    <string name="my_target">Đối tượng của tôi</string>
+    <string name="your_target">Đối tượng của \t</string>
+    <string name="feedback">Nhận xét</string>
+    <string name="write_feedback">Viết nhận xét...</string>
+    <string name="gender">Giới tính</string>
+    <string name="dob">DoB</string>
+    <string name="DOB">Ngày sinh</string>
+
 
 
     <!--String for images-->
@@ -47,26 +55,30 @@
     <string name="insert_content">Chèn nội dung</string>
 
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--String for defaut data-->
     <string name="default_image_contentDescription">Don\'t Eat Alone</string>
+    <string name="default_data_date">08/02 10:12</string>
     <string name="default_data_time">05.12.1995</string>
+    <string name="default_data_name">Display name</string>
+    <string name="default_data_age">age</string>
+    <string name="default_data_gender">F</string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--Strings for login screen-->
     <string name="login_title">LOGIN</string>
     <string name="new_here_create_an_account">Tạo tài khoản DEA mới</string>
     <string name="remember_me">Lưu tài khoản</string>
     <string name="forgot_password">Quên mật khẩu</string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--Strings for forget password dialog screen-->
     <string name="forgot_password_title">Thay đổi mật khẩu</string>
     <string name="forgot_password_suggest_phone">Nhập số điện thoại của bạn để nhận mã xác thực tài khoản</string>
     <string name="forgot_password_suggest_code">Nhập mã xác thực đã gửi đến số điện thoại của bạn</string>
     <string name="forgot_password_suggest_finish">Xác thực thành công. Tạo ngay mật khẩu mới cho tài khoản của bạn</string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--Strings for error and yêu cầu thiết bị-->
     <!--error about phone number-->
     <string name="invalid_phone">Số điện thoại không hợp lệ</string>
@@ -99,7 +111,13 @@
 
     <!--error about blog-->
     <string name="empty_blog_title">Bạn phải nhập Tiêu đề blog</string>
-    <string name="not_save">Lưu thất bại. Vui lòng thử lại sau</string>
+    <string name="not_save">Lưu thất bại. Vui lòng thử lại sau.</string>
+
+    <!--error about profile-->
+    <string name="not_update">Cập nhật thông tin thất bại. Vui lòng thử lại sau.</string>
+    <string name="basic_information">Thông tin cơ bản</string>
+    <string name="advanced_information">Thông tin nâng cao</string>
+    <string name="target_information">Thông tin đối tượng</string>
 
     <!--others error-->
     <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
@@ -109,7 +127,7 @@
     <string name="dont_find_image">Không thể tìm thấy ứng dụng cắt chỉnh ảnh.</string>
     <string name="not_support_crop">Thiết bị này không hỗ trợ thao tác cắt ảnh</string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--Strings for register screen-->
     <string name="register_step_1_title">Nhập Số Điện Thoại Của Bạn.</string>
     <string name="register_step_1_suggest">Bạn sẽ sử dụng số điện thoại này để đăng nhập hoặc khi cần đặt lại mật khẩu.</string>
@@ -135,15 +153,16 @@
     <string name="register_step_7_title">Đối Tượng Của Bạn Như Thế Nào?</string>
     <string name="register_step_7_suggest">Miêu tả về đối tượng của bạn về Tính Cách, Phong Cách và Món Ăn mà bạn mong muốn sẽ cùng trải nghiệm với người đó.</string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--Strings for blog screen-->
     <string name="blog">Blog</string>
-    <string name="blog_status">Bạn đang nghĩ gì?</string>
+    <string name="blog_status_1">Hôm nay bạn thế nào?</string>
+    <string name="blog_status_2">Bạn đang nghĩ gì?</string>
     <string name="blog_title">Tiêu đề blog</string>
     <string name="blog_suggest">Viết blog để chia sẻ cảm giác hiện tại và giúp mọi người hiểu hơn về bạn.</string>
     <string name="blog_post">Đăng</string>
 
-    <!--*********************************************************************************************-->
+    <!--*****************************************************************************************-->
     <!--Strings for notification screen-->
     <string name="notification">Thông báo</string>
     <string name="notification_suggest">Hiện tại, bạn chưa nhận được bất kỳ thông báo nào.</string>
@@ -156,8 +175,19 @@
     <string name="offline">đã ngoại tuyến</string>
     <string name="offline_notification_content">Bạn vui lòng tìm một người khác để cùng đi ăn hoặc có thể thử liên lạc trực tiếp qua số điện thoại.</string>
 
+    <!--*****************************************************************************************-->
+    <!--Strings for profile screen-->
+    <string name="profile">Trang cá nhân</string>
+    <string name="profile_like">Thích</string>
+    <string name="profile_dating">Lần hẹn</string>
+    <string name="profile_star">Thả tim</string>
+    <string name="edit_profile">Chỉnh sửa trang cá nhân</string>
+    <string name="profile_history">Lịch sử cuộc hẹn</string>
+    <string name="profile_history_suggest">Bạn hiện chưa có bất kỳ cuộc hẹn nào. Sau khi bạn hẹn người khác cùng đi ăn thành công. Lịch sử cuộc hẹn sẽ được ghi lại tại đây.</string>
 
-    <!--*********************************************************************************************-->
+
+    
+    <!--*****************************************************************************************-->
     <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
     <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
@@ -166,7 +196,7 @@
     <!-- TODO: Remove or change this placeholder text -->
 
 
-    <string name="not_update">Failure for update profile</string>
+
 
     <string name="default_address">Chợ Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam</string>
     <string name="default_lat_lng">10.771423,106.698471</string>

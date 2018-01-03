@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <!--Tool bar-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/color_deep_orange"
@@ -18,30 +18,42 @@
             android:id="@+id/activity_edit_profile_iv_cancel"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_gravity="start"
             android:contentDescription="@null"
             android:scaleType="centerInside"
             android:src="@drawable/ic_back_arrow_white"
             android:textSize="17sp" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Edit Profile"
+            android:layout_gravity="center"
+            android:text="@string/edit_profile"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/activity_edit_profile_iv_save"
-            android:layout_width="40dp"
+            android:layout_width="45dp"
             android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
             android:contentDescription="@null"
+            android:padding="5dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_save"
             android:tint="@android:color/white" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <!--Content-->
     <ScrollView
@@ -64,15 +76,15 @@
 
                 <ImageView
                     android:id="@+id/activity_edit_profile_iv_avatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:background="@drawable/bg_avatar"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@null" />
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop" />
 
                 <LinearLayout
                     android:id="@+id/activity_edit_profile_ll_edit_avatar"
-                    android:layout_width="70dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/activity_edit_profile_iv_avatar"
                     android:layout_alignEnd="@id/activity_edit_profile_iv_avatar"
@@ -82,18 +94,17 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/camera"
-                        android:contentDescription="@null" />
+                        android:contentDescription="@null"
+                        android:src="@drawable/camera" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:text="Edit"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/edit"
                         android:textColor="@color/black_anpha_40"
-                        android:textSize="16sp"
-                        app:fontPath="fonts/Montserrat-Medium.ttf" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -109,11 +120,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingEnd="7dp"
                     android:paddingStart="7dp"
-                    android:text="PERSONAL INFORMATION"
+                    android:text="@string/basic_information"
+                    android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:textSize="16sp" />
 
                 <!--Edit Username-->
                 <LinearLayout
@@ -126,9 +138,9 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="25dp"
+                        android:contentDescription="@null"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_person"
-                        android:contentDescription="@null" />
+                        android:src="@drawable/ic_person" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -141,13 +153,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
-                            android:hint="Full Name"
+                            android:hint="@string/name"
                             android:inputType="textPersonName"
                             android:maxLines="1"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -175,6 +186,7 @@
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="25dp"
+                            android:contentDescription="@null"
                             android:scaleType="centerInside"
                             android:src="@drawable/ic_gender_color" />
 
@@ -190,11 +202,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent"
-                                android:hint="Gender"
+                                android:hint="@string/gender"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/grey"
-                                android:textSize="16sp"
-                                app:fontPath="fonts/Montserrat-Medium.ttf" />
+                                android:textSize="16sp" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -223,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:checked="true"
-                            android:text="Male"
+                            android:text="@string/man"
                             android:textColor="@color/black" />
 
                         <!--Option Male-->
@@ -233,7 +244,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:checked="false"
-                            android:text="Female"
+                            android:text="@string/woman"
                             android:textColor="@color/black" />
 
                     </RadioGroup>
@@ -258,7 +269,8 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="DoB"
+                            android:gravity="center"
+                            android:text="@string/dob"
                             android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -275,11 +287,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent"
-                                android:hint="December 5th 1995"
+                                android:hint="@string/DOB"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/grey"
-                                android:textSize="16sp"
-                                app:fontPath="fonts/Montserrat-Medium.ttf" />
+                                android:textSize="16sp" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -366,16 +377,17 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp">
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp">
 
-                        <TextView
+                        <ImageView
                             android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Addr"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="25dp"
+                            android:contentDescription="@null"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_home" />
 
                         <LinearLayout
                             android:id="@+id/activity_edit_profile_ll_address"
@@ -389,10 +401,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent"
+                                android:hint="@string/address"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/grey"
-                                android:textSize="16sp"
-                                app:fontPath="fonts/Montserrat-Medium.ttf" />
+                                android:textSize="16sp" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -420,11 +432,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingEnd="7dp"
                     android:paddingStart="7dp"
-                    android:text="DETAIL INFORMATION"
+                    android:text="@string/advanced_information"
+                    android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:textSize="16sp" />
 
                 <!--Edit Characters-->
                 <LinearLayout
@@ -437,6 +450,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:contentDescription="@null"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_character" />
 
@@ -452,12 +466,11 @@
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:completionThreshold="1"
-                            android:hint="Characters"
+                            android:hint="@string/my_characters"
                             android:inputType="textAutoComplete"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -479,6 +492,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:contentDescription="@null"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_style" />
 
@@ -494,12 +508,11 @@
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:completionThreshold="1"
-                            android:hint="Styles"
+                            android:hint="@string/my_styles"
                             android:inputType="textAutoComplete"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -525,10 +538,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="7dp"
-                    android:text="TARGET'S INFORMATION"
+                    android:paddingEnd="7dp"
+                    android:text="@string/target_information"
+                    android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:fontPath="fonts/RobotoCondensed-Medium.ttf" />
+                    android:textSize="16sp" />
 
                 <!--Edit Foods and drinks-->
                 <LinearLayout
@@ -541,6 +555,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:contentDescription="@null"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_food" />
 
@@ -556,12 +571,11 @@
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:completionThreshold="1"
-                            android:hint="Foods and drinks"
+                            android:hint="@string/food"
                             android:inputType="textAutoComplete"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -584,7 +598,8 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_target_character" />
+                        android:src="@drawable/ic_target_character"
+                        android:contentDescription="@null" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -598,12 +613,11 @@
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:completionThreshold="1"
-                            android:hint="Characters"
+                            android:hint="@string/my_characters"
                             android:inputType="textAutoComplete"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -627,7 +641,8 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_target_style" />
+                        android:src="@drawable/ic_target_style"
+                        android:contentDescription="@null" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -641,12 +656,11 @@
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:completionThreshold="1"
-                            android:hint="Styles"
+                            android:hint="@string/target_style"
                             android:inputType="textAutoComplete"
                             android:textColor="@color/black"
                             android:textColorHint="@color/grey"
-                            android:textSize="16sp"
-                            app:fontPath="fonts/Montserrat-Medium.ttf" />
+                            android:textSize="16sp" />
 
                         <View
                             android:layout_width="match_parent"

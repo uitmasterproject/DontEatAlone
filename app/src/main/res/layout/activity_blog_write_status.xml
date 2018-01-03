@@ -61,7 +61,7 @@
                 android:background="@drawable/design_blog_edt_write_status"
                 android:focusable="true"
                 android:gravity="top"
-                android:hint="@string/blog_status"
+                android:hint="@string/blog_status_2"
                 android:inputType="text|textMultiLine"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey" />

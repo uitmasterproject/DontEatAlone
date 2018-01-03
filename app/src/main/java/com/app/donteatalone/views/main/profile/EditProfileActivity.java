@@ -461,7 +461,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
     @Override
     public void onError(com.google.android.gms.common.api.Status status) {
-        Toast.makeText(EditProfileActivity.this, "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditProfileActivity.this, "Lựa chọn địa điểm thất bại: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
     }
 
     private void setDefaultValue() {
@@ -505,9 +505,9 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 if (checkedId == R.id.activity_edit_profile_radio_male) {
-                    tvGender.setText("Male");
+                    tvGender.setText(getText(R.string.man));
                 } else {
-                    tvGender.setText("Female");
+                    tvGender.setText(getText(R.string.woman));
                 }
             }
         });
