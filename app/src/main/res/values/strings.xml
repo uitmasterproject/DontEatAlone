@@ -62,7 +62,7 @@
 
     <!--*****************************************************************************************-->
     <!--Strings for login screen-->
-    <string name="login_title">LOGIN</string>
+    <string name="login_title">Đăng nhập</string>
     <string name="new_here_create_an_account">Tạo tài khoản DEA mới</string>
     <string name="remember_me">Lưu tài khoản</string>
     <string name="forgot_password">Quên mật khẩu</string>
@@ -147,7 +147,9 @@
     <string name="register_step_2_suggest_password">Hãy nhớ mật khẩu này. Mật khẩu giúp ngăn người lạ sử dụng tài khoản của bạn.</string>
 
     <string name="register_step_3_title">Hãy Chọn Giới Tính Của Bạn</string>
+    <string name="register_step_3_title_2">Hãy Thêm Ảnh Đại Diện Của Bạn</string>
     <string name="register_step_3_suggest">Cung cấp giới tính của bạn tạo ra trải nghiệm DEA tốt nhất cho bạn.</string>
+    <string name="register_step_3_suggest_2">Chọn ảnh đại diện để mọi người dễ dàng nhận ra bạn hơn.</string>
 
     <string name="register_step_4_title">Sinh Nhật Của Bạn Khi Nào?</string>
     <string name="register_step_4_suggest">Độ tuổi là một yếu tố quan trọng để tìm ra người bạn phù hợp cùng đi ăn chung.</string>
@@ -402,18 +404,18 @@
         <item>29</item>
     </string-array>
     <string-array name="Month">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
     </string-array>
     <string-array name="Year">
         <item>Year</item>

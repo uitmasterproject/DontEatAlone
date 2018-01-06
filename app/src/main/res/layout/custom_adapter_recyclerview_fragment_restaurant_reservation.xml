@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="3dp"
     android:orientation="vertical"
     tools:ignore="contentDescription, MissingPrefix">
 
@@ -17,17 +18,17 @@
             android:id="@+id/custom_adapter_recyclerview_fragment_restaurant_reservation_image"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:scaleType="centerCrop"
-            android:background="@color/blue_grey" />
+            android:background="@color/blue_grey"
+            android:scaleType="centerCrop" />
 
         <ProgressBar
             android:id="@+id/progressBar"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:indeterminate="true"
             android:max="100"
-            android:progress="20"
-            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+            android:progress="20" />
 
         <!--Restaurant info-->
         <LinearLayout
@@ -80,16 +81,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_reservation"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Reservation"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:background="@color/color_deep_orange"
-            app:fontPath="fonts/RobotoCondensed-Medium.ttf"/>
 
     </LinearLayout>
 

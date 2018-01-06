@@ -197,7 +197,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                     llDobCustomize.setVisibility(View.VISIBLE);
                     llDobCustomize.animate().translationY(1f).setDuration(500);
 
-                    SimpleDateFormat format = new SimpleDateFormat("MMMM/dd/yyyy", Locale.ENGLISH);
+                    SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
                     Date date = null;
                     try {
                         date = format.parse(tvAge.getText().toString());
@@ -236,7 +236,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                 AppUtils.hideSoftKeyboard(EditProfileActivity.this);
                 final BaseProgress baseProgress = new BaseProgress();
 
-                SimpleDateFormat format = new SimpleDateFormat("MMMM/dd/yyyy", Locale.ENGLISH);
+                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
                 Date date = null;
                 try {
                     date = format.parse(tvAge.getText().toString());

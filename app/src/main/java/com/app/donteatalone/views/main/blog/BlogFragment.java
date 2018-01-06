@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
+import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.utils.AppUtils;
@@ -87,6 +88,14 @@ public class BlogFragment extends Fragment {
 
         adapter = new BlogItemAdapter(listInfoBlog, getActivity());
         rcvListBlog.setAdapter(adapter);
+
+        adapter.setClickDelete(new OnRecyclerItemClickListener() {
+            @Override
+            public void onItemClick(View view, int resource) {
+                rcvListBlog.setVisibility(View.GONE);
+                llEntry.setVisibility(View.VISIBLE);
+            }
+        });
 
     }
 

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.base.BaseProgress;
+import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
 import com.app.donteatalone.model.Status;
@@ -48,6 +49,8 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
     private BaseProgress baseProgress;
     private ArrayList<InnerVH> views;
 
+    private OnRecyclerItemClickListener onRecyclerItemClickListener;
+
     private ArrayList<Target> listTarget = new ArrayList<>();
 
     public BlogItemAdapter(ArrayList<InfoBlog> listInnerBlog, Context context) {
@@ -57,11 +60,15 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
         views = new ArrayList<>();
     }
 
+    public  void setClickDelete( OnRecyclerItemClickListener onRecyclerItemClickListener){
+        this.onRecyclerItemClickListener = onRecyclerItemClickListener;
+    }
     @Override
     public InnerVH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.custom_adapter_inner_recycler_my_status_blog, parent, false);
         return new InnerVH(view);
     }
+
 
     @Override
     public void onBindViewHolder(final InnerVH holder, final int position) {
@@ -193,6 +200,11 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
                         if (response.body() != null) {
                             if (response.body().getStatus().equals("0")) {
                                 listInnerBlog.remove(position);
+                                if(listInnerBlog.size()<=0){
+                                    if(onRecyclerItemClickListener!=null){
+                                        onRecyclerItemClickListener.onItemClick(holder.itemView, position);
+                                    }
+                                }
                                 notifyDataSetChanged();
                             }
                         }

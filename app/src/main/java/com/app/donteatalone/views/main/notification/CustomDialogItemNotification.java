@@ -58,8 +58,12 @@ public class CustomDialogItemNotification {
 
     public void setDefaultValue() throws ParseException {
         TextView txtTitle = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_title);
-        if (!data.getResultInvitation().equals("nothing"))
-            txtTitle.setText(data.getResultInvitation());
+        if (!data.getResultInvitation().equals("nothing")) {
+            if (data.getResultInvitation().equals("accept"))
+                txtTitle.setText(R.string.accept);
+            else txtTitle.setText(R.string.refuse);
+        }
+
 
         TextView txtFullName = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_name);
         txtFullName.setText(StringEscapeUtils.unescapeJava(data.getParticipant().getFullName()));

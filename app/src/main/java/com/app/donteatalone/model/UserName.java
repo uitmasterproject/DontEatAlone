@@ -182,10 +182,10 @@ public class UserName implements Parcelable {
     }
 
     public String getFormatGender() {
-        if (this.gender.equals("Female")) {
-            return "F";
+        if (this.gender.equals("Nữ")) {
+            return "Nữ";
         } else {
-            return "M";
+            return "Nam";
         }
     }
 

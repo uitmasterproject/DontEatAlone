@@ -59,7 +59,7 @@ public class RegisterStep3Fragment extends Fragment {
     private Button btnNext;
     private String gender;
     private ViewPager _mViewPager;
-    private TextView tvTutorial;
+    private TextView tvTutorial, tvTitile;
     private LinearLayout llRoot;
     private boolean isChosen = false;
 
@@ -90,6 +90,7 @@ public class RegisterStep3Fragment extends Fragment {
         imgAvatar = (ImageView) view.findViewById(R.id.fragment_register_step3_img_avatar);
         btnNext = (Button) view.findViewById(R.id.fragment_register_step3_btn_next);
         tvTutorial = (TextView) view.findViewById(R.id.fragment_register_step3_tv_tutorial);
+        tvTitile = (TextView) view.findViewById(R.id.fragment_register_step3_tv_title);
         llRoot = (LinearLayout) view.findViewById(R.id.fragment_register_step3_ll_root);
         rltAvatar.setVisibility(View.GONE);
     }
@@ -110,22 +111,22 @@ public class RegisterStep3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 animationImageAvatar(rltManAvatar, R.drawable.avatar_man);
-                gender = "Male";
-
-                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.empty_gender))){
+                gender = getString(R.string.man);
+                tvTitile.setText(getString(R.string.register_step_3_title_2));
+                if (tvTutorial.getText().toString().equals(getResources().getString(R.string.empty_gender))) {
                     tvTutorial.setText("");
-                }
+                } else tvTutorial.setText(getString(R.string.register_step_3_suggest_2));
             }
         });
         imgWomanAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 animationImageAvatar(rltWomanAvatar, R.drawable.avatar_woman);
-                gender = "Female";
-
-                if(tvTutorial.getText().toString().equals(getResources().getString(R.string.empty_gender))){
+                gender = getString(R.string.woman);
+                tvTitile.setText(getString(R.string.register_step_3_title_2));
+                if (tvTutorial.getText().toString().equals(getResources().getString(R.string.empty_gender))) {
                     tvTutorial.setText("");
-                }
+                } else tvTutorial.setText(getString(R.string.register_step_3_suggest_2));
             }
         });
     }
@@ -155,7 +156,7 @@ public class RegisterStep3Fragment extends Fragment {
         final CharSequence[] options = getResources().getStringArray(R.array.option);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        builder.setTitle("Add Photo");
+        builder.setTitle("Thêm Ảnh");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -252,9 +253,9 @@ public class RegisterStep3Fragment extends Fragment {
                             Toast.makeText(getActivity(), getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        if(gender.equals("Female")) {
+                        if (gender.equals(R.string.woman)) {
                             userName.setAvatar("https://firebasestorage.googleapis.com/v0/b/dont-eat-alone-storage.appspot.com/o/avatar_woman.png?alt=media&token=7ada04ec-abef-4224-81a2-0ba209f11cef");
-                        }else {
+                        } else {
                             userName.setAvatar("https://firebasestorage.googleapis.com/v0/b/dont-eat-alone-storage.appspot.com/o/avatar_man.png?alt=media&token=3f4db113-759c-4819-9998-8400687af0d8");
                         }
                     }
