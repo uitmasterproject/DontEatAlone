@@ -53,7 +53,7 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
                 .error(R.drawable.avatar)
                 .into(holder.imgAvatar);
 
-        if (listInfoNotification.get(position).getResultInvitation().equals("Chấp nhận")) {
+        if (listInfoNotification.get(position).getResultInvitation().equals("accept")) {
             holder.txtContent.setText(setMultiColorText(listInfoNotification.get(position).getParticipant().getFullName(),
                     context.getString(R.string.accept_content, listInfoNotification.get(position).getParticipant().getAccordantUser())));
             holder.imgIcon.setImageResource(R.drawable.ic_accepted);
@@ -67,7 +67,7 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
                     showDialog(position);
                 }
             });
-        } else if (listInfoNotification.get(position).getResultInvitation().equals("Từ chối")) {
+        } else if (listInfoNotification.get(position).getResultInvitation().equals("refuse")) {
             holder.txtContent.setText(setMultiColorText(listInfoNotification.get(position).getParticipant().getFullName(),
                     context.getString(R.string.refuse_content)));
             holder.imgIcon.setImageResource(R.drawable.ic_refuse);

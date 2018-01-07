@@ -256,7 +256,7 @@
     <string name="choose_other_restaurant">Chọn nhà hàng khác</string>
     <string name="limit_time">Bạn nên đặt cuộc hẹn sau 1h. Cả hai cần có sự chuẩn bị</string>
     <string name="suggestInvite"><u>Sau khi gửi lời mời, bạn phải chờ trong vòng 5 phút để đối phương trả lời. </u></string>
-    <string name="suggestResponse"><u>You have 5 minute to respond</u></string>
+    <string name="suggestResponse"><u>Bạn có 5 phút để phản hồi lời mời</u></string>
     <string name="overTimeRespone"><u>It took you more than 5 minutes to respond</u></string>
 
     <!--*****************************************************************************************-->

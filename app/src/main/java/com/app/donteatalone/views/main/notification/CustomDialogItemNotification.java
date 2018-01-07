@@ -62,7 +62,8 @@ public class CustomDialogItemNotification {
             if (data.getResultInvitation().equals("accept"))
                 txtTitle.setText(R.string.accept);
             else txtTitle.setText(R.string.refuse);
-        }
+        } else txtTitle.setText(R.string.notification);
+
 
 
         TextView txtFullName = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_txt_name);
@@ -80,14 +81,14 @@ public class CustomDialogItemNotification {
         ImageView imgClose = (ImageView) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_img_close);
         setClickClose(imgClose);
 
-        RelativeLayout rlContainer = (RelativeLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_rl_container);
+        LinearLayout llContainerOk = (LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_ll_container_ok);
         LinearLayout llContainer = (LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_ll_container);
         if (data.getResultInvitation().equals("Chấp nhận") || data.getResultInvitation().equals("Từ chối")) {
-            rlContainer.setVisibility(View.VISIBLE);
+            llContainerOk.setVisibility(View.VISIBLE);
             llContainer.setVisibility(View.GONE);
             setClickinRelative();
         } else if (data.getResultInvitation().equals("nothing")) {
-            rlContainer.setVisibility(View.GONE);
+            llContainerOk.setVisibility(View.GONE);
             llContainer.setVisibility(View.VISIBLE);
             setClickinLinner();
         }
@@ -245,7 +246,7 @@ public class CustomDialogItemNotification {
         imgClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (data.getResultInvitation().equals("Chấp nhận") || data.getResultInvitation().equals("Từ chối"))
+                if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse"))
                     updateData();
                 dialog.dismiss();
             }
