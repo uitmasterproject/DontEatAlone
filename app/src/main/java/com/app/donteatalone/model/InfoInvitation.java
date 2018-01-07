@@ -74,6 +74,7 @@ public class InfoInvitation {
 
     public void setReservationDetail(ReservationDetail reservationDetail) {
         this.reservationDetail = reservationDetail;
+        this.reservationDetail.setSession(StringEscapeUtils.escapeJava(this.reservationDetail.getSession()));
     }
 
     public String getTimeInvite() {

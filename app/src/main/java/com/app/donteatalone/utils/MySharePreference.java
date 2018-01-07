@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import com.app.donteatalone.model.AccordantUser;
 import com.app.donteatalone.model.UserName;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.util.Calendar;
 
 
@@ -348,7 +350,7 @@ public class MySharePreference {
                 age = calendar.get(Calendar.YEAR) - Integer.parseInt(arr[2]);
             }
         }
-        return new AccordantUser(getPhoneLogin(),getAvatarLogin(), getFullNameLogin(),"",getGenderLogin(), age,
+        return new AccordantUser(getPhoneLogin(),getAvatarLogin(), getFullNameLogin(),"", StringEscapeUtils.escapeJava(getGenderLogin()), age,
                  getAddressLogin(), getLatLngAddressLogin(), getMyCharacterLogin(), getMyStyleLogin(), getTargetFoodLogin());
     }
 
