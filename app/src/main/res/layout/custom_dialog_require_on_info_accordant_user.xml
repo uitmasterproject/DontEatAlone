@@ -82,237 +82,240 @@
                 android:src="@drawable/ic_male" />
         </LinearLayout>
 
-        <ScrollView
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/white">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <!--For name-->
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/name"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_fullname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:maxLines="1"
+                    android:textColor="@color/color_deep_orange_1"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!--For phone-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/phone"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@null"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!--For targetCharacter-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/target_character"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_character"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@null"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:padding="3dp">
 
-                <!--For name-->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:layout_weight="0.3"
+                    android:text="@string/target_style"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/name"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_fullname"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:maxLines="1"
-                        android:textColor="@color/color_deep_orange_1"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <!--For phone-->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_style"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/phone"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_phone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="@null"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <!--For targetCharacter-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/target_character"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_character"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="@null"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/target_style"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_style"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="@null"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/target_food"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_food"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="@null"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <!--For timer-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/date"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="@null"
-                        android:textColor="@color/black"
-                        android:textSize="17sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/place"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_name_restaurant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:gravity="center_vertical"
-                        android:maxLines="1"
-                        android:text="@null"
-                        android:textColor="@color/dot_tutorial_active"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <!--For place-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/address"
-                        android:textColor="@color/dot_tutorial_inactive"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/custom_dialog_require_on_info_account_user_txt_address"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:gravity="center_vertical"
-                        android:text="@null"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
+                    android:layout_weight="0.7"
+                    android:text="@null"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
 
-        </ScrollView>
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/target_food"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_food"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@null"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!--For timer-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/date"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@null"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/place"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_name_restaurant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@null"
+                    android:textColor="@color/dot_tutorial_active"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <!--For place-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/address"
+                    android:textColor="@color/dot_tutorial_inactive"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/custom_dialog_require_on_info_account_user_txt_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center_vertical"
+                    android:text="@null"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="3dp">
 
         <View
             android:layout_width="match_parent"
@@ -322,7 +325,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:padding="2dp">
 
