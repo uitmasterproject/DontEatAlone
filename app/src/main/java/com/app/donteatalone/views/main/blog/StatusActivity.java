@@ -159,7 +159,7 @@ public class StatusActivity extends Activity {
             } else {
                 imgEmotion.setImageResource(infoBlog.getFeeling());
             }
-            imgSave.setImageResource(R.drawable.ic_edit);
+            imgSave.setImageResource(R.drawable.ic_save);
             if (infoBlog.getLimit().equals(getResources().getStringArray(R.array.limit)[1])) {
                 snLimit.setSelection(1);
             } else {
@@ -291,11 +291,11 @@ public class StatusActivity extends Activity {
                                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                             @Override
                                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                countResult += 1;
                                                 @SuppressWarnings("VisibleForTests")
                                                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                                                 if (downloadUrl != null) {
-                                                    image.add(downloadUrl.toString());
+                                                    image.add(countResult,downloadUrl.toString());
+                                                    countResult += 1;
                                                 }
 
                                                 if (countResult == countImage) {

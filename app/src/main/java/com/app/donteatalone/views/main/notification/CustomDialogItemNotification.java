@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
@@ -83,29 +82,29 @@ public class CustomDialogItemNotification {
 
         LinearLayout llContainerOk = (LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_ll_container_ok);
         LinearLayout llContainer = (LinearLayout) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_ll_container);
-        if (data.getResultInvitation().equals("Chấp nhận") || data.getResultInvitation().equals("Từ chối")) {
+        if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse")) {
             llContainerOk.setVisibility(View.VISIBLE);
             llContainer.setVisibility(View.GONE);
-            setClickinRelative();
+            setClickInRelative();
         } else if (data.getResultInvitation().equals("nothing")) {
             llContainerOk.setVisibility(View.GONE);
             llContainer.setVisibility(View.VISIBLE);
-            setClickinLinner();
+            setClickInLinner();
         }
     }
 
-    private void setClickinRelative() {
+    private void setClickInRelative() {
         Button btnOK = (Button) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_btn_ok);
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateData();
-                dialog.dismiss();
+                //updateData();
+                dialog.cancel();
             }
         });
     }
 
-    private void setClickinLinner() throws ParseException {
+    private void setClickInLinner() throws ParseException {
         Button btnViewProfile = (Button) dialog.findViewById(R.id.custom_dialog_require_on_result_invite_btn_viewprofile);
         btnViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,7 +247,7 @@ public class CustomDialogItemNotification {
             public void onClick(View v) {
                 if (data.getResultInvitation().equals("accept") || data.getResultInvitation().equals("refuse"))
                     updateData();
-                dialog.dismiss();
+                dialog.cancel();
             }
         });
     }

@@ -349,22 +349,24 @@ public class OnRequireFragment extends Fragment {
         socketIO.on("userParticipantOff", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        JSONObject data = (JSONObject) args[0];
+                if(getActivity()!=null) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            JSONObject data = (JSONObject) args[0];
 
-                        Gson gson = new Gson();
-                        try {
-                            InfoInvitation infoInvitation = gson.fromJson(data.getString("userOff"), InfoInvitation.class);
+                            Gson gson = new Gson();
+                            try {
+                                InfoInvitation infoInvitation = gson.fromJson(data.getString("userOff"), InfoInvitation.class);
 
-                            listenInviterOffline(infoInvitation);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                listenInviterOffline(infoInvitation);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
-
-                    }
-                });
+                    });
+                }
             }
         });
     }
@@ -377,9 +379,9 @@ public class OnRequireFragment extends Fragment {
         Button btnOk;
         ImageView imgClose;
         txtName = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_txt_name);
-        txtName.setText(infoInvitation.getParticipant().getFullName());
+        txtName.setText(StringEscapeUtils.unescapeJava(infoInvitation.getParticipant().getFullName()));
         txtNameRepeat = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_txt_repeat_name);
-        txtNameRepeat.setText(infoInvitation.getParticipant().getFullName());
+        txtNameRepeat.setText(StringEscapeUtils.unescapeJava(infoInvitation.getParticipant().getFullName()));
         txtPhone = (TextView) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_txt_phone);
         txtPhone.setText(infoInvitation.getParticipant().getAccordantUser());
         btnOk = (Button) dialog.findViewById(R.id.custom_dialog_require_on_inviter_offline_btn_ok);

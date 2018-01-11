@@ -1,6 +1,5 @@
 package com.app.donteatalone.views.register;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -9,13 +8,11 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -131,9 +128,9 @@ public class RegisterStep1Fragment extends Fragment {
                             edtCode.setVisibility(View.VISIBLE);
                             btnNext.setVisibility(View.VISIBLE);
                         } else {
+                            edtPhone.setText("");
                             tilErrorPhone.setErrorEnabled(true);
                             tilErrorPhone.setError(getString(R.string.phone_exists));
-                            edtPhone.setText("");
                         }
                     }else{
                         progressDialog.hideProgressLoading();
@@ -153,15 +150,13 @@ public class RegisterStep1Fragment extends Fragment {
     }
 
     /* hide soft keyboard when touch outsite edittext*/
-    @SuppressLint("ClickableViewAccessibility")
     private void llRootTouch() {
-        llRoot.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                AppUtils.hideSoftKeyboard(getActivity());
-                return true;
-            }
-        });
+            llRoot.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppUtils.touchOutsideHideSoftKeyboard(getActivity());
+                }
+            });
     }
 
     private void rlSendCodeClick() {

@@ -1,5 +1,6 @@
 package com.app.donteatalone.views.main.notification;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -17,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.donteatalone.R;
+import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoNotification;
+import com.app.donteatalone.model.Status;
+import com.app.donteatalone.utils.MySharePreference;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -25,6 +29,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by ChomChom on 09-Jun-17
@@ -64,6 +72,7 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
                 @Override
                 public void onClick(View v) {
                     holder.llContainer.setBackgroundColor(Color.WHITE);
+                    updateData(listInfoNotification.get(position));
                     showDialog(position);
                 }
             });
@@ -78,6 +87,7 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
                 @Override
                 public void onClick(View v) {
                     holder.llContainer.setBackgroundColor(Color.WHITE);
+                    updateData(listInfoNotification.get(position));
                     showDialog(position);
                 }
             });
@@ -115,6 +125,22 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
             e.printStackTrace();
         }
         dialog.show();
+    }
+
+    private void updateData(InfoNotification data) {
+        Call<Status> updateReadNotification = Connect.getRetrofit().updateReadNotification(new MySharePreference((Activity) context).getPhoneLogin(),
+                data.getParticipant().getAccordantUser(), data.getResultInvitation(), data.getCurrentTime());
+        updateReadNotification.enqueue(new Callback<Status>() {
+            @Override
+            public void onResponse(Call<Status> call, Response<Status> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Status> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

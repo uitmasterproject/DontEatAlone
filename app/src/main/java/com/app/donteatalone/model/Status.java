@@ -10,18 +10,40 @@ public class Status{
     @SerializedName("status")
     private String status;
 
+    @SerializedName("message")
+    private String message;
+
     @SerializedName("uuid")
     private String uuid;
 
     @SerializedName("restaurantReservation")
     private RestaurantDetail restaurantReservation;
 
+    @SerializedName("userName")
+    private UserName userName;
+
     public String getStatus() {
         return status;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public UserName getUserName() {
+        return userName;
+    }
+
+    public void setUserName(UserName userName) {
+        this.userName = userName;
     }
 
     public String getUuid() {

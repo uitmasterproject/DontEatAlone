@@ -2,7 +2,7 @@ package com.app.donteatalone.views.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.text.TextUtilsCompat;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +58,16 @@ public class LoginActivity extends AppCompatActivity {
         llRootTouch();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!mySharePreference.getPreSave()) {
+            edtPhone.setText("");
+            edtPassword.setText("");
+            PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().clear().apply();
+        }
+    }
+
     public void init() {
         mySharePreference = new MySharePreference(LoginActivity.this);
         edtPhone = (EditText) findViewById(R.id.activity_login_edt_phone);
@@ -74,16 +83,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public void checkRemember() {
         if (ckbRemember.isChecked()) {
-            mySharePreference.setPhoneLogin(edtPhone.getText().toString());
+            mySharePreference.setPreSave(true);
         } else {
-            mySharePreference.setPhoneLogin("");
+            mySharePreference.setPreSave(false);
         }
     }
 
     public void checkAccount() {
         dialog.showProgressLoading(LoginActivity.this);
 
-        Call<InitParam> init = Connect.getRetrofit().getInitParam(edtPhone.getText().toString());
+        Call<InitParam> init = Connect.getRetrofit().getInitParamLogin(edtPhone.getText().toString());
         init.enqueue(new Callback<InitParam>() {
             @Override
             public void onResponse(Call<InitParam> call, Response<InitParam> response) {
@@ -98,24 +107,21 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<Status> call, Response<Status> response) {
                             if (response.body() == null) {
                                 dialog.hideProgressLoading();
-                                Toast.makeText(LoginActivity.this, getResources().getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
                             } else {
+                                checkRemember();
                                 if (response.body().getStatus().equals("0")) {
                                     if (!response.body().getUuid().equals(mySharePreference.getUUIDLogin()) ||
                                             !edtPhone.getText().toString().equals(mySharePreference.getPhoneLogin())) {
                                         saveInfoUser();
                                     } else {
-                                        checkRemember();
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(intent);
                                         dialog.hideProgressLoading();
                                     }
-                                } else if (response.body().getStatus().equals("1")) {
-                                    dialog.hideProgressLoading();
-                                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_incorecct), Toast.LENGTH_LONG).show();
                                 } else {
                                     dialog.hideProgressLoading();
-                                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_incorecct), Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
@@ -128,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 } else {
                     dialog.hideProgressLoading();
-                    Toast.makeText(LoginActivity.this, getString(R.string.invalid_network), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.phone_isnt_exist), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -149,7 +155,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     UserName userName = response.body();
                     mySharePreference.saveAccountInfo(userName);
-                    checkRemember();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -194,11 +199,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (TextUtils.isEmpty(edtPhone.getText().toString())) {
                     edtPhone.setError(getString(R.string.invalid_phone));
-                }
-                if (TextUtils.isEmpty(edtPassword.getText().toString())) {
+                } else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
                     edtPassword.setError(getString(R.string.invalid_password));
-                }
-                if (!TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())) {
+                } else if (edtPassword.getText().toString().length() < 6) {
+                    edtPassword.setError(getString(R.string.password_length));
+                } else {
                     if (AppUtils.isNetworkAvailable(LoginActivity.this)) {
                         checkAccount();
                     } else {
@@ -214,8 +219,9 @@ public class LoginActivity extends AppCompatActivity {
         llRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppUtils.hideSoftKeyboard(LoginActivity.this);
+                AppUtils.touchOutsideHideSoftKeyboard(LoginActivity.this);
             }
         });
     }
+
 }

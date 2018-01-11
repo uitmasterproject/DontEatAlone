@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +106,7 @@ public class BlogFragment extends Fragment {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     if (intent.getBooleanExtra(MainActivity.SEND_BROADCAST_MODIFY_BLOG_DATA, false)) {
+                        Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++");
                         getListBlog();
                     }
                 }
@@ -124,6 +126,8 @@ public class BlogFragment extends Fragment {
                 public void onResponse(Call<ArrayList<InfoBlog>> call, Response<ArrayList<InfoBlog>> response) {
                     dialog.hideProgressLoading();
                     if (response.body() != null && response.body().size() > 0) {
+
+                        Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++response not null");
                         listInfoBlog.clear();
 
                         llEntry.setVisibility(View.GONE);
@@ -131,6 +135,8 @@ public class BlogFragment extends Fragment {
                         listInfoBlog.addAll(response.body());
 
                         Collections.reverse(listInfoBlog);
+
+                        adapter.notifyDataSetChanged();
 
                         if (listInfoBlog.get(0).getFeeling() != 0) {
                             try {
@@ -141,8 +147,6 @@ public class BlogFragment extends Fragment {
                         } else {
                             imgAvatar.setImageResource(R.drawable.ic_happy);
                         }
-
-                        adapter.notifyDataSetChanged();
                     } else {
                         llEntry.setVisibility(View.VISIBLE);
                         imgAvatar.setImageResource(R.drawable.ic_happy);

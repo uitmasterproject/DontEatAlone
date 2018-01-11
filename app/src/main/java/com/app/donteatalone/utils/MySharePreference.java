@@ -18,6 +18,7 @@ import java.util.Calendar;
  */
 
 public class MySharePreference {
+    public static final String PRE_SAVE = "PRE_SAVE";
     public static final String PRE_PHONE = "PRE_PHONE";
     public static final String PRE_UUID = "PRE_UUID";
     public static final String PRE_FULL_NAME = "PRE_FULL_NAME";
@@ -46,6 +47,16 @@ public class MySharePreference {
 
     public MySharePreference(Activity activity, String phone) {
         sharedPreferences = activity.getSharedPreferences("DONTEATALONE.INFORREQUIRE" + "_" + phone, Context.MODE_PRIVATE);
+    }
+
+    public void setPreSave(boolean isSave){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(PRE_SAVE + PRE_TYPE_LOGIN, isSave);
+        editor.apply();
+    }
+
+    public Boolean getPreSave() {
+       return sharedPreferences.getBoolean(PRE_SAVE + PRE_TYPE_LOGIN, true);
     }
 
     public String getPhoneLogin() {

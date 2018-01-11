@@ -1,11 +1,13 @@
 package com.app.donteatalone.views.main.blog;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +76,7 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
     public void onBindViewHolder(final InnerVH holder, final int position) {
 
         views.add(holder);
+        Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++adapter");
 
         Target target = new Target() {
 
@@ -84,8 +87,10 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
 
                         bitmap = Bitmap.createScaledBitmap(bitmap, AppUtils.convertDpToPx(120) * bitmap.getWidth() / bitmap.getHeight(), AppUtils.convertDpToPx(120), true);
                     }
+                    Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++bitmap content");
                     holder.imgImage.setImageBitmap(bitmap);
                 } else {
+                    Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++bitmap null");
                     holder.imgImage.setImageBitmap(null);
                 }
                 holder.progressBar.setVisibility(View.GONE);
@@ -191,30 +196,59 @@ public class BlogItemAdapter extends RecyclerView.Adapter<BlogItemAdapter.InnerV
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                baseProgress.showProgressLoading(context);
-                Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(new MySharePreference((Activity) context).getPhoneLogin(), listInnerBlog.get(position).getDate());
-                deleteStatus.enqueue(new Callback<Status>() {
-                    @Override
-                    public void onResponse(Call<Status> call, Response<Status> response) {
-                        baseProgress.hideProgressLoading();
-                        if (response.body() != null) {
-                            if (response.body().getStatus().equals("0")) {
-                                listInnerBlog.remove(position);
-                                if(listInnerBlog.size()<=0){
-                                    if(onRecyclerItemClickListener!=null){
-                                        onRecyclerItemClickListener.onItemClick(holder.itemView, position);
-                                    }
-                                }
-                                notifyDataSetChanged();
-                            }
-                        }
-                    }
+                final Dialog dialog = new Dialog(context);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.custom_dialog_logout);
 
+                TextView txtTitle = (TextView) dialog.findViewById(R.id.txt_title);
+                TextView txtContent = (TextView) dialog.findViewById(R.id.txt_content);
+                Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+                Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+
+                txtTitle.setText(context.getString(R.string.blog_delete_title));
+                txtContent.setText(context.getString(R.string.blog_delete));
+                btnOk.setText(context.getString(R.string.blog_delete_confirm));
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onFailure(Call<Status> call, Throwable t) {
-                        baseProgress.hideProgressLoading();
+                    public void onClick(View v) {
+                        dialog.cancel();
                     }
                 });
+
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+
+                        baseProgress.showProgressLoading(context);
+                        Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(new MySharePreference((Activity) context).getPhoneLogin(), listInnerBlog.get(position).getDate());
+                        deleteStatus.enqueue(new Callback<Status>() {
+                            @Override
+                            public void onResponse(Call<Status> call, Response<Status> response) {
+                                baseProgress.hideProgressLoading();
+                                if (response.body() != null) {
+                                    if (response.body().getStatus().equals("0")) {
+                                        listInnerBlog.remove(position);
+                                        if(listInnerBlog.size()<=0){
+                                            if(onRecyclerItemClickListener!=null){
+                                                onRecyclerItemClickListener.onItemClick(holder.itemView, position);
+                                            }
+                                        }
+                                        notifyDataSetChanged();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Status> call, Throwable t) {
+                                baseProgress.hideProgressLoading();
+                            }
+                        });
+                    }
+                });
+
+                dialog.show();
             }
         });
     }

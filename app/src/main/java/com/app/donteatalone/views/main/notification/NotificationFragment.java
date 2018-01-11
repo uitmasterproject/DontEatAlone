@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,6 +50,8 @@ public class NotificationFragment extends Fragment {
     private CustomNotificationAdapter adapter;
 
     private boolean visible = false;
+
+    private SwipeRefreshLayout refresh;
 
     private BroadcastReceiver broadcastReceiver;
 
@@ -95,6 +98,8 @@ public class NotificationFragment extends Fragment {
     }
 
     public void init() {
+        refresh = (SwipeRefreshLayout) viewGroup.findViewById(R.id.refresh);
+
         llEmptyNotification= (LinearLayout) viewGroup.findViewById(R.id.fragment_notification_ll_entry);
 
         rcvInfoNotification = (RecyclerView) viewGroup.findViewById(R.id.fragment_notification_rcv_notification);
@@ -118,6 +123,12 @@ public class NotificationFragment extends Fragment {
 
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(MainActivity.BROADCAST_NAME));
 
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                setNotification();
+            }
+        });
     }
 
     private void initNotification() {
@@ -138,6 +149,9 @@ public class NotificationFragment extends Fragment {
         getInfoNotification.enqueue(new Callback<ArrayList<InfoNotification>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoNotification>> call, Response<ArrayList<InfoNotification>> response) {
+                if(refresh.isRefreshing()){
+                    refresh.setRefreshing(false);
+                }
                 if (response.body() != null && response.body().size()>0) {
                     listInfoNotification.clear();
 
@@ -157,6 +171,9 @@ public class NotificationFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<InfoNotification>> call, Throwable t) {
+                if(refresh.isRefreshing()){
+                    refresh.setRefreshing(false);
+                }
             }
         });
     }

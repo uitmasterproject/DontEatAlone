@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -33,6 +34,7 @@ import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.Achievement;
 import com.app.donteatalone.model.InfoProfileUpdate;
 import com.app.donteatalone.model.ProfileHistoryModel;
+import com.app.donteatalone.model.Status;
 import com.app.donteatalone.model.UserName;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
@@ -87,6 +89,8 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
     private UserName userName;
 
     private Animation animation;
+
+    private SwipeRefreshLayout refresh;
 
 
     private ProfileHistoryAdapter profileHistoryAdapter;
@@ -181,6 +185,15 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         imgReLoad = (ImageView) viewGroup.findViewById(R.id.img_reload);
 
         imgReLoad.setOnClickListener(this);
+
+        refresh = (SwipeRefreshLayout) viewGroup.findViewById(R.id.refresh);
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAchievement();
+            }
+        });
     }
 
     private void getAchievement() {
@@ -190,6 +203,9 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             getAchievement.enqueue(new Callback<Achievement>() {
                 @Override
                 public void onResponse(Call<Achievement> call, Response<Achievement> response) {
+                    if(refresh.isRefreshing()){
+                        refresh.setRefreshing(false);
+                    }
                     if (response.body() != null) {
                         Achievement achievement = response.body();
                         tvCountsLike.setText(achievement.getLike() + "");
@@ -200,7 +216,9 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
                 @Override
                 public void onFailure(Call<Achievement> call, Throwable t) {
-
+                    if(refresh.isRefreshing()){
+                        refresh.setRefreshing(false);
+                    }
                 }
             });
         }
@@ -469,12 +487,12 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                     break;
             }
 
-            Call<UserName> updateInfo = Connect.getRetrofit().updateProfile(infoUpdate);
-            updateInfo.enqueue(new Callback<UserName>() {
+            Call<Status> updateInfo = Connect.getRetrofit().updateProfile(infoUpdate);
+            updateInfo.enqueue(new Callback<Status>() {
                 @Override
-                public void onResponse(Call<UserName> call, Response<UserName> response) {
-                    if(response.body()!=null){
-                        if(response.body().getUuid().equals(mySharePreference.getUUIDLogin())){
+                public void onResponse(Call<Status> call, Response<Status> response) {
+                    if(response.body()!=null && response.body().getUserName()!=null){
+                        if(response.body().getUserName().getUuid().equals(mySharePreference.getUUIDLogin())){
                             switch (titleDefaultResource) {
                                 case R.string.my_characters:
                                     mySharePreference.setMyCharacterLogin(infoUpdate.getContent());
@@ -494,7 +512,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                             }
 
                         }else {
-                            UserName userName =response.body();
+                            UserName userName =response.body().getUserName();
                             mySharePreference.saveProfileUpdate(userName);
                         }
 
@@ -506,12 +524,16 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
                         AppUtils.hideSoftKeyboard(getActivity());
                     }else {
-                        Toast.makeText(getActivity(), getString(R.string.not_update),Toast.LENGTH_SHORT).show();
+                        if(response.body()!=null && response.body().getStatus().equals("1")){
+                            Toast.makeText(getActivity(), getString(R.string.not_update_yet), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(), getString(R.string.not_update), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 
                 @Override
-                public void onFailure(Call<UserName> call, Throwable t) {
+                public void onFailure(Call<Status> call, Throwable t) {
 
                 }
             });

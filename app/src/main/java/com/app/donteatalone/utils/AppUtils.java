@@ -3,7 +3,6 @@ package com.app.donteatalone.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -14,13 +13,11 @@ import android.util.Base64;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
-import java.io.ByteArrayOutputStream;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
-import java.text.Normalizer;
-import java.util.regex.Pattern;
 
 import javax.crypto.Cipher;
 
@@ -74,15 +71,12 @@ public class AppUtils {
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    public static String convertBitmaptoString(Bitmap bitmap) {
-        String tempConvert = "";
-        if (bitmap != null) {
-            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, arrayOutputStream);
-            byte[] b = arrayOutputStream.toByteArray();
-            tempConvert = Base64.encodeToString(b, Base64.DEFAULT);
+    public static void touchOutsideHideSoftKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null && activity.getCurrentFocus() != null) {
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
         }
-        return tempConvert;
     }
 
     public static boolean isNetworkAvailable(Context context) {
@@ -110,17 +104,6 @@ public class AppUtils {
         }
 
         return new String(Base64.encode(encryptedData, Base64.NO_WRAP));
-    }
-
-    public static String convertStringToNFD(String str) {
-        try {
-            String temp = Normalizer.normalize(str, Normalizer.Form.NFD);
-            Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-            return pattern.matcher(temp).replaceAll("").replaceAll("đ", "d").replaceAll("Đ", "D");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     public static int convertPxToDp(int px) {

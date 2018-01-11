@@ -42,6 +42,9 @@ public interface Structure {
         @POST("/user/{phone}")
         Call<UserName> getProfileUser(@Path("phone") String phone);
 
+        @GET("/init/login/{phone}")
+        Call<InitParam> getInitParamLogin(@Path("phone") String phone);
+
         @POST("/login")
         Call<Status> checkAccount(@Body UserName user);
 
@@ -79,7 +82,7 @@ public interface Structure {
 
 
         @POST("/profile_update")
-        Call<UserName> updateProfile(@Body InfoProfileUpdate item);
+        Call<Status> updateProfile(@Body InfoProfileUpdate item);
         @GET("/profile/allImage/{phone}")
         Call<ArrayList<String>> getAllImage(@Path("phone") String phone);
         @GET("/profile/publicBlog/{phone}/{limit}")

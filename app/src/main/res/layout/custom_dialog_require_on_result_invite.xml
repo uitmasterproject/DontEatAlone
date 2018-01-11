@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_deep_orange">
+        android:background="@color/color_deep_orange"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <ImageView
             android:id="@+id/custom_dialog_require_on_result_invite_img_close"
@@ -17,197 +20,193 @@
             android:layout_gravity="end"
             android:background="@drawable/ripple_selector"
             android:contentDescription="@null"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_close_white_36dp" />
 
         <TextView
             android:id="@+id/custom_dialog_require_on_result_invite_txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/notification"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:paddingStart="5dp"
+            android:text="@string/notification"
+            android:textSize="18sp"/>
 
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_weight="1"
+                android:text="@string/name"
+                android:textSize="16sp"
+                android:textColor="@color/dot_tutorial_inactive" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/name"
-                    android:textColor="@color/dot_tutorial_inactive" />
-
-                <TextView
-                    android:id="@+id/custom_dialog_require_on_result_invite_txt_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="17sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/custom_dialog_require_on_result_invite_txt_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/phone"
-                    android:textColor="@color/dot_tutorial_inactive" />
-
-                <TextView
-                    android:id="@+id/custom_dialog_require_on_result_invite_txt_phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="17dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/date"
-                    android:textColor="@color/dot_tutorial_inactive" />
-
-                <TextView
-                    android:id="@+id/custom_dialog_require_on_result_invite_txt_time"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="17sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/place"
-                    android:textColor="@color/dot_tutorial_inactive" />
-
-                <TextView
-                    android:id="@+id/custom_dialog_require_on_result_invite_txt_place"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="17sp" />
-            </LinearLayout>
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="17sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/phone"
+                android:textSize="16sp"
+                android:textColor="@color/dot_tutorial_inactive" />
+
+            <TextView
+                android:id="@+id/custom_dialog_require_on_result_invite_txt_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="17dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/date"
+                android:textSize="16sp"
+                android:textColor="@color/dot_tutorial_inactive" />
+
+            <TextView
+                android:id="@+id/custom_dialog_require_on_result_invite_txt_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/place"
+                android:textSize="16sp"
+                android:textColor="@color/dot_tutorial_inactive" />
+
+            <TextView
+                android:id="@+id/custom_dialog_require_on_result_invite_txt_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/custom_dialog_require_on_result_invite_ll_container_ok"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/custom_dialog_require_on_result_invite_btn_ok"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/btn_login"
+                android:text="@string/btn_ok"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/custom_dialog_require_on_result_invite_ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
-                android:id="@+id/custom_dialog_require_on_result_invite_ll_container_ok"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="end"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/custom_dialog_require_on_result_invite_btn_ok"
+                    android:id="@+id/custom_dialog_require_on_result_invite_btn_viewprofile"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="35dp"
                     android:background="@drawable/btn_login"
-                    android:text="@string/btn_ok"
+                    android:text="@string/view_profile"
                     android:textSize="12sp" />
 
+                <Button
+                    android:id="@+id/custom_dialog_require_on_result_invite_btn_accept"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/btn_login"
+                    android:text="@string/accept"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/custom_dialog_require_on_result_invite_btn_refuse"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/btn_login"
+                    android:text="@string/refuse"
+                    android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/custom_dialog_require_on_result_invite_ll_container"
+            <TextView
+                android:id="@+id/custom_dialog_require_on_result_invite_txt_suggest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/custom_dialog_require_on_result_invite_btn_viewprofile"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/btn_login"
-                        android:text="@string/view_profile"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/custom_dialog_require_on_result_invite_btn_accept"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="15dp"
-                        android:background="@drawable/btn_login"
-                        android:text="@string/accept"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/custom_dialog_require_on_result_invite_btn_refuse"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="15dp"
-                        android:background="@drawable/btn_login"
-                        android:text="@string/refuse"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/custom_dialog_require_on_result_invite_txt_suggest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/suggestResponse" />
-            </LinearLayout>
-
+                android:layout_marginTop="5dp"
+                android:text="@string/suggestResponse" />
         </LinearLayout>
-
 
     </LinearLayout>
 

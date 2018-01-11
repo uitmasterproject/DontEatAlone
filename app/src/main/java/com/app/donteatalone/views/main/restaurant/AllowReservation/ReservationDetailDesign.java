@@ -207,7 +207,7 @@ public class ReservationDetailDesign extends Fragment implements View.OnClickLis
                             if (response.body() != null) {
                                 ReservationDetail reservationDetail = response.body();
 
-                                if (TextUtils.isEmpty(reservationDetail.getSession())) {
+                                if (TextUtils.isEmpty(reservationDetail.getSession()) || reservationDetail.getSession().trim().length()<2) {
                                     listAvailableSession.addAll(listSessions);
                                 } else {
 

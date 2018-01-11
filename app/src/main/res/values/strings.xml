@@ -111,6 +111,7 @@
 
     <!--error about profile-->
     <string name="not_update">Cập nhật thông tin thất bại. Vui lòng thử lại sau.</string>
+    <string name="not_update_yet">Thông tin không có gì để cập nhật</string>
     <string name="basic_information">Thông tin cơ bản</string>
     <string name="advanced_information">Thông tin nâng cao</string>
     <string name="target_information">Thông tin đối tượng</string>
@@ -135,7 +136,6 @@
     <string name="dont_find_image">Không thể tìm thấy ứng dụng cắt chỉnh ảnh.</string>
     <string name="not_support_crop">Thiết bị này không hỗ trợ thao tác cắt ảnh</string>
 
-    <!--*****************************************************************************************-->
     <!--Strings for register screen-->
     <string name="register_step_1_title">Nhập Số Điện Thoại Của Bạn.</string>
     <string name="register_step_1_suggest">Bạn sẽ sử dụng số điện thoại này để đăng nhập hoặc khi cần đặt lại mật khẩu.</string>
@@ -163,7 +163,6 @@
     <string name="register_step_7_title">Đối Tượng Của Bạn Như Thế Nào?</string>
     <string name="register_step_7_suggest">Miêu tả về đối tượng của bạn về Tính Cách, Phong Cách và Món Ăn mà bạn mong muốn sẽ cùng trải nghiệm với người đó.</string>
 
-    <!--*****************************************************************************************-->
     <!--Strings for blog screen-->
     <string name="blog">Blog</string>
     <string name="blog_status_1">Hôm nay bạn thế nào?</string>
@@ -171,6 +170,9 @@
     <string name="blog_title">Tiêu đề blog</string>
     <string name="blog_suggest">Viết blog để chia sẻ cảm giác hiện tại và giúp mọi người hiểu hơn về bạn.</string>
     <string name="blog_post">Đăng</string>
+    <string name="blog_delete">Bạn có chắc chắn muốn xóa blog này không?</string>
+    <string name="blog_delete_confirm">Xoá</string>
+    <string name="blog_delete_title">Xóa blog</string>
 
     <!--*****************************************************************************************-->
     <!--Strings for notification screen-->

@@ -276,7 +276,7 @@ public class AllowReservationFragment extends Fragment {
                             if(response.body()!=null){
                                 if(response.body().getStatus().equals("1")){
                                     listReservation.remove(position);
-                                    adapter.notifyDataSetChanged();
+                                    reservationAdapter.notifyDataSetChanged();
 
                                     if(listReservation.size()>0){
                                         llContainerReservation.setVisibility(View.VISIBLE);
