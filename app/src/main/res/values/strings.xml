@@ -126,7 +126,7 @@
 
     <!--error about require-->
     <string name="empty_no_restaurant">Không tìm được nhà hàng nào hợp lệ</string>
-    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào ngày này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
+    <string name="empty_restaurant">Bạn chưa đặt nhà hàng nào vào thời gian này, hãy chọn tab restaurant để tiến hành đặt chỗ trước</string>
 
     <!--others error-->
     <string name="invalid_network">Mạng không khả dụng. Vui lòng kiểm tra kết nối internet</string>
@@ -609,7 +609,6 @@
         <item>	dễ tính	</item>
         <item>	thú vị	</item>
         <item>	thân thiện	</item>
-        <item>	vui vẻ	</item>
         <item>	hào phóng	</item>
         <item>	chăm chỉ	</item>
         <item>	tốt bụng	</item>

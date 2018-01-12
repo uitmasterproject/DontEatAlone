@@ -177,7 +177,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                 if (radioGroupGender.getVisibility() == View.GONE) {
                     radioGroupGender.animate().translationY(1f).setDuration(500);
                     radioGroupGender.setVisibility(View.VISIBLE);
-                    if (tvGender.getText().toString().equals("Male")) {
+                    if (tvGender.getText().toString().equals("Nam")) {
                         radioGroupGender.check(R.id.activity_edit_profile_radio_male);
                     } else {
                         radioGroupGender.check(R.id.activity_edit_profile_radio_female);
@@ -197,7 +197,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                     llDobCustomize.setVisibility(View.VISIBLE);
                     llDobCustomize.animate().translationY(1f).setDuration(500);
 
-                    SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
                     Date date = null;
                     try {
                         date = format.parse(tvAge.getText().toString());
@@ -236,7 +236,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
                 AppUtils.hideSoftKeyboard(EditProfileActivity.this);
                 final BaseProgress baseProgress = new BaseProgress();
 
-                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
                 Date date = null;
                 try {
                     date = format.parse(tvAge.getText().toString());
@@ -291,7 +291,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
     private void setValueAfterEdit(final BaseProgress baseProgress) {
         userName.setFullName(StringEscapeUtils.escapeJava(etName.getText().toString()));
-        userName.setGender(tvGender.getText().toString());
+        userName.setGender(StringEscapeUtils.escapeJava(tvGender.getText().toString()));
         userName.setBirthday(tvAge.getText().toString());
         userName.setAddress(StringEscapeUtils.escapeJava(tvAddress.getText().toString()));
         if(latlngAddress!=null) {
@@ -479,7 +479,7 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
         }
         etName.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
         tvAge.setText(userName.getBirthday());
-        tvGender.setText(userName.getGender());
+        tvGender.setText(StringEscapeUtils.unescapeJava(userName.getGender()));
         tvAddress.setText(StringEscapeUtils.unescapeJava(userName.getAddress()));
 
         mactvTagetFoods.setText(StringEscapeUtils.unescapeJava(userName.getTargetFood()));
@@ -544,8 +544,9 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
             @Override
             public void onWheelSelected(int i) {
-                tvAge.setText(getDateData(R.array.Month).get(wpDobMonths.getCurrentItemPosition()) + "/" +
-                        tvAge.getText().toString().split("/")[1] + "/" + tvAge.getText().toString().split("/")[2]);
+                tvAge.setText(tvAge.getText().toString().split("/")[0] + "/" +
+                        getDateData(R.array.Month).get(wpDobMonths.getCurrentItemPosition()) + "/" +
+                         tvAge.getText().toString().split("/")[2]);
             }
 
             @Override
@@ -562,8 +563,10 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
             @Override
             public void onWheelSelected(int i) {
-                tvAge.setText(tvAge.getText().toString().split("/")[0] + "/" + tvAge.getText().toString().split("/")[1] +
-                        "/" + wpDobYears.getSelectedYear());
+                tvAge.setText(
+                        tvAge.getText().toString().split("/")[0] + "/" +
+                                tvAge.getText().toString().split("/")[1] +
+                        "/" + wpDobYears.getCurrentYear());
             }
 
             @Override
@@ -580,8 +583,8 @@ public class EditProfileActivity extends AppCompatActivity implements PlaceSelec
 
             @Override
             public void onWheelSelected(int i) {
-                tvAge.setText(tvAge.getText().toString().split("/")[0] + "/" +
-                        getDateData(R.array.Day_31).get(wpDobDays.getCurrentItemPosition()) + "/" +
+                tvAge.setText(getDateData(R.array.Day_31).get(wpDobDays.getCurrentItemPosition()) + "/" +
+                        tvAge.getText().toString().split("/")[1] + "/" +
                         tvAge.getText().toString().split("/")[2]);
             }
 

@@ -17,7 +17,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -39,6 +38,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import static com.app.donteatalone.utils.ImageProcessor.PERMISSION_CAMERA_REQUEST_CODE;
 import static com.app.donteatalone.utils.ImageProcessor.PERMISSION_READ_REQUEST_CODE;
@@ -97,11 +98,10 @@ public class RegisterStep3Fragment extends Fragment {
 
     /*Hide softkeyboard when touch outsite edittext*/
     private void llRootTouch() {
-        llRoot.setOnTouchListener(new View.OnTouchListener() {
+        llRoot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                AppUtils.hideSoftKeyboard(getActivity());
-                return true;
+            public void onClick(View v) {
+                AppUtils.touchOutsideHideSoftKeyboard(getActivity());
             }
         });
     }
@@ -259,7 +259,7 @@ public class RegisterStep3Fragment extends Fragment {
                             userName.setAvatar("https://firebasestorage.googleapis.com/v0/b/dont-eat-alone-storage.appspot.com/o/avatar_man.png?alt=media&token=3f4db113-759c-4819-9998-8400687af0d8");
                         }
                     }
-                    userName.setGender(gender);
+                    userName.setGender(StringEscapeUtils.escapeJava(gender));
                     _mViewPager.setCurrentItem(3, true);
                 }
             }

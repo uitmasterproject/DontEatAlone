@@ -24,7 +24,7 @@
 
         <ImageView
             android:id="@+id/custom_dialog_require_on_info_account_user_img_close"
-            android:layout_width="03dp"
+            android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/ripple_selector"
@@ -37,7 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="2.4"
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingBottom="10dp">
@@ -98,7 +98,8 @@
             android:layout_gravity="center"
             android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
 
             <!--For name-->
             <LinearLayout
@@ -123,7 +124,7 @@
                     android:layout_weight="0.7"
                     android:maxLines="1"
                     android:textColor="@color/color_deep_orange_1"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -149,7 +150,7 @@
                     android:layout_weight="0.7"
                     android:text="@null"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -174,7 +175,7 @@
                     android:layout_weight="0.7"
                     android:text="@null"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
 
             </LinearLayout>
@@ -199,7 +200,7 @@
                     android:layout_weight="0.7"
                     android:text="@null"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -223,7 +224,7 @@
                     android:layout_weight="0.7"
                     android:text="@null"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -275,7 +276,7 @@
                     android:maxLines="1"
                     android:text="@null"
                     android:textColor="@color/dot_tutorial_active"
-                    android:textSize="15sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -303,7 +304,7 @@
                     android:gravity="center_vertical"
                     android:text="@null"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 

@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -51,6 +52,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -250,7 +252,6 @@ public class StatusActivity extends Activity {
                     title = infoBlog.getTitle();
                     thisDate = infoBlog.getDate();
                 }
-                final ArrayList<String> image = new ArrayList<>();
 
                 countImage = 0;
                 countResult = 0;
@@ -258,10 +259,11 @@ public class StatusActivity extends Activity {
                 while (countImage < llContainer.getChildCount()) {
                     if (llContainer.getChildAt(countImage).getClass().getName().equals("android.widget.ImageView")) {
                         countResult += 1;
-                        break;
                     }
                     countImage += 1;
                 }
+
+                final ArrayList<String> image = new ArrayList<>(Arrays.asList(new String[countResult]));
 
                 if (countResult != 0) {
 
@@ -278,14 +280,14 @@ public class StatusActivity extends Activity {
 
                                 content += "<image>" + countImage + "</image>";
 
-                                countImage += 1;
-
                                 storageRefImage = FirebaseStorage.getInstance().getReferenceFromUrl(MainActivity.URL_STORAGE_FIRE_BASE).
                                         child(MainActivity.BLOG_PATH_STORAGE_FIRE_BASE + new MySharePreference(StatusActivity.this).getPhoneLogin()
                                                 + "/"
                                                 + thisDate
                                                 + "/"
                                                 + countImage);
+
+                                countImage += 1;
 
                                 storageRefImage.putBytes(ImageProcessor.convertBitmapToByte(((BitmapDrawable) imageView.getDrawable()).getBitmap()))
                                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -294,7 +296,9 @@ public class StatusActivity extends Activity {
                                                 @SuppressWarnings("VisibleForTests")
                                                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                                                 if (downloadUrl != null) {
-                                                    image.add(countResult,downloadUrl.toString());
+                                                    int positionImage=0;
+                                                    positionImage = Integer.parseInt(taskSnapshot.getMetadata().getPath().substring(taskSnapshot.getMetadata().getPath().length()-1));
+                                                    image.set(positionImage,downloadUrl.toString());
                                                     countResult += 1;
                                                 }
 

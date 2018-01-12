@@ -87,10 +87,10 @@ public class AccordantUserAdapter extends RecyclerView.Adapter<AccordantUserAdap
 
         Float litersOfPetrol = Float.parseFloat(listAccordantUser.get(position).getPercent());
         DecimalFormat df = new DecimalFormat("00.0");
-        df.setMaximumFractionDigits(2);
+        df.setMaximumFractionDigits(1);
         holder.txtPercent.setText(df.format(litersOfPetrol) + "%");
 
-        if (listAccordantUser.get(position).getGender().equals("Male")) {
+        if (listAccordantUser.get(position).getGender().equals("Nam")) {
             holder.imgGender.setImageResource(R.drawable.ic_male);
         } else {
             holder.imgGender.setImageResource(R.drawable.ic_female);

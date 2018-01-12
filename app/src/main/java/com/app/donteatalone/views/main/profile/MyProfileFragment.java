@@ -525,8 +525,18 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                         AppUtils.hideSoftKeyboard(getActivity());
                     }else {
                         if(response.body()!=null && response.body().getStatus().equals("1")){
+                            llDisplay.setVisibility(View.VISIBLE);
+
+                            //tvContent.setText(setMultiColorText(getResources().getString(titleDefaultResource), infoUpdate.getContent()));
+
+                            rlEdit.setVisibility(View.GONE);
+
                             Toast.makeText(getActivity(), getString(R.string.not_update_yet), Toast.LENGTH_SHORT).show();
                         }else {
+                            llDisplay.setVisibility(View.VISIBLE);
+
+                            rlEdit.setVisibility(View.GONE);
+
                             Toast.makeText(getActivity(), getString(R.string.not_update), Toast.LENGTH_SHORT).show();
                         }
                     }

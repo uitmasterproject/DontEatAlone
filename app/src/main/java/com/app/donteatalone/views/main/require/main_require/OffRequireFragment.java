@@ -85,8 +85,6 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = inflater.inflate(R.layout.fragment_require_off, container, false);
 
-        Log.e("activity Off", getActivity()+"++++++++++++++++++++++++++++++++++++++++");
-
         accountSharePreference = new MySharePreference(getActivity());
         phone = accountSharePreference.getPhoneLogin();
         putInfoRequireIntoShareReference();
@@ -189,7 +187,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.require_off_txt_gender_selected,
                         R.drawable.design_require_off_txt_gender_rightsight_default);
-                infoRequireSharePreference.setGenderRequire("Female");
+                infoRequireSharePreference.setGenderRequire(StringEscapeUtils.escapeJava("Nữ"));
             }
         });
 
@@ -202,7 +200,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
                 setClickGender(R.drawable.design_require_off_txt_gender_leftsight_default,
                         R.color.grey_1,
                         R.drawable.design_require_off_txt_gender_rightsight_selector);
-                infoRequireSharePreference.setGenderRequire("Male");
+                infoRequireSharePreference.setGenderRequire(StringEscapeUtils.escapeJava("Nam"));
             }
         });
     }
@@ -430,7 +428,7 @@ public class OffRequireFragment extends Fragment implements PlaceSelectionListen
         }
 
         llDisplay.setVisibility(View.VISIBLE);
-        tvContent.setText(StringEscapeUtils.unescapeJson(content));
+        tvContent.setText(StringEscapeUtils.unescapeJava(content));
         rlEdit.setVisibility(View.GONE);
         AppUtils.hideSoftKeyboard(getActivity());
 

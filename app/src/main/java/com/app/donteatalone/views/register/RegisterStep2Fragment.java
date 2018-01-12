@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -103,16 +102,15 @@ public class RegisterStep2Fragment extends Fragment {
     /*Hide keyboard when touch outsite edittext*/
     @SuppressLint("ClickableViewAccessibility")
     private void llRootTouch() {
-        llRoot.setOnTouchListener(new View.OnTouchListener() {
+        llRoot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                AppUtils.hideSoftKeyboard(getActivity());
+            public void onClick(View v) {
+                AppUtils.touchOutsideHideSoftKeyboard(getActivity());
                 if (edtFullName.hasFocus()) {
                     edtPassword.requestFocus();
                 } else {
                     edtFullName.requestFocus();
                 }
-                return true;
             }
         });
     }

@@ -24,6 +24,7 @@ import com.app.donteatalone.base.BaseProgress;
 import com.app.donteatalone.base.OnRecyclerItemClickListener;
 import com.app.donteatalone.connectmongo.Connect;
 import com.app.donteatalone.model.InfoBlog;
+import com.app.donteatalone.model.Status;
 import com.app.donteatalone.utils.AppUtils;
 import com.app.donteatalone.utils.MySharePreference;
 import com.app.donteatalone.views.main.MainActivity;
@@ -56,6 +57,8 @@ public class BlogFragment extends Fragment {
 
     private BroadcastReceiver broadcastReceiver;
 
+    private int check = 0;
+
 
     public static BlogFragment newInstance() {
         return new BlogFragment();
@@ -73,7 +76,6 @@ public class BlogFragment extends Fragment {
     }
 
 
-
     private void init() {
         btnStatus = (Button) view.findViewById(R.id.fragment_blog_edt_status);
         imgAvatar = (ImageView) view.findViewById(R.id.fragment_blog_avatar);
@@ -81,7 +83,7 @@ public class BlogFragment extends Fragment {
 
         dialog = new BaseProgress();
 
-        rcvListBlog = (RecyclerView)view.findViewById(R.id.fragment_blog_rcv_my_blog);
+        rcvListBlog = (RecyclerView) view.findViewById(R.id.fragment_blog_rcv_my_blog);
         llEntry = (LinearLayout) view.findViewById(R.id.fragment_blog_ll_entry);
         rcvListBlog.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -92,21 +94,55 @@ public class BlogFragment extends Fragment {
 
         adapter.setClickDelete(new OnRecyclerItemClickListener() {
             @Override
-            public void onItemClick(View view, int resource) {
-                rcvListBlog.setVisibility(View.GONE);
-                llEntry.setVisibility(View.VISIBLE);
+            public void onItemClick(View view, final int resource) {
+                clearItem(resource);
             }
         });
 
     }
 
-    private void listenBroadcast(){
-        if(broadcastReceiver==null) {
+    private void clearItem(final int resource){
+
+        dialog.showProgressLoading(getActivity());
+        Call<Status> deleteStatus = Connect.getRetrofit().deleteStatusBlog(new MySharePreference(getActivity()).getPhoneLogin(), listInfoBlog.get(resource).getDate());
+        deleteStatus.enqueue(new Callback<Status>() {
+            @Override
+            public void onResponse(Call<Status> call, Response<Status> response) {
+                dialog.hideProgressLoading();
+                if (response.body() != null) {
+                    if (response.body().getStatus().equals("0")) {
+                        listInfoBlog.remove(resource);
+                        if (listInfoBlog.size() <= 0) {
+                            rcvListBlog.setVisibility(View.GONE);
+                            llEntry.setVisibility(View.VISIBLE);
+                        }
+                        adapter = new BlogItemAdapter(listInfoBlog, getActivity());
+
+                        adapter.setClickDelete(new OnRecyclerItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, final int resource) {
+                                clearItem(resource);
+                            }
+                        });
+                        rcvListBlog.setAdapter(adapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Status> call, Throwable t) {
+                dialog.hideProgressLoading();
+            }
+        });
+    }
+
+    private void listenBroadcast() {
+        if (broadcastReceiver == null) {
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     if (intent.getBooleanExtra(MainActivity.SEND_BROADCAST_MODIFY_BLOG_DATA, false)) {
-                        Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++");
+                        check = 1;
                         getListBlog();
                     }
                 }
@@ -127,21 +163,30 @@ public class BlogFragment extends Fragment {
                     dialog.hideProgressLoading();
                     if (response.body() != null && response.body().size() > 0) {
 
-                        Log.e("Broadcast","broadcast++++++++++++++++++++++++++++++++++++++++++++response not null");
                         listInfoBlog.clear();
 
                         llEntry.setVisibility(View.GONE);
+                        rcvListBlog.setVisibility(View.VISIBLE);
 
                         listInfoBlog.addAll(response.body());
 
                         Collections.reverse(listInfoBlog);
 
-                        adapter.notifyDataSetChanged();
+                        adapter = new BlogItemAdapter(listInfoBlog, getActivity());
+
+                        adapter.setClickDelete(new OnRecyclerItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, final int resource) {
+                                clearItem(resource);
+                            }
+                        });
+
+                        rcvListBlog.setAdapter(adapter);
 
                         if (listInfoBlog.get(0).getFeeling() != 0) {
                             try {
                                 imgAvatar.setImageResource(listInfoBlog.get(0).getFeeling());
-                            }catch (Exception exception){
+                            } catch (Exception exception) {
                                 imgAvatar.setImageResource(R.drawable.ic_happy);
                             }
                         } else {
@@ -149,6 +194,7 @@ public class BlogFragment extends Fragment {
                         }
                     } else {
                         llEntry.setVisibility(View.VISIBLE);
+                        rcvListBlog.setVisibility(View.GONE);
                         imgAvatar.setImageResource(R.drawable.ic_happy);
                     }
                 }
@@ -175,7 +221,7 @@ public class BlogFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if(broadcastReceiver!=null){
+        if (broadcastReceiver != null) {
             LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
         }
         super.onDestroy();

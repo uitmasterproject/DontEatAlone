@@ -34,6 +34,7 @@ import com.app.donteatalone.model.AccordantUser;
 import com.app.donteatalone.model.AccordantUserUpdate;
 import com.app.donteatalone.model.CustomSocket;
 import com.app.donteatalone.model.InfoInvitation;
+import com.app.donteatalone.model.ReservationDetail;
 import com.app.donteatalone.model.Restaurant;
 import com.app.donteatalone.model.RestaurantDetail;
 import com.app.donteatalone.model.SocketInfoUser;
@@ -196,6 +197,8 @@ public class OnRequireFragment extends Fragment {
                                 Type type = new TypeToken<ArrayList<AccordantUser>>() {
                                 }.getType();
                                 ArrayList<AccordantUser> list = gson.fromJson(data.getString("listUserLike"), type);
+
+                                listAccordantUser.clear();
 
                                 if(countReverse<1000) {
                                     listAccordantUser.addAll(list);
@@ -403,7 +406,8 @@ public class OnRequireFragment extends Fragment {
 
     private String getInforRequire() {
 
-        SocketInfoUser socketInfoUser = new SocketInfoUser(phone, setDefaultValue(infoRequireSharePreference.getGenderRequire(), "all"),
+        SocketInfoUser socketInfoUser = new SocketInfoUser(phone,
+                setDefaultValue(infoRequireSharePreference.getGenderRequire(), "all"),
                 setDefaultValue(infoRequireSharePreference.getAgeMinRequire(), "18"),
                 setDefaultValue(infoRequireSharePreference.getAgeMaxRequire(), "25"),
                 setDefaultValue(infoRequireSharePreference.getAddressRequire(), StringEscapeUtils.escapeJava(getString(R.string.default_address))),
@@ -507,7 +511,7 @@ public class OnRequireFragment extends Fragment {
 
                 txtAddress.setText(listRestaurant.get(resource).getName());
 
-                infoInvitation.setRestaurantInfo(listRestaurant.get(resource));
+                infoInvitation.setRestaurantInfo(new Restaurant(listRestaurant.get(resource)));
 
                 rcvRestaurant.setVisibility(View.GONE);
 
@@ -534,7 +538,7 @@ public class OnRequireFragment extends Fragment {
                 }
 
                 infoInvitation.setRestaurantInfo(new Restaurant(listRestaurantDetail.get(resource)));
-                infoInvitation.setReservationDetail(listRestaurantDetail.get(resource).getListReservations().get(0));
+                infoInvitation.setReservationDetail(new ReservationDetail(listRestaurantDetail.get(resource).getListReservations().get(0)));
 
                 rcvRestaurant.setVisibility(View.GONE);
 
@@ -606,7 +610,7 @@ public class OnRequireFragment extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (rbReservation.isChecked()) {
+            if (infoInvitation.getReservationDetail()!=null) {
                 SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
                 Date formatTimeReservation = null;
                 Date formatTimer = null;
@@ -764,16 +768,34 @@ public class OnRequireFragment extends Fragment {
                 public void onResponse(Call<ArrayList<RestaurantDetail>> call, Response<ArrayList<RestaurantDetail>> response) {
                     progressBar.setVisibility(View.GONE);
                     if (response.body() != null && response.body().size() > 0) {
-                        if(rcv.getVisibility()==View.GONE) {
-                            rcv.setVisibility(View.VISIBLE);
-                        }
-                        txtEmpty.setVisibility(View.GONE);
 
                         listRestaurant.clear();
-                        listRestaurant.addAll(response.body());
-                        Collections.reverse(listRestaurant);
 
-                        adapter.notifyDataSetChanged();
+                        ArrayList<RestaurantDetail> listReservation=new ArrayList<>(response.body());
+
+                        Calendar calendar =Calendar.getInstance();
+                        SimpleDateFormat format = new SimpleDateFormat("HH:mm",Locale.ENGLISH);
+
+                        for(int i=0;i<listReservation.size();i++){
+                            if(listReservation.get(i).getListReservations().get(0).getTime().compareTo(format.format(calendar.getTime()))>0){
+                                listRestaurant.add(listReservation.get(i));
+                            }
+                        }
+
+                        if(listRestaurant.size()>0) {
+                            if (rcv.getVisibility() == View.GONE) {
+                                rcv.setVisibility(View.VISIBLE);
+                            }
+                            txtEmpty.setVisibility(View.GONE);
+
+                            Collections.reverse(listRestaurant);
+
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            rcv.setVisibility(View.GONE);
+                            txtEmpty.setVisibility(View.VISIBLE);
+                            txtEmpty.setText(getActivity().getString(R.string.empty_restaurant));
+                        }
                     } else {
                         rcv.setVisibility(View.GONE);
                         txtEmpty.setVisibility(View.VISIBLE);

@@ -30,6 +30,7 @@ import com.app.donteatalone.views.main.profile.event_history.ProfileHistoryFragm
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -197,17 +198,17 @@ public class ProfileAccordantUser extends AppCompatActivity {
                 .error(R.drawable.avatar)
                 .into(ivAvatar);
 
-        tvName.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
-        tvName1.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
-        tvName2.setText(StringEscapeUtils.unescapeJava(userName.getFullName()));
+        tvName.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(userName.getFullName())));
+        tvName1.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(userName.getFullName())));
+        tvName2.setText(StringUtils.capitalize(StringEscapeUtils.unescapeJava(userName.getFullName())));
         if (userName.getBirthday().equals(""))
             tvAge.setText("");
         else
             tvAge.setText((date.getYear() - Integer.parseInt(userName.getBirthday().split("/")[2])) + "");
-        if (userName.getGender().equals("Female")) {
-            tvGender.setText("F");
+        if (userName.getGender().equals("Nam")) {
+            tvGender.setText("Nam");
         } else {
-            tvGender.setText("M");
+            tvGender.setText("Nữ");
         }
         tvPhone.setText(userName.getPhone());
         if (userName.getAddress().equals("")) {

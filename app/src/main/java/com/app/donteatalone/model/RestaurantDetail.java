@@ -50,6 +50,18 @@ public class RestaurantDetail extends Restaurant implements Parcelable {
         this.listReservations = listReservations;
     }
 
+    public RestaurantDetail(RestaurantDetail restaurantDetail){
+        super(restaurantDetail);
+        this.realImage = restaurantDetail.realImage;
+        this.designImage = restaurantDetail.designImage;
+        this.service = restaurantDetail.service;
+        this.phoneNumber = restaurantDetail.phoneNumber;
+        this.type = restaurantDetail.type;
+        this.listTables = restaurantDetail.listTables;
+        this.listSessions = restaurantDetail.listSessions;
+        this.listReservations = restaurantDetail.listReservations;
+    }
+
     public RestaurantDetail(Parcel in, String city, String district, ArrayList<String> realImage, ArrayList<String> designImage, ArrayList<String> service, String phoneNumber, String type, ArrayList<String> listTables, ArrayList<String> listSessions, ArrayList<ReservationDetail> listReservations) {
         super(in);
         this.city = city;

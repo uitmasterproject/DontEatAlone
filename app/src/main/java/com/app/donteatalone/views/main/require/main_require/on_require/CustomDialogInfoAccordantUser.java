@@ -106,7 +106,7 @@ public class CustomDialogInfoAccordantUser {
     }
 
     private void setValueGender(ImageView imgGender) {
-        if (infoInvitation.getOwnInvitation().getGender().equals("Male")) {
+        if (infoInvitation.getOwnInvitation().getGender().equals("Nam")) {
             imgGender.setImageResource(R.drawable.ic_male);
         } else {
             imgGender.setImageResource(R.drawable.ic_female);

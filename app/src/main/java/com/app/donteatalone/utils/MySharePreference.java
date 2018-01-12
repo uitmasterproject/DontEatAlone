@@ -355,7 +355,7 @@ public class MySharePreference {
     public AccordantUser createInfoUser(){
         int age = 20;
         Calendar calendar = Calendar.getInstance();
-        if(TextUtils.isEmpty(getBirthdayLogin()) && getBirthdayLogin().contains("/")){
+        if(!TextUtils.isEmpty(getBirthdayLogin()) && getBirthdayLogin().contains("/")){
             String [] arr = getBirthdayLogin().split("/");
             if(arr.length==3){
                 age = calendar.get(Calendar.YEAR) - Integer.parseInt(arr[2]);

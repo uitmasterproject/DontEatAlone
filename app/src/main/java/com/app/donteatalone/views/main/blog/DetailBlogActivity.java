@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.app.donteatalone.R;
 import com.app.donteatalone.model.InfoBlog;
-import com.app.donteatalone.views.main.require.main_require.on_require.ProfileAccordantUser;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -98,9 +97,10 @@ public class DetailBlogActivity extends AppCompatActivity {
 
                     onBackPressed();
                 } else {
-                    intent = new Intent(DetailBlogActivity.this, ProfileAccordantUser.class);
-                    intent.putExtra(ARG_PHONE_NUMBER, own);
-                    startActivity(intent);
+//                    intent = new Intent(DetailBlogActivity.this, ProfileAccordantUser.class);
+//                    intent.putExtra(ARG_PHONE_NUMBER, own);
+//                    startActivity(intent);
+                    onBackPressed();
                 }
             }
         });

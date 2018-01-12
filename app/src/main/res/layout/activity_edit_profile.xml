@@ -313,23 +313,6 @@
                         android:visibility="gone">
 
                         <com.aigestudio.wheelpicker.WheelPicker
-                            android:id="@+id/activity_edit_profile_wheelpicker_dob_months"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2"
-                            app:wheel_atmospheric="true"
-                            app:wheel_curtain="true"
-                            app:wheel_curved="true"
-                            app:wheel_cyclic="true"
-                            app:wheel_data="@array/Month"
-                            app:wheel_indicator="true"
-                            app:wheel_indicator_color="@color/dot_tutorial_inactive"
-                            app:wheel_indicator_size="1dp"
-                            app:wheel_item_text_size="17sp"
-                            app:wheel_selected_item_text_color="@color/black"
-                            app:wheel_visible_item_count="4" />
-
-                        <com.aigestudio.wheelpicker.WheelPicker
                             android:id="@+id/activity_edit_profile_wheelpicker_dob_days"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -339,6 +322,23 @@
                             app:wheel_curved="true"
                             app:wheel_cyclic="true"
                             app:wheel_data="@array/Day_31"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/dot_tutorial_inactive"
+                            app:wheel_indicator_size="1dp"
+                            app:wheel_item_text_size="17sp"
+                            app:wheel_selected_item_text_color="@color/black"
+                            app:wheel_visible_item_count="4" />
+
+                        <com.aigestudio.wheelpicker.WheelPicker
+                            android:id="@+id/activity_edit_profile_wheelpicker_dob_months"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            app:wheel_atmospheric="true"
+                            app:wheel_curtain="true"
+                            app:wheel_curved="true"
+                            app:wheel_cyclic="true"
+                            app:wheel_data="@array/Month"
                             app:wheel_indicator="true"
                             app:wheel_indicator_color="@color/dot_tutorial_inactive"
                             app:wheel_indicator_size="1dp"

@@ -141,9 +141,9 @@ public class RegisterStep4Fragment extends Fragment {
     }
 
     private String toStringDate() {
-        return monthWhellPicker.getData().get(monthWhellPicker.getCurrentItemPosition()).toString()
+        return dayWheelPicker.getData().get(dayWheelPicker.getCurrentItemPosition()).toString()
                 + "/" +
-                dayWheelPicker.getData().get(dayWheelPicker.getCurrentItemPosition()).toString()
+                monthWhellPicker.getData().get(monthWhellPicker.getCurrentItemPosition()).toString()
                 + "/" +
                 yearWheelPicker.getData().get(yearWheelPicker.getCurrentItemPosition()).toString();
     }

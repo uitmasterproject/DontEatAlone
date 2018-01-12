@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             String uuid = UUID.randomUUID().toString();
             new MySharePreference(LoginActivity.this).setUUIDLogin(uuid);
         }
-
         init();
         clickLogin();
         clickRegister();

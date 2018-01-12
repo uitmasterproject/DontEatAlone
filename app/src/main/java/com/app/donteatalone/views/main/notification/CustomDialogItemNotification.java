@@ -135,7 +135,7 @@ public class CustomDialogItemNotification {
             @Override
             public void onClick(View v) {
                 try {
-                    clickbtnResponseInvatition("Chấp nhận");
+                    clickbtnResponseInvatition("accept");
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -149,7 +149,7 @@ public class CustomDialogItemNotification {
             @Override
             public void onClick(View v) {
                 try {
-                    clickbtnResponseInvatition("Từ chối");
+                    clickbtnResponseInvatition("refuse");
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

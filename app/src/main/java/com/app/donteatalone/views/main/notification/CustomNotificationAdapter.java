@@ -68,6 +68,8 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
             holder.txtTimer.setText(listInfoNotification.get(position).getCurrentTime());
             if (listInfoNotification.get(position).getRead().equals("0"))
                 holder.llContainer.setBackgroundColor(Color.CYAN);
+            else
+                holder.llContainer.setBackgroundColor(Color.WHITE);
             holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,6 +85,8 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
             holder.txtTimer.setText(listInfoNotification.get(position).getCurrentTime());
             if (listInfoNotification.get(position).getRead().equals("0"))
                 holder.llContainer.setBackgroundColor(Color.CYAN);
+            else
+                holder.llContainer.setBackgroundColor(Color.WHITE);
             holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,6 +100,7 @@ public class CustomNotificationAdapter extends RecyclerView.Adapter<CustomNotifi
                     context.getString(R.string.invite_content)));
             holder.imgIcon.setImageResource(R.drawable.ic_invite);
             holder.txtTimer.setText(listInfoNotification.get(position).getCurrentTime());
+            holder.llContainer.setBackgroundColor(Color.WHITE);
             holder.llContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

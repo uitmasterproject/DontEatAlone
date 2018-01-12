@@ -48,6 +48,13 @@ public class ReservationDetail implements Parcelable{
         this.session = session;
     }
 
+    public ReservationDetail(ReservationDetail reservationDetail) {
+
+        this.table = reservationDetail.table;
+        this.time = reservationDetail.time;
+        this.session = reservationDetail.session;
+    }
+
     protected ReservationDetail(Parcel in) {
         table = in.readString();
         time = in.readString();
