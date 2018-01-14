@@ -167,7 +167,9 @@ public class RegisterStep1Fragment extends Fragment {
                 if (TextUtils.isEmpty(edtPhone.getText().toString())) {
                     tilErrorPhone.setError(getString(R.string.empty_phone));
                 } else if (edtPhone.getText().toString().length() < 10 ||
-                        edtPhone.getText().toString().length() > 11) {
+                        edtPhone.getText().toString().length() > 11 ||
+                        (!edtPhone.getText().toString().startsWith("0") &&
+                        !edtPhone.getText().toString().startsWith("+84"))) {
                     tilErrorPhone.setError(getString(R.string.invalid_phone));
                 } else {
                     checkExitsPhone();

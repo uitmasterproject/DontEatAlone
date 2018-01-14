@@ -157,6 +157,15 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/txt_no_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_comment"
+                    android:textColor="@color/color_grey_2"
+                    android:paddingStart="30dp"/>
+
                 <LinearLayout
                     android:id="@+id/custom_adapter_recyclerview_fragment_profile_history_ll_accordantappraise"
                     android:layout_width="match_parent"

@@ -171,7 +171,7 @@ public class CustomDialogItemNotification {
         }
     }
 
-    private void setEventSendResult(String result, final Boolean status) throws JSONException {
+    private void setEventSendResult(String result, final Boolean status) {
         data.setResultInvitation(result);
         InfoInvitation infoInvitation = new InfoInvitation(context, data);
 

@@ -50,17 +50,20 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
     private Context context;
 
     private String phoneNumber;
+    private String name;
 
     public ProfileHistoryAdapter(ArrayList<ProfileHistoryModel> listProfileHistory, Context context) {
         this.listProfileHistory = listProfileHistory;
         this.context = context;
     }
 
-    public ProfileHistoryAdapter(ArrayList<ProfileHistoryModel> listProfileHistory, Context context, String phoneNumber) {
+    public ProfileHistoryAdapter(ArrayList<ProfileHistoryModel> listProfileHistory, Context context, String phoneNumber, String name) {
         this.listProfileHistory = listProfileHistory;
         this.context = context;
         this.phoneNumber = phoneNumber;
+        this.name = name;
     }
+
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_adapter_recyclerview_fragment_profile_history, null);
@@ -94,8 +97,8 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
             }
         });
 
-        if(holder.llContainer.getVisibility()==View.VISIBLE){
-            setValueComment(holder,position);
+        if (holder.llContainer.getVisibility() == View.VISIBLE) {
+            setValueComment(holder, position);
         }
 
         /*Event Click to icon Share*/
@@ -105,17 +108,75 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
                 if (holder.llContainer.getVisibility() == View.VISIBLE) {
                     holder.llContainer.setVisibility(View.GONE);
                 } else {
-                    holder.llContainer.setVisibility(View.VISIBLE);
-                    setValueComment(holder,position);
+
+                        holder.llContainer.setVisibility(View.VISIBLE);
+
+                    setValueComment(holder, position);
                 }
             }
         });
     }
 
-    private void setValueComment(final CustomViewHolder holder, final int position){
+    private void setValueComment(final CustomViewHolder holder, final int position) {
+
+            if (listProfileHistory.get(position).getMyAppraise() == null && !listProfileHistory.get(position).isMyRate()) {
+                if (TextUtils.isEmpty(phoneNumber) && !new MySharePreference((Activity) context).getPhoneLogin().equals(phoneNumber)) {
+                    holder.txtMyAppraise.setVisibility(View.GONE);
+                    holder.llWriteAppraise.setVisibility(View.VISIBLE);
+                    holder.imgMyHeart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!listProfileHistory.get(position).isMyRate()) {
+                                holder.imgMyHeart.setImageResource(R.drawable.ic_heart_red);
+                                listProfileHistory.get(position).setMyRate(true);
+                            } else {
+                                holder.imgMyHeart.setImageResource(R.drawable.ic_heart_black);
+                                listProfileHistory.get(position).setMyRate(false);
+                            }
+                        }
+                    });
+
+                    holder.ibtnSendAppraise.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final BaseProgress dialog = new BaseProgress();
+                            dialog.showProgressLoading(context);
+                            listProfileHistory.get(position).setMyAppraise(holder.edtWriteAppraise.getText().toString());
+                            Call<ArrayList<ProfileHistoryModel>> editEventHistory = Connect.getRetrofit().editEventHistory(new MySharePreference((Activity) context).getPhoneLogin(),
+                                    listProfileHistory.get(position));
+                            editEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
+                                @Override
+                                public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
+                                    dialog.hideProgressLoading();
+                                    if (response.body() != null) {
+                                        listProfileHistory.clear();
+                                        listProfileHistory.addAll(response.body());
+                                        notifyDataSetChanged();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ArrayList<ProfileHistoryModel>> call, Throwable t) {
+                                    dialog.hideProgressLoading();
+                                }
+                            });
+                        }
+                    });
+                }else {
+                    holder.txtMyAppraise.setVisibility(View.GONE);
+                    holder.llWriteAppraise.setVisibility(View.GONE);
+                    holder.imgMyHeart.setVisibility(View.GONE);
+                    holder.txtNoComment.setVisibility(View.VISIBLE);
+                }
+
+            } else {
+                setMyAppraise(holder, listProfileHistory.get(position).getMyAppraise(), listProfileHistory.get(position).isMyRate());
+            }
+
         if (listProfileHistory.get(position).getAccordantAppraise() == null && !listProfileHistory.get(position).isAccordantRate()) {
             holder.llAccordantAppraise.setVisibility(View.GONE);
         } else {
+            holder.txtNoComment.setVisibility(View.GONE);
             if (listProfileHistory.get(position).isAccordantRate()) {
                 holder.imgAccordantHeart.setImageResource(R.drawable.ic_heart_red);
             }
@@ -125,56 +186,6 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
 
             }
         }
-
-        if(TextUtils.isEmpty(phoneNumber) || !new MySharePreference((Activity)context).getPhoneLogin().equals(phoneNumber)) {
-            if (listProfileHistory.get(position).getMyAppraise() == null && !listProfileHistory.get(position).isMyRate()) {
-                holder.txtMyAppraise.setVisibility(View.GONE);
-                holder.llWriteAppraise.setVisibility(View.VISIBLE);
-                holder.imgMyHeart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!listProfileHistory.get(position).isMyRate()) {
-                            holder.imgMyHeart.setImageResource(R.drawable.ic_heart_red);
-                            listProfileHistory.get(position).setMyRate(true);
-                        } else {
-                            holder.imgMyHeart.setImageResource(R.drawable.ic_heart_black);
-                            listProfileHistory.get(position).setMyRate(false);
-                        }
-                    }
-                });
-
-                holder.ibtnSendAppraise.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final BaseProgress dialog = new BaseProgress();
-                        dialog.showProgressLoading(context);
-                        listProfileHistory.get(position).setMyAppraise(holder.edtWriteAppraise.getText().toString());
-                        Call<ArrayList<ProfileHistoryModel>> editEventHistory = Connect.getRetrofit().editEventHistory(new MySharePreference((Activity) context).getPhoneLogin(),
-                                listProfileHistory.get(position));
-                        editEventHistory.enqueue(new Callback<ArrayList<ProfileHistoryModel>>() {
-                            @Override
-                            public void onResponse(Call<ArrayList<ProfileHistoryModel>> call, Response<ArrayList<ProfileHistoryModel>> response) {
-                                dialog.hideProgressLoading();
-                                if (response.body() != null) {
-                                    listProfileHistory.clear();
-                                    listProfileHistory.addAll(response.body());
-                                    notifyDataSetChanged();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ArrayList<ProfileHistoryModel>> call, Throwable t) {
-                                dialog.hideProgressLoading();
-                            }
-                        });
-                    }
-                });
-
-            } else {
-                setMyAppraise(holder, listProfileHistory.get(position).getMyAppraise(), listProfileHistory.get(position).isMyRate());
-            }
-        }
-
     }
 
     private void setMyAppraise(CustomViewHolder holder, String myAppraise, boolean myRate) {
@@ -184,12 +195,16 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
             holder.imgMyHeart.setImageResource(R.drawable.ic_heart_red);
         }
         if (myAppraise != null) {
-            holder.txtMyAppraise.setText(setMultiColorText(new MySharePreference((Activity) context).getFullNameLogin(),myAppraise));
+            if (TextUtils.isEmpty(phoneNumber) && !new MySharePreference((Activity) context).getPhoneLogin().equals(phoneNumber)) {
+                holder.txtMyAppraise.setText(setMultiColorText(new MySharePreference((Activity) context).getFullNameLogin(), myAppraise));
+            }else {
+                holder.txtMyAppraise.setText(setMultiColorText(name, myAppraise));
+            }
         }
     }
 
     private Spannable setMultiColorText(String name, String content) {
-        Spannable spannable = new SpannableString(StringUtils.capitalize(StringEscapeUtils.unescapeJava(name) + ":  "+content));
+        Spannable spannable = new SpannableString(StringUtils.capitalize(StringEscapeUtils.unescapeJava(name) + ":  " + content));
 
         spannable.setSpan(new StyleSpan(Typeface.BOLD), 0, StringUtils.capitalize(StringEscapeUtils.unescapeJava(name)).length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -197,7 +212,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
         return spannable;
     }
 
-    private void setClickRestaurant(TextView txtRestaurant, final ProfileHistoryModel profileHistoryModel){
+    private void setClickRestaurant(TextView txtRestaurant, final ProfileHistoryModel profileHistoryModel) {
         txtRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,15 +248,15 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
                     txtPrice.setText(profileHistoryModel.getRestaurantInfo().getPrice());
                 }
 
-                if(profileHistoryModel.getReservationDetail()==null) {
+                if (profileHistoryModel.getReservationDetail() == null) {
                     if (TextUtils.isEmpty(profileHistoryModel.getRestaurantInfo().getOpenDay())) {
                         txtOpenDay.setText("10:00 - 22:00");
                     } else {
                         txtOpenDay.setText(profileHistoryModel.getRestaurantInfo().getOpenDay());
                     }
-                }else {
+                } else {
                     txtOpenDay.setText(profileHistoryModel.getReservationDetail().getTime());
-                    txtReserve.setText(context.getString(R.string.order_table)+" "+profileHistoryModel.getReservationDetail().getTable());
+                    txtReserve.setText(context.getString(R.string.order_table) + " " + profileHistoryModel.getReservationDetail().getTable());
                 }
 
                 btnDone.setOnClickListener(new View.OnClickListener() {
@@ -263,7 +278,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtDate, txtAccordantName, txtPlace, txtMyAppraise, txtAccordantAppraise;
+        private TextView txtDate, txtAccordantName, txtPlace, txtMyAppraise, txtAccordantAppraise, txtNoComment;
         private ImageView imgMyHeart, imgAccordantHeart;
         private EditText edtWriteAppraise;
         private ImageButton ibtnSendAppraise;
@@ -274,6 +289,7 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
             txtDate = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_fragment_profile_history_tv_date);
             txtAccordantName = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_fragment_profile_history_tv_friend_name);
             txtPlace = (TextView) itemView.findViewById(R.id.custom_adapter_recyclerview_fragment_profile_history_tv_place);
+            txtNoComment = (TextView) itemView.findViewById(R.id.txt_no_comment);
             llAppraise = (LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_fragment_profile_history_ll_appraise);
             llContainer = (LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_fragment_profile_history_ll_container);
             llAccordantAppraise = (LinearLayout) itemView.findViewById(R.id.custom_adapter_recyclerview_fragment_profile_history_ll_accordantappraise);

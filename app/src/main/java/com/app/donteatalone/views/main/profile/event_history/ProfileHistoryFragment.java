@@ -27,6 +27,7 @@ import retrofit2.Response;
 
 public class ProfileHistoryFragment extends Fragment {
     private static String ARG_PROFILE_HISTORY_PHONE = "ARG_PROFILE_HISTORY_PHONE";
+    private static String ARG_PROFILE_HISTORY_NAME = "ARG_PROFILE_HISTORY_NAME";
 
     private View viewGroup;
     private RecyclerView rclvHistory;
@@ -34,16 +35,18 @@ public class ProfileHistoryFragment extends Fragment {
     private ArrayList<ProfileHistoryModel> listProfileHistory;
     private SwipeRefreshLayout srlRefresh;
     private String phoneHistory;
+    private String name;
 
     private LinearLayout llEmptyHistory;
 
     public ProfileHistoryFragment() {
     }
 
-    public static ProfileHistoryFragment newInstance(String phoneHistory) {
+    public static ProfileHistoryFragment newInstance(String phoneHistory, String name) {
         ProfileHistoryFragment fm = new ProfileHistoryFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ARG_PROFILE_HISTORY_PHONE, phoneHistory);
+        bundle.putString(ARG_PROFILE_HISTORY_NAME, name);
         fm.setArguments(bundle);
         return fm;
     }
@@ -52,8 +55,9 @@ public class ProfileHistoryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null && getArguments().getString(ARG_PROFILE_HISTORY_PHONE) != null) {
+        if (getArguments() != null && getArguments().getString(ARG_PROFILE_HISTORY_PHONE) != null && getArguments().getString(ARG_PROFILE_HISTORY_NAME) != null) {
             phoneHistory = getArguments().getString(ARG_PROFILE_HISTORY_PHONE);
+            name = getArguments().getString(ARG_PROFILE_HISTORY_NAME);
         }
     }
 
@@ -76,7 +80,7 @@ public class ProfileHistoryFragment extends Fragment {
         rclvHistory.setLayoutManager(new LinearLayoutManager(getContext()));
 
         listProfileHistory = new ArrayList<>();
-        profileHistoryAdapter = new ProfileHistoryAdapter(listProfileHistory, getContext(), phoneHistory);
+        profileHistoryAdapter = new ProfileHistoryAdapter(listProfileHistory, getContext(), phoneHistory, name);
 
         rclvHistory.setAdapter(profileHistoryAdapter);
 

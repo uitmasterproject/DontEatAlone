@@ -197,6 +197,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(edtPhone.getText().toString())) {
+                    edtPhone.setError(getString(R.string.empty_phone));
+                } else if (edtPhone.getText().toString().length() < 10 ||
+                        edtPhone.getText().toString().length() > 11 ||
+                        (!edtPhone.getText().toString().startsWith("0") &&
+                                !edtPhone.getText().toString().startsWith("+84"))) {
                     edtPhone.setError(getString(R.string.invalid_phone));
                 } else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
                     edtPassword.setError(getString(R.string.invalid_password));

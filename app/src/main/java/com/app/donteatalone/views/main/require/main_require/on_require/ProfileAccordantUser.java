@@ -73,8 +73,6 @@ public class ProfileAccordantUser extends AppCompatActivity {
         getValueProfilefromDatabase();
         setClickButtonExit();
         setClickButtonLike();
-        setValueViewPager();
-        setValueTabLayout();
     }
 
     private void init() {
@@ -110,11 +108,11 @@ public class ProfileAccordantUser extends AppCompatActivity {
 
     }
 
-    private void setValueViewPager() {
+    private void setValueViewPager(String name) {
         ArrayList<Fragment> listFragment = new ArrayList<>();
         if (phoneNumber != null) {
             listFragment.add(ProfileBlogFragment.newInstance(phoneNumber));
-            listFragment.add(ProfileHistoryFragment.newInstance(phoneNumber));
+            listFragment.add(ProfileHistoryFragment.newInstance(phoneNumber, name));
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
@@ -191,6 +189,10 @@ public class ProfileAccordantUser extends AppCompatActivity {
     }
 
     private void setValueDefaultProfile(UserName userName) {
+
+        setValueViewPager(userName.getFullName());
+        setValueTabLayout();
+
         LocalDate date = new LocalDate();
 
         Picasso.with(ProfileAccordantUser.this)

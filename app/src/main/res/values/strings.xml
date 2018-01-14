@@ -77,7 +77,7 @@
     <!--*****************************************************************************************-->
     <!--Strings for error and yêu cầu thiết bị-->
     <!--error about phone number-->
-    <string name="invalid_phone">Số điện thoại không hợp lệ</string>
+    <string name="invalid_phone">Số điện thoại không hợp lệ, phải bắt đầu bằng 0, gồm 10 hoặc 11 số</string>
     <string name="empty_phone">Bạn cần phải nhập số điện thoại</string>
     <string name="phone_isnt_exist">Số điện thoại này không tồn tại. Hãy đăng ký tài khoản mới</string>
     <string name="phone_exists">Tài khoản đã tồn tại</string>
@@ -196,7 +196,7 @@
     <string name="edit_profile">Chỉnh sửa trang cá nhân</string>
     <string name="profile_history">Lịch sử cuộc hẹn</string>
     <string name="profile_history_suggest">Bạn hiện chưa có bất kỳ cuộc hẹn nào. Sau khi bạn hẹn người khác cùng đi ăn thành công. Lịch sử cuộc hẹn sẽ được ghi lại tại đây.</string>
-
+    <string name="no_comment">Chưa có đánh giá nào</string>
     <!--*****************************************************************************************-->
     <!--Strings for restaurant screen-->
     <string name="no_reservation_restaurant">Quán nổi bật</string>

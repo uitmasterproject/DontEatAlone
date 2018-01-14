@@ -33,11 +33,11 @@ public class InfoInvitation {
     }
 
     public InfoInvitation(Context context,InfoNotification infoNotification){
-        this.ownInvitation = new MySharePreference((Activity)context).createInfoUser();
+        this.ownInvitation = infoNotification.getParticipant();
         this.timeInvite = infoNotification.getTimeInvite();
         this.currentTime = infoNotification.getCurrentTime();
         this.resultInvitation = infoNotification.getResultInvitation();
-        this.participant = infoNotification.getParticipant();
+        this.participant = new MySharePreference((Activity)context).createInfoUser();
         this.restaurantInfo = infoNotification.getRestaurantInfo();
         this.reservationDetail = infoNotification.getReservationDetail();
     }
