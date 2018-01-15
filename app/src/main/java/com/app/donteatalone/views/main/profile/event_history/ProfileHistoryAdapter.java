@@ -83,9 +83,14 @@ public class ProfileHistoryAdapter extends RecyclerView.Adapter<ProfileHistoryAd
         holder.txtAccordantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ProfileAccordantUser.class);
-                intent.putExtra(ARG_PHONE_NUMBER, listProfileHistory.get(position).getParticipant().getAccordantUser());
-                context.startActivity(intent);
+                if(new MySharePreference((Activity) context).getPhoneLogin().equals(listProfileHistory.get(position).getParticipant().getAccordantUser())){
+                    ((Activity) context).onBackPressed();
+                }else {
+                    Intent intent = new Intent(context, ProfileAccordantUser.class);
+                    intent.putExtra(ARG_PHONE_NUMBER, listProfileHistory.get(position).getParticipant().getAccordantUser());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    context.startActivity(intent);
+                }
             }
         });
 

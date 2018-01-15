@@ -18,7 +18,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -258,7 +257,10 @@ public class StatusActivity extends Activity {
 
                 while (countImage < llContainer.getChildCount()) {
                     if (llContainer.getChildAt(countImage).getClass().getName().equals("android.widget.ImageView")) {
-                        countResult += 1;
+                        ImageView imageView = (ImageView) llContainer.getChildAt(countImage);
+                        if (((BitmapDrawable) imageView.getDrawable()).getBitmap() != null) {
+                            countResult += 1;
+                        }
                     }
                     countImage += 1;
                 }
